@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="iDna.iDnaBase" Collapsed="true">
+    <Position X="0.75" Y="1" Width="1.75" />
+    <AssociationLine Name="Pair" Type="iDna.iDnaBase" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.25" Y="1" />
+        <Point X="1.25" Y="0.75" />
+        <Point X="2.062" Y="0.75" />
+        <Point X="2.062" Y="1" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgIAAAAAAAgAAAAAAAAAAAAAAAAgAAkAAA=</HashCode>
+      <FileName>classes\iDnaBase.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Pair" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="iDna.iDnaBaseNucleotides">
+    <Position X="6.5" Y="0.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QAAEAAAAAAAAAAAQAAAAAAAIBAAAAAAAQAAAqAAEQAA=</HashCode>
+      <FileName>classes\iDnaBaseNucleotides.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Instance" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="iDna.iDnaBaseList" Collapsed="true">
+    <Position X="4" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>classes\iDnaBaseList.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="this[System.Char]" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="iDna.iDnaSequence" Collapsed="true">
+    <Position X="4" Y="2.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EAAkAAAAEAgRMAAGGAggCCzgBgBBgAAAQwCAACIIAAA=</HashCode>
+      <FileName>classes\iDnaSequence.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="iDna.iDnaNode">
+    <Position X="0.75" Y="2.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="RootBaseItem" Type="iDna.iDnaBase">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.182" Y="0.154" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAQAgAACAAAAAEBAAAAEIgAAAAAA=</HashCode>
+      <FileName>classes\iDnaNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="RootBaseItem" />
+      <Property Name="ParentSequence" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

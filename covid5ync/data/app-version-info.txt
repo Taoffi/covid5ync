@@ -1,0 +1,25 @@
+THANK YOU FOR USING covid5ync APPLICATION!
+*******************************************
+We decided to launch this project as a modest contribution in the current Covid-19 epidemic crisis.
+As you know, all of us are turning to you, the biotechnology community, to help defeat this new epidemic.
+With this application, we aim to offer a very modest contribution for you to do this job.
+
+WE STRIVE TO HEAR FROM YOU TO ADD THE FEATURES MOST USEFUL FOR YOUR WORK.
+Please send your feedback to covid5ync@5ync.net.. we will answer as quickly as we can.
+
+**************************************
+The current version is a start point in a work in progress:
+* The covid-19 DNA sequence is loaded on application startup
+* You can view, zoom-in / out (using Ctrl + mouse wheel)
+* You can search the sequence for nucleotides OR complementary pairs.
+
+We are currently preparing (future version in the coming days):
+* Load sequence from file
+* Save sequence to file
+* List repeats
+* List hairpins
+
+At a longer term:
+* Generate primers according to your settings
+* ... and other features you may request!
+

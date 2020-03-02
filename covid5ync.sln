@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "covid5ync", "covid5ync\covid5ync.csproj", "{4291C89D-5C8F-487F-8A3E-DF76745CDB79}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4291C89D-5C8F-487F-8A3E-DF76745CDB79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4291C89D-5C8F-487F-8A3E-DF76745CDB79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4291C89D-5C8F-487F-8A3E-DF76745CDB79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4291C89D-5C8F-487F-8A3E-DF76745CDB79}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6071C189-3FF1-48D8-AD12-CFE0D6550E4C}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://virtual2016:8080/tfs/tn_collection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = covid5ync\\covid5ync.csproj
+		SccProjectName1 = iDna
+		SccLocalPath1 = icovid5ync
+	EndGlobalSection
+EndGlobal

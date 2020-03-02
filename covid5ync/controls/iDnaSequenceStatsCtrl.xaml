@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="iDna.controls.iDnaSequenceStatsCtrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:iDna.controls"
+			 xmlns:data="clr-namespace:iDna"
+             mc:Ignorable="d" 
+			 d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type data:iDnaBaseStats}}"
+             d:DesignHeight="150" d:DesignWidth="150">
+	<Grid DataContext="{Binding Statistics, Source={StaticResource mainSequence}, IsAsync=True}">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="26" />
+			<RowDefinition Height="26" />
+			<RowDefinition Height="26" />
+			<RowDefinition Height="26" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="60" />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+
+		<!--<TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="8,0" Text="a" />-->
+		<local:iDnaBaseCtrl Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Margin="8,0"
+							DataContext="{Binding A, Mode=OneWay, Source={StaticResource dnaBases}}" Height="20" Width="20" />
+		<TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="60"
+				   Margin="4,0"
+				   Text="{Binding CountA, IsAsync=True, Mode=OneWay}" />
+
+		<!--<TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="8,0" Text="t" />-->
+		<local:iDnaBaseCtrl Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Margin="8,0"
+							DataContext="{Binding T, Mode=OneWay, Source={StaticResource dnaBases}}" Height="20" Width="20" />
+		<TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="60" 
+				   Margin="4,0"
+				   Text="{Binding CountT, IsAsync=True, Mode=OneWay}" />
+
+		<!--<TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="8,0" Text="g" />-->
+		<local:iDnaBaseCtrl Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Margin="8,0"
+							DataContext="{Binding G, Mode=OneWay, Source={StaticResource dnaBases}}" Height="20" Width="20" />
+		<TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="60"
+				   Margin="4,0"
+				   Text="{Binding CountG, IsAsync=True, Mode=OneWay}" />
+
+		<!--<TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="8,0" Text="c" />-->
+		<local:iDnaBaseCtrl Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="8,0"
+							DataContext="{Binding C, Mode=OneWay, Source={StaticResource dnaBases}}" Height="20" Width="20" />
+		<TextBlock Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="60"
+				   Margin="4,0"
+				   Text="{Binding CountC, IsAsync=True, Mode=OneWay}" />
+	</Grid>
+</UserControl>

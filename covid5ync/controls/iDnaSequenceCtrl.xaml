@@ -1,0 +1,150 @@
+﻿<UserControl x:Class="iDna.controls.iDnaSequenceCtrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:iDna.controls"
+			 xmlns:data="clr-namespace:iDna"
+             mc:Ignorable="d" 
+			 d:DataContext="{d:DesignInstance Type={x:Type data:iDnaSequenceDesignTime}, IsDesignTimeCreatable=True}"
+             d:DesignHeight="268" d:DesignWidth="483"
+			 SnapsToDevicePixels="True"
+			 >
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="26" />
+			<RowDefinition Height="26" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+
+		<!-- top panel: paging control and node count -->
+		<StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="4,0" Background="#FFF6F6F6">
+			<Button x:Name="buttonPrevPage" Content="&lt;" 
+					VerticalContentAlignment="Center" VerticalAlignment="Center" 
+					Width="20" HorizontalAlignment="Left" Margin="4,2" Padding="0"
+					IsEnabled="{Binding SequencePaging.HasPrevious, Mode=OneWay, IsAsync=True}"
+					Click="buttonPrevPage_Click" />
+
+			<ComboBox x:Name="comboBoxPages" 
+					  ItemsSource="{Binding SequencePaging.PageNumbers, IsAsync=True}"
+					  Width="50" HorizontalContentAlignment="Center"
+					  SelectedValue="{Binding SequencePaging.CurrentPage, IsAsync=True, Mode=TwoWay}" >
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding }" />
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+			<Button x:Name="buttonPrevNext" Content="&gt;"
+					VerticalContentAlignment="Center" VerticalAlignment="Center"
+					Width="20" HorizontalAlignment="Left" Margin="4,2" Padding="0"
+					IsEnabled="{Binding SequencePaging.HasNext, Mode=OneWay, IsAsync=True}"
+					Click="buttonPrevNext_Click" />
+
+			<TextBlock VerticalAlignment="Center" Text="Items/page" Margin="8,0" Foreground="Blue"
+					   FontSize="10"
+					   ToolTip="number of items per page"/>
+			<TextBox x:Name="textBoxPageSize" VerticalAlignment="Center"
+					 Width="50" Text="{Binding PaginPageSize, Mode=TwoWay}"
+					 TextAlignment="Right" Padding="4,0"
+					 IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}}"/>
+
+			<Button x:Name="buttonApplyPageSize" VerticalAlignment="Center" Width="24" Content="Go" 
+					ToolTip="apply page size" FontSize="9"
+					IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}}"
+					Margin="2,0"/>
+
+			<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0">
+				<TextBlock VerticalAlignment="Center" Margin="0" Foreground="Blue"
+						   Text="(" FontSize="9px" />
+				<TextBlock VerticalAlignment="Center" Margin="1,0" Foreground="Blue"
+						   Text="{Binding Items.Count, ElementName=listItems, Mode=OneWay}"
+						   FontSize="9px" />
+				<TextBlock VerticalAlignment="Center" Margin="0" Foreground="Blue"
+						   Text=")" FontSize="9px" />
+			</StackPanel>
+			
+		</StackPanel>
+		
+		<!-- panel search / search pair -->
+		<StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+			<TextBlock Style="{StaticResource label}" Text="Search" FontSize="10"
+					   ToolTip="search for nucleotides (min 3 chars)"/>
+			<TextBox x:Name="textBoxSearch" VerticalAlignment="Center" Width="100"
+					 Text="{Binding SearchString, Mode=OneWayToSource}" 
+					 IsEnabled="{Binding CanSearch, IsAsync=True}"/>
+			<Button x:Name="buttonSearch" Margin="2,0" VerticalAlignment="Center"
+					Width="20" Content="Go" FontSize="10"
+					IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}}"/>
+
+			<TextBlock VerticalAlignment="Center" Margin="4,0"
+					   Text="{Binding SearchOccurrences, Mode=OneWay, IsAsync=True, UpdateSourceTrigger=PropertyChanged}"
+					   Foreground="Maroon" FontSize="9"
+					   ToolTip="found occurrences"/>
+
+			<TextBlock Style="{StaticResource label}" Text="Search pair" Margin="12,0,4,0" FontSize="10"
+					   ToolTip="find complementary nucleotides (min 3 chars)" />
+			<TextBox x:Name="textBoxSearchPair" VerticalAlignment="Center" Width="100"
+					 Text="{Binding SearchPairString, Mode=OneWayToSource}"
+					 IsEnabled="{Binding CanSearch, IsAsync=True}"
+					 />
+			<Button x:Name="buttonSearchPair" Margin="2,0" VerticalAlignment="Center"
+					Width="20" Content="Go" FontSize="10"
+					IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}}"/>
+
+			<TextBlock VerticalAlignment="Center" Margin="4,0"
+					   Text="{Binding SearchPairOccurrences, Mode=OneWay, IsAsync=True, UpdateSourceTrigger=PropertyChanged}"
+					   Foreground="Maroon" FontSize="9" 
+					   ToolTip="number of complementary nucleotides' occurrences"/>
+		</StackPanel>
+
+		
+		<!-- SelectedItem="{Binding SelectedWord, Mode=TwoWay, IsAsync=True}" -->
+		<ListView x:Name="listItems" 
+				  Grid.Row="2" 
+				  ItemsSource="{Binding SequencePaging.CurrentPageData, IsAsync=True}" 
+				  BorderBrush="#FFA3A3A4" BorderThickness="1"
+				  Background="{x:Null}"
+				  Padding="2"
+				  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+				  >
+			<ListView.Resources>
+				<Style TargetType="{x:Type ListViewItem}">
+					<!--<Style.Resources>
+						<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{x:Static SystemColors.HighlightColor}"/>
+					</Style.Resources>-->
+					
+					<Setter Property="IsSelected" Value="{Binding IsSelected, IsAsync=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+					<Setter Property="Width"		Value="24" />
+					<Setter Property="Height"		Value="18" />
+					<Setter Property="Padding"		Value="-2,0,2,-2" />
+					<Setter Property="Margin"		Value="2.4,-2,-8,0" />
+					<Setter	Property="Background"	Value="Blue" />
+
+					<!--<Style.Triggers>
+						<Trigger Property="IsSelected" Value="True">
+							<Trigger.Setters>
+								<Setter Property="FontWeight"	Value="Medium" />
+								<Setter Property="Margin"		Value="2,-2,-8,0" />
+								<Setter Property="Padding"		Value="2,0,2,-2" />
+							</Trigger.Setters>
+						</Trigger>
+					</Style.Triggers>-->
+				</Style>
+			</ListView.Resources>
+			<ListBox.ItemsPanel>
+				<ItemsPanelTemplate>
+					<WrapPanel Width="{Binding Width, ElementName=listItems}"
+							   HorizontalAlignment="Left" Height="auto" 
+							   Margin="-2,2,-4,0" />
+				</ItemsPanelTemplate>
+			</ListBox.ItemsPanel>
+
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<local:iDnaNodeCtrl DataContext="{Binding }" Width="14" Height="14" Margin="2.9,0,0,0" Padding="0" />
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</Grid>
+</UserControl>

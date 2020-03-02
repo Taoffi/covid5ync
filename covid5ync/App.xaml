@@ -1,0 +1,38 @@
+﻿<Application x:Class="iDna.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:iDna"
+			 xmlns:data="clr-namespace:iDna"
+			 xmlns:conv="clr-namespace:iDna.controls"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+		<ResourceDictionary>
+			<ObjectDataProvider x:Key="dnaBases"		ObjectType="{x:Type data:iDnaBaseNucleotides}"	MethodName="GetInstance" />
+			<ObjectDataProvider x:Key="mainSequence"	ObjectType="{x:Type data:iDnaSequence}"			MethodName="GetInstance" />
+
+			<conv:iDnaNodeCode2String	x:Key="nodeCode2String" />
+			<conv:iDnaNodeColor2Brush	x:Key="nodeColor2Brush" />
+			<conv:iDnaBaseCode2String	x:Key="baseCode2String" />
+			<conv:iDnaBaseColor2Brush	x:Key="baseColorBrush" />
+			<conv:ReverseBool			x:Key="reverseBool" />
+
+			<conv:Bool2Visibility		x:Key="bool2visible" />
+			<Image x:Key="imgBusy"		Source="images/busy48x48.png" />
+
+
+			<Style TargetType="{x:Type TextBlock}">
+				<Setter Property="VerticalAlignment"		Value="Center" />
+			</Style>
+			
+			<Style x:Key="label" TargetType="{x:Type TextBlock}">
+				<Setter	Property="VerticalAlignment"	Value="Center" />
+				<Setter Property="Foreground"			Value="Blue" />
+				<Setter	Property="TextAlignment"		Value="Right" />
+				<Setter	Property="Margin"				Value="4,0" />
+			</Style>
+			
+			
+		</ResourceDictionary>
+         
+    </Application.Resources>
+</Application>

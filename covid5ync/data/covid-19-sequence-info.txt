@@ -1,0 +1,27 @@
+Source:     https://www.ncbi.nlm.nih.gov/nuccore/LR757995
+LOCUS       LR757995               29872 bp    RNA     linear   VRL 01-FEB-2020
+DEFINITION  Wuhan seafood market pneumonia virus genome assembly, chromosome:
+            whole_genome.
+ACCESSION   LR757995
+VERSION     LR757995.1
+DBLINK      BioProject: PRJEB36487
+            BioSample: SAMEA6507893
+KEYWORDS    .
+SOURCE      Severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2)
+  ORGANISM  Severe acute respiratory syndrome coronavirus 2
+            Viruses; Riboviria; Nidovirales; Cornidovirineae; Coronaviridae;
+            Orthocoronavirinae; Betacoronavirus; Sarbecovirus.
+REFERENCE   1
+  AUTHORS   Hunter,C. and Wei,X.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (30-JAN-2020) BGI, GigaScience, 16 Dai Fu Street, Tai Po
+            Industrial Estate, N.T., Hong Kong
+COMMENT     Coronovirus sequence assembly isolated from 2019/2020 Wuhan
+            outbreak patient.
+FEATURES             Location/Qualifiers
+     source          1..29872
+                     /organism="Severe acute respiratory syndrome coronavirus
+                     2"
+                     /mol_type="genomic RNA"
+                     /db_xref="taxon:2697049"
+                     /chromosome="whole_genome"
