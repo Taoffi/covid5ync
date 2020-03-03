@@ -30,15 +30,15 @@ namespace iDna.controls
 		public iDnaSequenceCtrl()
 		{
 			InitializeComponent();
-			this.Loaded += new RoutedEventHandler(Control_Loaded);
+			//this.Loaded += new RoutedEventHandler(Control_Loaded);
 		}
 
-		private void Control_Loaded(object sender, RoutedEventArgs e)
-		{
-			var presenter		= UiHelpers.FindChild<ScrollContentPresenter>(listItems, null);
-			var mouseWheelZoom  = new MouseWheelZoom(presenter);
-			PreviewMouseWheel   += mouseWheelZoom.Zoom;
-		}
+		//private void Control_Loaded(object sender, RoutedEventArgs e)
+		//{
+		//	var presenter		= UiHelpers.FindChild<ScrollContentPresenter>(listItems, null);
+		//	var mouseWheelZoom  = new MouseWheelZoom(presenter);
+		//	PreviewMouseWheel   += mouseWheelZoom.Zoom;
+		//}
 
 
         private void buttonPrevNext_Click(object sender, RoutedEventArgs e)

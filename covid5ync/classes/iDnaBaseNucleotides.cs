@@ -134,6 +134,27 @@ namespace iDna
 			var		wrongChars	= str.Where(c => ! IsValidChar(c));
 			return wrongChars == null || wrongChars.Count() <= 0;
 		}
+
+		public static string TrimInvalidChars(string strSrc)
+		{
+			if(string.IsNullOrEmpty(strSrc))
+				return "";
+
+			string	str				= "";
+			int		srcLen			= strSrc.Length;
+			var		invalidChars	= strSrc.Where(c => ! IsValidChar(c)).ToList();
+
+			if(invalidChars == null || invalidChars.Count() <= 0)
+				return strSrc;
+
+			str		= strSrc;
+
+			foreach(char c in invalidChars)
+				str	= str.Replace(c.ToString(), "");
+
+			return str;
+		}
+
 	}
 }
 

@@ -63,8 +63,10 @@
 			</StackPanel>
 		</Border>
 
-		<!-- SelectedItem="{Binding SelectedWord, Mode=TwoWay, IsAsync=True}" -->
-		<ListView x:Name="listItems" 
+		<!-- ************** sequence view ************** -->
+		<local:iDnaSequenceView Grid.Row="1" DataContext="{Binding }" />
+		
+		<!--<ListView x:Name="listItems" 
 				  Grid.Row="1" 
 				  ItemsSource="{Binding SequencePaging.CurrentPageData, IsAsync=True}" 
 				  BorderBrush="#FFA3A3A4" BorderThickness="1"
@@ -107,7 +109,7 @@
 				</DataTemplate>
 			</ListView.ItemTemplate>
 
-		</ListView>
+		</ListView>-->
 
 		<!-- top panel: paging control and node count -->
 		<Border Grid.Row="2" Margin="2,2" Padding="2" VerticalAlignment="Center" HorizontalAlignment="Stretch"

@@ -20,16 +20,20 @@ namespace iDna
 
 		public event SequenceParseCompleteHandler	SequenceParseCompleted;
 
-		protected bool								_isBusy				= false;
-		protected CancellationTokenSource			_cancelSource		= new CancellationTokenSource(5);
-		protected string							_sequenceFileInfo	= "";
-		protected iDnaSequencePaging				_paging				= new iDnaSequencePaging(1000);
-		protected string							_searchString		= "",
-													_searchPairString	= "";
-		protected int								_searchCount		= 0,
-													_searchPairCount	= 0,
-													_minSearchLenght	= 3;
-		protected bool								_searchInProgress	= false;
+		protected string							_id						= Guid.NewGuid().ToString();
+		protected iDnaBaseStats						_stats					= new iDnaBaseStats();
+		protected bool								_isBusy					= false;
+		protected CancellationTokenSource			_cancelSource			= new CancellationTokenSource(5);
+		protected string							_sequenceFileInfo		= "";
+		protected iDnaSequencePaging				_paging					= new iDnaSequencePaging(1000);
+		protected string							_searchString			= "",
+													_searchPairString		= "";
+		protected int								_searchCount			= 0,
+													_searchPairCount		= 0,
+													_minSearchLenght		= 3;
+		protected bool								_searchInProgress		= false;
+		protected iDnaSequenceList					_selectionBasket		= new iDnaSequenceList(),
+													_pairSelectionBasket	= new iDnaSequenceList();
 
 		public static iDnaSequence Instance
 		{
@@ -46,8 +50,7 @@ namespace iDna
 		{
 			return Instance;
 		}
-
-		protected iDnaBaseStats		_stats		= new iDnaBaseStats();
+			
 
 		
 		public iDnaSequence() : base()
@@ -55,10 +58,49 @@ namespace iDna
 			_paging.SourceCollection	= this;
 		}
 
+		protected iDnaSequence(IEnumerable<iDnaNode> nodeList, bool refOnly = true) : base()
+		{
+			CopyNodeList(nodeList, refOnly);
+		}
+
+		/// <summary>
+		/// replace current sequence with the list of node. Embed or keep nodes parent and index.
+		/// </summary>
+		/// <param name="nodeList">nodes to copy</param>
+		/// <param name="refOnly">when true: embed and reindex copied nodes (detatch from the source). 
+		/// otherwise: keep parent and index</param>
+		protected void CopyNodeList(IEnumerable<iDnaNode> nodeList, bool refOnly = true)
+		{
+			this.Clear();
+			if(nodeList == null)
+				return;
+
+			this.AddRange(nodeList);
+
+			// embed nodes: set parent to this and reset nodes index
+			if( ! refOnly)
+				ReIndexNodes();
+		}
+
+		/// <summary>
+		/// embed nodes: set parent to this and reset nodes index
+		/// </summary>
+		protected void ReIndexNodes()
+		{
+			int			ndx			= 1;
+
+			foreach(var node in this)
+			{
+				node.ParentSequence	= this;
+				node.Index			= ndx;
+				ndx++;
+			}
+		}
 		public iDnaSequencePaging SequencePaging
 		{
 			get { return _paging; }
 		}
+
 
 		public int PaginPageSize
 		{
@@ -90,6 +132,44 @@ namespace iDna
 			get { return this.Where(i => i.RootBaseItem == rootBase); }
 		}
 
+
+		public string Id
+		{
+			get {  return _id; }
+		}
+
+		public iDnaSequenceList SelectionBasket
+		{
+			get {  return _selectionBasket; }
+			protected set
+			{
+				if(value == _selectionBasket)
+					return;
+
+				if(value == null)
+					_selectionBasket.Clear();
+				else
+					_selectionBasket	= value;
+				NotifyPropertyChanged(() => SelectionBasket);
+			}
+		}
+
+
+		public iDnaSequenceList PairSelectionBasket
+		{
+			get {  return _pairSelectionBasket; }
+			protected set
+			{
+				if(value == _pairSelectionBasket)
+					return;
+
+				if(value == null)
+					_pairSelectionBasket.Clear();
+				else
+					_pairSelectionBasket = value;
+				NotifyPropertyChanged(() => PairSelectionBasket);
+			}
+		}
 
 		public IEnumerable<iDnaNode> SelectedItems
 		{
@@ -308,6 +388,7 @@ namespace iDna
 			}
 		}
 
+
 		void ResetSelection(bool selectValue, Dispatcher dispatcher)
 		{
 			if (dispatcher == null)
@@ -324,15 +405,25 @@ namespace iDna
 
 		public async Task<IEnumerable<iDnaNode>> FindString(string str, bool isPairSearch, Dispatcher dispatcher)
 		{
-			if(isPairSearch)
-				SearchPairOccurrences	= 0;
-			else
-				SearchOccurrences		= 0;
-
 			if (string.IsNullOrWhiteSpace(str))
 				return null;
 
-			str		= str.Replace(" ", "");
+			iDnaSequenceList		basket	= isPairSearch ? _pairSelectionBasket : _selectionBasket;
+
+			basket.Clear();
+
+			if (isPairSearch)
+			{
+				SearchPairOccurrences = 0;
+				NotifyPropertyChanged(() => PairSelectionBasket);
+			}
+			else
+			{
+				SearchOccurrences = 0;
+				NotifyPropertyChanged(() => SelectionBasket);
+			}
+
+			str		= iDnaBaseNucleotides.TrimInvalidChars(str);
 
 			if (! iDnaBaseNucleotides.Instance.IsValidSearchString(str))
 				return null;
@@ -396,6 +487,8 @@ namespace iDna
 					{
 						list.AddRange(subSeq);
 						//ndxStarts		+= lenStr;
+
+						basket.Add( new iDnaSequence(subSeq));
 					}
 
 					ndxStarts++;
@@ -406,20 +499,7 @@ namespace iDna
 			// select found nodes
 			dispatcher.Invoke(() =>
 			{
-				//await Task.Run(() =>
-				{
-					ResetSelection(false, dispatcher: dispatcher);
-
-					//if(listViewDispatcher != null)
-					//{
-					//	listViewDispatcher.Invoke(() =>
-					//	{
-					//		foreach (var item in _paging.CurrentPageData)
-					//			item.IsSelected = false;
-					//	});
-					//}
-				}
-				//);
+				ResetSelection(false, dispatcher: dispatcher);
 
 				foreach (var item in list)
 					item.IsSelected = true;

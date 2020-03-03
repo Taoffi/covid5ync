@@ -16,13 +16,22 @@ using System.Windows.Shapes;
 namespace iDna.controls
 {
 	/// <summary>
-	/// Interaction logic for iDnaNodeCtrl.xaml
+	/// Interaction logic for iDnaSequenceView.xaml
 	/// </summary>
-	public partial class iDnaNodeCtrl : UserControl
+	public partial class iDnaSequenceView : UserControl
 	{
-		public iDnaNodeCtrl()
+		public iDnaSequenceView()
 		{
 			InitializeComponent();
+			this.Loaded += new RoutedEventHandler(Control_Loaded);
 		}
+
+		private void Control_Loaded(object sender, RoutedEventArgs e)
+		{
+			var presenter		= UiHelpers.FindChild<ScrollContentPresenter>(listItems, null);
+			var mouseWheelZoom  = new MouseWheelZoom(presenter);
+			PreviewMouseWheel   += mouseWheelZoom.Zoom;
+		}
+
 	}
 }

@@ -124,6 +124,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="controls\iDnaSequenceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="controls\SequenceInfoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -159,6 +163,7 @@
     <Compile Include="classes\iDnaNode.cs" />
     <Compile Include="classes\iDnaBaseList.cs" />
     <Compile Include="classes\iDnaBase.cs" />
+    <Compile Include="classes\iDnaSequenceList.cs" />
     <Compile Include="classes\iDnaSequenceStats.cs" />
     <Compile Include="classes\paging\iSequencePaging.cs" />
     <Compile Include="classes\root objects\RootListTemplate.cs" />
@@ -168,7 +173,7 @@
     <Compile Include="controls\iAboutCtrl.xaml.cs">
       <DependentUpon>iAboutCtrl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="controls\iDnaConverters.cs" />
+    <Compile Include="controls\converters\iDnaConverters.cs" />
     <Compile Include="controls\iDnaBaseCtrl.xaml.cs">
       <DependentUpon>iDnaBaseCtrl.xaml</DependentUpon>
     </Compile>
@@ -180,6 +185,9 @@
     </Compile>
     <Compile Include="controls\iDnaSequenceStatsCtrl.xaml.cs">
       <DependentUpon>iDnaSequenceStatsCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\iDnaSequenceView.xaml.cs">
+      <DependentUpon>iDnaSequenceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="controls\SequenceInfoWindow.xaml.cs">
       <DependentUpon>SequenceInfoWindow.xaml</DependentUpon>
@@ -208,7 +216,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="classes\covid5yncClassDiagram1.cd" />
+    <None Include="classes\documentation\covid5yncClassDiagram-hierarchy.cd" />
+    <None Include="classes\documentation\covid5yncClassDiagram1.cd" />
     <None Include="covid5ync_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

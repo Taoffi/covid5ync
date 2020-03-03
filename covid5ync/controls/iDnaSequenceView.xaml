@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="iDna.controls.iDnaSequenceView"
+			xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			xmlns:local="clr-namespace:iDna.controls"
+			 xmlns:data="clr-namespace:iDna"
+			mc:Ignorable="d" 
+			 d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type data:iDnaSequenceDesignTime}}"
+			d:DesignHeight="450" d:DesignWidth="411.5">
+	<Grid>
+		<ListView x:Name="listItems" 
+				  Grid.Row="1" 
+				  ItemsSource="{Binding SequencePaging.CurrentPageData, IsAsync=True}" 
+				  BorderBrush="#FFA3A3A4" BorderThickness="1"
+				  Background="{x:Null}"
+				  Padding="2"
+				  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+				  VirtualizingPanel.IsVirtualizing="True"
+				  UseLayoutRounding="True"
+				  IsSynchronizedWithCurrentItem="True"
+				  >
+			<ListView.Resources>
+				<Style TargetType="{x:Type ListViewItem}">
+					<Style.Resources>
+						<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{x:Static SystemColors.HighlightColor}"/>
+					</Style.Resources>
+
+					<Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay, IsAsync=True}" />
+					<Setter Property="Padding"		Value="0,0.5,0,0" />
+					<Setter Property="Margin"		Value="-1,0,0.5,-1" />
+					<Setter	Property="Background"	Value="Blue" />
+				</Style>
+			</ListView.Resources>
+
+			<ListBox.ItemsPanel>
+				<ItemsPanelTemplate>
+					<WrapPanel Width="{Binding Width, ElementName=listItems}"
+							   HorizontalAlignment="Left" Height="auto" 
+							   Margin="0,0,0,0"
+							   Background="#FF323030" />
+				</ItemsPanelTemplate>
+			</ListBox.ItemsPanel>
+
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<local:iDnaNodeCtrl DataContext="{Binding }"
+										Width="20" Height="20"
+										Margin="-2.8,0,-2,-2" 
+										Padding="0,0,0,-1" 
+										ToolTip="{Binding Index, StringFormat=\{0:# ##0\}}"/>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+
+		</ListView>
+	</Grid>
+</UserControl>
