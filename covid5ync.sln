@@ -28,7 +28,7 @@ Global
 		SccTeamFoundationServer = http://virtual2016:8080/tfs/tn_collection
 		SccLocalPath0 = .
 		SccProjectUniqueName1 = covid5ync\\covid5ync.csproj
-		SccProjectName1 = iDna
-		SccLocalPath1 = icovid5ync
+		SccProjectName1 = covid5ync
+		SccLocalPath1 = covid5ync
 	EndGlobalSection
 EndGlobal
