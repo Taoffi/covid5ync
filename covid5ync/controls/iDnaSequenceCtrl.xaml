@@ -7,144 +7,205 @@
 			 xmlns:data="clr-namespace:iDna"
              mc:Ignorable="d" 
 			 d:DataContext="{d:DesignInstance Type={x:Type data:iDnaSequenceDesignTime}, IsDesignTimeCreatable=True}"
-             d:DesignHeight="268" d:DesignWidth="483"
+             d:DesignHeight="415" d:DesignWidth="506"
 			 SnapsToDevicePixels="True"
 			 >
 	<Grid>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="26" />
-			<RowDefinition Height="26" />
+			<RowDefinition Height="32" />
 			<RowDefinition />
+			<RowDefinition Height="32" />
 		</Grid.RowDefinitions>
 
-		<!-- top panel: paging control and node count -->
-		<StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="4,0" Background="#FFF6F6F6">
-			<Button x:Name="buttonPrevPage" Content="&lt;" 
-					VerticalContentAlignment="Center" VerticalAlignment="Center" 
-					Width="20" HorizontalAlignment="Left" Margin="4,2" Padding="0"
-					IsEnabled="{Binding SequencePaging.HasPrevious, Mode=OneWay, IsAsync=True}"
-					Click="buttonPrevPage_Click" />
-
-			<ComboBox x:Name="comboBoxPages" 
-					  ItemsSource="{Binding SequencePaging.PageNumbers, IsAsync=True}"
-					  Width="50" HorizontalContentAlignment="Center"
-					  SelectedValue="{Binding SequencePaging.CurrentPage, IsAsync=True, Mode=TwoWay}" >
-				<ComboBox.ItemTemplate>
-					<DataTemplate>
-						<TextBlock Text="{Binding }" />
-					</DataTemplate>
-				</ComboBox.ItemTemplate>
-			</ComboBox>
-			<Button x:Name="buttonPrevNext" Content="&gt;"
-					VerticalContentAlignment="Center" VerticalAlignment="Center"
-					Width="20" HorizontalAlignment="Left" Margin="4,2" Padding="0"
-					IsEnabled="{Binding SequencePaging.HasNext, Mode=OneWay, IsAsync=True}"
-					Click="buttonPrevNext_Click" />
-
-			<TextBlock VerticalAlignment="Center" Text="Items/page" Margin="8,0" Foreground="Blue"
-					   FontSize="10"
-					   ToolTip="number of items per page"/>
-			<TextBox x:Name="textBoxPageSize" VerticalAlignment="Center"
-					 Width="50" Text="{Binding PaginPageSize, Mode=TwoWay}"
-					 TextAlignment="Right" Padding="4,0"
-					 IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}}"/>
-
-			<Button x:Name="buttonApplyPageSize" VerticalAlignment="Center" Width="24" Content="Go" 
-					ToolTip="apply page size" FontSize="9"
-					IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}}"
-					Margin="2,0"/>
-
-			<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0">
-				<TextBlock VerticalAlignment="Center" Margin="0" Foreground="Blue"
-						   Text="(" FontSize="9px" />
-				<TextBlock VerticalAlignment="Center" Margin="1,0" Foreground="Blue"
-						   Text="{Binding Items.Count, ElementName=listItems, Mode=OneWay}"
-						   FontSize="9px" />
-				<TextBlock VerticalAlignment="Center" Margin="0" Foreground="Blue"
-						   Text=")" FontSize="9px" />
-			</StackPanel>
-			
-		</StackPanel>
-		
 		<!-- panel search / search pair -->
-		<StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
-			<TextBlock Style="{StaticResource label}" Text="Search" FontSize="10"
+		<Border Grid.Row="0" Margin="2,2" Padding="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" 
+				BorderBrush="#FF7A7A7A" BorderThickness="0,1.5" Background="#FFE3E2E8">
+			<StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
+				<TextBlock Style="{StaticResource label}" Text="Search" 
 					   ToolTip="search for nucleotides (min 3 chars)"/>
-			<TextBox x:Name="textBoxSearch" VerticalAlignment="Center" Width="100"
-					 Text="{Binding SearchString, Mode=OneWayToSource}" 
+				<TextBox x:Name="textBoxSearch" VerticalAlignment="Center" Width="100"
+					 Text="{Binding SearchString, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" 
 					 IsEnabled="{Binding CanSearch, IsAsync=True}"/>
-			<Button x:Name="buttonSearch" Margin="2,0" VerticalAlignment="Center"
+				<Button x:Name="buttonSearch" Margin="2,0" VerticalAlignment="Center"
 					Width="20" Content="Go" FontSize="10"
-					IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}}"/>
+					IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}}"
+					Click="buttonSearch_Click" />
 
-			<TextBlock VerticalAlignment="Center" Margin="4,0"
+				<TextBlock VerticalAlignment="Center" Margin="4,0"
 					   Text="{Binding SearchOccurrences, Mode=OneWay, IsAsync=True, UpdateSourceTrigger=PropertyChanged}"
 					   Foreground="Maroon" FontSize="9"
 					   ToolTip="found occurrences"/>
 
-			<TextBlock Style="{StaticResource label}" Text="Search pair" Margin="12,0,4,0" FontSize="10"
+				<TextBlock Style="{StaticResource label}" Text="Search pair" Margin="12,0,4,0" 
 					   ToolTip="find complementary nucleotides (min 3 chars)" />
-			<TextBox x:Name="textBoxSearchPair" VerticalAlignment="Center" Width="100"
-					 Text="{Binding SearchPairString, Mode=OneWayToSource}"
+				<TextBox x:Name="textBoxSearchPair" VerticalAlignment="Center" Width="100"
+					 Text="{Binding SearchPairString, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
 					 IsEnabled="{Binding CanSearch, IsAsync=True}"
 					 />
-			<Button x:Name="buttonSearchPair" Margin="2,0" VerticalAlignment="Center"
+				<Button x:Name="buttonSearchPair" Margin="2,0" VerticalAlignment="Center"
 					Width="20" Content="Go" FontSize="10"
-					IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}}"/>
+					IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}}"
+					Click="buttonSearchPair_Click" />
 
-			<TextBlock VerticalAlignment="Center" Margin="4,0"
+				<TextBlock VerticalAlignment="Center" Margin="4,0"
 					   Text="{Binding SearchPairOccurrences, Mode=OneWay, IsAsync=True, UpdateSourceTrigger=PropertyChanged}"
 					   Foreground="Maroon" FontSize="9" 
 					   ToolTip="number of complementary nucleotides' occurrences"/>
-		</StackPanel>
+			</StackPanel>
+		</Border>
 
-		
 		<!-- SelectedItem="{Binding SelectedWord, Mode=TwoWay, IsAsync=True}" -->
 		<ListView x:Name="listItems" 
-				  Grid.Row="2" 
+				  Grid.Row="1" 
 				  ItemsSource="{Binding SequencePaging.CurrentPageData, IsAsync=True}" 
 				  BorderBrush="#FFA3A3A4" BorderThickness="1"
 				  Background="{x:Null}"
 				  Padding="2"
 				  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+				  VirtualizingPanel.IsVirtualizing="True"
+				  UseLayoutRounding="True"
+				  IsSynchronizedWithCurrentItem="True"
 				  >
 			<ListView.Resources>
 				<Style TargetType="{x:Type ListViewItem}">
-					<!--<Style.Resources>
+					<Style.Resources>
 						<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{x:Static SystemColors.HighlightColor}"/>
-					</Style.Resources>-->
-					
-					<Setter Property="IsSelected" Value="{Binding IsSelected, IsAsync=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-					<Setter Property="Width"		Value="24" />
-					<Setter Property="Height"		Value="18" />
-					<Setter Property="Padding"		Value="-2,0,2,-2" />
-					<Setter Property="Margin"		Value="2.4,-2,-8,0" />
-					<Setter	Property="Background"	Value="Blue" />
+					</Style.Resources>
 
-					<!--<Style.Triggers>
-						<Trigger Property="IsSelected" Value="True">
-							<Trigger.Setters>
-								<Setter Property="FontWeight"	Value="Medium" />
-								<Setter Property="Margin"		Value="2,-2,-8,0" />
-								<Setter Property="Padding"		Value="2,0,2,-2" />
-							</Trigger.Setters>
-						</Trigger>
-					</Style.Triggers>-->
+					<Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay, IsAsync=True}" />
+					<Setter Property="Padding"		Value="0,0.5,0,0" />
+					<Setter Property="Margin"		Value="-1,0,0.5,-1" />
+					<Setter	Property="Background"	Value="Blue" />
 				</Style>
 			</ListView.Resources>
+
 			<ListBox.ItemsPanel>
 				<ItemsPanelTemplate>
 					<WrapPanel Width="{Binding Width, ElementName=listItems}"
 							   HorizontalAlignment="Left" Height="auto" 
-							   Margin="-2,2,-4,0" />
+							   Margin="0,0,0,0"
+							   Background="#FF323030" />
 				</ItemsPanelTemplate>
 			</ListBox.ItemsPanel>
 
 			<ListView.ItemTemplate>
 				<DataTemplate>
-					<local:iDnaNodeCtrl DataContext="{Binding }" Width="14" Height="14" Margin="2.9,0,0,0" Padding="0" />
+					<local:iDnaNodeCtrl DataContext="{Binding }"
+										Width="20" Height="20"
+										Margin="-2.8,0,-2,-2" 
+										Padding="0,0,0,-1" 
+										ToolTip="{Binding Index, StringFormat=\{0:# ##0\}}"/>
 				</DataTemplate>
 			</ListView.ItemTemplate>
+
 		</ListView>
+
+		<!-- top panel: paging control and node count -->
+		<Border Grid.Row="2" Margin="2,2" Padding="2" VerticalAlignment="Center" HorizontalAlignment="Stretch"
+				BorderBrush="#FF7A7A7A" BorderThickness="0,1.5" Background="#FFE3E2E8">
+			<StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="4,0" >
+				<Button x:Name="buttonPrevPage"  Background="Transparent"
+						BorderBrush="Transparent" BorderThickness="0"
+						VerticalContentAlignment="Center" VerticalAlignment="Center" 
+						Width="20" HorizontalAlignment="Left" Margin="4,2" Padding="0,-3,0,0"
+						IsEnabled="{Binding SequencePaging.HasPrevious, Mode=OneWay, IsAsync=True}"
+						Click="buttonPrevPage_Click">
+					<Button.Style>
+						<Style TargetType="{x:Type Button}">
+							<Style.Triggers>
+								<Trigger Property="IsEnabled" Value="True">
+									<Setter Property="Content">
+										<Setter.Value>
+											<Grid>
+												<Image Source="{Binding Source={StaticResource imgPrev}, Path=Source}" />
+											</Grid>
+										</Setter.Value>
+									</Setter>
+								</Trigger>
+
+								<Trigger Property="IsEnabled" Value="False">
+									<Setter Property="Content">
+										<Setter.Value>
+											<Grid>
+												<Image Source="{Binding Source={StaticResource imgPrevDisabled}, Path=Source}" />
+											</Grid>
+										</Setter.Value>
+									</Setter>
+								</Trigger>
+							</Style.Triggers>
+						</Style>
+					</Button.Style>
+				</Button>
+
+				<ComboBox x:Name="comboBoxPages" 
+						  ItemsSource="{Binding SequencePaging.PageNumbers, IsAsync=True}"
+						  Width="50" Height="18" 
+						  HorizontalContentAlignment="Center"
+						  FontSize="11"
+						  SelectedValue="{Binding SequencePaging.CurrentPage, IsAsync=True, Mode=TwoWay}" >
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding }" />
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+
+				<Button x:Name="buttonPrevNext" Background="Transparent"
+						BorderBrush="Transparent" BorderThickness="0"
+						VerticalContentAlignment="Center" VerticalAlignment="Center"
+						Width="20" HorizontalAlignment="Left" Margin="4,2" Padding="0,-3,0,0"
+						IsEnabled="{Binding SequencePaging.HasNext, Mode=OneWay, IsAsync=True}"
+						Click="buttonPrevNext_Click">
+					<Button.Style>
+						<Style TargetType="{x:Type Button}">
+							<Style.Triggers>
+								<Trigger Property="IsEnabled"		Value="True">
+								<Setter Property="Content">
+									<Setter.Value>
+										<Grid>
+											<Image Source="{Binding Source={StaticResource imgNext}, Path=Source}" />
+										</Grid>
+									</Setter.Value>
+								</Setter>
+							</Trigger>
+								<Trigger Property="IsEnabled"		Value="False">
+									<Setter Property="Content">
+										<Setter.Value>
+											<Grid>
+												<Image Source="{Binding Source={StaticResource imgNextDisabled}, Path=Source}" />
+											</Grid>
+										</Setter.Value>
+									</Setter>
+								</Trigger>
+							</Style.Triggers>
+						</Style>
+					</Button.Style>
+				</Button>
+
+				<TextBlock VerticalAlignment="Center" Text="Items/page" Margin="8,0" Foreground="Blue"
+						   ToolTip="number of items per page"/>
+				<TextBox x:Name="textBoxPageSize" VerticalAlignment="Center"
+						 Width="50" Text="{Binding PaginPageSize, Mode=TwoWay}"
+						 TextAlignment="Right" Padding="4,0"
+						 IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}}"/>
+
+				<Button x:Name="buttonApplyPageSize" VerticalAlignment="Center" Width="24" Content="Go" 
+						ToolTip="apply page size" FontSize="9"
+						IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}}"
+						Margin="2,0"/>
+
+				<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0">
+					<TextBlock VerticalAlignment="Center" Margin="0" Foreground="Blue"
+						   Text="(" FontSize="9px" />
+					<TextBlock VerticalAlignment="Center" Margin="0" Foreground="Blue"
+						   Text="{Binding Items.Count, ElementName=listItems, Mode=OneWay}"
+						   FontSize="9px"
+						   ToolTip="current page items"/>
+					<TextBlock VerticalAlignment="Center" Margin="0" Foreground="Blue"
+						   Text=")" FontSize="9px" />
+				</StackPanel>
+
+			</StackPanel>
+		</Border>
 	</Grid>
 </UserControl>

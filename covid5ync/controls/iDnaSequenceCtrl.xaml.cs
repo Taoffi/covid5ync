@@ -99,6 +99,29 @@ namespace iDna.controls
 
             paging.CurrentPage  -=1;
         }
+
+        private async void buttonSearch_Click(object sender, RoutedEventArgs e)
+        {
+            string      str     = textBoxSearch.Text;
+
+            if(string.IsNullOrEmpty(str))
+                return;
+
+            await iDnaSequence.Instance.FindString( str, isPairSearch: false, this.Dispatcher );
+            //listItems.ApplyTemplate();
+        }
+
+        private async void buttonSearchPair_Click(object sender, RoutedEventArgs e)
+        {
+            string str  = textBoxSearchPair.Text;
+
+            if (string.IsNullOrEmpty(str))
+                return;
+
+            str     = iDnaBaseNucleotides.Instance.GetPairString(str);
+            await iDnaSequence.Instance.FindString(str, isPairSearch: true, this.Dispatcher);
+            //listItems.InvalidateVisual();
+        }
     }
 
     public class MouseWheelZoom

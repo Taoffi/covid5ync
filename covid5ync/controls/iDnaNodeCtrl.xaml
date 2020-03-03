@@ -7,14 +7,27 @@
 			 xmlns:data="clr-namespace:iDna"
              mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance Type={x:Type data:iDnaNodeDesignTime}, IsDesignTimeCreatable=True}"
-			 d:DesignHeight="16" d:DesignWidth="16">
-	<Grid>
-		<Border CornerRadius="2" BorderBrush="Black" BorderThickness="1" Padding="0"
-				Background="{Binding Converter={StaticResource nodeColor2Brush}}">
-			<TextBlock VerticalAlignment="Center" Margin="0,-2,0,0"
+			 d:DesignHeight="16" d:DesignWidth="16"
+			 Margin="0" Padding="0">
+	
+	<Grid Margin="0" Width="auto" Height="auto">
+		<Border x:Name="nodeBorder" CornerRadius="2" 
+				BorderBrush="Black" BorderThickness="1" Padding="0" Margin="0"
+				>
+			<TextBlock VerticalAlignment="Center" Margin="0,0,0,0"
 					   FontSize="9.5"
 					   TextAlignment="Center"
-					   Text="{Binding ., Converter={StaticResource nodeCode2String}}" />
+					   Text="{Binding Converter={StaticResource nodeCode2String}}" />
+			<Border.Style>
+				<Style TargetType="{x:Type Border}">
+					<Setter Property="Background" Value="{Binding Converter={StaticResource nodeColor2Brush}, IsAsync=True, UpdateSourceTrigger=PropertyChanged}" />
+					<Style.Triggers>
+						<DataTrigger Binding="{Binding IsSelected, IsAsync=True, FallbackValue=False}"		Value="True">
+							<Setter Property="Background"		Value="WhiteSmoke" />
+						</DataTrigger>
+					</Style.Triggers>
+				</Style>
+			</Border.Style>
 		</Border>
 	</Grid>
 </UserControl>

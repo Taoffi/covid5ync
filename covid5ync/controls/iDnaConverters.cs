@@ -101,9 +101,9 @@ namespace iDna.controls
 			if(node == null)
 				return _defaultBrush;
 
-			char	code	= node.Code;
+			Color	color	= node.Color;
 
-			return new SolidColorBrush(iDnaBaseNucleotides.GetBaseColor(code));
+			return new SolidColorBrush(color);
 		}
 
 
@@ -124,12 +124,7 @@ namespace iDna.controls
 			if(node == null)
 				return _defaultBrush;
 
-			char	code		= node.Code;
-			Color	color	= iDnaBaseNucleotides.GetBaseColor(code);
-
-			//( 0.8 should darken it; or, for example, *1.25 to brighten it)
-			if (node.IsSelected)
-				color	= Color.FromArgb((byte)(color.A * 0.30), (byte)(color.R), (byte)(color.G), (byte)(color.B));	// Math.Max(color.B, (byte)1) * 8.25));
+			Color	color	= node.Color;
 
 			return new SolidColorBrush(color);
 		}

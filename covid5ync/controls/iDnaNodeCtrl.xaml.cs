@@ -24,5 +24,10 @@ namespace iDna.controls
 		{
 			InitializeComponent();
 		}
+
+		private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+		{
+
+		}
 	}
 }

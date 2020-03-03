@@ -1,10 +1,12 @@
 ﻿using isosoft.root;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Threading;
 
@@ -47,6 +49,7 @@ namespace iDna
 
 		protected iDnaBaseStats		_stats		= new iDnaBaseStats();
 
+		
 		public iDnaSequence() : base()
 		{
 			_paging.SourceCollection	= this;
@@ -194,6 +197,9 @@ namespace iDna
 					if(_cancelSource.Token.IsCancellationRequested)
 						break;
 
+					if(! iDnaBaseNucleotides.IsValidChar(chr))
+						continue;
+
 					this.AddNode(this, chr, ++index);
 
 					//// refersh if we areon first non-full page
@@ -258,12 +264,12 @@ namespace iDna
 				_searchString = value;
 				NotifyPropertyChanged(() => SearchString);
 
-				ResetSelection(false);
+				//ResetSelection(false);
 
-				if (!string.IsNullOrEmpty(value) && value.Length > _minSearchLenght)
-				{
-					Task.Run(() => FindString( value, isPairSearch: false));
-				}
+				//if (!_searchInProgress && !string.IsNullOrEmpty(value) && value.Length > _minSearchLenght)
+				//{
+				//	Task.Run(() => FindString( value, isPairSearch: false, null));
+				//}
 			}
 		}
 
@@ -279,10 +285,10 @@ namespace iDna
 				_searchPairString = value;
 				NotifyPropertyChanged(() => SearchPairString);
 
-				ResetSelection(false);
+				//ResetSelection(false);
 
-				if (!string.IsNullOrEmpty(value) && value.Length > _minSearchLenght)
-					Task.Run(() => FindString( iDnaBaseNucleotides.Instance.GetPairString(_searchPairString), isPairSearch: true));
+				//if (! _searchInProgress && !string.IsNullOrEmpty(value) && value.Length > _minSearchLenght)
+				//	Task.Run(() => FindString( iDnaBaseNucleotides.Instance.GetPairString(_searchPairString), isPairSearch: true, null));
 			}
 		}
 
@@ -302,17 +308,21 @@ namespace iDna
 			}
 		}
 
-		async void ResetSelection(bool selectValue)
+		void ResetSelection(bool selectValue, Dispatcher dispatcher)
 		{
-			await Task.Run(() =>
+			if (dispatcher == null)
+				dispatcher = Dispatcher.CurrentDispatcher;
+
+			dispatcher.Invoke(() =>
 			{
 				foreach(var item in this)
 					item.IsSelected	= selectValue;
-			});
+			}
+			);
 		}
 
 
-		public async Task<IEnumerable<iDnaNode>> FindString(string str, bool isPairSearch)
+		public async Task<IEnumerable<iDnaNode>> FindString(string str, bool isPairSearch, Dispatcher dispatcher)
 		{
 			if(isPairSearch)
 				SearchPairOccurrences	= 0;
@@ -335,8 +345,11 @@ namespace iDna
 				resetBusy		= true;
 				IsBusy		= true;
 			}
-				
+			
 			NotifyPropertyChanged(() => CanSearch);
+
+			if( dispatcher == null)
+				dispatcher	= Dispatcher.CurrentDispatcher;
 
 			List<iDnaNode>	list		= new List<iDnaNode>();
 			var				allStarts	= this.Where( i => str[0] == i.Code).ToList();
@@ -353,50 +366,69 @@ namespace iDna
 
 			await Task.Run(() =>
 			{
+
 				//foreach(var item in allStarts)
-				while((ndxStarts  + lenStr) < startsCount)
+				while ((ndxStarts /*+ lenStr*/) < startsCount)
 				{
-					iDnaNode	item		= allStarts[ndxStarts];
+					iDnaNode item	= allStarts[ndxStarts];
 
-					nodeNdx		= item.Index;
-					ndxEnd		= nodeNdx	+ lenStr;
-					var			subSeq	= this.Where( i => i.Index >= nodeNdx && i.Index < ndxEnd && ! list.Exists(i1 => i1.Index == i.Index));
+					nodeNdx			= item.Index;
+					ndxEnd			= nodeNdx + lenStr;
+					var subSeq		= this.Where(i => i.Index >= nodeNdx && i.Index < ndxEnd);
 
-					if(subSeq == null)
+					if (subSeq == null)
 						continue;
 
 					ndxStr			= 0;
-					bool	mismatch		= false;
+					bool mismatch	= false;
 
-					foreach(var node in subSeq)
+					foreach (var node in subSeq)
 					{
-						if(node.Code != str[ndxStr] && ndxStr < lenStr)
+						if (node.Code != str[ndxStr] && ndxStr < lenStr)
 						{
-							mismatch		= true;
+							mismatch	= true;
 							break;
 						}
 						ndxStr++;
 					}
 
-					if(! mismatch && ndxStr == lenStr)
+					if (!mismatch && ndxStr == lenStr)
 					{
 						list.AddRange(subSeq);
-						ndxStarts	+= lenStr;
+						//ndxStarts		+= lenStr;
 					}
-					else
-						ndxStarts++;
-				}
 
-				// select found nodes
-				Dispatcher.CurrentDispatcher.Invoke(() =>
-				{
-					foreach (var item in list)
-						item.IsSelected = true;
-				});
+					ndxStarts++;
+				}
 			});
 			
+
+			// select found nodes
+			dispatcher.Invoke(() =>
+			{
+				//await Task.Run(() =>
+				{
+					ResetSelection(false, dispatcher: dispatcher);
+
+					//if(listViewDispatcher != null)
+					//{
+					//	listViewDispatcher.Invoke(() =>
+					//	{
+					//		foreach (var item in _paging.CurrentPageData)
+					//			item.IsSelected = false;
+					//	});
+					//}
+				}
+				//);
+
+				foreach (var item in list)
+					item.IsSelected = true;
+			}
+			);
+
 			var		distinctIndexes	= list.Select(i => i.Index).Distinct();
 			int		distinctCount	= distinctIndexes.Count() / lenStr;
+
 			if (isPairSearch)
 				SearchPairOccurrences = distinctCount;
 			else
@@ -408,6 +440,9 @@ namespace iDna
 				IsBusy				= false;
 
 			NotifyPropertyChanged(() => CanSearch);
+			//_paging.RaisePagingEvents();
+			//NotifyPropertyChanged(() => _paging.CurrentPageData);
+			//NotifyPropertyChanged(() => _paging.CurrentPage);
 
 			return list;
 		}

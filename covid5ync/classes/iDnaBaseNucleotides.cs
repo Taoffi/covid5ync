@@ -119,4 +119,12 @@ namespace iDna
 					return Colors.Violet;
 			}
 		}
-	}}
+
+		public static bool IsValidChar(char c)
+		{
+			string		validChars	= "atgc";
+			return validChars.Contains(c);
+		}
+	}
+}
+

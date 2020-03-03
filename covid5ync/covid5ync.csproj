@@ -38,7 +38,7 @@
     <SuiteName>covid5ync</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -242,10 +242,24 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="classes\paging\future\" />
     <Folder Include="data\data backup\" />
+    <Folder Include="web pages\css\" />
+    <Folder Include="web pages\images\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="data\app-version-info.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\about78x78.png" />
+    <Resource Include="images\sequence-file78x78.png" />
+    <Resource Include="images\sequence78x78.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\nav_next16x16.png" />
+    <Resource Include="images\nav_next-dis16x16.png" />
+    <Resource Include="images\nav_prev16x16.png" />
+    <Resource Include="images\nav_prev-dis16x16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

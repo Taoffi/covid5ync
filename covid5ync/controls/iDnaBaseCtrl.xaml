@@ -9,11 +9,12 @@
 			 d:DataContext="{d:DesignInstance Type={x:Type data:iDnaBase}, IsDesignTimeCreatable=True}"
 			 d:DesignHeight="16" d:DesignWidth="16">
 	<Grid>
-		<Border CornerRadius="3" BorderBrush="Black" BorderThickness="1" Background="{Binding Converter={StaticResource baseColorBrush}}">
+		<Border CornerRadius="3" BorderBrush="Black" BorderThickness="1" 
+				Background="{Binding Converter={StaticResource baseColorBrush}}">
 			<TextBlock VerticalAlignment="Center" Margin="0,-2.5,0,0"
 					   FontSize="9.5"
 					   TextAlignment="Center"
-					   Text="{Binding ., Converter={StaticResource baseCode2String}}"  />
+					   Text="{Binding ., Converter={StaticResource baseCode2String}}" />
 		</Border>
 
 	</Grid>

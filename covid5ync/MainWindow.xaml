@@ -9,9 +9,9 @@
 		Icon="iDna.ico"
         Title="covid5ync" Height="600" Width="800" ResizeMode="CanResizeWithGrip">
 
-	<Grid DataContext="{Binding Source={StaticResource mainSequence}}" Background="#FFF6F6F6">
+	<Grid DataContext="{Binding Source={StaticResource mainSequence}}" Background="#FFD8DCF5">
 		<Grid.RowDefinitions>
-			<RowDefinition Height="28" />
+			<RowDefinition Height="42" />
 			<RowDefinition />
 			<RowDefinition Height="28" />
 		</Grid.RowDefinitions>
@@ -22,9 +22,10 @@
 
 		<GridSplitter Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="4" />
 		<StackPanel Grid.Row="0"
-					Orientation="Horizontal" VerticalAlignment="Center" Margin="8,0">
-			<TextBox FontSize="14" FontWeight="Bold" VerticalAlignment="Center" Margin="8,0" 
+					Orientation="Horizontal" VerticalAlignment="Center" Margin="2,0" >
+			<TextBox FontWeight="Bold" VerticalAlignment="Center" Margin="8,0" 
 					 BorderThickness="0"
+					 FontSize="24"
 					 Text="covid-19 genome sequence" Background="{x:Null}" />
 			<TextBox VerticalAlignment="Center" Margin="8,0" 
 					 BorderThickness="0"
@@ -50,14 +51,27 @@
 		<controls:iDnaSequenceStatsCtrl Grid.Row="1" Grid.Column="1" Margin="6,0" Background="#FFF6F6F6" />
 
 		<TabControl Grid.Row="1" Grid.Column="0" Background="#FFF6F6F6"  FontSize="14">
-			<TabItem Header="Sequence nucleotides">
+			<TabItem>
+				<TabItem.Header>
+					<StackPanel Orientation="Horizontal">
+						<Image Source="{Binding Source={StaticResource imgSequence}, Path=Source}" Width="16" Margin="4" />
+						<TextBlock Text="Explore sequence" Margin="4,0" />
+					</StackPanel>
+				</TabItem.Header>
 				<Grid Background="#FFF6F6F6">
 					<controls:iDnaSequenceCtrl x:Name="sequenceCtrl" Grid.Row="1" Grid.Column="0"
 											   DataContext="{Binding Source={StaticResource mainSequence}, IsAsync=True}"/>
 				</Grid>
 			</TabItem>
 
-			<TabItem Header="Sequence file info">
+			<TabItem >
+				<TabItem.Header>
+					<StackPanel Orientation="Horizontal">
+						<Image Source="{Binding Source={StaticResource imgSequenceFile}, Path=Source}" Width="16" Margin="4" />
+						<TextBlock Text="Sequence file info" Margin="4,0" />
+					</StackPanel>
+				</TabItem.Header>
+
 				<Grid Background="#FFF6F6F6">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="413*"/>
@@ -80,7 +94,15 @@
 				</Grid>
 			</TabItem>
 
-			<TabItem Header="About this app">
+			<TabItem>
+				<TabItem.Header>
+					<StackPanel Orientation="Horizontal">
+						<Image Source="{Binding Source={StaticResource imgAbout}, Path=Source}" Width="16" Margin="4" />
+						<TextBlock Text="About this app" Margin="4,0" />
+					</StackPanel>
+				</TabItem.Header>
+
+
 				<Grid Background="#FFF6F6F6">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="120" />

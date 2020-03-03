@@ -88,7 +88,11 @@ namespace iDna
 					return;
 
 				_isSelected		= value;
-				Dispatcher.CurrentDispatcher.Invoke(() => RaisePropertyChanged());
+
+				//if(value == false)
+					NotifyPropertyChanged(null);
+				//else
+				//	RaisePropertyChanged();
 			}
 		}
 	}

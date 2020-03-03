@@ -16,12 +16,15 @@
 			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
 
-		<TextBlock Grid.Row="0" Grid.Column="0"
+		<StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
+			<Image Source="{Binding Source={StaticResource imgSequence}, Path=Source}" Margin="6" />
+			<TextBlock Grid.Row="0" Grid.Column="0"
 				   FontSize="16" FontWeight="Bold"
 				   TextAlignment="Left"
 				   VerticalAlignment="Center"
 				   Text="covid5ync"
-				   Margin="16,0" />
+				   Margin="0,0" />
+		</StackPanel>
 
 		<TextBlock x:Name="textVersion" Grid.Row="1" Text="" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="16,0" />
 		<TextBlock x:Name="textVersionDate" Grid.Row="2" Text="" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="16,0" />
