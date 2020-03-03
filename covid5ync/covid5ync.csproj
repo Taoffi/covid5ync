@@ -184,6 +184,7 @@
     <Compile Include="controls\SequenceInfoWindow.xaml.cs">
       <DependentUpon>SequenceInfoWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="controls\UiHelpers.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

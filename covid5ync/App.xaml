@@ -10,11 +10,12 @@
 			<ObjectDataProvider x:Key="dnaBases"		ObjectType="{x:Type data:iDnaBaseNucleotides}"	MethodName="GetInstance" />
 			<ObjectDataProvider x:Key="mainSequence"	ObjectType="{x:Type data:iDnaSequence}"			MethodName="GetInstance" />
 
-			<conv:iDnaNodeCode2String	x:Key="nodeCode2String" />
-			<conv:iDnaNodeColor2Brush	x:Key="nodeColor2Brush" />
-			<conv:iDnaBaseCode2String	x:Key="baseCode2String" />
-			<conv:iDnaBaseColor2Brush	x:Key="baseColorBrush" />
-			<conv:ReverseBool			x:Key="reverseBool" />
+			<conv:iDnaNodeCode2String		x:Key="nodeCode2String" />
+			<conv:iDnaNodeColor2Brush		x:Key="nodeColor2Brush" />
+			<conv:iDnaBaseCode2String		x:Key="baseCode2String" />
+			<conv:iDnaBaseColor2Brush		x:Key="baseColorBrush" />
+			<conv:ReverseBool				x:Key="reverseBool" />
+			<conv:ValidSearchStringColor	x:Key="searchStringValidator" />
 
 			<conv:Bool2Visibility			x:Key="bool2visible" />
 			<Image x:Key="imgBusy"			Source="images/busy48x48.png" />

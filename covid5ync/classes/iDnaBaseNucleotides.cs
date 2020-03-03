@@ -125,6 +125,15 @@ namespace iDna
 			string		validChars	= "atgc";
 			return validChars.Contains(c);
 		}
+
+		public static bool IsValidString(string str)
+		{
+			if(string.IsNullOrEmpty(str))
+				return false;
+
+			var		wrongChars	= str.Where(c => ! IsValidChar(c));
+			return wrongChars == null || wrongChars.Count() <= 0;
+		}
 	}
 }
 

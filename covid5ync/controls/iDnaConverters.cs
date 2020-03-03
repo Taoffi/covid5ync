@@ -11,6 +11,30 @@ using System.Windows.Media;
 namespace iDna.controls
 {
 
+	public class ValidSearchStringColor : IValueConverter
+	{
+		static SolidColorBrush	_black		= new SolidColorBrush(Colors.Black),
+								_red		= new SolidColorBrush(Colors.Red);
+
+		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			if (value == null)
+				return _black;
+
+			string	strValue = value.ToString();
+
+			bool isValid	= iDnaBaseNucleotides.IsValidString(strValue);
+
+			return isValid ? _black : _red;
+		}
+
+		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+
 	public class Bool2Visibility : IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
