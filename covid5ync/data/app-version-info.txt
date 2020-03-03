@@ -8,10 +8,16 @@ WE STRIVE TO HEAR FROM YOU TO ADD THE FEATURES MOST USEFUL FOR YOUR WORK.
 Please send your feedback to covid5ync@5ync.net.. we will answer as quickly as we can.
 
 **************************************
-The current version is a start point in a work in progress:
+The current (beta) version is a start point in a work in progress:
 * The covid-19 DNA sequence is loaded on application startup
 * You can view, zoom-in / out (using Ctrl + mouse wheel)
 * You can search the sequence for nucleotides OR complementary pairs.
+-----------------------------
+2020-03-04
+-----------------------------
+- new feature: selection basket (found search fragments)
+- sequence stats: show nucleotide percentage
+
 
 We are currently preparing (future version in the coming days):
 * Load sequence from file
