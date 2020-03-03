@@ -29,7 +29,8 @@
 				BorderBrush="#FF7A7A7A" BorderThickness="0,1.5" Background="#FFE3E2E8">
 			<StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
 				<TextBlock Style="{StaticResource label}" Text="Search" 
-					   ToolTip="search for nucleotides (min 3 chars)"/>
+					   ToolTip="search for nucleotides 
+(ctrl+f)  (min 3 chars)"/>
 				<TextBox x:Name="textBoxSearch" VerticalAlignment="Center" Width="120"
 						 Text="{Binding SearchString, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" 
 						 Foreground="{Binding SearchString, Converter={StaticResource searchStringValidator}}"
@@ -45,7 +46,8 @@
 					   ToolTip="found occurrences"/>
 
 				<TextBlock Style="{StaticResource label}" Text="Search pair" Margin="12,0,4,0" 
-					   ToolTip="find complementary nucleotides (min 3 chars)" />
+					   ToolTip="find complementary nucleotides
+(alt+f) (min 3 chars)" />
 				<TextBox x:Name="textBoxSearchPair" VerticalAlignment="Center" Width="120"
 						 Text="{Binding SearchPairString, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
 						 Foreground="{Binding SearchPairString, Converter={StaticResource searchStringValidator}}"

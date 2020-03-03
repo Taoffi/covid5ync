@@ -116,6 +116,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="controls\iDnaSequenceBasket.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="controls\iDnaSequenceCtrl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -179,6 +183,9 @@
     </Compile>
     <Compile Include="controls\iDnaNodeCtrl.xaml.cs">
       <DependentUpon>iDnaNodeCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\iDnaSequenceBasket.xaml.cs">
+      <DependentUpon>iDnaSequenceBasket.xaml</DependentUpon>
     </Compile>
     <Compile Include="controls\iDnaSequenceCtrl.xaml.cs">
       <DependentUpon>iDnaSequenceCtrl.xaml</DependentUpon>

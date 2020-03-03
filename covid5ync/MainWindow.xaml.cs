@@ -53,6 +53,8 @@ namespace iDna
 							seqUri			= new Uri("/data/covid-19-sequence.txt", UriKind.Relative),
 							appInfoUri		= new Uri("/data/app-version-info.txt", UriKind.Relative);
 
+			sequence.Name	= "Wuhan seafood market pneumonia virus genome assembly, whole_genome";
+
 			await Dispatcher.Invoke(async() =>
 			{
 				Stream		infStream		= Application.GetResourceStream(seqInfoUri).Stream,

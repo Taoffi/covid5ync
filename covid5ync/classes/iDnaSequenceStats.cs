@@ -10,14 +10,15 @@ namespace iDna
 	public class iDnaBaseStatItem : RootObject
 	{
 		protected	iDnaBase	_base;
-		protected	int			_count;
+		protected	int			_count,
+								_total;
 
 		public iDnaBaseStatItem() : base()
 		{
 
 		}
 
-		public iDnaBaseStatItem(iDnaBase rootBase, int count)
+		public iDnaBaseStatItem(iDnaBase rootBase, int count, int total)
 		{
 			_base	= rootBase;
 			_count	= count;
@@ -45,17 +46,66 @@ namespace iDna
 
 				_count = value;
 				RaisePropertyChanged();
+				NotifyPropertyChanged(() => Percent);
 			}
 		}
+
+		public int Total
+		{
+			get { return _total; }
+			set
+			{
+				if(value == _total)
+					return;
+
+				_total = value;
+				RaisePropertyChanged();
+				NotifyPropertyChanged(() => Percent);
+			}
+		}
+
+
+		public double? Percent
+		{
+			get { return _total <= 0 ? null : new double?( (double)_count / (double) _total); }
+		}
+
 	}
 
 	public class iDnaBaseStats : RootListTemplate<iDnaBaseStatItem>
 	{
+		protected int			_total		= 0;
 
 		public iDnaBaseStats() : base()
 		{
 			init_instance();
 		}
+
+		public int Total
+		{
+			get { return _total; }
+			set
+			{
+				if(value == _total)
+					return;
+
+				_total = value;
+				NotifyPropertyChanged(() => Total);
+				UpdateItems();
+			}
+		}
+
+		void UpdateItems()
+		{
+			foreach(var item in this)
+				item.Total	= _total;
+
+			NotifyPropertyChanged(() => PercentA);
+			NotifyPropertyChanged(() => PercentT);
+			NotifyPropertyChanged(() => PercentG);
+			NotifyPropertyChanged(() => PercentC);
+		}
+
 
 
 		int GetBaseCount(char rootBaseCode)
@@ -65,6 +115,14 @@ namespace iDna
 			return item == null ? 0 : item.Count;
 		}
 
+		double? GetBasePercent(char rootBaseCode)
+		{
+			var item	= this[rootBaseCode];
+
+			return item == null ? null : item.Percent;
+		}
+
+		/// count bases
 		public int CountA
 		{
 			get { return GetBaseCount('a'); }
@@ -86,12 +144,35 @@ namespace iDna
 		}
 
 
+		/// percentages
+		public double? PercentA
+		{
+			get { return GetBasePercent('a'); }
+		}
+
+		public double? PercentT
+		{
+			get { return GetBasePercent('t'); }
+		}
+
+		public double? PercentG
+		{
+			get { return GetBasePercent('g'); }
+		}
+
+		public double? PercentC
+		{
+			get { return GetBasePercent('c'); }
+		}
+
+
+
 		protected void init_instance()
 		{
 			this.Clear();
 
 			foreach(var item in iDnaBaseNucleotides.Instance)
-				this.Add( new iDnaBaseStatItem( item, 0));
+				this.Add( new iDnaBaseStatItem( item, 0, 0));
 		}
 
 		public void Reset()

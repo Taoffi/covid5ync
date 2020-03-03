@@ -26,4 +26,16 @@ namespace iDna
 		}
 
 	}
+
+
+	public class iDnaSequenceListDesigntime : iDnaSequenceList
+	{
+
+		public iDnaSequenceListDesigntime() : base()
+		{
+			this.Add( new iDnaSequenceDesignTime());
+			this.Add(new iDnaSequenceDesignTime());
+			this.Add(new iDnaSequenceDesignTime());
+		}
+	}
 }

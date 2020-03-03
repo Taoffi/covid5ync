@@ -18,36 +18,57 @@
 		</Grid.RowDefinitions>
 
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="60" />
+			<ColumnDefinition Width="38" />
 			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
 
 		<!--<TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="8,0" Text="a" />-->
 		<local:iDnaBaseCtrl Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Margin="8,0"
 							DataContext="{Binding A, Mode=OneWay, Source={StaticResource dnaBases}}" Height="20" Width="20" />
-		<TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="60"
-				   Margin="4,0"
-				   Text="{Binding CountA, IsAsync=True, Mode=OneWay}" />
+		
+		<StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2,0">
+			<TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Width="48"
+					   Margin="4,0" FontSize="10"
+					   Text="{Binding CountA, IsAsync=True, Mode=OneWay}" />
+			<TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+					   Margin="4,0" FontSize="9"
+					   Text="{Binding PercentA, IsAsync=True, Mode=OneWay, StringFormat=\{0:P\}}" />
+		</StackPanel>
 
 		<!--<TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="8,0" Text="t" />-->
 		<local:iDnaBaseCtrl Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Margin="8,0"
 							DataContext="{Binding T, Mode=OneWay, Source={StaticResource dnaBases}}" Height="20" Width="20" />
-		<TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="60" 
-				   Margin="4,0"
+		<StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2,0">
+			<TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="48" 
+				   Margin="4,0" FontSize="10"
 				   Text="{Binding CountT, IsAsync=True, Mode=OneWay}" />
-
+			<TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+					   Margin="4,0" FontSize="9"
+					   Text="{Binding PercentT, IsAsync=True, Mode=OneWay, StringFormat=\{0:P\}}" />
+		</StackPanel>
+		
 		<!--<TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="8,0" Text="g" />-->
 		<local:iDnaBaseCtrl Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Margin="8,0"
 							DataContext="{Binding G, Mode=OneWay, Source={StaticResource dnaBases}}" Height="20" Width="20" />
-		<TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="60"
-				   Margin="4,0"
+		<StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2,0">
+			<TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="48"
+				   Margin="4,0" FontSize="10"
 				   Text="{Binding CountG, IsAsync=True, Mode=OneWay}" />
-
+			<TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+					   Margin="4,0" FontSize="9"
+					   Text="{Binding PercentG, IsAsync=True, Mode=OneWay, StringFormat=\{0:P\}}" />
+		</StackPanel>
+		
 		<!--<TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="8,0" Text="c" />-->
 		<local:iDnaBaseCtrl Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="8,0"
 							DataContext="{Binding C, Mode=OneWay, Source={StaticResource dnaBases}}" Height="20" Width="20" />
-		<TextBlock Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="60"
-				   Margin="4,0"
+		<StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2,0">
+			<TextBlock Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="48"
+				   Margin="4,0" FontSize="10"
 				   Text="{Binding CountC, IsAsync=True, Mode=OneWay}" />
+			<TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
+					   Margin="4,0" FontSize="9"
+					   Text="{Binding PercentC, IsAsync=True, Mode=OneWay, StringFormat=\{0:P\}}" />
+		</StackPanel>
 	</Grid>
 </UserControl>

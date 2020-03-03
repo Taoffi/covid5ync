@@ -17,7 +17,7 @@
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition />
-			<ColumnDefinition Width="120" />
+			<ColumnDefinition Width="160" />
 		</Grid.ColumnDefinitions>
 
 		<GridSplitter Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="4" />
@@ -40,15 +40,31 @@
 					 Text="nodes" Background="{x:Null}" />
 		</StackPanel>
 
-		<TextBlock Grid.Row="0" Grid.Column="1" Text="Statistics" FontSize="12" FontWeight="Bold" VerticalAlignment="Center" Margin="8,0" />
-
 		<controls:BusySpinCtrl Grid.Row="0" x:Name="busyControl" 
 							   HorizontalAlignment="Right" 
 							   Margin="0,0,12,0"
 							   Width="24"
 							   Visibility="{Binding Source={StaticResource mainSequence}, Path=IsBusy, Converter={StaticResource bool2visible}, IsAsync=True}" />
 
-		<controls:iDnaSequenceStatsCtrl Grid.Row="1" Grid.Column="1" Margin="6,0" Background="#FFF6F6F6" />
+		<!-- ************ stats and selection basket ********************* -->
+		<TextBlock Grid.Row="0" Grid.Column="1" Text="Statistics" FontSize="12" FontWeight="Bold" VerticalAlignment="Bottom" Margin="8,4" />
+
+		<Grid Grid.Row="1" Grid.Column="1" Margin="6,0">
+			<Grid.RowDefinitions>
+				<RowDefinition  Height="120"/>
+				<RowDefinition Height="26" />
+				<RowDefinition />
+			</Grid.RowDefinitions>
+
+			<Border Grid.Row="0" CornerRadius="4" BorderBrush="Black" BorderThickness="2" Padding="2">
+				<controls:iDnaSequenceStatsCtrl Grid.Row="0" Grid.Column="1" Margin="0" Background="#FFF6F6F6" />
+			</Border>
+			
+			<TextBlock Grid.Row="1" Grid.Column="0" Text="Selection basket" FontSize="12" FontWeight="Bold" VerticalAlignment="Center" Margin="8,0" />
+			<Border Grid.Row="2" CornerRadius="4" BorderBrush="Black" BorderThickness="2" Padding="2">
+				<controls:iDnaSequenceBasket Grid.Row="2" DataContext="{Binding CurrentSearchBasket, Mode=OneWay, IsAsync=True}" />
+			</Border>
+		</Grid>
 
 		<TabControl Grid.Row="1" Grid.Column="0" Background="#FFF6F6F6"  FontSize="14">
 			<TabItem>

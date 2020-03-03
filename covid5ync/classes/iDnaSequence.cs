@@ -13,6 +13,11 @@ using System.Windows.Threading;
 namespace iDna
 {
 	public delegate void SequenceParseCompleteHandler(iDnaSequence sender, int nodeCount);
+	public enum SequenceSearchType
+	{
+		SearchNormal,
+		SearchPairs,
+	};
 
 	public class iDnaSequence : RootListTemplate<iDnaNode>
 	{
@@ -21,6 +26,7 @@ namespace iDna
 		public event SequenceParseCompleteHandler	SequenceParseCompleted;
 
 		protected string							_id						= Guid.NewGuid().ToString();
+		protected string							_name					= "sequence1";
 		protected iDnaBaseStats						_stats					= new iDnaBaseStats();
 		protected bool								_isBusy					= false;
 		protected CancellationTokenSource			_cancelSource			= new CancellationTokenSource(5);
@@ -34,6 +40,8 @@ namespace iDna
 		protected bool								_searchInProgress		= false;
 		protected iDnaSequenceList					_selectionBasket		= new iDnaSequenceList(),
 													_pairSelectionBasket	= new iDnaSequenceList();
+		protected SequenceSearchType				_currentSearchType		= SequenceSearchType.SearchNormal;
+
 
 		public static iDnaSequence Instance
 		{
@@ -58,8 +66,10 @@ namespace iDna
 			_paging.SourceCollection	= this;
 		}
 
-		protected iDnaSequence(IEnumerable<iDnaNode> nodeList, bool refOnly = true) : base()
+		protected iDnaSequence(string name, IEnumerable<iDnaNode> nodeList, bool refOnly = true) : base()
 		{
+			_paging.SourceCollection = this;
+			_name			= name;
 			CopyNodeList(nodeList, refOnly);
 		}
 
@@ -138,6 +148,40 @@ namespace iDna
 			get {  return _id; }
 		}
 
+
+		public string Name
+		{
+			get { return _name; }
+			set
+			{
+				if(value == _name)
+					return;
+
+				_name	= value;
+			}
+		}
+
+		public SequenceSearchType CurrebtSearchType
+		{
+			get { return _currentSearchType; }
+			protected set
+			{
+				if(value == _currentSearchType)
+					return;
+
+				_currentSearchType	= value;
+				NotifyPropertyChanged(() => CurrebtSearchType);
+				NotifyPropertyChanged(() => CurrentSearchBasket);
+			}
+		}
+
+
+		public iDnaSequenceList CurrentSearchBasket
+		{
+			get {  return _currentSearchType == SequenceSearchType.SearchNormal ? _selectionBasket : _pairSelectionBasket; }
+		}
+
+
 		public iDnaSequenceList SelectionBasket
 		{
 			get {  return _selectionBasket; }
@@ -151,6 +195,7 @@ namespace iDna
 				else
 					_selectionBasket	= value;
 				NotifyPropertyChanged(() => SelectionBasket);
+				NotifyPropertyChanged(() => CurrentSearchBasket);
 			}
 		}
 
@@ -168,6 +213,7 @@ namespace iDna
 				else
 					_pairSelectionBasket = value;
 				NotifyPropertyChanged(() => PairSelectionBasket);
+				NotifyPropertyChanged(() => CurrentSearchBasket);
 			}
 		}
 
@@ -241,6 +287,8 @@ namespace iDna
 
 		protected void UpdateStats()
 		{
+			_stats.Total		= this.Count;
+
 			foreach(var baseIem in iDnaBaseNucleotides.Instance)
 			{
 				var item	= _stats[baseIem];
@@ -301,6 +349,8 @@ namespace iDna
 				NotifyPropertyChanged(() => SequencePaging);
 			}
 			);
+
+			_stats.Total	= this.Count;
 			return this.Count > 0;
 		}
 
@@ -412,9 +462,11 @@ namespace iDna
 
 			basket.Clear();
 
+			CurrebtSearchType	 = isPairSearch ? SequenceSearchType.SearchPairs : SequenceSearchType.SearchNormal;
+
 			if (isPairSearch)
 			{
-				SearchPairOccurrences = 0;
+				SearchPairOccurrences	= 0;
 				NotifyPropertyChanged(() => PairSelectionBasket);
 			}
 			else
@@ -452,8 +504,9 @@ namespace iDna
 			if(allStarts == null)
 				return null;
 
-			int				startsCount	= allStarts.Count(),
-							ndxStarts	= 0;
+			int				startsCount		= allStarts.Count(),
+							ndxStarts		= 0,
+							nOccurrences	= 0;
 
 			await Task.Run(() =>
 			{
@@ -485,10 +538,14 @@ namespace iDna
 
 					if (!mismatch && ndxStr == lenStr)
 					{
+						nOccurrences++;
+
 						list.AddRange(subSeq);
 						//ndxStarts		+= lenStr;
 
-						basket.Add( new iDnaSequence(subSeq));
+						basket.Add( new iDnaSequence("search match " + nOccurrences.ToString(), subSeq));
+						NotifyPropertyChanged(() => SelectionBasket);
+						NotifyPropertyChanged(() => PairSelectionBasket);
 					}
 
 					ndxStarts++;
