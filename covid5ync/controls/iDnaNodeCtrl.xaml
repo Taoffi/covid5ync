@@ -17,7 +17,8 @@
 			<TextBlock VerticalAlignment="Center" Margin="0,0,0,0"
 					   FontSize="9.5"
 					   TextAlignment="Center"
-					   Text="{Binding Converter={StaticResource nodeCode2String}}" />
+					   Text="{Binding Converter={StaticResource nodeCode2String}}"
+					   />
 			<Border.Style>
 				<Style TargetType="{x:Type Border}">
 					<Setter Property="Background" Value="{Binding Converter={StaticResource nodeColor2Brush}, IsAsync=True, UpdateSourceTrigger=PropertyChanged}" />

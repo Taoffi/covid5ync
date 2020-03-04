@@ -8,7 +8,13 @@
 			mc:Ignorable="d" 
 			 d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type data:iDnaSequenceDesignTime}}"
 			d:DesignHeight="450" d:DesignWidth="411.5">
+
+	<UserControl.InputBindings>
+		<KeyBinding Key="C" Modifiers="Ctrl" Command="{Binding CopySelectionToClipboardCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:iDnaSequenceView}}}" />
+	</UserControl.InputBindings>
+	
 	<Grid>
+
 		<ListView x:Name="listItems" 
 				  Grid.Row="1" 
 				  ItemsSource="{Binding SequencePaging.CurrentPageData, IsAsync=True}" 
@@ -52,6 +58,16 @@
 				</DataTemplate>
 			</ListView.ItemTemplate>
 
+			<ListView.ContextMenu>
+				<ContextMenu>
+					<MenuItem x:Name="menuItemCopySelection2Clipboard"
+							  Click="menuItemCopySelection2Clipboard_Click" 
+							  Header="Copy selection to clipboard (ctrl+c)" 
+							  IsEnabled="True"
+							  />
+				</ContextMenu>
+			</ListView.ContextMenu>
+			
 		</ListView>
 	</Grid>
 </UserControl>

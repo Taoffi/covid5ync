@@ -219,7 +219,7 @@ namespace iDna
 
 		public IEnumerable<iDnaNode> SelectedItems
 		{
-			get { return this.Where(i => i.IsSelected); }
+			get { return this.Where(i => i.IsSelected).OrderBy(i => i.Index); }
 		}
 
 
