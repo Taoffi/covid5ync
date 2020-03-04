@@ -26,7 +26,8 @@
 			<Image x:Key="imgNextDisabled"	Source="images/nav_next-dis16x16.png" />
 			<Image x:Key="imgPrev"			Source="images/nav_prev16x16.png" />
 			<Image x:Key="imgPrevDisabled"	Source="images/nav_prev-dis16x16.png" />
-
+			<Image x:Key="imgCovid5ync48"	Source="images/covid5ync48x48.jpg" />
+			<Image x:Key="imgCitation48"	Source="images/citation48x48.png" />
 
 			<Style TargetType="{x:Type TextBlock}">
 				<Setter Property="VerticalAlignment"		Value="Center" />

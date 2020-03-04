@@ -462,6 +462,22 @@ namespace iDna
 			);
 		}
 
+		internal void GoToNodePage(iDnaNode node)
+		{
+			if(node == null)
+				return;
+
+			int		index			= node.Index,
+					curPageNumber	= _paging.CurrentPage,
+					nodesPerPage	= _paging.PageSize,
+					nodePageNumber	= index / nodesPerPage + 1;
+			bool	isVisible		= nodePageNumber == curPageNumber;	// curPageNumber * nodesPerPage <= index ? true : false;
+
+			if(isVisible)
+				return;
+
+			_paging.CurrentPage	= nodePageNumber;
+		}
 
 		public async Task<IEnumerable<iDnaNode>> FindString(string str, bool isPairSearch, Dispatcher dispatcher)
 		{
@@ -574,8 +590,8 @@ namespace iDna
 			}
 			);
 
-			var		distinctIndexes	= list.Select(i => i.Index).Distinct();
-			int		distinctCount	= distinctIndexes.Count() / lenStr;
+			//var		distinctIndexes	= list.Select(i => i.Index).Distinct();
+			int		distinctCount	= nOccurrences;		// list.Count / lenStr;	// distinctIndexes.Count() / lenStr;
 
 			if (isPairSearch)
 				SearchPairOccurrences = distinctCount;
@@ -589,6 +605,9 @@ namespace iDna
 
 			NotifyPropertyChanged(() => CanSearch);
 			NotifyPropertyChanged(() => CurrentSearchBasket);
+
+			if(list.Count > 0)
+				GoToNodePage(list[0]);
 
 			//_paging.RaisePagingEvents();
 			//NotifyPropertyChanged(() => _paging.CurrentPageData);

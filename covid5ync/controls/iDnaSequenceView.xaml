@@ -21,7 +21,7 @@
 		</ResourceDictionary>
 	</UserControl.Resources>
 	
-	<Grid SnapsToDevicePixels="True" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+	<Grid SnapsToDevicePixels="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition />
 			<ColumnDefinition Width="14" />
@@ -37,7 +37,7 @@
 				  VirtualizingPanel.IsVirtualizing="True"
 				  UseLayoutRounding="True"
 				  IsSynchronizedWithCurrentItem="True"
-				  VerticalContentAlignment="Top"
+				  VerticalContentAlignment="Stretch"
 				  >
 			<ListView.Resources>
 				<Style TargetType="{x:Type ListViewItem}">

@@ -24,5 +24,21 @@ namespace iDna.controls
 		{
 			InitializeComponent();
 		}
+
+		private void buttonGotoPage_Click(object sender, RoutedEventArgs e)
+		{
+			Button	button		= sender as Button;
+
+			if(button == null || button.DataContext == null)
+				return;
+
+			iDnaSequence	seq	= button.DataContext as iDnaSequence;
+
+			if(seq == null || seq.Count <= 0)
+				return;
+
+			iDnaNode	node	= seq[0];
+			iDnaSequence.Instance.GoToNodePage(node);
+		}
 	}
 }

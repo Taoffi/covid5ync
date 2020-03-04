@@ -38,7 +38,7 @@
     <SuiteName>covid5ync</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>10</ApplicationRevision>
+    <ApplicationRevision>11</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -279,6 +279,12 @@
     <Resource Include="images\nav_next-dis16x16.png" />
     <Resource Include="images\nav_prev16x16.png" />
     <Resource Include="images\nav_prev-dis16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\covid5ync48x48.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\citation48x48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
