@@ -10,8 +10,8 @@ namespace iDna
 	public class iDnaBaseStatItem : RootObject
 	{
 		protected	iDnaBase	_base;
-		protected	int			_count,
-								_total;
+		protected	int			_count		= 0,
+								_total		= 0;
 
 		public iDnaBaseStatItem() : base()
 		{
@@ -65,9 +65,9 @@ namespace iDna
 		}
 
 
-		public double? Percent
+		public double Percent
 		{
-			get { return _total <= 0 ? null : new double?( (double)_count / (double) _total); }
+			get { return _total <= 0 ? 0.0 : ( (double)_count / (double) _total); }
 		}
 
 	}
@@ -115,11 +115,11 @@ namespace iDna
 			return item == null ? 0 : item.Count;
 		}
 
-		double? GetBasePercent(char rootBaseCode)
+		double GetBasePercent(char rootBaseCode)
 		{
 			var item	= this[rootBaseCode];
 
-			return item == null ? null : item.Percent;
+			return item == null ? 0.0 : item.Percent;
 		}
 
 		/// count bases
@@ -145,22 +145,22 @@ namespace iDna
 
 
 		/// percentages
-		public double? PercentA
+		public double PercentA
 		{
 			get { return GetBasePercent('a'); }
 		}
 
-		public double? PercentT
+		public double PercentT
 		{
 			get { return GetBasePercent('t'); }
 		}
 
-		public double? PercentG
+		public double PercentG
 		{
 			get { return GetBasePercent('g'); }
 		}
 
-		public double? PercentC
+		public double PercentC
 		{
 			get { return GetBasePercent('c'); }
 		}

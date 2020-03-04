@@ -287,14 +287,18 @@ namespace iDna
 
 		protected void UpdateStats()
 		{
-			_stats.Total		= this.Count;
+			if(_stats == null)
+				return;
 
 			foreach(var baseIem in iDnaBaseNucleotides.Instance)
 			{
 				var item	= _stats[baseIem];
 
 				if(item != null)
-					item.Count	= this.Count( i => i.RootBaseItem == baseIem);
+				{
+					item.Count = this.Count(i => i.RootBaseItem == baseIem);
+					item.Total = this.Count;
+				}
 
 				NotifyPropertyChanged(() => Statistics);
 			}
