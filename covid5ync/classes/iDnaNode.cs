@@ -42,6 +42,12 @@ namespace iDna
 			}
 		}
 
+		public double LinearBaseValue
+		{
+			get { return _base == null ? 1.0 : _base.LinearBaseValue; }
+		}
+
+
 		public iDnaSequence ParentSequence
 		{
 			get { return _parentSequence; }

@@ -14,6 +14,7 @@
 			<RowDefinition Height="26" />
 			<RowDefinition Height="26" />
 			<RowDefinition Height="26" />
+			<RowDefinition Height="26" />
 			<RowDefinition />
 		</Grid.RowDefinitions>
 
@@ -70,5 +71,8 @@
 					   Margin="4,0" FontSize="9"
 					   Text="{Binding PercentC, IsAsync=True, Mode=OneWay, StringFormat=\{0:P\}}" />
 		</StackPanel>
+
+		<TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource label}" Text="Tm" />
+		<TextBlock Grid.Row="4" Grid.Column="1" Margin="8,0" FontSize="9" Text="{Binding SequenceMeltingTm, IsAsync=True, Mode=OneWay, StringFormat=\{0:N\}}" />
 	</Grid>
 </UserControl>

@@ -95,6 +95,15 @@ namespace iDna
 			}
 		}
 
+		internal void SetTotalNoNotify(int value)
+		{
+			if (value == _total)
+				return;
+
+			_total = value;
+		}
+
+
 		void UpdateItems()
 		{
 			foreach(var item in this)
@@ -104,6 +113,7 @@ namespace iDna
 			NotifyPropertyChanged(() => PercentT);
 			NotifyPropertyChanged(() => PercentG);
 			NotifyPropertyChanged(() => PercentC);
+			NotifyPropertyChanged(() => SequenceMeltingTm);
 		}
 
 
@@ -215,5 +225,97 @@ namespace iDna
 			foreach(var item in list)
 				this.Add(item);
 		}
+
+
+
+/*
+
+#define T_DELTA					3					// NT par défaut ='T'
+#define DEFAULT_DELTA			T_DELTA
+#define INIT_DELTA_S			10.8F				// (S) ini (RNA only)
+#define MOLARGASCONST			1.987F				// (R)  molar gas constant
+#define T_HYBRIDFILTER			7.6F				// (k) correction for filter hybrid. 
+#define MINI_BALDINO_NTS		12					// mini NTs pour appliquer Baldino 
+
+#define DEF_CONCENTRATION  		50.0				// (c) probe concentration 
+#define DEFVAL_K		  		50.0				// potasium
+#define DEF_SALT		  		15.0
+
+
+	#define LOG_DEF_CONCENTRATION_DIV4			1.09691001
+	#define LOG10_DEFVAL_K					1.69897
+	#define LOG10_DEF_SALT					1.17609126
+#endif 
+
+ * */
+		const int					MINI_BALDINO_NTS			= 12;
+		const double				DEF_CONCENTRATION  			= 50.0,
+									LOG10_DEFVAL_K				= 1.69897,
+									LOG10_DEF_SALT				= 1.17609126;
+
+
+		protected double TmLessThanBaldino()
+		{
+			double		fLocalTm;
+			double		a_count = (double) CountA,
+						t_count = (double) CountT,
+						g_count = (double) CountG,
+						c_count = (double) CountC;
+
+			fLocalTm	= (2.0F * (a_count + t_count)) + (4.0F * (g_count + c_count));
+			return fLocalTm;
+		}
+
+
+
+		protected double TmBetterBaldino()
+		{
+			double		log10value		= LOG10_DEFVAL_K;
+			double		dTmp;
+			double		totalNodes		= (double) Total;
+
+			// ******************************************************** 
+			// Baldino améliorée !!
+			// * ********************************************************
+			dTmp	= 43.375 + (16.6 * log10value) + (0.41 * (PercentG + PercentC)) - (675.0 / totalNodes);
+			return dTmp;
+		}
+
+
+		protected double CalculateTemprature()
+		{
+			if(Total <= MINI_BALDINO_NTS)
+				return TmLessThanBaldino();
+			else
+				return TmBetterBaldino();
+		}
+
+		public double SequenceMeltingTm
+		{
+			get { return CalculateTemprature(); }
+		}
+
+
+		//protected double CalculateTmBetterBaldino()
+		//{
+		//	////Ulong		ulG,
+		//	////			ulC;
+		//	////double		dG,
+		//	////			dC,
+		//	//double		dG_percent,
+		//	//			dC_percent;
+		//	//			//dNts;
+
+		//	////dNts = (double)ulTotal_nts;
+
+
+		//	////ulG = (double) _stats.CountG;		// (Ulong)lpATGC_count->_Gnts;
+		//	////ulC = (double) _stats.CountC;		// (Ulong)lpATGC_count->_Cnts;
+
+		//	//dG_percent = _stats.PercentG;		// ((double)(dG / dNts) * 100.0);     /* %G */
+		//	//dC_percent = _stats.PercentC;		// ((double)(dC / dNts) * 100.0);     /* %C */
+
+		//	return TmBetterBaldino();			// (fBetterBaldino(dG_percent, dC_percent, ulTotal_nts));
+		//}
 	}
 }

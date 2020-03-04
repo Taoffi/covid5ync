@@ -169,6 +169,7 @@
     <Compile Include="classes\iDnaBase.cs" />
     <Compile Include="classes\iDnaSequenceList.cs" />
     <Compile Include="classes\iDnaSequenceStats.cs" />
+    <Compile Include="classes\iDnaSequencePrimers.cs" />
     <Compile Include="classes\paging\iSequencePaging.cs" />
     <Compile Include="classes\root objects\RootListTemplate.cs" />
     <Compile Include="controls\BusySpinCtrl.xaml.cs">

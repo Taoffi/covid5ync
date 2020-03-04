@@ -11,8 +11,9 @@ namespace iDna
 	public class iDnaBase : RootObject
 	{
 		protected char		_code;
-		protected Color		_color		= Colors.Black;
-		protected iDnaBase	_pair		= null;
+		protected Color		_color				= Colors.Black;
+		protected iDnaBase	_pair				= null;
+		protected double	_linearBaseValue	= 0.05;
 
 		public iDnaBase() : base()
 		{
@@ -55,6 +56,20 @@ namespace iDna
 				RaisePropertyChanged();
 			}
 		}
+
+		public double LinearBaseValue
+		{
+			get { return _linearBaseValue; }
+			set
+			{
+				if(value == _linearBaseValue)
+					return;
+
+				_linearBaseValue = value;
+				RaisePropertyChanged();
+			}
+		}
+
 
 		public Color Color
 		{

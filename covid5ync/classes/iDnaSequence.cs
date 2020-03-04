@@ -19,7 +19,7 @@ namespace iDna
 		SearchPairs,
 	};
 
-	public class iDnaSequence : RootListTemplate<iDnaNode>
+	public partial class iDnaSequence : RootListTemplate<iDnaNode>
 	{
 		static iDnaSequence							_instance			= null;
 
@@ -161,7 +161,12 @@ namespace iDna
 			}
 		}
 
-		public SequenceSearchType CurrebtSearchType
+		public double SequenceLinearBaseValue
+		{
+			get { return this.Sum(i => i.LinearBaseValue); }
+		}
+
+		public SequenceSearchType CurrentSearchType
 		{
 			get { return _currentSearchType; }
 			protected set
@@ -170,7 +175,7 @@ namespace iDna
 					return;
 
 				_currentSearchType	= value;
-				NotifyPropertyChanged(() => CurrebtSearchType);
+				NotifyPropertyChanged(() => CurrentSearchType);
 				NotifyPropertyChanged(() => CurrentSearchBasket);
 			}
 		}
@@ -290,7 +295,7 @@ namespace iDna
 			if(_stats == null)
 				return;
 
-			foreach(var baseIem in iDnaBaseNucleotides.Instance)
+			foreach (var baseIem in iDnaBaseNucleotides.Instance)
 			{
 				var item	= _stats[baseIem];
 
@@ -302,6 +307,7 @@ namespace iDna
 
 				NotifyPropertyChanged(() => Statistics);
 			}
+			_stats.SetTotalNoNotify(this.Count);
 		}
 
 
@@ -466,7 +472,7 @@ namespace iDna
 
 			basket.Clear();
 
-			CurrebtSearchType	 = isPairSearch ? SequenceSearchType.SearchPairs : SequenceSearchType.SearchNormal;
+			CurrentSearchType	 = isPairSearch ? SequenceSearchType.SearchPairs : SequenceSearchType.SearchNormal;
 
 			if (isPairSearch)
 			{

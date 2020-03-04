@@ -28,12 +28,12 @@
 					 BorderThickness="0"
 					 FontSize="24"
 					 Text="covid-19 genome sequence" Background="{x:Null}" />
-			<TextBox VerticalAlignment="Center" Margin="8,0" 
+			<TextBox VerticalAlignment="Center" Margin="4,0" 
 					 BorderThickness="0"
 					 Text="source: ncbi, date: 2020-02-28" Background="{x:Null}" />
 
 			<TextBox x:Name="textBlockNodeCount"
-					 VerticalAlignment="Center" Margin="8,0" 
+					 VerticalAlignment="Center" Margin="2,0" 
 					 BorderThickness="0" Foreground="Blue"
 					 Text="{Binding Count, IsAsync=True, Mode=OneWay}" Background="{x:Null}" />
 			<TextBox VerticalAlignment="Center" Margin="0" 
@@ -52,7 +52,7 @@
 
 		<Grid Grid.Row="1" Grid.Column="1" Margin="6,0">
 			<Grid.RowDefinitions>
-				<RowDefinition  Height="120"/>
+				<RowDefinition  Height="140"/>
 				<RowDefinition Height="26" />
 				<RowDefinition />
 			</Grid.RowDefinitions>
