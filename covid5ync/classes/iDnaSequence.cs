@@ -550,6 +550,7 @@ namespace iDna
 						basket.Add( new iDnaSequence("search match " + nOccurrences.ToString(), subSeq));
 						NotifyPropertyChanged(() => SelectionBasket);
 						NotifyPropertyChanged(() => PairSelectionBasket);
+						NotifyPropertyChanged(() => CurrentSearchBasket);
 					}
 
 					ndxStarts++;
@@ -581,6 +582,8 @@ namespace iDna
 				IsBusy				= false;
 
 			NotifyPropertyChanged(() => CanSearch);
+			NotifyPropertyChanged(() => CurrentSearchBasket);
+
 			//_paging.RaisePagingEvents();
 			//NotifyPropertyChanged(() => _paging.CurrentPageData);
 			//NotifyPropertyChanged(() => _paging.CurrentPage);
