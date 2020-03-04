@@ -7,7 +7,8 @@
 		xmlns:controls="clr-namespace:iDna.controls"
         mc:Ignorable="d"
 		Icon="iDna.ico"
-        Title="covid5ync" Height="600" Width="800" ResizeMode="CanResizeWithGrip">
+		SnapsToDevicePixels="True"
+        Title="covid5ync" Height="800" Width="1024" ResizeMode="CanResizeWithGrip">
 
 	<Grid DataContext="{Binding Source={StaticResource mainSequence}}" Background="#FFD8DCF5">
 		<Grid.RowDefinitions>
@@ -61,8 +62,8 @@
 			</Border>
 			
 			<TextBlock Grid.Row="1" Grid.Column="0" Text="Selection basket" FontSize="12" FontWeight="Bold" VerticalAlignment="Center" Margin="8,0" />
-			<Border Grid.Row="2" CornerRadius="4" BorderBrush="Black" BorderThickness="2" Padding="2">
-				<controls:iDnaSequenceBasket Grid.Row="2" DataContext="{Binding CurrentSearchBasket, Mode=OneWay, IsAsync=True}" />
+			<Border Grid.Row="2" CornerRadius="4" BorderBrush="Black" BorderThickness="2" Padding="2" HorizontalAlignment="Stretch">
+				<controls:iDnaSequenceBasket Grid.Row="2" DataContext="{Binding CurrentSearchBasket, Mode=OneWay, IsAsync=True}" HorizontalAlignment="Stretch" />
 			</Border>
 		</Grid>
 

@@ -8,38 +8,48 @@
              mc:Ignorable="d" 
 			 d:DataContext="{d:DesignInstance Type={x:Type data:iDnaSequenceListDesigntime}, IsDesignTimeCreatable=True}"
              d:DesignHeight="280" d:DesignWidth="260"
-			 Margin="0">
-    <Grid Margin="0">
+			 Margin="0" Height="auto" VerticalAlignment="Top">
+	
+    <Grid Margin="0" VerticalAlignment="Top">
 		<ListView x:Name="listSequences" Grid.Row="0"
 				  ItemsSource="{Binding IsAsync=True}"
-				  HorizontalAlignment="Left"
+				  HorizontalAlignment="Stretch"
+				  Height="auto"
 				  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+				  VerticalContentAlignment="Top"
+				  VerticalAlignment="Top"
 			>
 			<ListView.ItemsPanel>
 				<ItemsPanelTemplate>
-					<StackPanel Margin="0">
+					<StackPanel Margin="0" VerticalAlignment="Top" HorizontalAlignment="Stretch">
 						
 					</StackPanel>
 				</ItemsPanelTemplate>
 			</ListView.ItemsPanel>
+			
 			<ListView.ItemTemplate>
 				<DataTemplate>
-					<Grid HorizontalAlignment="Left" 
+					<Grid HorizontalAlignment="Stretch" 
 						  VerticalAlignment="Top" 
-						  Margin="0" MaxHeight="128">
+						  Height="auto"
+						  Margin="0">
 						<Grid.RowDefinitions>
 							<RowDefinition />
 							<RowDefinition Height="24"/>
 						</Grid.RowDefinitions>
 
 						<local:iDnaSequenceView Grid.Row="0" DataContext="{Binding }"
-												Margin="0" HorizontalAlignment="Left"
-												Width="{Binding ActualWidth, ElementName=listSequences, Mode=OneWay}" />
+												Margin="0"
+												Width="{Binding ActualWidth, ElementName=listSequences, Mode=OneWay}"
+												Height="auto"
+												MaxHeight="52"
+												VerticalAlignment="Top"
+												VerticalContentAlignment="Top" HorizontalAlignment="Stretch" />
 
 						<StackPanel Grid.Row="1" Background="#FFA8C0C9" Orientation="Horizontal"
 									HorizontalAlignment="Stretch"
 									ToolTip="{Binding Name}">
-							<TextBlock Text="future action buttons:)" ToolTip="future action buttons... thank you for being patient!" VerticalAlignment="Center" Margin="8,0" />
+							<TextBlock Text="{Binding Name}" ToolTip="future action buttons... thank you for being patient!" VerticalAlignment="Center" Margin="8,0" />
 						</StackPanel>
 					</Grid>
 				</DataTemplate>

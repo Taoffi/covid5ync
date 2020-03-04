@@ -48,7 +48,7 @@ namespace isosoft.root
 
 		protected void NotifyCollectionChanged( object sender)
 		{
-			NotifyCollectionReset( sender);
+			//NotifyCollectionReset( sender);
 
 			if( CollectionChangedInternal == null)
 				return;
