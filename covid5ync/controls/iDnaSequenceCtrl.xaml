@@ -215,7 +215,7 @@
 					<TextBlock VerticalAlignment="Center" Margin="0" Foreground="Blue"
 						   Text="(" FontSize="9px" />
 					<TextBlock VerticalAlignment="Center" Margin="0" Foreground="Blue"
-						   Text="{Binding Items.Count, ElementName=listItems, Mode=OneWay}"
+						   Text="{Binding SequencePaging.CurrentPageData.Count, Mode=OneWay}"
 						   FontSize="9px"
 						   ToolTip="current page items"/>
 					<TextBlock VerticalAlignment="Center" Margin="0" Foreground="Blue"

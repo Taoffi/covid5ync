@@ -17,7 +17,7 @@ The current (beta) version is a start point in a work in progress:
 -----------------------------
 - use shortcuts:
   * ctrl + f = search
-  * alt + f  = search comlementary
+  * alt + f  = search complementary
   
 - new feature: selection basket (found search fragments)
 - sequence stats: show nucleotide percentage
