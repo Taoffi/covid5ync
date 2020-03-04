@@ -15,9 +15,13 @@ The current (beta) version is a start point in a work in progress:
 -----------------------------
 2020-03-04
 -----------------------------
+- use shortcuts:
+  * ctrl + f = search
+  * alt + f  = search comlementary
+  
 - new feature: selection basket (found search fragments)
 - sequence stats: show nucleotide percentage
-
+- copy selected fragments (with starting coordinates) to clipboard (shortcut: crl+c)
 
 We are currently preparing (future version in the coming days):
 * Load sequence from file
