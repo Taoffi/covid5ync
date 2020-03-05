@@ -52,7 +52,8 @@
 			<Image x:Key="imgMap48"			Source="images/map48x48.png" />
 			<Image x:Key="imgToolbox32"		Source="images/toolbox32x32.png" />
 			<Image x:Key="imgSave16"		Source="images/save16x16.png" />
-			
+			<Image x:Key="imgQuickStart48"	Source="images/quickstart48x48.png" />
+
 			<Style TargetType="{x:Type TextBlock}">
 				<Setter Property="VerticalAlignment"		Value="Center" />
 			</Style>

@@ -43,20 +43,13 @@ namespace iDna
 			}
 		}
 
-		async void LoadSequence()
+		/*async*/ void LoadSequence()
 		{
-			await Dispatcher.InvokeAsync(() => vm.iDnaCommandCentral.Instance.LoadBuiltinSequence.Execute(null));
+			//await Dispatcher.InvokeAsync(() => vm.iDnaCommandCentral.Instance.LoadBuiltinSequence.Execute(null));
 
-			Uri			appInfoUri		= new Uri("/data/app-version-info.txt", UriKind.Relative);
-			Stream		appInfoStream	= Application.GetResourceStream(appInfoUri).Stream;
-			string		strAppInfo		= "";
-
-			using (StreamReader reader = new StreamReader(appInfoStream))
-			{
-				strAppInfo = reader.ReadToEnd();
-			}
-			appInfoStream.Close();
-
+			//Uri			appInfoUri		= new Uri("/data/app-version-info.txt", UriKind.Relative);
+			//Stream		appInfoStream	= Application.GetResourceStream(appInfoUri).Stream;
+			string		strAppInfo		= vm.iDnaCommandCentral.ApplicationVersionInfoString();
 			textBoxAppInfo.Text	= strAppInfo;
 		}
 	}

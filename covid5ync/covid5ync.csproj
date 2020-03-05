@@ -38,7 +38,7 @@
     <SuiteName>covid5ync</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>14</ApplicationRevision>
+    <ApplicationRevision>15</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -109,6 +109,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="controls\iAboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="controls\iDnaBaseCtrl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -130,6 +134,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="controls\iDnaSequenceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\iGettingStartedCtrl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -181,6 +189,9 @@
       <DependentUpon>iAboutCtrl.xaml</DependentUpon>
     </Compile>
     <Compile Include="controls\converters\iDnaConverters.cs" />
+    <Compile Include="controls\iAboutWindow.xaml.cs">
+      <DependentUpon>iAboutWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="controls\iDnaBaseCtrl.xaml.cs">
       <DependentUpon>iDnaBaseCtrl.xaml</DependentUpon>
     </Compile>
@@ -198,6 +209,9 @@
     </Compile>
     <Compile Include="controls\iDnaSequenceView.xaml.cs">
       <DependentUpon>iDnaSequenceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\iGettingStartedCtrl.xaml.cs">
+      <DependentUpon>iGettingStartedCtrl.xaml</DependentUpon>
     </Compile>
     <Compile Include="controls\SequenceInfoWindow.xaml.cs">
       <DependentUpon>SequenceInfoWindow.xaml</DependentUpon>
@@ -314,6 +328,9 @@
   <ItemGroup>
     <Resource Include="images\data-gears34x22.gif" />
     <Resource Include="images\gears16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\quickstart48x48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

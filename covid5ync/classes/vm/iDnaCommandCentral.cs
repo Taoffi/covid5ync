@@ -1,4 +1,5 @@
-﻿using isosoft.root;
+﻿using iDna.controls;
+using isosoft.root;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -306,7 +307,11 @@ namespace iDna.vm
 				{
 					_aboutApp = new CommandExecuter(() =>
 					{
-						ShowNotYetImplemented();
+						// ShowNotYetImplemented();
+						iAboutWindow		window	= new iAboutWindow();
+
+						window.Owner	= Application.Current.MainWindow;
+						window.ShowDialog();
 					});
 				}
 				return _aboutApp;
@@ -514,6 +519,20 @@ namespace iDna.vm
 			}
 
 			return true;
+		}
+
+		public static string ApplicationVersionInfoString()
+		{
+			Uri			appInfoUri		= new Uri("/data/app-version-info.txt", UriKind.Relative);
+			Stream		appInfoStream	= Application.GetResourceStream(appInfoUri).Stream;
+			string		strAppInfo		= "";
+
+			using (StreamReader reader = new StreamReader(appInfoStream))
+			{
+				strAppInfo = reader.ReadToEnd();
+			}
+			appInfoStream.Close();
+			return strAppInfo;
 		}
 
 

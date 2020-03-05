@@ -1,0 +1,100 @@
+﻿<UserControl x:Class="iDna.controls.iGettingStartedCtrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:iDna.controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="310" d:DesignWidth="312" Background="#FFF6F6F6">
+	
+    <Grid Margin="0,0,0,-29" DataContext="{StaticResource commendCentral}">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="28"/>
+			<RowDefinition Height="96" />
+			<RowDefinition Height="54" />
+			<RowDefinition Height="72"/>
+			<RowDefinition Height="42"/>
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="140" />
+			<ColumnDefinition Width="140" />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+
+		<TextBlock Grid.Row="0" Grid.Column="0" FontSize="18" FontWeight="Bold" Text="Quick start" Margin="4,0" />
+
+		<StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+			<TextBlock 
+				   Margin="8,8,0,0"
+				   VerticalAlignment="Top" 
+				   TextWrapping="WrapWithOverflow"
+				   Text="Hello!&#10;To begin, you can choose either to load the covid-19 sequence embedded into application resources,"
+				   />
+			<TextBlock Margin="0" VerticalAlignment="Top" Text="or" />
+			<TextBlock 
+				   Margin="8,0,0,0"
+				   VerticalAlignment="Top" 
+				   TextWrapping="WrapWithOverflow"
+				   Text="load your own sequence from a file."
+				   />
+		</StackPanel>
+		
+		<Border Grid.Row="2" Grid.RowSpan="2"
+				CornerRadius="4" Background="#FFCCFFA9" Padding="4" 
+				BorderThickness="2" BorderBrush="#FFF59522"
+				Margin="4">
+			<StackPanel >
+				<Button x:Name="buttonLoadBuiltinSeq"
+						HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+						Padding="-4" Margin="8,4" 
+						Command="{Binding LoadBuiltinSequence, Mode=OneWay}"
+						Background="Transparent" BorderBrush="Transparent" Height="48" Width="60"
+						ToolTip="load the covid-19 sequence embedded in the application"
+						>
+					<Button.Content>
+						<Border BorderBrush="Maroon" BorderThickness="0">
+							<Image Source="{Binding Source={StaticResource imgCovid5ync48}, Path=Source}" Width="48" />
+						</Border>
+					</Button.Content>
+				</Button>
+
+				<TextBlock Text="Load built-in sequence" 
+					   Padding="4" TextAlignment="Center"
+					   TextWrapping="Wrap" Margin="4" />
+			</StackPanel>
+		</Border>
+
+		<Border Grid.Row="2" Grid.Column="1" Grid.RowSpan="2"
+				CornerRadius="4" Background="#FFCCFFA9" Padding="4" 
+				BorderThickness="2" BorderBrush="#FFF59522"
+				Margin="4">
+			<StackPanel HorizontalAlignment="Center" Margin="4,12,0,0">
+				<Button x:Name="buttonLoadFile" 
+						HorizontalAlignment="Center" VerticalAlignment="Bottom"
+						Padding="-4" Margin="8,0"
+						Command="{Binding OpenFile, Mode=OneWay}"
+						Background="Transparent" BorderBrush="Transparent"
+						Height="48" Width="60"
+						ToolTip="load a sequence from text file">
+					<Button.Content>
+						<Border BorderBrush="Maroon" BorderThickness="0" Padding="2">
+							<Image Source="{Binding Source={StaticResource imgDoc48}, Path=Source}" Width="48" />
+						</Border>
+					</Button.Content>
+				</Button>
+
+				<TextBlock Text="Load from file" TextWrapping="Wrap" 
+						   Margin="0,8"
+						   Padding="4"
+						   TextAlignment="Center"
+						   VerticalAlignment="Bottom"
+					    />
+			</StackPanel>
+		</Border>
+
+		<TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Margin="8,0"
+				   Text="You can also download online sequences (File menu)" />
+
+	</Grid>
+</UserControl>
