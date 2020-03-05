@@ -24,13 +24,14 @@ Added Application Menus
 * save sequence to file
 * load / reload built-in sequence (covid-19 sequence embedded into the application: source ncbi)
 * copy selected regions to clipboard: 
+* save selected regions to file
   ===============================
   HOW TO SELECT SEQUENCE REGIONS
   ===============================
-   ** click node = start select
-   ** shift+click = select end
-   ** ctrl+click node = add new region selection
-   ** ctrl+shift+click node = end new region selection
+   ** click node              = start selection (cancels all previous selections)
+   ** shift+click regions end = region selection end
+   ** ctrl+click node         = add new region selection
+   ** ctrl+shift+click node   = end new region selection
 
 * Goto Covid-19 NCBI page
 * Contact us => send mail

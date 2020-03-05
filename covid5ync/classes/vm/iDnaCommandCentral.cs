@@ -209,27 +209,14 @@ namespace iDna.vm
 							return;
 						}
 
-						StreamWriter stream	= null;
-
-						try
-						{
-							stream	= new StreamWriter(targetFile, append: false, encoding: Encoding.UTF8);
-							stream.WriteLine(str);
-							stream.Flush();
-							stream.Close();
-						}
-						catch (Exception ex)
-						{
-							ShowMessage("Sorry... could not write to the selected file.\r\n" + ex.Message, "Save error");
-							return;
-						}
+						WriteStringToFile(str, targetFile);
 					});
 				}
 				return _saveAs;
 			}
 		}
 
-		public ICommand SaveSelections
+		public ICommand SaveSelectedRegions
 		{
 			get
 			{
@@ -237,7 +224,35 @@ namespace iDna.vm
 				{
 					_saveSelections = new CommandExecuter(() =>
 					{
-						ShowNotYetImplemented();
+						// ShowNotYetImplemented();
+
+						iDnaSequence seq		= iDnaSequence.Instance;
+
+						if(seq == null)
+							return;
+
+						var		selectedItems			= seq.SelectedItems;
+
+						if (selectedItems == null || selectedItems.Count() <= 0)
+						{
+							ShowMessage("No regions currently selected. Please check.", "Save selected regions");
+							return;
+						}
+
+						string		targetFile	= SelectSaveSequenceFile();
+
+						if(string.IsNullOrEmpty(targetFile))
+							return;
+
+						string		str			= FormattedNodeSttring(selectedItems);
+
+						if(str.Length <= 0)
+						{
+							ShowMessage("Failed to format the selected nodes string!.", "Save selected regions error");
+							return;
+						}
+
+						WriteStringToFile(str, targetFile);
 					});
 				}
 				return _saveSelections;
@@ -476,6 +491,29 @@ namespace iDna.vm
 
 			selectedFile	= dialog.FileName;
 			return selectedFile;
+		}
+
+		bool WriteStringToFile(string str, string targetFile)
+		{
+			if(string.IsNullOrEmpty(str) || string.IsNullOrEmpty(targetFile))
+				return false;
+
+			StreamWriter stream	= null;
+
+			try
+			{
+				stream			= new StreamWriter(targetFile, append: false, encoding: Encoding.UTF8);
+				stream.WriteLine(str);
+				stream.Flush();
+				stream.Close();
+			}
+			catch (Exception ex)
+			{
+				ShowMessage("Sorry... could not write to the selected file.\r\n" + ex.Message, "Save error");
+				return false;
+			}
+
+			return true;
 		}
 
 

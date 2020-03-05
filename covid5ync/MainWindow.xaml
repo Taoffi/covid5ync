@@ -15,7 +15,7 @@
 			<Style TargetType="{x:Type MenuItem}">
 				<Setter Property="Margin"				Value="4,0" />
 				<Setter Property="VerticalAlignment"	Value="Center" />
-				<Setter Property="Cursor"				Value="Hand" />
+				<!--<Setter Property="Cursor"				Value="Hand" />-->
 			</Style>
 		</ResourceDictionary>
 	</Window.Resources>
@@ -33,8 +33,8 @@
 		</Grid.ColumnDefinitions>
 
 		<!-- xxxxxxxxxxxxx *********** main menu ********************* xxxxxxxxxxxxx -->
-		<Menu x:Name="mainManu" IsMainMenu="True"
-			  VerticalAlignment="Center" Padding="8,0" Grid.Row="0" Grid.ColumnSpan="2" Cursor="Hand"
+		<Menu x:Name="mainManu" IsMainMenu="True" Cursor="Arrow"
+			  VerticalAlignment="Center" Padding="8,0" Grid.Row="0" Grid.ColumnSpan="2"
 			  DataContext="{StaticResource commendCentral}">
 			<!-- file menu -->
 			<MenuItem Header="_File">
@@ -48,13 +48,19 @@
 						  ToolTip="load the application's delivered sequence"
 						  Command="{Binding LoadBuiltinSequence, Mode=OneWay}" />
 				
-				<MenuItem Header="_Save As..."
+				<MenuItem Header="_Save sequence As..."
 						  Icon="{StaticResource imgSave16}"
 						  ToolTip="save current sequence to file"
 						  Command="{Binding SaveAs, Mode=OneWay}"/>
 				
 				<Separator />
 				
+				<MenuItem Header="Save selected _regions..."
+						  ToolTip="save current selected regions to file"
+						  Command="{Binding SaveSelectedRegions, Mode=OneWay}"/>
+
+				<Separator />
+
 				<MenuItem Header="_Download sequence files"	
 						  Icon="{StaticResource imghttp48}"
 						  ToolTip="download sequences from ncbi web site"
@@ -249,7 +255,7 @@
 							 HorizontalAlignment="Stretch"
 							 FontFamily="Consolas"
 							 Text=""
-							 Padding="8" FontSize="13" Grid.ColumnSpan="2"
+							 Padding="8" FontSize="13"
 							 Margin="4"
 							 BorderBrush="Black"
 							 BorderThickness="1"
