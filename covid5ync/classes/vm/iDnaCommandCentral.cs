@@ -79,7 +79,7 @@ namespace iDna.vm
 					{
 						// ShowNotYetImplemented();
 
-						string			fileName		= OpenSequenceFile();
+						string			fileName		= OpenReadSequenceFile();
 
 						if(string.IsNullOrEmpty(fileName))
 							return;
@@ -125,8 +125,7 @@ namespace iDna.vm
 						//ShowNotYetImplemented();
 
 						string			strInfo,
-										strSequence,
-										strAppInfo;
+										strSequence;
 						iDnaSequence	sequence		= iDnaSequence.Instance;
 						Uri				seqInfoUri		= new Uri("/data/covid-19-sequence-info.txt", UriKind.Relative),
 										seqUri			= new Uri("/data/covid-19-sequence.txt", UriKind.Relative);
@@ -184,7 +183,46 @@ namespace iDna.vm
 				{
 					_saveAs = new CommandExecuter(() =>
 					{
-						ShowNotYetImplemented();
+						// ShowNotYetImplemented();
+
+						iDnaSequence seq		= iDnaSequence.Instance;
+
+						if(seq == null)
+							return;
+
+						if (seq.Count <= 0)
+						{
+							ShowMessage("This sequence seems to be empty. Please check.", "Save sequence");
+							return;
+						}
+
+						string		targetFile	= SelectSaveSequenceFile();
+
+						if(string.IsNullOrEmpty(targetFile))
+							return;
+
+						string		str			= FormattedNodeSttring(seq);
+
+						if(str.Length <= 0)
+						{
+							ShowMessage("Failed to format the sequence string!.", "Save sequence error");
+							return;
+						}
+
+						StreamWriter stream	= null;
+
+						try
+						{
+							stream	= new StreamWriter(targetFile, append: false, encoding: Encoding.UTF8);
+							stream.WriteLine(str);
+							stream.Flush();
+							stream.Close();
+						}
+						catch (Exception ex)
+						{
+							ShowMessage("Sorry... could not write to the selected file.\r\n" + ex.Message, "Save error");
+							return;
+						}
 					});
 				}
 				return _saveAs;
@@ -232,43 +270,12 @@ namespace iDna.vm
 							return;
 						}
 
-						string		str			= "";
-						int			lastIndex	= 0,
-									counter		= 0;
-
-						foreach(var node in selectedItems)
-						{
-							// for non consecutive selection: add new line
-							if (lastIndex > 0 && lastIndex + 1 != node.Index)
-							{
-								str += "\r\n";
-								counter	= 0;
-							}
-							else if(counter >= 100)
-							{
-								str		+= "\r\n" + string.Format("{0:000000} ", node.Index);
-								counter = 0;
-							}
-
-							// the very first and for non consecutive selection: add new line + coordinate
-							if (lastIndex <= 0 || lastIndex + 1 != node.Index)
-								str += string.Format("{0:000000} ", node.Index);
-							else
-							{
-								if(counter % 10 == 0 && counter > 0)
-									str	+= " ";
-							}
-							str		+= node.Code;
-							lastIndex	= node.Index;
-							counter++;
-						}
+						string		str			= FormattedNodeSttring(selectedItems);
 
 						if(str.Length <= 0)
 							return;
 
 						Clipboard.SetText(str, TextDataFormat.UnicodeText);
-
-
 					});
 				}
 				return _copySelectionToClipboard;
@@ -300,7 +307,7 @@ namespace iDna.vm
 				{
 					_contactSupport = new CommandExecuter(() =>
 					{
-						TryOpenWebPage("mailto:covid5ync@5ync.net");
+						TryOpenWebPage("mailto:covid5ync@5ync.net?subject=covid-5ync+app+comments+and+remarks");
 					});
 				}
 				return _contactSupport;
@@ -391,8 +398,48 @@ namespace iDna.vm
 			}
 		}
 
+		string FormattedNodeSttring(IEnumerable<iDnaNode> nodeList)
+		{
+			if(nodeList == null || nodeList.Count() <= 0)
+				return "";
 
-		string OpenSequenceFile()
+			string		str			= "";
+			int			lastIndex	= 0,
+						counter		= 0;
+
+			foreach(var node in nodeList)
+			{
+				// for non consecutive selection: add new line
+				if (lastIndex > 0 && lastIndex + 1 != node.Index)
+				{
+					str += "\r\n";
+					counter	= 0;
+				}
+				else if(counter >= 100)
+				{
+					str		+= "\r\n" + string.Format("{0:000000} ", node.Index);
+					counter = 0;
+				}
+
+				// the very first and for non consecutive selection: add new line + coordinate
+				if (lastIndex <= 0 || lastIndex + 1 != node.Index)
+					str += string.Format("{0:000000} ", node.Index);
+				else
+				{
+					if(counter % 10 == 0 && counter > 0)
+						str	+= " ";
+				}
+				str		+= node.Code;
+				lastIndex	= node.Index;
+				counter++;
+			}
+
+			return str;
+		}
+
+
+
+		string OpenReadSequenceFile()
 		{
 			OpenFileDialog		dialog		= new OpenFileDialog();
 
@@ -410,6 +457,27 @@ namespace iDna.vm
 			selectedFile	= dialog.FileName;
 			return selectedFile;
 		}
+
+
+		string SelectSaveSequenceFile()
+		{
+			SaveFileDialog		dialog		= new SaveFileDialog();
+
+			dialog.Filter			= "Text files|*.txt|All files|*.*";
+			dialog.CheckPathExists	= true;
+			//dialog.CheckFileExists	= true;
+			dialog.DefaultExt		= "*.txt";
+
+			var			result			= dialog.ShowDialog(Application.Current.MainWindow);
+			string		selectedFile	= null;
+
+			if(result == null || result.Value == false)
+				return null;
+
+			selectedFile	= dialog.FileName;
+			return selectedFile;
+		}
+
 
 		public ICommand NotYetImplemented
 		{

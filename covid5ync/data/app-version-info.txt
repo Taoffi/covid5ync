@@ -7,7 +7,6 @@ With this application, we aim to offer a very modest contribution for you to do 
 
 WE STRIVE TO HEAR FROM YOU TO ADD THE FEATURES MOST USEFUL FOR YOUR WORK.
 Please send your feedback to covid5ync@5ync.net.. we will answer as quickly as we can.
-
 **************************************
 We are currently preparing (future version in the coming days):
 * Save sequence to file
@@ -17,12 +16,12 @@ We are currently preparing (future version in the coming days):
 At a longer term:
 * Generate primers according to your settings
 * ... and other features you may request!
-
 -----------------------------
 2020-03-05
 -----------------------------
 Added Application Menus
 * open sequence file
+* save sequence to file
 * load / reload built-in sequence (covid-19 sequence embedded into the application: source ncbi)
 * copy selected regions to clipboard: 
   ===============================
