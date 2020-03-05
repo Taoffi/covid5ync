@@ -30,10 +30,10 @@
 		<StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2,0">
 			<TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Width="48"
 					   Margin="4,0" FontSize="10"
-					   Text="{Binding CountA, Delay=1500, Mode=OneWay}" />
+					   Text="{Binding CountA, Mode=OneWay, IsAsync=True}" />
 			<TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
 					   Margin="4,0" FontSize="9"
-					   Text="{Binding PercentA, Delay=1500, Mode=OneWay, StringFormat=\{0:P\}}" />
+					   Text="{Binding PercentA, Mode=OneWay, IsAsync=True, StringFormat=\{0:P\}}" />
 		</StackPanel>
 
 		<!--<TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="8,0" Text="t" />-->
@@ -42,10 +42,10 @@
 		<StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2,0">
 			<TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="48" 
 				   Margin="4,0" FontSize="10"
-				   Text="{Binding CountT, Delay=1500, Mode=OneWay}" />
+				   Text="{Binding CountT, Mode=OneWay, IsAsync=True}" />
 			<TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
 					   Margin="4,0" FontSize="9"
-					   Text="{Binding PercentT, Mode=OneWay, Delay=1500, StringFormat=\{0:P\}}" />
+					   Text="{Binding PercentT, Mode=OneWay, IsAsync=True, StringFormat=\{0:P\}}" />
 		</StackPanel>
 		
 		<!--<TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="8,0" Text="g" />-->
@@ -54,10 +54,10 @@
 		<StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2,0">
 			<TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="48"
 				   Margin="4,0" FontSize="10"
-				   Text="{Binding CountG, Delay=1500, Mode=OneWay}" />
+				   Text="{Binding CountG, Mode=OneWay, IsAsync=True}" />
 			<TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
 					   Margin="4,0" FontSize="9"
-					   Text="{Binding PercentG, Mode=OneWay, Delay=1500, StringFormat=\{0:P\}}" />
+					   Text="{Binding PercentG, Mode=OneWay, IsAsync=True, StringFormat=\{0:P\}}" />
 		</StackPanel>
 		
 		<!--<TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="8,0" Text="c" />-->
@@ -66,14 +66,14 @@
 		<StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2,0">
 			<TextBlock Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="48"
 				   Margin="4,0" FontSize="10"
-				   Text="{Binding CountC, Delay=1500, Mode=OneWay}" />
+				   Text="{Binding CountC, IsAsync=True, Mode=OneWay}" />
 			<TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
 					   Margin="4,0" FontSize="9"
-					   Text="{Binding PercentC, Delay=1500, Mode=OneWay, StringFormat=\{0:P\}}" />
+					   Text="{Binding PercentC, IsAsync=True, Mode=OneWay, StringFormat=\{0:P\}}" />
 		</StackPanel>
 
 		<TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource label}" Text="Tm" />
 		<TextBlock Grid.Row="4" Grid.Column="1" Margin="8,0" FontSize="9" 
-				   Text="{Binding SequenceMeltingTm, Delay=1500, Mode=OneWay, StringFormat=\{0:N\}}" />
+				   Text="{Binding SequenceMeltingTm, IsAsync=True, Mode=OneWay, StringFormat=\{0:N\}}" />
 	</Grid>
 </UserControl>

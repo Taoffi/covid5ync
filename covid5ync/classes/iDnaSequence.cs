@@ -146,6 +146,14 @@ namespace iDna
 		public string Id
 		{
 			get {  return _id; }
+			protected set
+			{
+				if(value == _id)
+					return;
+
+				_id = value;
+				NotifyPropertyChanged(() => Id);
+			}
 		}
 
 
@@ -157,7 +165,8 @@ namespace iDna
 				if(value == _name)
 					return;
 
-				_name	= value;
+				_name		= value;
+				NotifyPropertyChanged(() => Name);
 			}
 		}
 
@@ -302,7 +311,7 @@ namespace iDna
 				if(item != null)
 				{
 					item.Count = this.Count(i => i.RootBaseItem == baseIem);
-					item.Total = this.Count;
+					//item.Total = this.Count;
 				}
 
 				NotifyPropertyChanged(() => Statistics);
@@ -322,8 +331,13 @@ namespace iDna
 			if (string.IsNullOrEmpty(str))
 				return false;
 
+			this._selectionBasket.Clear();
+			this._pairSelectionBasket.Clear();
 			this.Clear(false);
-			IsBusy	= true;
+
+			this.Id					= Guid.NewGuid().ToString();
+
+			IsBusy					= true;
 			_cancelSource.Dispose();
 			_cancelSource			= new CancellationTokenSource();
 			int				index	= 0;

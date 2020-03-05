@@ -4,11 +4,13 @@
              xmlns:local="clr-namespace:iDna"
 			 xmlns:data="clr-namespace:iDna"
 			 xmlns:conv="clr-namespace:iDna.controls"
+			 xmlns:vm="clr-namespace:iDna.vm"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
 		<ResourceDictionary>
 			<ObjectDataProvider x:Key="dnaBases"		ObjectType="{x:Type data:iDnaBaseNucleotides}"	MethodName="GetInstance" />
 			<ObjectDataProvider x:Key="mainSequence"	ObjectType="{x:Type data:iDnaSequence}"			MethodName="GetInstance" />
+			<ObjectDataProvider x:Key="commendCentral"	ObjectType="{x:Type vm:iDnaCommandCentral}"		MethodName="GetInstance" />
 
 			<conv:iDnaNodeCode2String		x:Key="nodeCode2String" />
 			<conv:iDnaNodeColor2Brush		x:Key="nodeColor2Brush" />
@@ -27,8 +29,30 @@
 			<Image x:Key="imgPrev"			Source="images/nav_prev16x16.png" />
 			<Image x:Key="imgPrevDisabled"	Source="images/nav_prev-dis16x16.png" />
 			<Image x:Key="imgCovid5ync48"	Source="images/covid5ync48x48.jpg" />
+			<Image x:Key="imgBuiltinSeq"		Source="images/covid5ync48x48.jpg" />
 			<Image x:Key="imgCitation48"	Source="images/citation48x48.png" />
+			<Image x:Key="imghttp48"		Source="images/http48x48.png" />
+			<Image x:Key="imgAboutProject"	Source="images/http48x48.png" />
+			<Image x:Key="imgRefresh48"		Source="images/refresh48x48.png" />
+			<Image x:Key="imgSearch48"		Source="images/search48x48.png" />
+			<Image x:Key="imgDoc48"			Source="images/doc48x48.png" />
 
+			<Image x:Key="imgMail32"		Source="images/mail32x32.png" />
+			<Image x:Key="imgCopy23"		Source="images/copy23x22.png" />
+			<Image x:Key="imgPaste23"		Source="images/paste23x22.png" />
+			<Image x:Key="imgSettings48"	Source="images/processor48x48.png" />
+			<Image x:Key="imgClient75"		Source="images/client75x75.png" />
+			<Image x:Key="imgFile32"		Source="images/file32x30.png" />
+			<Image x:Key="imgFolder32"		Source="images/folder32x32.png" />
+			<Image x:Key="imgFolderOpen16"	Source="images/folderOpen16x16.png" />
+			<Image x:Key="imgGears48"		Source="images/gears48x48.png" />
+			<Image x:Key="imgGears16"		Source="images/gears16x16.png" />
+			<Image x:Key="imgGearsData"		Source="images/data-gears34x22.gif" />
+			
+			<Image x:Key="imgMap48"			Source="images/map48x48.png" />
+			<Image x:Key="imgToolbox32"		Source="images/toolbox32x32.png" />
+			<Image x:Key="imgSave16"		Source="images/save16x16.png" />
+			
 			<Style TargetType="{x:Type TextBlock}">
 				<Setter Property="VerticalAlignment"		Value="Center" />
 			</Style>

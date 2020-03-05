@@ -24,7 +24,7 @@
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
-    <UpdateMode>Background</UpdateMode>
+    <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
@@ -38,7 +38,7 @@
     <SuiteName>covid5ync</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>11</ApplicationRevision>
+    <ApplicationRevision>12</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -100,6 +100,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="classes\vm\iDnaCommandCentral.cs" />
     <Page Include="controls\BusySpinCtrl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -285,6 +286,34 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\citation48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\doc48x48.png" />
+    <Resource Include="images\http48x48.png" />
+    <Resource Include="images\refresh48x48.png" />
+    <Resource Include="images\search48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\mail32x32.png" />
+    <Resource Include="images\paste23x22.png" />
+    <Resource Include="images\processor48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\client75x75.png" />
+    <Resource Include="images\copy23x22.png" />
+    <Resource Include="images\file32x30.png" />
+    <Resource Include="images\folder32x32.png" />
+    <Resource Include="images\folderOpen16x16.png" />
+    <Resource Include="images\gears48x48.png" />
+    <Resource Include="images\map48x48.png" />
+    <Resource Include="images\toolbox32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\save16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\data-gears34x22.gif" />
+    <Resource Include="images\gears16x16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

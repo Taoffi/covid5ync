@@ -1,4 +1,5 @@
-THANK YOU FOR USING covid5ync APPLICATION!
+*******************************************
+THANK YOU FOR USING covid-5ync APPLICATION!
 *******************************************
 We decided to launch this project as a modest contribution in the current Covid-19 epidemic crisis.
 As you know, all of us are turning to you, the biotechnology community, to help defeat this new epidemic.
@@ -9,7 +10,6 @@ Please send your feedback to covid5ync@5ync.net.. we will answer as quickly as w
 
 **************************************
 We are currently preparing (future version in the coming days):
-* Load sequence from file
 * Save sequence to file
 * List repeats
 * List hairpins
@@ -19,13 +19,34 @@ At a longer term:
 * ... and other features you may request!
 
 -----------------------------
+2020-03-05
+-----------------------------
+Added Application Menus
+* open sequence file
+* load / reload built-in sequence (covid-19 sequence embedded into the application: source ncbi)
+* copy selected regions to clipboard: 
+  ===============================
+  HOW TO SELECT SEQUENCE REGIONS
+  ===============================
+   ** click node = start select
+   ** shift+click = select end
+   ** ctrl+click node = add new region selection
+   ** ctrl+shift+click node = end new region selection
+
+* Goto Covid-19 NCBI page
+* Contact us => send mail
+
+==================================================================================================
+NOTE: If you need to, you can cancel the current sequence load process by clicking the busy spinning wheel!
+==================================================================================================
+-----------------------------
 2020-03-04
 -----------------------------
 - calculate sequence melting temperature (enhanced Baldino-based)
 - use shortcuts:
   * ctrl + f = search
   * alt + f  = search complementary
-  
+ 
 - new feature: selection basket (found search fragments)
 - sequence stats: show nucleotide percentage
 - copy selected fragments (with starting coordinates) to clipboard (shortcut: crl+c)
@@ -38,5 +59,3 @@ The current (beta) version is a start point in a work in progress:
 * The covid-19 DNA sequence is loaded on application startup
 * You can view, zoom-in / out (using Ctrl + mouse wheel)
 * You can search the sequence for nucleotides OR complementary pairs.
-
-

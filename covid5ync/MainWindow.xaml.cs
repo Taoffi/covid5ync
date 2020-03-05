@@ -45,45 +45,19 @@ namespace iDna
 
 		async void LoadSequence()
 		{
-			string			strInfo,
-							strSequence,
-							strAppInfo;
-			iDnaSequence	sequence		= iDnaSequence.Instance;
-			Uri				seqInfoUri		= new Uri("/data/covid-19-sequence-info.txt", UriKind.Relative),
-							seqUri			= new Uri("/data/covid-19-sequence.txt", UriKind.Relative),
-							appInfoUri		= new Uri("/data/app-version-info.txt", UriKind.Relative);
+			await Dispatcher.InvokeAsync(() => vm.iDnaCommandCentral.Instance.LoadBuiltinSequence.Execute(null));
 
-			sequence.Name	= "Wuhan seafood market pneumonia virus genome assembly, whole_genome";
+			Uri			appInfoUri		= new Uri("/data/app-version-info.txt", UriKind.Relative);
+			Stream		appInfoStream	= Application.GetResourceStream(appInfoUri).Stream;
+			string		strAppInfo		= "";
 
-			await Dispatcher.Invoke(async() =>
+			using (StreamReader reader = new StreamReader(appInfoStream))
 			{
-				Stream		infStream		= Application.GetResourceStream(seqInfoUri).Stream,
-							seqStream		= Application.GetResourceStream(seqUri).Stream,
-							appInfoStream	= Application.GetResourceStream(appInfoUri).Stream;
+				strAppInfo = reader.ReadToEnd();
+			}
+			appInfoStream.Close();
 
-				using (StreamReader reader = new StreamReader(infStream))
-				{
-					strInfo = reader.ReadToEnd();
-				}
-				infStream.Close();
-				sequence.SequenceFileInfo = strInfo;
-
-				using (StreamReader reader = new StreamReader(seqStream))
-				{
-					strSequence = reader.ReadToEnd();
-				}
-				seqStream.Close();
-
-				using (StreamReader reader = new StreamReader(appInfoStream))
-				{
-					strAppInfo = reader.ReadToEnd();
-				}
-				appInfoStream.Close();
-				textBoxAppInfo.Text = strAppInfo;
-
-				await sequence.ParseString(strSequence);
-			});
-
+			textBoxAppInfo.Text	= strAppInfo;
 		}
 	}
 }

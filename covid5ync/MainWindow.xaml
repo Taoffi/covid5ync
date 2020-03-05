@@ -8,10 +8,21 @@
         mc:Ignorable="d"
 		Icon="iDna.ico"
 		SnapsToDevicePixels="True"
-        Title="covid5ync" Height="800" Width="1024" ResizeMode="CanResizeWithGrip">
+        Title="covid-5ync" Height="800" Width="1024" ResizeMode="CanResizeWithGrip">
+
+	<Window.Resources>
+		<ResourceDictionary>
+			<Style TargetType="{x:Type MenuItem}">
+				<Setter Property="Margin"				Value="4,0" />
+				<Setter Property="VerticalAlignment"	Value="Center" />
+				<Setter Property="Cursor"				Value="Hand" />
+			</Style>
+		</ResourceDictionary>
+	</Window.Resources>
 
 	<Grid DataContext="{Binding Source={StaticResource mainSequence}}" Background="#FFD8DCF5">
 		<Grid.RowDefinitions>
+			<RowDefinition Height="24" />
 			<RowDefinition Height="42" />
 			<RowDefinition />
 			<RowDefinition Height="28" />
@@ -21,16 +32,93 @@
 			<ColumnDefinition Width="180" />
 		</Grid.ColumnDefinitions>
 
-		<GridSplitter Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="4" />
-		<StackPanel Grid.Row="0"
+		<!-- xxxxxxxxxxxxx *********** main menu ********************* xxxxxxxxxxxxx -->
+		<Menu x:Name="mainManu" IsMainMenu="True"
+			  VerticalAlignment="Center" Padding="8,0" Grid.Row="0" Grid.ColumnSpan="2" Cursor="Hand"
+			  DataContext="{StaticResource commendCentral}">
+			<!-- file menu -->
+			<MenuItem Header="_File">
+				<MenuItem Header="_Open"
+						  Icon="{StaticResource imgFolderOpen16}"
+						  ToolTip="load a sequence file from your pc"
+						  Command="{Binding OpenFile, Mode=OneWay}" />
+				
+				<MenuItem Header="Load built-in se_quence"
+						  Icon="{StaticResource imgBuiltinSeq}"
+						  ToolTip="load the application's delivered sequence"
+						  Command="{Binding LoadBuiltinSequence, Mode=OneWay}" />
+				
+				<MenuItem Header="_Save As..."
+						  Icon="{StaticResource imgSave16}"
+						  ToolTip="save current sequence to file"
+						  Command="{Binding SaveAs, Mode=OneWay}"/>
+				
+				<Separator />
+				
+				<MenuItem Header="_Download sequence files"	
+						  Icon="{StaticResource imghttp48}"
+						  ToolTip="download sequences from ncbi web site"
+						  Command="{Binding DownloadSequences, Mode=OneWay}" />
+
+			</MenuItem>
+			
+			<!-- edit menu -->
+			<MenuItem Header="_Edit">
+				<MenuItem Header="_Copy selection to Clipboard"
+						  Icon="{StaticResource imgCopy23}"
+						  ToolTip="copy selected fragments to clipboard"
+						  Command="{Binding CopySelectionsToClipboard, Mode=OneWay}"/>
+				
+				<MenuItem Header="Load sequence from Cli_pboard"
+						  Icon="{StaticResource imgPaste23}"
+						  ToolTip="load sequence from text you already copied in the clipboard"
+						  Command="{Binding LoadSequenceFromClipboard, Mode=OneWay}"/>
+			</MenuItem>
+
+			<MenuItem Header="_Tools">
+				<MenuItem Header="_Options"
+						  Icon="{StaticResource imgGears16}"
+						  ToolTip="application settings"
+						  Command="{Binding OptionsCommand, Mode=OneWay}"/>
+			</MenuItem>
+
+			<MenuItem Header="Help">
+				<MenuItem Header="_What is new"
+						  Icon="{StaticResource imgFile32}"
+						  Command="{Binding WhatIsNew, Mode=OneWay}"/>
+				
+				<MenuItem Header="_About the project"
+						  Icon="{StaticResource imgAboutProject}"
+						  Command="{Binding GotoProjectPage, Mode=OneWay}"/>
+				
+				<MenuItem Header="_About this app"
+						  Icon="{StaticResource imgCovid5ync48}"
+						  Command="{Binding AboutApp, Mode=OneWay}" />
+
+				<Separator />
+
+				<MenuItem Header="_Contact us"
+						  Icon="{StaticResource imgMail32}"
+						  ToolTip="your feedback is important. send us your remarks, suggestions and bug reports. thank you"
+						  Command="{Binding ContactSupport, Mode=OneWay}" />
+			</MenuItem>
+		</Menu>
+		<!-- xxxxxxxxxxxxx *********** end of main menu ********************* xxxxxxxxxxxxx -->
+
+		<GridSplitter Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="4" Background="#FFD8DCF5" />
+		<StackPanel Grid.Row="1"
 					Orientation="Horizontal" VerticalAlignment="Center" Margin="2,0" >
 			<TextBox FontWeight="Bold" VerticalAlignment="Center" Margin="8,0" 
 					 BorderThickness="0"
 					 FontSize="24"
-					 Text="covid-19 genome sequence" Background="{x:Null}" />
-			<TextBox VerticalAlignment="Center" Margin="4,0" 
-					 BorderThickness="0"
-					 Text="source: ncbi, date: 2020-02-28" Background="{x:Null}" />
+					 Text="covid-5ync" Background="{x:Null}"
+					 ToolTip="Built-in sequence source: ncbi, date: 2020-02-28"/>
+
+			<TextBlock FontWeight="Bold" VerticalAlignment="Center" Margin="4,0"
+					   Text="{Binding Name, IsAsync=True}"
+					   MaxWidth="480"
+					   TextTrimming="CharacterEllipsis"
+					   />
 
 			<TextBox x:Name="textBlockNodeCount"
 					 VerticalAlignment="Center" Margin="2,0" 
@@ -41,16 +129,16 @@
 					 Text="nodes" Background="{x:Null}" />
 		</StackPanel>
 
-		<controls:BusySpinCtrl Grid.Row="0" x:Name="busyControl" 
+		<controls:BusySpinCtrl Grid.Row="1" x:Name="busyControl" 
 							   HorizontalAlignment="Right" 
 							   Margin="0,0,12,0"
 							   Width="24"
 							   Visibility="{Binding Source={StaticResource mainSequence}, Path=IsBusy, Converter={StaticResource bool2visible}, IsAsync=True}" />
 
 		<!-- ************ stats and selection basket ********************* -->
-		<TextBlock Grid.Row="0" Grid.Column="1" Text="Statistics" FontSize="12" FontWeight="Bold" VerticalAlignment="Bottom" Margin="8,4" />
+		<TextBlock Grid.Row="1" Grid.Column="1" Text="Statistics" FontSize="12" FontWeight="Bold" VerticalAlignment="Bottom" Margin="8,4" />
 
-		<Grid Grid.Row="1" Grid.Column="1" Margin="6,0">
+		<Grid Grid.Row="2" Grid.Column="1" Margin="6,0">
 			<Grid.RowDefinitions>
 				<RowDefinition  Height="140"/>
 				<RowDefinition Height="26" />
@@ -72,7 +160,7 @@
 			</Border>
 		</Grid>
 
-		<TabControl Grid.Row="1" Grid.Column="0" Background="#FFF6F6F6"  FontSize="14">
+		<TabControl Grid.Row="2" Grid.Column="0" Background="#FFF6F6F6"  FontSize="14">
 			<TabItem>
 				<TabItem.Header>
 					<StackPanel Orientation="Horizontal">
@@ -96,10 +184,24 @@
 
 				<Grid Background="#FFF6F6F6">
 					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="413*"/>
-						<ColumnDefinition Width="173*"/>
+						<ColumnDefinition />
 					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="28" />
+						<RowDefinition Height="26" />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+
+					<StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="4,0" VerticalAlignment="Center">
+						<TextBlock Style="{StaticResource label}" Text="Sequence Id" />
+						<TextBlock VerticalAlignment="Center" Margin="4,0" Text="{Binding Id, IsAsync=True}" />
+					</StackPanel>
+
+					<TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center" Margin="8,0"
+							   Text="Sequence file info" />
+
 					<TextBox x:Name="textBoxSequenceInfo"
+							 Grid.Row="2" Grid.Column="0"
 							 VerticalScrollBarVisibility="Auto"
 							 HorizontalScrollBarVisibility="Auto"
 							 AcceptsReturn="True"
@@ -108,7 +210,7 @@
 							 HorizontalAlignment="Stretch"
 							 FontFamily="Consolas"
 							 Text="{Binding SequenceFileInfo, IsAsync=True}"
-							 Padding="8" FontSize="13" Grid.ColumnSpan="2"
+							 Padding="8" FontSize="13"
 							 Margin="4"
 							 BorderBrush="Black"
 							 BorderThickness="1"
@@ -127,7 +229,7 @@
 
 				<Grid Background="#FFF6F6F6">
 					<Grid.RowDefinitions>
-						<RowDefinition Height="120" />
+						<RowDefinition Height="84" />
 						<RowDefinition Height="26" />
 						<RowDefinition />
 					</Grid.RowDefinitions>
@@ -155,7 +257,6 @@
 				</Grid>
 			</TabItem>
 		</TabControl>
-
 
 	</Grid>
 </Window>

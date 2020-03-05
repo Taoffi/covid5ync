@@ -10,16 +10,19 @@ namespace iDna
 	public class iDnaBaseStatItem : RootObject
 	{
 		protected	iDnaBase	_base;
-		protected	int			_count		= 0,
-								_total		= 0;
+		protected	int			_count		= 0;
+								//_total		= 0;	// refer to parent for this
+
+		protected iDnaBaseStats	_parent		= null;
 
 		public iDnaBaseStatItem() : base()
 		{
 
 		}
 
-		public iDnaBaseStatItem(iDnaBase rootBase, int count, int total)
+		public iDnaBaseStatItem(iDnaBaseStats parent, iDnaBase rootBase, int count, int total)
 		{
+			_parent	= parent;
 			_base	= rootBase;
 			_count	= count;
 		}
@@ -52,25 +55,27 @@ namespace iDna
 
 		public int Total
 		{
-			get { return _total; }
-			set
-			{
-				if(value == _total)
-					return;
+			get { return _parent == null ? 0 : _parent.Total; }
+			//set
+			//{
+			//	if(value == _total)
+			//		return;
 
-				_total = value;
-				RaisePropertyChanged();
-				NotifyPropertyChanged(() => Percent);
-			}
+			//	_total = value;
+			//	RaisePropertyChanged();
+			//	NotifyPropertyChanged(() => Percent);
+			//}
 		}
 
 
 		public double Percent
 		{
-			get { return _total <= 0 ? 0.0 : ( (double)_count / (double) _total); }
+			get { return Total <= 0 ? 0.0 : ( (double)_count / (double) Total); }
 		}
 
 	}
+
+
 
 	public class iDnaBaseStats : RootListTemplate<iDnaBaseStatItem>
 	{
@@ -106,8 +111,8 @@ namespace iDna
 
 		void UpdateItems()
 		{
-			foreach(var item in this)
-				item.Total	= _total;
+			//foreach(var item in this)
+			//	item.Total	= _total;
 
 			NotifyPropertyChanged(() => PercentA);
 			NotifyPropertyChanged(() => PercentT);
@@ -182,7 +187,7 @@ namespace iDna
 			this.Clear();
 
 			foreach(var item in iDnaBaseNucleotides.Instance)
-				this.Add( new iDnaBaseStatItem( item, 0, 0));
+				this.Add( new iDnaBaseStatItem(this, item, 0, 0));
 		}
 
 		public void Reset()
