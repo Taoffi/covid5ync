@@ -100,6 +100,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="classes\settings\iDnaSettings.cs" />
     <Compile Include="classes\vm\iDnaCommandCentral.cs" />
     <Page Include="controls\BusySpinCtrl.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -109,13 +110,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="controls\iAboutWindow.xaml">
+    <Page Include="controls\windows\iAboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="controls\iDnaBaseCtrl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="controls\settings\iDnaSettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\settings\iDnaRepeatSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="controls\settings\iDnaHairpinSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\settings\iDnaMinMaxCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="controls\iDnaNodeCtrl.xaml">
       <SubType>Designer</SubType>
@@ -141,7 +158,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="controls\SequenceInfoWindow.xaml">
+    <Page Include="controls\windows\SequenceInfoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -189,11 +206,23 @@
       <DependentUpon>iAboutCtrl.xaml</DependentUpon>
     </Compile>
     <Compile Include="controls\converters\iDnaConverters.cs" />
-    <Compile Include="controls\iAboutWindow.xaml.cs">
+    <Compile Include="controls\windows\iAboutWindow.xaml.cs">
       <DependentUpon>iAboutWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="controls\iDnaBaseCtrl.xaml.cs">
       <DependentUpon>iDnaBaseCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\settings\iDnaSettingsWindow.xaml.cs">
+      <DependentUpon>iDnaSettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\settings\iDnaRepeatSettings.xaml.cs">
+      <DependentUpon>iDnaRepeatSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\settings\iDnaHairpinSettings.xaml.cs">
+      <DependentUpon>iDnaHairpinSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\settings\iDnaMinMaxCtrl.xaml.cs">
+      <DependentUpon>iDnaMinMaxCtrl.xaml</DependentUpon>
     </Compile>
     <Compile Include="controls\iDnaNodeCtrl.xaml.cs">
       <DependentUpon>iDnaNodeCtrl.xaml</DependentUpon>
@@ -213,10 +242,10 @@
     <Compile Include="controls\iGettingStartedCtrl.xaml.cs">
       <DependentUpon>iGettingStartedCtrl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="controls\SequenceInfoWindow.xaml.cs">
+    <Compile Include="controls\windows\SequenceInfoWindow.xaml.cs">
       <DependentUpon>SequenceInfoWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="controls\UiHelpers.cs" />
+    <Compile Include="controls\helpers\UiHelpers.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

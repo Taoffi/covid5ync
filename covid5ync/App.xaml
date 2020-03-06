@@ -11,6 +11,7 @@
 			<ObjectDataProvider x:Key="dnaBases"		ObjectType="{x:Type data:iDnaBaseNucleotides}"	MethodName="GetInstance" />
 			<ObjectDataProvider x:Key="mainSequence"	ObjectType="{x:Type data:iDnaSequence}"			MethodName="GetInstance" />
 			<ObjectDataProvider x:Key="commendCentral"	ObjectType="{x:Type vm:iDnaCommandCentral}"		MethodName="GetInstance" />
+			<ObjectDataProvider x:Key="dnaSettings"		ObjectType="{x:Type data:iDnaGobalSettings}"	MethodName="GetInstance" />
 
 			<conv:iDnaNodeCode2String		x:Key="nodeCode2String" />
 			<conv:iDnaNodeColor2Brush		x:Key="nodeColor2Brush" />

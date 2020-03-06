@@ -372,7 +372,12 @@ namespace iDna.vm
 				{
 					_options = new CommandExecuter(() =>
 					{
-						ShowNotYetImplemented();
+						// ShowNotYetImplemented();
+
+						iDnaSettingsWindow window	= new iDnaSettingsWindow();
+
+						window.Owner	= Application.Current.MainWindow;
+						window.ShowDialog();
 					});
 				}
 				return _options;
