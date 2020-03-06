@@ -327,7 +327,7 @@ namespace iDna.vm
 				{
 					_contactSupport = new CommandExecuter(() =>
 					{
-						TryOpenWebPage("mailto:covid5ync@5ync.net?subject=covid-5ync+app+comments+and+remarks");
+						TryOpenWebPage("mailto:covid5ync@5ync.net?subject=covid-5ync app comments and remarks");
 					});
 				}
 				return _contactSupport;
