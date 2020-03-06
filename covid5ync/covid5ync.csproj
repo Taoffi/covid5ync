@@ -20,7 +20,7 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>ftp://ftp-eu.site4now.net/covid5.5ync.net/covid5App/</PublishUrl>
+    <PublishUrl>ftp://ftp-eu.site4now.net/covid-5.5ync.net/covid5App/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -30,15 +30,15 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://covid5.5ync.net/covid5App/</InstallUrl>
-    <SupportUrl>http://covid5.5ync.net/support.html</SupportUrl>
-    <ErrorReportUrl>http://covid5.5ync.net/error.html</ErrorReportUrl>
+    <InstallUrl>http://covid-5.5ync.net/covid5App/</InstallUrl>
+    <SupportUrl>http://covid-5.5ync.net/support.html</SupportUrl>
+    <ErrorReportUrl>http://covid-5.5ync.net/error.html</ErrorReportUrl>
     <ProductName>covid5ync</ProductName>
     <PublisherName>5ync.net</PublisherName>
     <SuiteName>covid5ync</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>15</ApplicationRevision>
+    <ApplicationRevision>17</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

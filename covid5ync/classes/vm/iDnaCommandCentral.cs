@@ -357,7 +357,7 @@ namespace iDna.vm
 				{
 					_gotoProjectPage = new CommandExecuter(() =>
 					{
-						System.Diagnostics.Process.Start("http://covid5.5ync.net/");
+						System.Diagnostics.Process.Start("http://covid-5.5ync.net/");
 					});
 				}
 				return _gotoProjectPage;
