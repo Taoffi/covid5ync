@@ -333,8 +333,15 @@ namespace iDna
 			if (string.IsNullOrEmpty(str))
 				return false;
 
+			if(this._cancelSource != null)
+			{
+				_cancelSource.Cancel();
+			}
+
 			this._selectionBasket.Clear();
 			this._pairSelectionBasket.Clear();
+			this._repeatsBasket.Clear();
+			this._repeatSearch.Clear();
 			this.Clear(false);
 
 			this.Id					= Guid.NewGuid().ToString();
