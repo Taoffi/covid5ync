@@ -10,7 +10,7 @@
 		<ResourceDictionary>
 			<ObjectDataProvider x:Key="dnaBases"		ObjectType="{x:Type data:iDnaBaseNucleotides}"	MethodName="GetInstance" />
 			<ObjectDataProvider x:Key="mainSequence"	ObjectType="{x:Type data:iDnaSequence}"			MethodName="GetInstance" />
-			<ObjectDataProvider x:Key="commendCentral"	ObjectType="{x:Type vm:iDnaCommandCentral}"		MethodName="GetInstance" />
+			<ObjectDataProvider x:Key="commandCentral"	ObjectType="{x:Type vm:iDnaCommandCentral}"		MethodName="GetInstance" />
 			<ObjectDataProvider x:Key="dnaSettings"		ObjectType="{x:Type data:iDnaGobalSettings}"	MethodName="GetInstance" />
 
 			<conv:iDnaNodeCode2String		x:Key="nodeCode2String" />
@@ -19,6 +19,7 @@
 			<conv:iDnaBaseColor2Brush		x:Key="baseColorBrush" />
 			<conv:ReverseBool				x:Key="reverseBool" />
 			<conv:ValidSearchStringColor	x:Key="searchStringValidator" />
+			<conv:BusyToColorConverter		x:Key="busyToColor" />
 
 			<conv:Bool2Visibility			x:Key="bool2visible" />
 			<Image x:Key="imgBusy"			Source="images/busy48x48.png" />

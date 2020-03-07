@@ -47,6 +47,10 @@ namespace iDna.vm
 								_gotoProjectPage			= null,		// open project's web page
 								_options					= null,		// settings
 								_contactSupport				= null,		// contact and bug report
+
+								_findRepeats				= null,		// search repeats
+								_searchCommand				= null,
+								_searchPairsCommand			= null,
 			
 								_notYetImplemented			= null;
 
@@ -295,6 +299,81 @@ namespace iDna.vm
 					});
 				}
 				return _copySelectionToClipboard;
+			}
+		}
+
+		public ICommand Search
+		{
+			get
+			{
+				if(_searchCommand == null)
+				{
+					_searchCommand	= new CommandExecuter( async() =>
+					{
+                        string      str     = iDnaSequence.Instance.SearchString;
+                        if(! iDnaBaseNucleotides.IsValidString(str))
+                            return;
+
+                        await iDnaSequence.Instance.FindString(str, SequenceSearchType.SearchNormal, null);
+
+					});
+				}
+
+				return _searchCommand;
+			}
+		}
+
+
+		public ICommand SearchPairs
+		{
+			get
+			{
+				if (_searchPairsCommand == null)
+				{
+					_searchPairsCommand = new CommandExecuter(async () =>
+					{
+						string		str = iDnaSequence.Instance.SearchPairString;
+						if (!iDnaBaseNucleotides.IsValidString(str))
+							return;
+
+						str		= iDnaBaseNucleotides.Instance.GetPairString(str);
+
+						await iDnaSequence.Instance.FindString(str, SequenceSearchType.SearchPairs, null);
+
+					});
+				}
+
+				return _searchPairsCommand;
+			}
+		}
+
+
+		public ICommand FindRepeats
+		{
+			get
+			{
+				if (_findRepeats == null)
+				{
+					_findRepeats = new CommandExecuter(() =>
+					{
+						// ShowNotYetImplemented();
+
+						iDnaSequence		seq		= iDnaSequence.Instance;
+
+						if(seq.Count <= 0)
+						{
+							ShowMessage("Current sequence seems to be empty. Please check.", "Find repeats");
+							return;
+						}
+
+						Task.Run( async() =>
+						{
+							await iDnaSequence.Instance.GetRepeats(null);
+						});
+
+					});
+				}
+				return _findRepeats;
 			}
 		}
 

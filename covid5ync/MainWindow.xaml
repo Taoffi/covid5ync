@@ -29,13 +29,13 @@
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition />
-			<ColumnDefinition Width="180" />
+			<ColumnDefinition Width="240" />
 		</Grid.ColumnDefinitions>
 
 		<!-- xxxxxxxxxxxxx *********** main menu ********************* xxxxxxxxxxxxx -->
 		<Menu x:Name="mainManu" IsMainMenu="True" Cursor="Arrow"
 			  VerticalAlignment="Center" Padding="8,0" Grid.Row="0" Grid.ColumnSpan="2"
-			  DataContext="{StaticResource commendCentral}">
+			  DataContext="{StaticResource commandCentral}">
 			<!-- file menu -->
 			<MenuItem Header="_File">
 				<MenuItem Header="_Open"
@@ -81,13 +81,20 @@
 						  Command="{Binding LoadSequenceFromClipboard, Mode=OneWay}"/>
 			</MenuItem>
 
+			<!-- tools menu -->
 			<MenuItem Header="_Tools">
+				<MenuItem Header="Find _repeats"
+						  ToolTip="find repeats according to your settings"
+						  Command="{Binding FindRepeats, Mode=OneWay}"/>
+
+				<Separator />
 				<MenuItem Header="_Options"
 						  Icon="{StaticResource imgGears16}"
 						  ToolTip="application settings"
 						  Command="{Binding OptionsCommand, Mode=OneWay}"/>
 			</MenuItem>
 
+			<!-- help menu -->
 			<MenuItem Header="Help">
 				<!--<MenuItem Header="_What is new"
 						  Icon="{StaticResource imgFile32}"
@@ -112,7 +119,12 @@
 		</Menu>
 		<!-- xxxxxxxxxxxxx *********** end of main menu ********************* xxxxxxxxxxxxx -->
 
-		<GridSplitter Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="4" Background="#FFD8DCF5" />
+		<GridSplitter Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" 
+					  HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="4"
+					  Background="#FFC5CAEC"
+					  BorderBrush="#FFD8DCF5"
+					  BorderThickness="1,0,1,0"/>
+		
 		<StackPanel Grid.Row="1"
 					Orientation="Horizontal" VerticalAlignment="Center" Margin="2,0" >
 			<TextBox FontWeight="Bold" VerticalAlignment="Center" Margin="8,0" 
@@ -159,12 +171,11 @@
 
 			<StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="0">
 				<Image Source="{Binding Source={StaticResource imgCovid5ync48}, Path=Source}" Width="24" Margin="4,0"/>
-				<TextBlock Grid.Row="1" Grid.Column="0" Text="Selection basket" FontSize="12" FontWeight="Bold" VerticalAlignment="Center" Margin="2,0" />
-				<TextBlock VerticalAlignment="Center" FontSize="9" Foreground="Blue" Margin="8,0" Text="{Binding CurrentSearchBasket.Count, IsAsync=True}" />
+				<TextBlock Grid.Row="1" Grid.Column="0" Text="Sequence baskets" FontSize="12" FontWeight="Bold" VerticalAlignment="Center" Margin="2,0" />
 			</StackPanel>
 			
 			<Border Grid.Row="2" CornerRadius="4" BorderBrush="Black" BorderThickness="2" Padding="2" HorizontalAlignment="Stretch">
-				<controls:iDnaSequenceBasket Grid.Row="2" DataContext="{Binding CurrentSearchBasket, Mode=OneWay, IsAsync=True}" HorizontalAlignment="Stretch" />
+				<controls:iDnaSequenceBasketsCtrl Grid.Row="2" DataContext="{Binding Mode=OneWay, IsAsync=True}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
 			</Border>
 		</Grid>
 

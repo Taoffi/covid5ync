@@ -72,7 +72,7 @@
             </ListView.ItemTemplate>
 
             <ListView.ContextMenu>
-                <ContextMenu DataContext="{Binding Source={StaticResource commendCentral}}">
+                <ContextMenu DataContext="{Binding Source={StaticResource commandCentral}}">
                     <MenuItem x:Name="menuItemCopySelection2Clipboard"
 							  Command="{Binding CopySelectionsToClipboard, Mode=OneWay}"
 							  Header="Copy selection to clipboard (ctrl+c)" 

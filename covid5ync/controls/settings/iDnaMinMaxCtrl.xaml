@@ -51,10 +51,12 @@
 				  ItemsSource="{Binding MinMaxNodeSelectionList}"
 				  SelectedValue="{Binding MaxNodes, Mode=TwoWay}" />
 
-		<TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource label}" Text="Min Tm" />
+		<TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource label}" Text="Min Tm"
+				   Visibility="Collapsed"/>
 		<ComboBox Grid.Row="1" Grid.Column="1" Margin="4,0" VerticalAlignment="Center" 
 				  ItemsSource="{Binding MinMaxMeltingTmSelectionList}" 
-				  SelectedIndex="{Binding MinTmIndex, Mode=TwoWay, IsAsync=True}">
+				  SelectedIndex="{Binding MinTmIndex, Mode=TwoWay, IsAsync=True}"
+				  Visibility="Collapsed">
 			<ComboBox.ItemTemplate>
 				<DataTemplate>
 					<TextBlock VerticalAlignment="Center" Text="{Binding IsAsync=True, Mode=OneWay, StringFormat=\{0:F\}}" />
@@ -62,10 +64,12 @@
 			</ComboBox.ItemTemplate>
 		</ComboBox>
 
-		<TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource label}" Text="Max Tm" />
+		<TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource label}" Text="Max Tm"
+				   Visibility="Collapsed"/>
 		<ComboBox Grid.Row="1" Grid.Column="3" Margin="4,0" VerticalAlignment="Center"
 				  ItemsSource="{Binding MinMaxMeltingTmSelectionList}"
-				  SelectedIndex="{Binding MaxTmIndex, Mode=TwoWay, IsAsync=True}">
+				  SelectedIndex="{Binding MaxTmIndex, Mode=TwoWay, IsAsync=True}"
+				  Visibility="Collapsed">
 			<ComboBox.ItemTemplate>
 				<DataTemplate>
 					<TextBlock VerticalAlignment="Center" Text="{Binding IsAsync=True, Mode=OneWay, StringFormat=\{0:F\}}" />

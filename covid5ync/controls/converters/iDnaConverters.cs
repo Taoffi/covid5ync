@@ -160,6 +160,29 @@ namespace iDna.controls
 		}
 	}
 
+	public class BusyToColorConverter : IValueConverter
+	{
+		static SolidColorBrush	defaultBrush	= new SolidColorBrush(Colors.Black),
+								highlight		= new SolidColorBrush(Colors.Red);
+
+		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			if (value == null || !(value is bool))
+				return defaultBrush;
+
+			bool bvalue = false;
+
+			if (!bool.TryParse(value.ToString(), out bvalue))
+				return defaultBrush;
+
+			return bvalue ? highlight : defaultBrush;
+		}
+
+		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }
 
 

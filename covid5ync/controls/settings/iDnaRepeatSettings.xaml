@@ -7,15 +7,34 @@
 			 xmlns:data="clr-namespace:iDna"
              mc:Ignorable="d" 
 			 d:DataContext="{d:DesignInstance Type={x:Type data:iDnaRepeatSettingsDesignTime}}"
-             d:DesignHeight="202.5" d:DesignWidth="435.5">
+             d:DesignHeight="172.5" d:DesignWidth="435.5">
     <Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="28" />
+			<RowDefinition Height="74" />
+			<RowDefinition Height="26" />
+			<RowDefinition Height="26" />
 			<RowDefinition />
 		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="140" />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
 
-		<TextBlock Grid.Row="0" Grid.Column="0" FontSize="14" Text="Find repeats settings" FontWeight="Bold" Margin="8,0" />
-		<local:iDnaMinMaxCtrl Grid.Row="1" Grid.Column="0" Margin="8,8" DataContext="{Binding MinMaxValues}" />
+		<TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="14" Text="Find repeats settings" FontWeight="Bold" Margin="8,0" />
+		<local:iDnaMinMaxCtrl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="8,8" DataContext="{Binding MinMaxValues}" />
+
+		<TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource label}" Text="Find overlapping"
+				   Visibility="Collapsed"/>
+		<CheckBox Grid.Row="3" Grid.Column="1" Margin="4,0" HorizontalAlignment="Left" VerticalAlignment="Center"
+				  IsChecked="{Binding SearchOverlapping}"
+				  ToolTip="check to search for overlapping reapeats"
+				  Visibility="Collapsed"/>
+
+		<TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource label}" Text="Show search position" />
+		<CheckBox Grid.Row="2" Grid.Column="1" Margin="4,0" HorizontalAlignment="Left" VerticalAlignment="Center"
+				  IsChecked="{Binding ShowSearchPosition}"
+				  ToolTip="check to visually show current search position"/>
 
 	</Grid>
 </UserControl>

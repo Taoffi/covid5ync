@@ -9,6 +9,9 @@ namespace iDna
 {
 	public class iDnaMinMaxValues : RootObject
 	{
+		const int					_constMinIntNodes		= 8,
+									_constMaxIntNodes		= 32;
+									
 		protected int					_minNodes		= 8,
 										_maxNodes		= 16;
 		protected decimal				_minTm			= new decimal(0.0),
@@ -156,7 +159,7 @@ namespace iDna
 			get
 			{
 				List<int>		list	= new List<int>();
-				for(int i = 1; i < 32; i++)
+				for(int i = _constMinIntNodes; i < _constMaxIntNodes; i++)
 					list.Add(i);
 
 				return list;
@@ -186,6 +189,8 @@ namespace iDna
 		static iDnaRepeatSettings		_instance			= null;
 
 		protected iDnaMinMaxValues		_minMaxValues		= new iDnaMinMaxValues(8, 16, (decimal) 0.0, (decimal) 55.50);
+		protected bool					_searchOverlapping	= false,
+										_showSearchPosition	= true;
 
 		public static iDnaRepeatSettings Instance
 		{
@@ -210,6 +215,32 @@ namespace iDna
 		public iDnaMinMaxValues MinMaxValues
 		{
 			get { return _minMaxValues; }
+		}
+
+		public bool SearchOverlapping
+		{
+			get { return _searchOverlapping; }
+			set
+			{
+				if(value == _searchOverlapping)
+					return;
+
+				_searchOverlapping = value;
+				RaisePropertyChanged();
+			}
+		}
+
+		public bool ShowSearchPosition
+		{
+			get { return _showSearchPosition; }
+			set
+			{
+				if(value == _showSearchPosition)
+					return;
+
+				_showSearchPosition = value;
+				RaisePropertyChanged();
+			}
 		}
 
 	}

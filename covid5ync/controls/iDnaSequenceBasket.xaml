@@ -4,74 +4,86 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:iDna.controls"
+			 xmlns:conv="clr-namespace:iDna.controls"
 			 xmlns:data="clr-namespace:iDna"
              mc:Ignorable="d" 
 			 d:DataContext="{d:DesignInstance Type={x:Type data:iDnaSequenceListDesigntime}, IsDesignTimeCreatable=True}"
-             d:DesignHeight="280" d:DesignWidth="266"
-			 Margin="0" Height="auto" VerticalAlignment="Top">
-	
-    <Grid Margin="0" VerticalAlignment="Top">
-		<ListView x:Name="listSequences" Grid.Row="0"
-				  ItemsSource="{Binding IsAsync=True}"
-				  HorizontalAlignment="Stretch"
-				  Height="auto"
-				  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-				  VerticalContentAlignment="Top"
-				  VerticalAlignment="Top"
-				  SelectionMode="Single"
-			>
-			<ListView.ItemsPanel>
-				<ItemsPanelTemplate>
-					<StackPanel Margin="0" VerticalAlignment="Top" HorizontalAlignment="Stretch">
-						
-					</StackPanel>
-				</ItemsPanelTemplate>
-			</ListView.ItemsPanel>
-			
-			<ListView.ItemTemplate>
-				<DataTemplate>
-					<Border BorderBrush="Blue" BorderThickness="1" HorizontalAlignment="Stretch"
-							Background="#FF80D1FF" Padding="0" Margin="1">
-						<Grid HorizontalAlignment="Stretch" 
-						  VerticalAlignment="Top" 
-						  Height="auto"
-						  Margin="0">
-							<Grid.RowDefinitions>
-								<RowDefinition />
-								<RowDefinition Height="22"/>
-							</Grid.RowDefinitions>
+             d:DesignHeight="280" d:DesignWidth="264"
+			 Margin="0" Height="auto" >
 
-							<local:iDnaSequenceView Grid.Row="0" DataContext="{Binding }"
-												Margin="0"
-												Width="{Binding ActualWidth, ElementName=listSequences, Mode=OneWay}"
-												Height="auto"
-												MaxHeight="52"
-												VerticalAlignment="Top"
-												VerticalContentAlignment="Top" HorizontalAlignment="Stretch"
-													BorderBrush="#FF292834" BorderThickness="1"
+    <Grid x:Name="gridMain" VerticalAlignment="Stretch" Width="auto">
+		<Border Padding="1" Background="#FF323030" BorderBrush="Transparent" BorderThickness="0" >
+
+			<ListView x:Name="listSequences" Grid.Row="0"
+					  ItemsSource="{Binding IsAsync=True}"
+					  HorizontalAlignment="Stretch"
+					  Height="auto"
+					  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+					  VerticalContentAlignment="Top"
+					  VerticalAlignment="Stretch"
+					  SelectionMode="Single"
+					  Margin="0,0,0,0"
+			>
+				<ListView.ItemsPanel>
+					<ItemsPanelTemplate>
+						<StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Background="#FFFDE093">
+
+						</StackPanel>
+					</ItemsPanelTemplate>
+				</ListView.ItemsPanel>
+
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<Border BorderBrush="Blue" BorderThickness="2" HorizontalAlignment="Left"
+							Background="#FF323030" Padding="0" Margin="2,4">
+							<Grid HorizontalAlignment="Stretch" 
+								  VerticalAlignment="Top" 
+								  Height="auto"
+								  Margin="0,0,-12,0">
+								<Grid.RowDefinitions>
+									<RowDefinition />
+									<RowDefinition Height="22"/>
+								</Grid.RowDefinitions>
+
+								<local:iDnaSequenceView Grid.Row="0" DataContext="{Binding }"
+														Margin="0"
+														HorizontalAlignment="Stretch"
+														MinWidth="{Binding ActualWidth, ElementName=gridMain, Mode=OneWay}"
+														Height="auto"
+														MaxHeight="52"
+														VerticalAlignment="Top"
+														VerticalContentAlignment="Top"
+														BorderBrush="#FF292834" BorderThickness="1"
 													/>
 
-							<StackPanel Grid.Row="1" Background="#FFB3DEEE" Orientation="Horizontal"
-									HorizontalAlignment="Stretch"
-									>
-								<Button x:Name="buttonGotoPage" ToolTip="go to fragment's page"
+								<StackPanel Grid.Row="1" Background="#FFF6F6F6"
+											Orientation="Horizontal"
+											HorizontalAlignment="Stretch"
+											>
+									<Button x:Name="buttonGotoPage" ToolTip="go to fragment's page"
 									Background="{x:Null}" BorderBrush="{x:Null}"
 										HorizontalContentAlignment="Left"
 										Padding="0"
 									Click="buttonGotoPage_Click">
-									<Button.Content>
-										<Border BorderBrush="Black" BorderThickness="0" Width="24" Height="20" Margin="0" Padding="1" Background="Black">
-											<Image Source="{Binding Source={StaticResource imgCitation48}, Path=Source}" Width="18" Margin="2,0" />
-										</Border>
-									</Button.Content>
-								</Button>
-								<TextBlock Text="{Binding Name}" FontSize="9" VerticalAlignment="Center" Margin="8,0" />
+										<Button.Content>
+											<Border BorderBrush="Black" BorderThickness="0" Width="24" Height="20" 
+												Margin="0" Padding="1" Background="{x:Null}"
+												ToolTip="locate on page">
+												<Image Source="{Binding Source={StaticResource imgPrev}, Path=Source}" Width="18" Margin="2,0" />
+											</Border>
+										</Button.Content>
+									</Button>
+									<TextBlock Text="{Binding Name}" FontSize="9" VerticalAlignment="Center" Margin="8,0" />
+									<TextBlock Text="(" FontSize="9" VerticalAlignment="Center" Margin="8,0,0,0" Foreground="Blue" />
+									<TextBlock Text="{Binding Count, Mode=OneWay}" FontSize="9" VerticalAlignment="Center" Margin="0" Foreground="Blue"/>
+									<TextBlock Text=" nodes)" FontSize="9" VerticalAlignment="Center" Margin="0" Foreground="Blue"/>
 
-							</StackPanel>
-						</Grid>
-					</Border>
-				</DataTemplate>
-			</ListView.ItemTemplate>
-		</ListView>
-    </Grid>
+								</StackPanel>
+							</Grid>
+						</Border>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</Border>
+	</Grid>
 </UserControl>

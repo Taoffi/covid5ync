@@ -11,8 +11,8 @@
 			 SnapsToDevicePixels="True"
 			 >
 	<UserControl.InputBindings>
-		<KeyBinding Key="F"		Modifiers="Ctrl"	Command="{Binding SearchCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:iDnaSequenceCtrl}}}" />
-		<KeyBinding Key="F"		Modifiers="Alt"		Command="{Binding SearchPairsCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:iDnaSequenceCtrl}}}" />
+		<KeyBinding Key="F"		Modifiers="Ctrl"	Command="{Binding Search, Mode=OneWay, Source={StaticResource commandCentral}}" />
+		<KeyBinding Key="F"		Modifiers="Alt"		Command="{Binding SearchPairs, Mode=OneWay, Source={StaticResource commandCentral}}" />
 
 		<KeyBinding Key="Next"		Modifiers="Ctrl" 	Command="{Binding NextPageCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:iDnaSequenceCtrl}}}" />
 		<KeyBinding Key="PageUp"	Modifiers="Ctrl"	Command="{Binding PrevPageCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:iDnaSequenceCtrl}}}" />
@@ -41,7 +41,7 @@
 						ToolTip="search (ctrl+f)"
 						Click="buttonSearch_Click" />
 
-				<TextBlock VerticalAlignment="Center" Margin="4,0"
+				<TextBlock VerticalAlignment="Center" Margin="4,0" Width="42"
 							Text="{Binding SearchOccurrences, Mode=OneWay, IsAsync=True, UpdateSourceTrigger=PropertyChanged}"
 							Foreground="Maroon" FontSize="9"
 							ToolTip="found occurrences"/>

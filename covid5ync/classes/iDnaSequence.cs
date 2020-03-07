@@ -17,6 +17,7 @@ namespace iDna
 	{
 		SearchNormal,
 		SearchPairs,
+		SearchRepeats,
 	};
 
 	public partial class iDnaSequence : RootListTemplate<iDnaNode>
@@ -71,6 +72,7 @@ namespace iDna
 			_paging.SourceCollection = this;
 			_name			= name;
 			CopyNodeList(nodeList, refOnly);
+
 		}
 
 		/// <summary>
@@ -86,6 +88,7 @@ namespace iDna
 				return;
 
 			this.AddRange(nodeList);
+			_stats.Total		= this.Count;
 
 			// embed nodes: set parent to this and reset nodes index
 			if( ! refOnly)
@@ -311,7 +314,6 @@ namespace iDna
 				if(item != null)
 				{
 					item.Count = this.Count(i => i.RootBaseItem == baseIem);
-					//item.Total = this.Count;
 				}
 
 				NotifyPropertyChanged(() => Statistics);
@@ -367,7 +369,6 @@ namespace iDna
 				if(SequenceParseCompleted != null)
 					SequenceParseCompleted.Invoke(this, this.Count);
 
-				//NotifyCollectionChanged(this);
 				NotifyPropertyChanged(() => Count);
 				NotifyPropertyChanged(() => Statistics);
 				NotifyPropertyChanged(() => SequencePaging);
@@ -417,13 +418,6 @@ namespace iDna
 
 				_searchString = value;
 				NotifyPropertyChanged(() => SearchString);
-
-				//ResetSelection(false);
-
-				//if (!_searchInProgress && !string.IsNullOrEmpty(value) && value.Length > _minSearchLenght)
-				//{
-				//	Task.Run(() => FindString( value, isPairSearch: false, null));
-				//}
 			}
 		}
 
@@ -438,11 +432,6 @@ namespace iDna
 
 				_searchPairString = value;
 				NotifyPropertyChanged(() => SearchPairString);
-
-				//ResetSelection(false);
-
-				//if (! _searchInProgress && !string.IsNullOrEmpty(value) && value.Length > _minSearchLenght)
-				//	Task.Run(() => FindString( iDnaBaseNucleotides.Instance.GetPairString(_searchPairString), isPairSearch: true, null));
 			}
 		}
 
@@ -485,7 +474,7 @@ namespace iDna
 					curPageNumber	= _paging.CurrentPage,
 					nodesPerPage	= _paging.PageSize,
 					nodePageNumber	= index / nodesPerPage + 1;
-			bool	isVisible		= nodePageNumber == curPageNumber;	// curPageNumber * nodesPerPage <= index ? true : false;
+			bool	isVisible		= nodePageNumber == curPageNumber;
 
 			if(isVisible)
 				return;
@@ -493,16 +482,36 @@ namespace iDna
 			_paging.CurrentPage	= nodePageNumber;
 		}
 
-		public async Task<IEnumerable<iDnaNode>> FindString(string str, bool isPairSearch, Dispatcher dispatcher)
+		public async Task<IEnumerable<iDnaNode>> FindString(string str, SequenceSearchType searchType, Dispatcher dispatcher, bool updateSeletions = true)
 		{
 			if (string.IsNullOrWhiteSpace(str))
 				return null;
 
-			iDnaSequenceList		basket	= isPairSearch ? _pairSelectionBasket : _selectionBasket;
+			iDnaSequenceList	basket			= null;
+			bool				isPairSearch	= false;
+
+			switch (searchType)
+			{
+				case SequenceSearchType.SearchNormal:
+					basket			= _selectionBasket;
+					break;
+
+				case SequenceSearchType.SearchPairs:
+					basket			= _pairSelectionBasket;
+					isPairSearch	= true;
+					break;
+
+				case SequenceSearchType.SearchRepeats:
+					basket	= _repeatSearch;
+					break;
+
+				default:
+					return null;
+			}
 
 			basket.Clear();
 
-			CurrentSearchType	 = isPairSearch ? SequenceSearchType.SearchPairs : SequenceSearchType.SearchNormal;
+			CurrentSearchType	 = searchType;
 
 			if (isPairSearch)
 			{
@@ -512,7 +521,8 @@ namespace iDna
 			else
 			{
 				SearchOccurrences = 0;
-				NotifyPropertyChanged(() => SelectionBasket);
+				if(searchType != SequenceSearchType.SearchRepeats)
+					NotifyPropertyChanged(() => SelectionBasket);
 			}
 
 			str		= iDnaBaseNucleotides.TrimInvalidChars(str);
@@ -528,84 +538,59 @@ namespace iDna
 				resetBusy		= true;
 				IsBusy		= true;
 			}
-			
-			NotifyPropertyChanged(() => CanSearch);
+
+			if (searchType != SequenceSearchType.SearchRepeats)
+				NotifyPropertyChanged(() => CanSearch);
 
 			if( dispatcher == null)
 				dispatcher	= Dispatcher.CurrentDispatcher;
 
 			List<iDnaNode>	list		= new List<iDnaNode>();
-			var				allStarts	= this.Where( i => str[0] == i.Code).ToList();
-			int				nodeNdx,
-							ndxEnd,
-							ndxStr,
-							lenStr			= str.Length;
-
-			if(allStarts == null)
-				return null;
-
-			int				startsCount		= allStarts.Count(),
-							ndxStarts		= 0,
+			int				lenStr			= str.Length,
 							nOccurrences	= 0;
+			var				allStarts		= this.AllStartoccurrencesOfString(str).ToList();
+
+			if(allStarts == null || allStarts.Count <= 0)
+				goto end_of_process;
+
+			int				startsCount		= allStarts.Count();
+							
 
 			await Task.Run(() =>
 			{
-
-				//foreach(var item in allStarts)
-				while ((ndxStarts /*+ lenStr*/) < startsCount)
+				foreach( var item in allStarts)
 				{
-					iDnaNode item	= allStarts[ndxStarts];
+					var			subSeq	= this.SkipWhile(n => n.Index < item.Index).Take(lenStr);
 
-					nodeNdx			= item.Index;
-					ndxEnd			= nodeNdx + lenStr;
-					var subSeq		= this.Where(i => i.Index >= nodeNdx && i.Index < ndxEnd);
+					nOccurrences++;
+					list.AddRange(subSeq);
+					basket.Add(new iDnaSequence("search match " + nOccurrences.ToString(), subSeq));
+				}
 
-					if (subSeq == null)
-						continue;
-
-					ndxStr			= 0;
-					bool mismatch	= false;
-
-					foreach (var node in subSeq)
-					{
-						if (node.Code != str[ndxStr] && ndxStr < lenStr)
-						{
-							mismatch	= true;
-							break;
-						}
-						ndxStr++;
-					}
-
-					if (!mismatch && ndxStr == lenStr)
-					{
-						nOccurrences++;
-
-						list.AddRange(subSeq);
-						//ndxStarts		+= lenStr;
-
-						basket.Add( new iDnaSequence("search match " + nOccurrences.ToString(), subSeq));
-						NotifyPropertyChanged(() => SelectionBasket);
-						NotifyPropertyChanged(() => PairSelectionBasket);
-						NotifyPropertyChanged(() => CurrentSearchBasket);
-					}
-
-					ndxStarts++;
+				if (searchType != SequenceSearchType.SearchRepeats)
+				{
+					NotifyPropertyChanged(() => SelectionBasket);
+					NotifyPropertyChanged(() => PairSelectionBasket);
+					NotifyPropertyChanged(() => CurrentSearchBasket);
 				}
 			});
 			
 
 			// select found nodes
-			dispatcher.Invoke(() =>
+			if(updateSeletions)
 			{
-				ResetSelection(false, dispatcher: dispatcher);
+				dispatcher.Invoke(() =>
+				{
+					ResetSelection(false, dispatcher: dispatcher);
 
-				foreach (var item in list)
-					item.IsSelected = true;
+					foreach (var item in list)
+						item.IsSelected = true;
+				}
+				);
 			}
-			);
 
-			//var		distinctIndexes	= list.Select(i => i.Index).Distinct();
-			int		distinctCount	= nOccurrences;		// list.Count / lenStr;	// distinctIndexes.Count() / lenStr;
+end_of_process:
+			int		distinctCount	= nOccurrences;
 
 			if (isPairSearch)
 				SearchPairOccurrences = distinctCount;
@@ -617,15 +602,14 @@ namespace iDna
 			if(resetBusy)
 				IsBusy				= false;
 
-			NotifyPropertyChanged(() => CanSearch);
-			NotifyPropertyChanged(() => CurrentSearchBasket);
+			if (searchType != SequenceSearchType.SearchRepeats)
+			{
+				NotifyPropertyChanged(() => CanSearch);
+				NotifyPropertyChanged(() => CurrentSearchBasket);
+			}
 
 			if(list.Count > 0)
 				GoToNodePage(list[0]);
-
-			//_paging.RaisePagingEvents();
-			//NotifyPropertyChanged(() => _paging.CurrentPageData);
-			//NotifyPropertyChanged(() => _paging.CurrentPage);
 
 			return list;
 		}

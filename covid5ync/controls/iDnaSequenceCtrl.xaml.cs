@@ -22,9 +22,7 @@ namespace iDna.controls
 	/// </summary>
 	public partial class iDnaSequenceCtrl : UserControl
 	{
-        ICommand        _commandSearch,
-                        _commandSearchPairs,
-                        _commandNextPage,
+        ICommand        _commandNextPage,
                         _commandPrevPage;
 
 		public iDnaSequenceCtrl()
@@ -62,7 +60,7 @@ namespace iDna.controls
             if(string.IsNullOrEmpty(str))
                 return;
 
-            await iDnaSequence.Instance.FindString( str, isPairSearch: false, this.Dispatcher );
+            await iDnaSequence.Instance.FindString( str, SequenceSearchType.SearchNormal, this.Dispatcher );
         }
 
         private async void buttonSearchPair_Click(object sender, RoutedEventArgs e)
@@ -73,48 +71,10 @@ namespace iDna.controls
                 return;
 
             str     = iDnaBaseNucleotides.Instance.GetPairString(str);
-            await iDnaSequence.Instance.FindString(str, isPairSearch: true, this.Dispatcher);
+            await iDnaSequence.Instance.FindString(str, SequenceSearchType.SearchPairs, this.Dispatcher);
         }
 
-        public ICommand SearchCommand
-        {
-            get
-            {
-                if(_commandSearch == null)
-                {
-                    _commandSearch  = new CommandExecuter( async() =>
-                    {
-                        string      str     = textBoxSearch.Text;
-                        if(! iDnaBaseNucleotides.IsValidString(str))
-                            return;
-
-                        await iDnaSequence.Instance.FindString(str, isPairSearch: false, this.Dispatcher);
-                    });
-                }
-                return _commandSearch;
-            }
-        }
-
-        public ICommand SearchPairsCommand
-        {
-            get
-            {
-                if(_commandSearchPairs == null)
-                {
-                    _commandSearchPairs  = new CommandExecuter( async() =>
-                    {
-                        string      str     = textBoxSearchPair.Text;
-                        if(! iDnaBaseNucleotides.IsValidString(str))
-                            return;
-
-                        str     = iDnaBaseNucleotides.Instance.GetPairString(str);
-                        await iDnaSequence.Instance.FindString(str, isPairSearch: true, this.Dispatcher);
-                    });
-                }
-                return _commandSearchPairs;
-            }
-        }
-
+ 
         public ICommand NextPageCommand
         {
             get
