@@ -36,20 +36,54 @@
 		<Menu x:Name="mainManu" IsMainMenu="True" Cursor="Arrow"
 			  VerticalAlignment="Center" Padding="8,0" Grid.Row="0" Grid.ColumnSpan="2"
 			  DataContext="{StaticResource commandCentral}">
+			<Menu.Resources>
+				<ResourceDictionary>
+					<Image x:Key="mimgSequence"			Source="images/sequence78x78.png" />
+					<Image x:Key="mimgSequenceFile"		Source="images/sequence-file78x78.png" />
+					<Image x:Key="mimgAbout"			Source="images/about78x78.png" />
+					<Image x:Key="mimgCovid5ync48"		Source="images/covid5ync48x48.jpg" />
+					<Image x:Key="mimgBuiltinSeq"		Source="images/covid5ync48x48.jpg" />
+					<Image x:Key="mimgCitation48"		Source="images/citation48x48.png" />
+					<Image x:Key="mimghttp48"			Source="images/http48x48.png" />
+					<Image x:Key="mimgAboutProject"		Source="images/http48x48.png" />
+					<Image x:Key="mimgRefresh48"		Source="images/refresh48x48.png" />
+					<Image x:Key="mimgSearch48"			Source="images/search48x48.png" />
+					<Image x:Key="mimgDoc48"			Source="images/doc48x48.png" />
+
+					<Image x:Key="mimgMail32"			Source="images/mail32x32.png" />
+					<Image x:Key="mimgCopy23"			Source="images/copy23x22.png" />
+					<Image x:Key="mimgCopy23_2"			Source="images/copy23x22.png" />
+					<Image x:Key="mimgPaste23"			Source="images/paste23x22.png" />
+					<Image x:Key="mimgSettings48"		Source="images/processor48x48.png" />
+					<Image x:Key="mimgFile32"			Source="images/file32x30.png" />
+					<Image x:Key="mimgFolder32"			Source="images/folder32x32.png" />
+					<Image x:Key="mimgFolderOpen16"		Source="images/folderOpen16x16.png" />
+					<Image x:Key="mimgGears48"			Source="images/gears48x48.png" />
+					<Image x:Key="mimgGears16"			Source="images/gears16x16.png" />
+					<Image x:Key="mimgGearsData"		Source="images/data-gears34x22.gif" />
+
+					<Image x:Key="mimgMap48"			Source="images/map48x48.png" />
+					<Image x:Key="mimgToolbox32"		Source="images/toolbox32x32.png" />
+					<Image x:Key="mimgSave16"			Source="images/save16x16.png" />
+					<Image x:Key="mimgSave16_2"			Source="images/save16x16.png" />
+					<Image x:Key="mimgSave16_3"			Source="images/save16x16.png" />
+					<Image x:Key="mimgQuickStart48"		Source="images/quickstart48x48.png" />
+				</ResourceDictionary>
+			</Menu.Resources>
 			<!-- file menu -->
 			<MenuItem Header="_File">
 				<MenuItem Header="_Open"
-						  Icon="{StaticResource imgFolderOpen16}"
+						  Icon="{DynamicResource mimgFolderOpen16}"
 						  ToolTip="load a sequence file from your pc"
 						  Command="{Binding OpenFile, Mode=OneWay}" />
 				
 				<MenuItem Header="Load built-in se_quence"
-						  Icon="{StaticResource imgBuiltinSeq}"
+						  Icon="{DynamicResource mimgBuiltinSeq}"
 						  ToolTip="load the application's delivered sequence"
 						  Command="{Binding LoadBuiltinSequence, Mode=OneWay}" />
 				
 				<MenuItem Header="_Save sequence As..."
-						  Icon="{StaticResource imgSave16}"
+						  Icon="{DynamicResource mimgSave16}"
 						  ToolTip="save current sequence to file"
 						  Command="{Binding SaveAs, Mode=OneWay}"/>
 				
@@ -57,12 +91,13 @@
 				
 				<MenuItem Header="Save selected _regions..."
 						  ToolTip="save current selected regions to file"
-						  Command="{Binding SaveSelectedRegions, Mode=OneWay}"/>
+						  Command="{Binding SaveSelectedRegions, Mode=OneWay}"
+						  Icon="{DynamicResource mimgSave16_2}"/>
 
 				<Separator />
 
 				<MenuItem Header="_Download sequence files"	
-						  Icon="{StaticResource imghttp48}"
+						  Icon="{DynamicResource mimghttp48}"
 						  ToolTip="download sequences from ncbi web site"
 						  Command="{Binding DownloadSequences, Mode=OneWay}" />
 
@@ -71,12 +106,12 @@
 			<!-- edit menu -->
 			<MenuItem Header="_Edit">
 				<MenuItem Header="_Copy selection to Clipboard"
-						  Icon="{StaticResource imgCopy23}"
+						  Icon="{DynamicResource mimgCopy23}"
 						  ToolTip="copy selected fragments to clipboard"
 						  Command="{Binding CopySelectionsToClipboard, Mode=OneWay}"/>
 				
 				<MenuItem Header="Load sequence from Cli_pboard"
-						  Icon="{StaticResource imgPaste23}"
+						  Icon="{DynamicResource mimgPaste23}"
 						  ToolTip="load sequence from text you already copied in the clipboard"
 						  Command="{Binding LoadSequenceFromClipboard, Mode=OneWay}"/>
 			</MenuItem>
@@ -88,8 +123,19 @@
 						  Command="{Binding FindRepeats, Mode=OneWay}"/>
 
 				<Separator />
+				<MenuItem Header="_Copy repeats to clipboard"
+						  Icon="{DynamicResource mimgCopy23_2}"
+						  ToolTip="copy found repeats to clipboard"
+						  Command="{Binding CopyRepeatsToClipboard, Mode=OneWay}"/>
+
+				<MenuItem Header="_Save repeats to file"
+						  Icon="{DynamicResource mimgSave16_3}"
+						  ToolTip="save found repeats to file"
+						  Command="{Binding SaveRepeatsToFile, Mode=OneWay}"/>
+
+				<Separator />
 				<MenuItem Header="_Options"
-						  Icon="{StaticResource imgGears16}"
+						  Icon="{DynamicResource mimgGears16}"
 						  ToolTip="application settings"
 						  Command="{Binding OptionsCommand, Mode=OneWay}"/>
 			</MenuItem>
@@ -101,18 +147,18 @@
 						  Command="{Binding WhatIsNew, Mode=OneWay}"/>-->
 				
 				<MenuItem Header="_About the project"
-						  Icon="{StaticResource imgAboutProject}"
+						  Icon="{DynamicResource mimgAboutProject}"
 						  Command="{Binding GotoProjectPage, Mode=OneWay}"/>
 				
 				<MenuItem Header="_About this app"
-						  Icon="{StaticResource imgCovid5ync48}"
+						  Icon="{DynamicResource mimgCovid5ync48}"
 						  Command="{Binding AboutApp, Mode=OneWay}"
 						  />
 
 				<Separator />
 
 				<MenuItem Header="_Contact us"
-						  Icon="{StaticResource imgMail32}"
+						  Icon="{DynamicResource mimgMail32}"
 						  ToolTip="your feedback is important. send us your remarks, suggestions and bug reports. thank you"
 						  Command="{Binding ContactSupport, Mode=OneWay}" />
 			</MenuItem>

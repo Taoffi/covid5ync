@@ -315,10 +315,9 @@ namespace iDna
 				{
 					item.Count = this.Count(i => i.RootBaseItem == baseIem);
 				}
-
-				NotifyPropertyChanged(() => Statistics);
 			}
 			_stats.SetTotalNoNotify(this.Count);
+			_stats.NotifyChanges();
 		}
 
 
@@ -358,10 +357,11 @@ namespace iDna
 					if(_cancelSource.Token.IsCancellationRequested)
 						break;
 
-					if(! iDnaBaseNucleotides.IsValidChar(chr))
+					char	c		= char.ToLower(chr);
+					if(! iDnaBaseNucleotides.IsValidChar( c))
 						continue;
 
-					this.AddNode(this, chr, ++index);
+					this.AddNode(this, c, ++index);
 
 					//// refersh if we areon first non-full page
 					//if(_paging.CurrentPage <= 1 && this.Count <= _paging.PageSize)

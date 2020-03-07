@@ -46,7 +46,7 @@
 						</Grid.ColumnDefinitions>
 
 						<StackPanel Orientation="Horizontal" Grid.Column="0">
-							<TextBlock FontSize="9" Style="{StaticResource label}" Text="Serach position" Margin="4,0" />
+							<TextBlock FontSize="9" Style="{StaticResource label}" Text="Search position" Margin="4,0" />
 							<TextBlock VerticalAlignment="Center" FontSize="9" Text="{Binding RepeatSearchPosition, IsAsync=True}" Margin="8,0" />
 						</StackPanel>
 

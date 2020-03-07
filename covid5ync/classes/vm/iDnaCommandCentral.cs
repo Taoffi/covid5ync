@@ -49,6 +49,8 @@ namespace iDna.vm
 								_contactSupport				= null,		// contact and bug report
 
 								_findRepeats				= null,		// search repeats
+								_copyRepeatsToClipboard		= null,
+								_saveRepeatsToFile			= null,
 								_searchCommand				= null,
 								_searchPairsCommand			= null,
 			
@@ -301,6 +303,103 @@ namespace iDna.vm
 				return _copySelectionToClipboard;
 			}
 		}
+
+
+		string RepeatsString(iDnaSequence seq)
+		{
+			if (seq == null)
+				return "";
+
+			var		repeatSequences		= seq.RepeatsBasket;
+
+			if (repeatSequences == null || repeatSequences.Count() <= 0)
+				return "";
+
+			string str = "Repeats of sequence: " + seq.Name + " " + string.Format("{0:yyyy-MM-dd H:mm:ss}", DateTime.Now) + "\r\n";
+
+			foreach (var r in repeatSequences)
+			{
+				str += FormattedNodeSttring(r) + "\r\n";
+			}
+			return str;
+		}
+
+
+		//
+		public ICommand CopyRepeatsToClipboard
+		{
+			get
+			{
+				if (_copyRepeatsToClipboard == null)
+				{
+					_copyRepeatsToClipboard = new CommandExecuter(() =>
+					{
+						//ShowNotYetImplemented();
+
+						iDnaSequence	seq				= iDnaSequence.Instance;
+						var				repeatSequences	= seq == null ? null : seq.RepeatsBasket;
+						
+
+						if (repeatSequences == null || repeatSequences.Count() <= 0)
+						{
+							ShowMessage("No repeats currently in the basket. Please check.", "Copy repeats to clipboard");
+							return;
+						}
+
+						string			str		= RepeatsString(seq);
+
+						if(string.IsNullOrEmpty(str))
+							return;
+
+						Clipboard.SetText(str, TextDataFormat.UnicodeText);
+					});
+				}
+				return _copyRepeatsToClipboard;
+			}
+		}
+
+
+		/// <summary>
+		/// save repeats to file
+		/// </summary>
+		public ICommand SaveRepeatsToFile
+		{
+			get
+			{
+				if(_saveRepeatsToFile == null)
+				{
+					_saveRepeatsToFile = new CommandExecuter(() =>
+					{
+						// ShowNotYetImplemented();
+
+						iDnaSequence	seq		= iDnaSequence.Instance;
+
+						if(seq == null)
+							return;
+
+						var		repeatSequences			= seq.RepeatsBasket;
+
+						if (repeatSequences == null || repeatSequences.Count() <= 0)
+						{
+							ShowMessage("No repeats currently in the basket. Please check.", "Copy repeats to clipboard");
+							return;
+						}
+
+						string		targetFile	= SelectSaveSequenceFile();
+
+						if(string.IsNullOrEmpty(targetFile))
+							return;
+
+						string		str			= RepeatsString(seq);
+
+						WriteStringToFile(str, targetFile);
+					});
+				}
+				return _saveRepeatsToFile;
+			}
+		}
+
+
 
 		public ICommand Search
 		{

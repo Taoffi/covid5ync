@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace iDna
@@ -96,7 +97,7 @@ namespace iDna
 
 				_total = value;
 				NotifyPropertyChanged(() => Total);
-				UpdateItems();
+				NotifyChanges();
 			}
 		}
 
@@ -109,10 +110,15 @@ namespace iDna
 		}
 
 
-		void UpdateItems()
+		internal void NotifyChanges()
 		{
 			//foreach(var item in this)
 			//	item.Total	= _total;
+
+			NotifyPropertyChanged(() => CountA);
+			NotifyPropertyChanged(() => CountT);
+			NotifyPropertyChanged(() => CountG);
+			NotifyPropertyChanged(() => CountC);
 
 			NotifyPropertyChanged(() => PercentA);
 			NotifyPropertyChanged(() => PercentT);

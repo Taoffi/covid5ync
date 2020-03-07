@@ -10,6 +10,18 @@ Please send your feedback to covid5ync@5ync.net.. we will answer as quickly as w
 ==================================================================================================
 Change log
 -----------------------------
+2020-03-07
+-----------------------------
+- settings: repeats and primers. currently only repeat settings are used
+- search for repeats: that is a lengthy process that can run in the background. you can also choose to visually show
+  current repeat search position on the sequence (see Tools / Settings).
+  we are working for enhancing the process. any advice is greatly welcome -:)
+- search process optimized
+- save repeats to clipboard / to file
+- corrected reading UPPER CASE nucleotide files -:)
+- some more visual ui enhancements
+
+-----------------------------
 2020-03-05
 -----------------------------
 Added Application Menus
@@ -32,16 +44,6 @@ Added Application Menus
 ==================================================================================================
 NOTE: If you need to, you can cancel the current sequence load process by clicking the busy spinning wheel!
 ==================================================================================================
------------------------------
-2020-03-07
------------------------------
-- settings: repeats and primers. currently only repeat settings are used
-- search for repeats: that is a lengthy process that can run in the background. you can also choose to visually show
-  current repeat search position on the sequence (see Tools / Settings).
-  we are working for enhancing the process. any advice is greatly welcome -:)
-- search process optimized
-- some more visual ui enhancements
-
 -----------------------------
 2020-03-04
 -----------------------------

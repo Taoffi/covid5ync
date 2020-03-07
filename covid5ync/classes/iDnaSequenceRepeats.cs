@@ -151,7 +151,7 @@ namespace iDna
 					if(showPosition)
 					{
 						this[startIndex].IsSelected = true;
-						Thread.Yield();
+						Thread.Sleep(40);
 					}
 
 					string		strAtStart	= this.StringAtIndex(startIndex, minMax.MaxNodes);
@@ -180,8 +180,9 @@ namespace iDna
 					lenSeqString	= lenStrMax;			// seqMax.SequenceString.Length;
 
 					int				trimEnd		= 0;
+					lenSearch	= lenSeqString;
 
-					while( endIndexMax >= endIndexMin)
+					while ( lenSearch - trimEnd >= minMax.MinNodes)	// endIndexMax >= endIndexMin)
 					{
 						lenSearch		= lenSeqString - trimEnd;
 						searchString	= sequenceString.Substring(0, lenSearch);
@@ -205,14 +206,14 @@ namespace iDna
 							break;
 						}
 
-						if (showPosition)
-						{
-							for(int ndx = startIndex; ndx < lenSearch && ndx < this.Count; ndx++)
-							{
-								this[ndx].IsSelected = true;
-								Thread.Yield();
-							}
-						}
+						//if (settings.ShowSearchPosition)
+						//{
+						//	for(int ndx = startIndex; ndx < lenSearch && ndx < this.Count; ndx++)
+						//	{
+						//		this[ndx].IsSelected = true;
+						//		Thread.Sleep(50);
+						//	}
+						//}
 
 						//// find the longest sequence matches / add any existing
 						//_repeatSearch.Clear();
@@ -239,26 +240,26 @@ next_index:
 						if (_cancelSource.IsCancellationRequested)
 							break;
 
-						if (showPosition)
-						{
-							for (int ndx = startIndex; ndx < lenSearch && ndx < this.Count; ndx++)
-							{
-								this[ndx].IsSelected = false;
-								Thread.Yield();
-							}
-						}
+						//if (settings.ShowSearchPosition)
+						//{
+						//	for (int ndx = startIndex; ndx < lenSearch && ndx < this.Count; ndx++)
+						//	{
+						//		this[ndx].IsSelected = false;
+						//		Thread.Sleep(50);
+						//	}
+						//}
 					}
 
 next_location:
 
-					if (showPosition)
+					if (settings.ShowSearchPosition)
 					{
 						this[startIndex].IsSelected	= false;
 
 						for (int ndx = startIndex; ndx < lenSearch && ndx < this.Count; ndx++)
 						{
 							this[ndx].IsSelected	= false;
-							Thread.Yield();
+							Thread.Sleep(50);
 						}
 					}
 
@@ -269,7 +270,7 @@ next_location:
 						startIndex	+= Math.Max(lenSearch, 1);
 					}
 
-					if(showPosition)
+					if(settings.ShowSearchPosition)
 						GoToNodePage(this[startIndex]);
 
 					if(_repeatsBasket.Count > 0 && _repeatsBasket.Count != basketLastCount)

@@ -8,7 +8,7 @@
 			 xmlns:data="clr-namespace:iDna"
              mc:Ignorable="d" 
 			 d:DataContext="{d:DesignInstance Type={x:Type data:iDnaSequenceListDesigntime}, IsDesignTimeCreatable=True}"
-             d:DesignHeight="280" d:DesignWidth="264"
+             d:DesignHeight="280" d:DesignWidth="305"
 			 Margin="0" Height="auto" >
 
     <Grid x:Name="gridMain" VerticalAlignment="Stretch" Width="auto">
@@ -36,7 +36,7 @@
 					<DataTemplate>
 						<Border BorderBrush="Blue" BorderThickness="2" HorizontalAlignment="Left"
 							Background="#FF323030" Padding="0" Margin="2,4">
-							<Grid HorizontalAlignment="Stretch" 
+							<Grid HorizontalAlignment="Stretch" Width="284" 
 								  VerticalAlignment="Top" 
 								  Height="auto"
 								  Margin="0,0,-12,0">
@@ -48,7 +48,7 @@
 								<local:iDnaSequenceView Grid.Row="0" DataContext="{Binding }"
 														Margin="0"
 														HorizontalAlignment="Stretch"
-														MinWidth="{Binding ActualWidth, ElementName=gridMain, Mode=OneWay}"
+														MinWidth="280"
 														Height="auto"
 														MaxHeight="52"
 														VerticalAlignment="Top"

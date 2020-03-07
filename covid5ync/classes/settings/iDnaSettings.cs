@@ -188,7 +188,7 @@ namespace iDna
 	{
 		static iDnaRepeatSettings		_instance			= null;
 
-		protected iDnaMinMaxValues		_minMaxValues		= new iDnaMinMaxValues(8, 16, (decimal) 0.0, (decimal) 55.50);
+		protected iDnaMinMaxValues		_minMaxValues		= new iDnaMinMaxValues(8, 12, (decimal) 0.0, (decimal) 55.50);
 		protected bool					_searchOverlapping	= false,
 										_showSearchPosition	= true;
 
@@ -251,7 +251,7 @@ namespace iDna
 	{
 		static iDnaHairpinSettings		_instance		= null;
 
-		protected iDnaMinMaxValues		_minMaxValues		= new iDnaMinMaxValues(8, 16, (decimal) 0.0, (decimal) 55.50);
+		protected iDnaMinMaxValues		_minMaxValues		= new iDnaMinMaxValues(12, 16, (decimal) 0.0, (decimal) 55.50);
 
 		public static iDnaHairpinSettings Instance
 		{
@@ -286,8 +286,8 @@ namespace iDna
 	{
 		static iDnaPrimerSettings		_instance		= null;
 
-		protected iDnaMinMaxValues		_minMaxValues35	= new iDnaMinMaxValues(8, 16, (decimal) 0.0, (decimal) 55.50);
-		protected iDnaMinMaxValues		_minMaxValues53	= new iDnaMinMaxValues(8, 16, (decimal) 0.0, (decimal) 55.50);
+		protected iDnaMinMaxValues		_minMaxValues35	= new iDnaMinMaxValues(12, 16, (decimal) 0.0, (decimal) 55.50);
+		protected iDnaMinMaxValues		_minMaxValues53	= new iDnaMinMaxValues(12, 16, (decimal) 0.0, (decimal) 55.50);
 
 		public static iDnaPrimerSettings Instance
 		{

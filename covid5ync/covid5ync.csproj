@@ -38,7 +38,7 @@
     <SuiteName>covid5ync</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>18</ApplicationRevision>
+    <ApplicationRevision>20</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -110,6 +110,10 @@
     <Page Include="controls\iAboutCtrl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="controls\iDnaSequenceBasketCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="controls\iDnaSequenceBasketsCtrl.xaml">
       <SubType>Designer</SubType>
@@ -211,6 +215,9 @@
       <DependentUpon>iAboutCtrl.xaml</DependentUpon>
     </Compile>
     <Compile Include="controls\converters\iDnaConverters.cs" />
+    <Compile Include="controls\iDnaSequenceBasketCtrl.xaml.cs">
+      <DependentUpon>iDnaSequenceBasketCtrl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="controls\iDnaSequenceBasketsCtrl.xaml.cs">
       <DependentUpon>iDnaSequenceBasketsCtrl.xaml</DependentUpon>
     </Compile>
