@@ -223,7 +223,8 @@ namespace iDna
 
 			iDnaRepeatSettings		settings			= iDnaRepeatSettings.Instance;
 			iDnaMinMaxValues		minMax				= settings.MinMaxValues;
-			int						startIndex			= 0,
+			int						startIndex			= minMax.StartRegionIndex,
+									endRegionIndex		= minMax.EndRegionIndex,
 									endIndexMin			= minMax.MinNodes,
 									endIndexMax			= minMax.MaxNodes;
 			//iDnaSequence			seqMax				= null;
@@ -255,7 +256,9 @@ namespace iDna
 			
 			await Task.Run( () =>
 			{
-				while( (startIndex + minMax.MinNodes) < this.Count )
+				int		maxEndRegion		= Math.Min(endRegionIndex, this.Count);
+
+				while ( (startIndex + minMax.MinNodes) < maxEndRegion)
 				{
 					if(_repeatCancelSource.IsCancellationRequested)
 						break;
@@ -263,8 +266,8 @@ namespace iDna
 					RepeatSearchPosition	= startIndex;
 					endIndexMin				= startIndex	+ minMax.MinNodes;
 
-					if(startIndex + minMax.MaxNodes >= this.Count)
-						endIndexMax		= this.Count - 1;
+					if(startIndex + minMax.MaxNodes >= maxEndRegion)	//this.Count)
+						endIndexMax		= maxEndRegion - 1;				// this.Count - 1;
 					else
 						endIndexMax		= startIndex	+ minMax.MaxNodes;
 

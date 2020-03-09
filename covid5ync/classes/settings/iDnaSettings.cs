@@ -12,8 +12,12 @@ namespace iDna
 		const int					_constMinIntNodes		= 8,
 									_constMaxIntNodes		= 32;
 									
-		protected int					_minNodes		= 8,
-										_maxNodes		= 16;
+		protected int					_minNodes			= 8,
+										_maxNodes			= 16;
+		
+		protected int					_startRegionIndex	= 0,
+										_endRegionIndex		= int.MaxValue;
+
 		protected decimal				_minTm			= new decimal(0.0),
 										_maxTm			= new decimal(59.80);
 
@@ -143,6 +147,45 @@ namespace iDna
 				_minNodes	= tmp;
 			}
 		}
+
+
+		public int StartRegionIndex
+		{
+			get { return _startRegionIndex; }
+			set
+			{
+				if(value == _startRegionIndex || value < 0)
+					return;
+				_startRegionIndex	= value;
+				AdjustStartEndRegions();
+				RaisePropertyChanged();
+			}
+		}
+
+		private void AdjustStartEndRegions()
+		{
+			if(_startRegionIndex > _endRegionIndex)
+			{
+				int		tmp	= _endRegionIndex;
+
+				_endRegionIndex		= _startRegionIndex;
+				_startRegionIndex	= tmp;
+			}
+		}
+
+		public int EndRegionIndex
+		{
+			get { return _endRegionIndex; }
+			set
+			{
+				if(value == _endRegionIndex || value < 0)
+					return;
+				_endRegionIndex = value;
+				AdjustStartEndRegions();
+				RaisePropertyChanged();
+			}
+		}
+
 
 		public List<int> MinMaxNodeSelectionList
 		{
