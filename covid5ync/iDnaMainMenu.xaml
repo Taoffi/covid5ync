@@ -144,11 +144,11 @@
 				Command="{Binding FindRepeats, Mode=OneWay}"
 				IsEnabled="{Binding IsRepeatProcessRunning, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"/>
 
-		<!--<MenuItem Header="Find _hairpins"
-				ToolTip="find hairpins according to your settings"
+		<MenuItem Header="Find _pair repeats"
+				ToolTip="find pair repeats/hairpins according to your settings"
 				ToolTipService.ShowOnDisabled="True"
 				Command="{Binding FindHairpins, Mode=OneWay}"
-				IsEnabled="{Binding IsRepeatProcessRunning, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"/>-->
+				IsEnabled="{Binding IsRepeatProcessRunning, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"/>
 
 		<Separator />
 		<MenuItem Header="_Reset selections to found repeats"
@@ -156,25 +156,46 @@
 				  ToolTipService.ShowOnDisabled="True"
 				  Command="{Binding ResetSelectionsToRepeats}"
 				  IsEnabled="{Binding IsRepeatProcessRunning, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"/>
-		
-		<MenuItem Header="_Copy repeats to clipboard"
-						  Icon="{DynamicResource mimgCopy23_2}"
-						  ToolTip="copy found repeats to clipboard"
+
+		<MenuItem Header="Reset selections to pa_ir repeats"
+				  ToolTip="select only found pair-repeats (requires stopping repeat search)"
 				  ToolTipService.ShowOnDisabled="True"
-						  Command="{Binding CopyRepeatsToClipboard, Mode=OneWay}"/>
+				  Command="{Binding ResetSelectionsToHairpins}"
+				  IsEnabled="{Binding IsRepeatProcessRunning, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"/>
+
+		<Separator />
+		<MenuItem Header="_Copy repeats to clipboard"
+				  Icon="{DynamicResource mimgCopy23_2}"
+				  ToolTip="copy found repeats to clipboard"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding CopyRepeatsToClipboard, Mode=OneWay}"/>
 
 		<MenuItem Header="_Save repeats to file"
-						  Icon="{DynamicResource mimgSave16_3}"
-						  ToolTip="save found repeats to file"
+				  Icon="{DynamicResource mimgSave16_3}"
+				  ToolTip="save found repeats to file"
 				  ToolTipService.ShowOnDisabled="True"
-						  Command="{Binding SaveRepeatsToFile, Mode=OneWay}"/>
+				  Command="{Binding SaveRepeatsToFile, Mode=OneWay}"/>
+
+		<Separator />
+
+		<MenuItem Header="Copy pair-_repeats to clipboard"
+				  Icon="{DynamicResource mimgCopy23_2}"
+				  ToolTip="copy found pair repeats to clipboard"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding CopyHairpinsToClipboard, Mode=OneWay}"/>
+
+		<MenuItem Header="_Save pair-repeats to file"
+				  Icon="{DynamicResource mimgSave16_3}"
+				  ToolTip="save found pair-repeats to file"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding SaveHairpinsToFile, Mode=OneWay}"/>
 
 		<Separator />
 		<MenuItem Header="_Options"
-						  Icon="{DynamicResource mimgGears16}"
-						  ToolTip="application settings"
+				  Icon="{DynamicResource mimgGears16}"
+				  ToolTip="application settings"
 				  ToolTipService.ShowOnDisabled="True"
-						  Command="{Binding OptionsCommand, Mode=OneWay}"/>
+				  Command="{Binding OptionsCommand, Mode=OneWay}"/>
 	</MenuItem>
 
 	<!-- help menu -->

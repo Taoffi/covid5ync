@@ -37,9 +37,9 @@ namespace iDna
 	{
 		protected vm.iDnaSequenceSortOptionList	_repeatSortOptions		= new vm.iDnaSequenceSortOptionList();
 		protected vm.iDnaSequenceSortOptionList	_hairpinSortOptions		= new vm.iDnaSequenceSortOptionList();
-		protected iDnaSequenceList				_repeatsBasket			= new iDnaSequenceList(),
-												_hairPinBasket			= new iDnaSequenceList(),
-												_repeatSearch			= new iDnaSequenceList();
+		protected List<iDnaSequence>			_repeatsBasket		= new List<iDnaSequence>(),		// iDnaSequenceList(),
+												_hairPinBasket			= new List<iDnaSequence>(),			// iDnaSequenceList(),
+												_repeatSearch			= new List<iDnaSequence>();			// iDnaSequenceList();
 		protected int							_repeatSearchPosition	= 0;
 		protected bool							_isRepeatProcessRunning	= false;
 		protected CancellationTokenSource		_repeatCancelSource		= new CancellationTokenSource(5);
@@ -77,7 +77,7 @@ namespace iDna
 
 
 
-		#region xxxxxxxxxxxxxxxxxxxxxx occurrence classes xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+#region xxxxxxxxxxxxxxxxxxxxxx occurrence classes xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 		public class StringOccurrence
 		{
@@ -219,7 +219,7 @@ namespace iDna
 			}
 		}
 
-		public iDnaSequenceList RepeatsBasket
+		public List<iDnaSequence> RepeatsBasket
 		{
 			get {  return _repeatsBasket; }
 			protected set
@@ -238,7 +238,7 @@ namespace iDna
 			}
 		}
 
-		public iDnaSequenceList CurrentRepeatsBasket
+		public List<iDnaSequence> CurrentRepeatsBasket
 		{
 			get {  return _repeatSerachType == RepeatSerachType.SearchRepeats ? _repeatsBasket : _hairPinBasket; }
 		}
@@ -269,7 +269,7 @@ namespace iDna
 		}
 
 
-		public iDnaSequenceList HairpinBasket
+		public List<iDnaSequence> HairpinBasket
 		{
 			get {  return _hairPinBasket; }
 			protected set
@@ -323,13 +323,13 @@ namespace iDna
 			if(dispatcher == null)
 				dispatcher	= Dispatcher.CurrentDispatcher;
 
-			iDnaSequenceList	targetBasket	= searchHairpins ? _repeatsBasket : _hairPinBasket;
+			List<iDnaSequence>	targetBasket	= searchHairpins ? _hairPinBasket : _repeatsBasket;
 
 			CurrentRepeatSearchType	= searchHairpins ? RepeatSerachType.SerachHiarpins : RepeatSerachType.SearchRepeats;
 
 			targetBasket.Clear();
 			_stringOccurList.Clear();
-			RepeatSortOption		= iDnaBasketSortOption.NoSort;
+			RepeatSortOption		= HairpinSortOption	= iDnaBasketSortOption.NoSort;
 
 			iDnaRepeatSettings		repeatSettings		= iDnaRepeatSettings.Instance;
 			iDnaHairpinSettings		hairSettings		= iDnaHairpinSettings.Instance;
@@ -357,7 +357,6 @@ namespace iDna
 				NotifyPropertyChanged(() => HairpinBasket);
 				NotifyPropertyChanged(() => HairpinBasketSorted);
 			}
-				
 			else
 			{
 				NotifyPropertyChanged(() => RepeatsBasket);
@@ -461,12 +460,21 @@ namespace iDna
 						/// keep track of occurrences
 						_stringOccurList[searchString].Occurrs	= occurrences;
 
-						if (allStartOccurrences != null && occurrences > 1)
+						if (allStartOccurrences != null && occurrences > (searchHairpins ? 0 : 1))
 						{
 							foundRepeats	= true;
 							int				occurrenceIndex		= 1;
-							string			repeatName			= (searchHairpins ? "H" : "R") + (RepeatsCount +1).ToString(),
+							string			repeatName			= (searchHairpins ? "H" : "R") 
+																+ ((searchHairpins ? HairpinCount : RepeatsCount) +1).ToString(),
 											sequenceName		= "";
+							
+							/// for hairpins: explicitly add the current search string. otherwise teh string is in the occurrences
+							if(searchHairpins)
+							{
+								var		repeatSeq	= this.SkipWhile( n => n.Index < startIndex).Take(lenSearch);
+								sequenceName		= repeatName + " Origin: oc=" + occurrences.ToString();
+								targetBasket.Add( new iDnaSequence(sequenceName, repeatSeq, refOnly: true, nOccurrences: occurrences));
+							}
 
 							foreach (var item in allStartOccurrences)
 							{
@@ -476,10 +484,14 @@ namespace iDna
 								targetBasket.Add( new iDnaSequence(sequenceName, repeatSeq, refOnly: true, nOccurrences: occurrences));
 
 								if(searchHairpins)
+								{
 									NotifyPropertyChanged(() => HairpinCount);
+								}
 								else
+								{
 									NotifyPropertyChanged(() => RepeatsCount);
-	
+								}
+
 								occurrenceIndex++;
 							}
 							break;

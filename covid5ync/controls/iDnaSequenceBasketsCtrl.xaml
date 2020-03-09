@@ -85,11 +85,12 @@
 					
 					
 						<local:BusySpinCtrlRepeats Grid.Row="0" Grid.Column="1" x:Name="busyRepeatControl" 
-										HorizontalAlignment="Right" 
-										Margin="0,0,12,0"
-										Width="20"
-										Cursor="Hand"
-										Visibility="{Binding Source={StaticResource mainSequence}, Path=IsRepeatProcessRunning, Converter={StaticResource bool2visible}, IsAsync=True}" 
+													HorizontalAlignment="Right" 
+													VerticalAlignment="Top"
+													Margin="0,8,12,0"
+													Width="20"
+													Cursor="Hand"
+													Visibility="{Binding Source={StaticResource mainSequence}, Path=IsRepeatProcessRunning, Converter={StaticResource bool2visible}, IsAsync=True}" 
 												   />
 
 
@@ -107,11 +108,11 @@
 					</Grid>
 			</TabItem>
 
-			<!--<TabItem>
+			<TabItem>
 				<TabItem.Header>
 					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="4,2" Width="52" ToolTip="Hairpins">
 						<Image Source="{Binding Source={StaticResource imgCovid5ync48}, Path=Source}" Width="16" Margin="4" />
-						--><!--<TextBlock Text="Hairpins" Margin="4,0" Foreground="{Binding Source={StaticResource mainSequence}, Path=IsRepeatProcessRunning, Converter={StaticResource busyToColor}}" />--><!--
+						<!--<TextBlock Text="Hairpins" Margin="4,0" Foreground="{Binding Source={StaticResource mainSequence}, Path=IsRepeatProcessRunning, Converter={StaticResource busyToColor}}" />-->
 						<TextBlock Text="{Binding HairpinCount, IsAsync=True, Mode=OneWay}" FontSize="9" Foreground="Blue" />
 					</StackPanel>
 				</TabItem.Header>
@@ -144,11 +145,12 @@
 					</Border>
 
 					<local:BusySpinCtrlRepeats Grid.Row="0" Grid.Column="0" x:Name="busyRepeatControlx" 
-											HorizontalAlignment="Right" VerticalAlignment="Top"
-											Margin="0,8,12,0"
-										    Width="20" Height="20"
-										    Cursor="Hand"
-										    Visibility="{Binding Source={StaticResource mainSequence}, Path=IsRepeatProcessRunning, Converter={StaticResource bool2visible}, IsAsync=True}"
+												HorizontalAlignment="Right"
+												VerticalAlignment="Top"
+												Margin="0,8,12,0"
+												Width="20" Height="20"
+												Cursor="Hand"
+												Visibility="{Binding Source={StaticResource mainSequence}, Path=IsRepeatProcessRunning, Converter={StaticResource bool2visible}, IsAsync=True}"
 											   />
 
 						<local:iDnaSequenceBasket Grid.Row="1" Grid.Column="0"
@@ -164,7 +166,7 @@
 												  VirtualizingPanel.IsVirtualizing="False"/>
 				</Grid>
 
-			</TabItem>-->
+			</TabItem>
 			
 		</TabControl>
 

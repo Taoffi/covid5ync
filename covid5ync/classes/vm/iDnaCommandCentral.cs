@@ -53,8 +53,13 @@ namespace iDna.vm
 								_findHairpins				= null,		// search for hairpins
 
 								_resetSelectionToRepeats	= null,
+								_resetSelectionToHairpins	= null,
+
 								_copyRepeatsToClipboard		= null,
 								_saveRepeatsToFile			= null,
+								_copyHairpinsToClipboard		= null,
+								_saveHairpinsToFile			= null,
+
 								_searchCommand				= null,
 								_searchPairsCommand			= null,
 
@@ -380,17 +385,17 @@ namespace iDna.vm
 		}
 
 
-		string RepeatsString(iDnaSequence seq)
+		string RepeatsString(iDnaSequence seq, bool takeHairpins)
 		{
 			if (seq == null)
 				return "";
 
-			var		repeatSequences		= seq.RepeatsBasket;
+			var		repeatSequences		= takeHairpins ? seq.HairpinBasket : seq.RepeatsBasket;
 
 			if (repeatSequences == null || repeatSequences.Count() <= 0)
 				return "";
 
-			string str = "Repeats of sequence: " + seq.Name + " " + string.Format("{0:yyyy-MM-dd H:mm:ss}", DateTime.Now) + "\r\n";
+			string str = (takeHairpins ? "Pair-repeats" : "Repeats") + " of sequence: " + seq.Name + " " + string.Format("{0:yyyy-MM-dd H:mm:ss}", DateTime.Now) + "\r\n";
 
 			foreach (var r in repeatSequences)
 			{
@@ -421,7 +426,7 @@ namespace iDna.vm
 							return;
 						}
 
-						string			str		= RepeatsString(seq);
+						string			str		= RepeatsString(seq, takeHairpins: false);
 
 						if(string.IsNullOrEmpty(str))
 							return;
@@ -430,6 +435,39 @@ namespace iDna.vm
 					});
 				}
 				return _copyRepeatsToClipboard;
+			}
+		}
+
+
+		public ICommand CopyHairpinsToClipboard
+		{
+			get
+			{
+				if (_copyHairpinsToClipboard == null)
+				{
+					_copyHairpinsToClipboard = new CommandExecuter(() =>
+					{
+						//ShowNotYetImplemented();
+
+						iDnaSequence	seq				= iDnaSequence.Instance;
+						var				repeatSequences	= seq == null ? null : seq.HairpinBasket;
+						
+
+						if (repeatSequences == null || repeatSequences.Count() <= 0)
+						{
+							ShowMessage("No pair-repeats currently in the basket. Please check.", "Copy pair-repeats to clipboard");
+							return;
+						}
+
+						string			str		= RepeatsString(seq, takeHairpins: true);
+
+						if(string.IsNullOrEmpty(str))
+							return;
+
+						Clipboard.SetText(str, TextDataFormat.UnicodeText);
+					});
+				}
+				return _copyHairpinsToClipboard;
 			}
 		}
 
@@ -450,7 +488,7 @@ namespace iDna.vm
 
 						if (repeatsBasket == null || repeatsBasket.Count() <= 0)
 						{
-							ShowMessage("No repeats currently in the basket. Please check.", "Copy repeats to clipboard");
+							ShowMessage("No repeats currently in the basket. Please check.", "Select repeats");
 							return;
 						}
 
@@ -467,6 +505,38 @@ namespace iDna.vm
 			}
 		}
 
+		public ICommand ResetSelectionsToHairpins
+		{
+			get
+			{
+				if (_resetSelectionToHairpins == null)
+				{
+					_resetSelectionToHairpins = new CommandExecuter(() =>
+					{
+						//ShowNotYetImplemented();
+
+						iDnaSequence	seq				= iDnaSequence.Instance;
+						var				repeatsBasket	= seq == null ? null : seq.HairpinBasket;
+						
+
+						if (repeatsBasket == null || repeatsBasket.Count() <= 0)
+						{
+							ShowMessage("No pair-repeats currently in the basket. Please check.", "Select pair-repeats");
+							return;
+						}
+
+						seq.ResetSelection(false, null);
+						
+						foreach(var sr in repeatsBasket)
+						{
+							foreach(var node in sr)
+								node.IsSelected		= true;
+						}
+					});
+				}
+				return _resetSelectionToHairpins;
+			}
+		}
 
 
 		/// <summary>
@@ -491,7 +561,7 @@ namespace iDna.vm
 
 						if (repeatSequences == null || repeatSequences.Count() <= 0)
 						{
-							ShowMessage("No repeats currently in the basket. Please check.", "Copy repeats to clipboard");
+							ShowMessage("No repeats currently in the basket. Please check.", "Save repeats");
 							return;
 						}
 
@@ -500,7 +570,7 @@ namespace iDna.vm
 						if(string.IsNullOrEmpty(targetFile))
 							return;
 
-						string		str			= RepeatsString(seq);
+						string		str			= RepeatsString(seq, takeHairpins: false);
 
 						WriteStringToFile(str, targetFile);
 					});
@@ -509,6 +579,43 @@ namespace iDna.vm
 			}
 		}
 
+
+		public ICommand SaveHairpinsToFile
+		{
+			get
+			{
+				if(_saveHairpinsToFile == null)
+				{
+					_saveHairpinsToFile = new CommandExecuter(() =>
+					{
+						// ShowNotYetImplemented();
+
+						iDnaSequence	seq		= iDnaSequence.Instance;
+
+						if(seq == null)
+							return;
+
+						var		repeatSequences			= seq.HairpinBasket;
+
+						if (repeatSequences == null || repeatSequences.Count() <= 0)
+						{
+							ShowMessage("No pair-repeats currently in the basket. Please check.", "Save pair-repeats");
+							return;
+						}
+
+						string		targetFile	= SelectSaveSequenceFile();
+
+						if(string.IsNullOrEmpty(targetFile))
+							return;
+
+						string		str			= RepeatsString(seq, takeHairpins: true);
+
+						WriteStringToFile(str, targetFile);
+					});
+				}
+				return _saveHairpinsToFile;
+			}
+		}
 
 
 		public ICommand Search
@@ -771,7 +878,7 @@ namespace iDna.vm
 
 						if(seq.Count <= 0)
 						{
-							ShowMessage("Current sequence seems to be empty. Please check.", "Find hairpins");
+							ShowMessage("Current sequence seems to be empty. Please check.", "Find pair repeats");
 							return;
 						}
 

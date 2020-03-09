@@ -17,8 +17,8 @@ namespace iDna
 													_searchPairCount		= 0,
 													_minSearchLenght		= 3;
 		protected bool								_searchInProgress		= false;
-		protected iDnaSequenceList					_selectionBasket		= new iDnaSequenceList(),
-													_pairSelectionBasket	= new iDnaSequenceList();
+		protected List<iDnaSequence>				_selectionBasket		= new List<iDnaSequence>(),		// iDnaSequenceList(),
+													_pairSelectionBasket	= new List<iDnaSequence>();		// iDnaSequenceList();
 		protected SequenceSearchType				_currentSearchType		= SequenceSearchType.SearchNormal;
 		protected vm.iDnaSequenceSortOptionList		_searchSortOptions		= new vm.iDnaSequenceSortOptionList();
 
@@ -86,13 +86,13 @@ namespace iDna
 		}
 
 
-		public iDnaSequenceList CurrentSearchBasket
+		public List<iDnaSequence> CurrentSearchBasket
 		{
 			get {  return _currentSearchType == SequenceSearchType.SearchNormal ? _selectionBasket : _pairSelectionBasket; }
 		}
 
 
-		public iDnaSequenceList SelectionBasket
+		public List<iDnaSequence> SelectionBasket
 		{
 			get {  return _selectionBasket; }
 			protected set
@@ -110,7 +110,7 @@ namespace iDna
 		}
 
 
-		public iDnaSequenceList PairSelectionBasket
+		public List<iDnaSequence> PairSelectionBasket
 		{
 			get {  return _pairSelectionBasket; }
 			protected set
@@ -310,7 +310,7 @@ namespace iDna
 			if (string.IsNullOrWhiteSpace(str))
 				return null;
 
-			iDnaSequenceList	basket			= null;
+			List<iDnaSequence>	basket			= null;
 			bool				isPairSearch	= false;
 
 			switch (searchType)

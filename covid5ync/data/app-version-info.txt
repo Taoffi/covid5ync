@@ -13,9 +13,10 @@ Change log
 2020-03-08
 -----------------------------
 * define search region (for repeats/hairpins/primers) from 1st contigous selection
-* search (and alt search) strings from text file (work in progress: check source text)
+* search for pair-repeats (future feature: hairpins need more settings)
+* search (and pair-search) strings from text file (work in progress: check source text)
 * reset selection to found repeats
-* sequence basket issue: list sometimes crashes oon scrollbar manipulation (investigating)
+* save or copy pair-repeats to file or to clipboard
 
 -----------------------------
 2020-03-07
