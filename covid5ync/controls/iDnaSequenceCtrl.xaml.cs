@@ -60,7 +60,7 @@ namespace iDna.controls
             if(string.IsNullOrEmpty(str))
                 return;
 
-            await iDnaSequence.Instance.FindString( str, SequenceSearchType.SearchNormal, this.Dispatcher );
+            await iDnaSequence.Instance.FindString( str, SequenceSearchType.SearchNormal, this.Dispatcher, resetSelections: true, gotoFirstNodePage: true );
         }
 
         private async void buttonSearchPair_Click(object sender, RoutedEventArgs e)
@@ -71,7 +71,7 @@ namespace iDna.controls
                 return;
 
             str     = iDnaBaseNucleotides.Instance.GetPairString(str);
-            await iDnaSequence.Instance.FindString(str, SequenceSearchType.SearchPairs, this.Dispatcher);
+            await iDnaSequence.Instance.FindString(str, SequenceSearchType.SearchPairs, this.Dispatcher, resetSelections: true, gotoFirstNodePage: true);
         }
 
  

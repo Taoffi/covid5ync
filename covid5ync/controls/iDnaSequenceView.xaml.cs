@@ -35,5 +35,14 @@ namespace iDna.controls
 			PreviewMouseWheel   += mouseWheelZoom.Zoom;
 		}
 
+		public bool ViewPageIndicatorBar
+		{
+			get { return this.colPageLocationBar.Width.Value > 0.0; }
+			set
+			{
+				this.colPageLocationBar.Width		= value ? new GridLength(14.0) : new GridLength(0.0);
+				borderCurPageIndicator.Visibility	= value ? Visibility.Visible : Visibility.Collapsed;
+			}
+		}
 	}
 }

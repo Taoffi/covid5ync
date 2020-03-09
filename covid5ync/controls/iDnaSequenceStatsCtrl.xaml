@@ -7,19 +7,20 @@
 			 xmlns:data="clr-namespace:iDna"
              mc:Ignorable="d" 
 			 d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type data:iDnaBaseStats}}"
-             d:DesignHeight="150" d:DesignWidth="150">
+             d:DesignHeight="163" d:DesignWidth="150">
 	<Grid DataContext="{Binding Statistics, Source={StaticResource mainSequence}, IsAsync=True}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="26" />
 			<RowDefinition Height="26" />
 			<RowDefinition Height="26" />
 			<RowDefinition Height="26" />
-			<RowDefinition Height="26" />
+			<RowDefinition Height="20" />
+			<RowDefinition Height="20" />
 			<RowDefinition />
 		</Grid.RowDefinitions>
 
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="38" />
+			<ColumnDefinition Width="48" />
 			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
 
@@ -75,5 +76,9 @@
 		<TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource label}" Text="Tm" />
 		<TextBlock Grid.Row="4" Grid.Column="1" Margin="8,0" FontSize="9" 
 				   Text="{Binding SequenceMeltingTm, IsAsync=True, Mode=OneWay, StringFormat=\{0:N\}}" />
+
+		<TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource label}" Text="Length" />
+		<TextBlock Grid.Row="5" Grid.Column="1" Margin="8,0" FontSize="9" 
+				   Text="{Binding Total, IsAsync=True, Mode=OneWay}" />
 	</Grid>
 </UserControl>

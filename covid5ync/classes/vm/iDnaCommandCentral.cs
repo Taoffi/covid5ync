@@ -49,10 +49,14 @@ namespace iDna.vm
 								_contactSupport				= null,		// contact and bug report
 
 								_findRepeats				= null,		// search repeats
+								_resetSelectionToRepeats	= null,
 								_copyRepeatsToClipboard		= null,
 								_saveRepeatsToFile			= null,
 								_searchCommand				= null,
 								_searchPairsCommand			= null,
+
+								_searchStringsFromFile		= null,
+								_searchPairStringsFromFile	= null,
 			
 								_notYetImplemented			= null;
 
@@ -86,7 +90,7 @@ namespace iDna.vm
 					{
 						// ShowNotYetImplemented();
 
-						string			fileName		= OpenReadSequenceFile();
+						string			fileName		= OpenReadTextFile();
 
 						if(string.IsNullOrEmpty(fileName))
 							return;
@@ -358,6 +362,41 @@ namespace iDna.vm
 			}
 		}
 
+		// _resetSelectionToRepeats
+		public ICommand ResetSelectionsToRepeats
+		{
+			get
+			{
+				if (_resetSelectionToRepeats == null)
+				{
+					_resetSelectionToRepeats = new CommandExecuter(() =>
+					{
+						//ShowNotYetImplemented();
+
+						iDnaSequence	seq				= iDnaSequence.Instance;
+						var				repeatsBasket	= seq == null ? null : seq.RepeatsBasket;
+						
+
+						if (repeatsBasket == null || repeatsBasket.Count() <= 0)
+						{
+							ShowMessage("No repeats currently in the basket. Please check.", "Copy repeats to clipboard");
+							return;
+						}
+
+						seq.ResetSelection(false, null);
+						
+						foreach(var sr in repeatsBasket)
+						{
+							foreach(var node in sr)
+								node.IsSelected		= true;
+						}
+					});
+				}
+				return _resetSelectionToRepeats;
+			}
+		}
+
+
 
 		/// <summary>
 		/// save repeats to file
@@ -410,10 +449,18 @@ namespace iDna.vm
 					_searchCommand	= new CommandExecuter( async() =>
 					{
                         string      str     = iDnaSequence.Instance.SearchString;
+
                         if(! iDnaBaseNucleotides.IsValidString(str))
                             return;
 
-                        await iDnaSequence.Instance.FindString(str, SequenceSearchType.SearchNormal, null);
+                        await iDnaSequence.Instance.FindString(str, 
+											SequenceSearchType.SearchNormal, 
+											dispatcher: null,
+											resetSelections: true,
+											gotoFirstNodePage: true,
+											updateSeletions: true, 
+											clearSelectionBasket: true,
+											initCancellation: true);
 
 					});
 				}
@@ -437,7 +484,13 @@ namespace iDna.vm
 
 						str		= iDnaBaseNucleotides.Instance.GetPairString(str);
 
-						await iDnaSequence.Instance.FindString(str, SequenceSearchType.SearchPairs, null);
+						await iDnaSequence.Instance.FindString(str, SequenceSearchType.SearchPairs,
+																	dispatcher: null,
+																	resetSelections: true,
+																	gotoFirstNodePage: true,
+																	updateSeletions: true,
+																	clearSelectionBasket: true,
+																	initCancellation: true);
 
 					});
 				}
@@ -445,6 +498,148 @@ namespace iDna.vm
 				return _searchPairsCommand;
 			}
 		}
+
+		/*
+				_loadSelectionStrings		= null,
+			_loadPairSelectionStrings	= null,
+		 */
+
+		string SelectAndGetTextFileString(string errorDialgTitle)
+		{
+			string			fileName	= OpenReadTextFile();
+
+			if (string.IsNullOrEmpty(fileName))
+				return null;
+
+			string		strText = "";
+
+			try
+			{
+				strText		= File.OpenText(fileName).ReadToEnd();
+			}
+			catch (Exception ex)
+			{
+				ShowMessage("Sorry!. Could not open or read the file.\r\n" + ex.Message, errorDialgTitle);
+			}
+
+			return strText;
+		}
+
+
+
+		protected async Task<int> ParseAndSearchForStringList(iDnaSequence sequence, string globalSring, SequenceSearchType searchType)
+		{
+			if(string.IsNullOrEmpty(globalSring) || sequence == null)
+				return 0;
+
+			string				strText		= globalSring.Replace(" ", "");
+			string[]			strLines	= strText.Split( new char[] { '\r', '\n'}, StringSplitOptions.RemoveEmptyEntries);
+			List<string>		strList		= new List<string>();
+			int					occurrences	= 0;
+
+			if(strLines == null || strLines.Length <= 0)
+			{
+				ShowMessage("Sorry!. Could get the strings to search. Please ensure each string is on a separate line", "Could not get search strings from file");
+				return 0;
+			}
+
+			foreach(string str in strLines.Distinct())
+			{
+				string		validString	= iDnaBaseNucleotides.TrimInvalidChars(str);
+
+				if (! string.IsNullOrWhiteSpace(validString))
+					strList.Add(validString);
+			}
+
+			if(strList.Count <= 0)
+			{
+				ShowMessage("Sorry!. The provided file has no valid nucleotide strings. Please check", "Search strings from file");
+				return 0;
+			}
+
+			sequence.ResetSelection(false, null);
+
+			switch(searchType)
+			{
+				case SequenceSearchType.SearchPairs:
+					sequence.SearchPairStringList = strList;
+					occurrences		= await sequence.SearchCurrentPairStringList(null, updateSelections: true, clearSelectionBasket: true);
+					break;
+
+				case SequenceSearchType.SearchNormal:
+				case SequenceSearchType.SearchRepeats:
+				default:
+					sequence.SearchStringList = strList;
+					occurrences		= await sequence.SearchCurrentStringList(null, updateSelections: true, clearSelectionBasket: true);
+					break;
+			}
+
+			return occurrences;
+		}
+
+
+
+		public ICommand SearchStringsFromFile
+		{
+			get
+			{
+				if (_searchStringsFromFile == null)
+				{
+					_searchStringsFromFile = new CommandExecuter(async () =>
+					{
+						// ShowNotYetImplemented();
+
+						iDnaSequence		sequence	= iDnaSequence.Instance;
+						int					occurrences	= 0;
+
+						await Dispatcher.CurrentDispatcher.Invoke( async() =>
+						{
+							string		strText = SelectAndGetTextFileString("Could not open search strings file");
+
+							if(string.IsNullOrEmpty(strText))
+								return;
+
+							occurrences	= await ParseAndSearchForStringList(sequence, strText, SequenceSearchType.SearchNormal);
+						});
+
+					});
+				}
+
+				return _searchStringsFromFile;
+			}
+		}
+
+
+		public ICommand SearchPairStringsFromFile
+		{
+			get
+			{
+				if (_searchPairStringsFromFile == null)
+				{
+					_searchPairStringsFromFile = new CommandExecuter(async () =>
+					{
+						// ShowNotYetImplemented();
+
+						iDnaSequence		sequence	= iDnaSequence.Instance;
+						int					occurrences	= 0;
+
+						await Dispatcher.CurrentDispatcher.Invoke( async() =>
+						{
+							string		strText = SelectAndGetTextFileString("Could not open search strings file");
+
+							if(string.IsNullOrEmpty(strText))
+								return;
+
+							occurrences	= await ParseAndSearchForStringList(sequence, strText, SequenceSearchType.SearchPairs);
+						});
+
+					});
+				}
+
+				return _searchPairStringsFromFile;
+			}
+		}
+
 
 
 		public ICommand FindRepeats
@@ -642,7 +837,7 @@ namespace iDna.vm
 
 
 
-		string OpenReadSequenceFile()
+		string OpenReadTextFile()
 		{
 			OpenFileDialog		dialog		= new OpenFileDialog();
 

@@ -24,7 +24,7 @@
     <Grid SnapsToDevicePixels="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition Width="14" />
+            <ColumnDefinition x:Name="colPageLocationBar" Width="14" />
         </Grid.ColumnDefinitions>
 
         <ListView x:Name="listItems" 

@@ -10,16 +10,6 @@
 		SnapsToDevicePixels="True"
         Title="covid-5ync" Height="640" Width="1024" ResizeMode="CanResizeWithGrip">
 
-	<Window.Resources>
-		<ResourceDictionary>
-			<Style TargetType="{x:Type MenuItem}">
-				<Setter Property="Margin"				Value="4,0" />
-				<Setter Property="VerticalAlignment"	Value="Center" />
-				<!--<Setter Property="Cursor"				Value="Hand" />-->
-			</Style>
-		</ResourceDictionary>
-	</Window.Resources>
-
 	<Grid DataContext="{Binding Source={StaticResource mainSequence}}" Background="#FFD8DCF5">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="24" />
@@ -29,140 +19,11 @@
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition />
-			<ColumnDefinition Width="240" />
+			<ColumnDefinition Width="274" />
 		</Grid.ColumnDefinitions>
 
 		<!-- xxxxxxxxxxxxx *********** main menu ********************* xxxxxxxxxxxxx -->
-		<Menu x:Name="mainManu" IsMainMenu="True" Cursor="Arrow"
-			  VerticalAlignment="Center" Padding="8,0" Grid.Row="0" Grid.ColumnSpan="2"
-			  DataContext="{StaticResource commandCentral}">
-			<Menu.Resources>
-				<ResourceDictionary>
-					<Image x:Key="mimgSequence"			Source="images/sequence78x78.png" />
-					<Image x:Key="mimgSequenceFile"		Source="images/sequence-file78x78.png" />
-					<Image x:Key="mimgAbout"			Source="images/about78x78.png" />
-					<Image x:Key="mimgCovid5ync48"		Source="images/covid5ync48x48.jpg" />
-					<Image x:Key="mimgBuiltinSeq"		Source="images/covid5ync48x48.jpg" />
-					<Image x:Key="mimgCitation48"		Source="images/citation48x48.png" />
-					<Image x:Key="mimghttp48"			Source="images/http48x48.png" />
-					<Image x:Key="mimgAboutProject"		Source="images/http48x48.png" />
-					<Image x:Key="mimgRefresh48"		Source="images/refresh48x48.png" />
-					<Image x:Key="mimgSearch48"			Source="images/search48x48.png" />
-					<Image x:Key="mimgDoc48"			Source="images/doc48x48.png" />
-
-					<Image x:Key="mimgMail32"			Source="images/mail32x32.png" />
-					<Image x:Key="mimgCopy23"			Source="images/copy23x22.png" />
-					<Image x:Key="mimgCopy23_2"			Source="images/copy23x22.png" />
-					<Image x:Key="mimgPaste23"			Source="images/paste23x22.png" />
-					<Image x:Key="mimgSettings48"		Source="images/processor48x48.png" />
-					<Image x:Key="mimgFile32"			Source="images/file32x30.png" />
-					<Image x:Key="mimgFolder32"			Source="images/folder32x32.png" />
-					<Image x:Key="mimgFolderOpen16"		Source="images/folderOpen16x16.png" />
-					<Image x:Key="mimgGears48"			Source="images/gears48x48.png" />
-					<Image x:Key="mimgGears16"			Source="images/gears16x16.png" />
-					<Image x:Key="mimgGearsData"		Source="images/data-gears34x22.gif" />
-
-					<Image x:Key="mimgMap48"			Source="images/map48x48.png" />
-					<Image x:Key="mimgToolbox32"		Source="images/toolbox32x32.png" />
-					<Image x:Key="mimgSave16"			Source="images/save16x16.png" />
-					<Image x:Key="mimgSave16_2"			Source="images/save16x16.png" />
-					<Image x:Key="mimgSave16_3"			Source="images/save16x16.png" />
-					<Image x:Key="mimgQuickStart48"		Source="images/quickstart48x48.png" />
-				</ResourceDictionary>
-			</Menu.Resources>
-			<!-- file menu -->
-			<MenuItem Header="_File">
-				<MenuItem Header="_Open"
-						  Icon="{DynamicResource mimgFolderOpen16}"
-						  ToolTip="load a sequence file from your pc"
-						  Command="{Binding OpenFile, Mode=OneWay}" />
-				
-				<MenuItem Header="Load built-in se_quence"
-						  Icon="{DynamicResource mimgBuiltinSeq}"
-						  ToolTip="load the application's delivered sequence"
-						  Command="{Binding LoadBuiltinSequence, Mode=OneWay}" />
-				
-				<MenuItem Header="_Save sequence As..."
-						  Icon="{DynamicResource mimgSave16}"
-						  ToolTip="save current sequence to file"
-						  Command="{Binding SaveAs, Mode=OneWay}"/>
-				
-				<Separator />
-				
-				<MenuItem Header="Save selected _regions..."
-						  ToolTip="save current selected regions to file"
-						  Command="{Binding SaveSelectedRegions, Mode=OneWay}"
-						  Icon="{DynamicResource mimgSave16_2}"/>
-
-				<Separator />
-
-				<MenuItem Header="_Download sequence files"	
-						  Icon="{DynamicResource mimghttp48}"
-						  ToolTip="download sequences from ncbi web site"
-						  Command="{Binding DownloadSequences, Mode=OneWay}" />
-
-			</MenuItem>
-			
-			<!-- edit menu -->
-			<MenuItem Header="_Edit">
-				<MenuItem Header="_Copy selection to Clipboard"
-						  Icon="{DynamicResource mimgCopy23}"
-						  ToolTip="copy selected fragments to clipboard"
-						  Command="{Binding CopySelectionsToClipboard, Mode=OneWay}"/>
-				
-				<MenuItem Header="Load sequence from Cli_pboard"
-						  Icon="{DynamicResource mimgPaste23}"
-						  ToolTip="load sequence from text you already copied in the clipboard"
-						  Command="{Binding LoadSequenceFromClipboard, Mode=OneWay}"/>
-			</MenuItem>
-
-			<!-- tools menu -->
-			<MenuItem Header="_Tools">
-				<MenuItem Header="Find _repeats"
-						  ToolTip="find repeats according to your settings"
-						  Command="{Binding FindRepeats, Mode=OneWay}"/>
-
-				<Separator />
-				<MenuItem Header="_Copy repeats to clipboard"
-						  Icon="{DynamicResource mimgCopy23_2}"
-						  ToolTip="copy found repeats to clipboard"
-						  Command="{Binding CopyRepeatsToClipboard, Mode=OneWay}"/>
-
-				<MenuItem Header="_Save repeats to file"
-						  Icon="{DynamicResource mimgSave16_3}"
-						  ToolTip="save found repeats to file"
-						  Command="{Binding SaveRepeatsToFile, Mode=OneWay}"/>
-
-				<Separator />
-				<MenuItem Header="_Options"
-						  Icon="{DynamicResource mimgGears16}"
-						  ToolTip="application settings"
-						  Command="{Binding OptionsCommand, Mode=OneWay}"/>
-			</MenuItem>
-
-			<!-- help menu -->
-			<MenuItem Header="Help">
-				<!--<MenuItem Header="_What is new"
-						  Icon="{StaticResource imgFile32}"
-						  Command="{Binding WhatIsNew, Mode=OneWay}"/>-->
-				
-				<MenuItem Header="_About the project"
-						  Icon="{DynamicResource mimgAboutProject}"
-						  Command="{Binding GotoProjectPage, Mode=OneWay}"/>
-				
-				<MenuItem Header="_About this app"
-						  Icon="{DynamicResource mimgCovid5ync48}"
-						  Command="{Binding AboutApp, Mode=OneWay}"
-						  />
-
-				<Separator />
-
-				<MenuItem Header="_Contact us"
-						  Icon="{DynamicResource mimgMail32}"
-						  ToolTip="your feedback is important. send us your remarks, suggestions and bug reports. thank you"
-						  Command="{Binding ContactSupport, Mode=OneWay}" />
-			</MenuItem>
-		</Menu>
+		<local:iDnaMainMenu IsMainMenu="True" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
 		<!-- xxxxxxxxxxxxx *********** end of main menu ********************* xxxxxxxxxxxxx -->
 
 		<GridSplitter Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" 
@@ -170,7 +31,7 @@
 					  Background="#FFC5CAEC"
 					  BorderBrush="#FFD8DCF5"
 					  BorderThickness="1,0,1,0"/>
-		
+
 		<StackPanel Grid.Row="1"
 					Orientation="Horizontal" VerticalAlignment="Center" Margin="2,0" >
 			<TextBox FontWeight="Bold" VerticalAlignment="Center" Margin="8,0" 
@@ -202,24 +63,43 @@
 							   Visibility="{Binding Source={StaticResource mainSequence}, Path=IsBusy, Converter={StaticResource bool2visible}, IsAsync=True}" />
 
 		<!-- ************ stats and selection basket ********************* -->
-		<TextBlock Grid.Row="1" Grid.Column="1" Text="Statistics" FontSize="12" FontWeight="Bold" VerticalAlignment="Bottom" Margin="8,4" />
+		<!--<TextBlock Grid.Row="1" Grid.Column="1" Text="Statistics" FontSize="12" FontWeight="Bold" VerticalAlignment="Bottom" Margin="8,4" />-->
 
-		<Grid Grid.Row="2" Grid.Column="1" Margin="6,0">
+		<Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Margin="6,0">
 			<Grid.RowDefinitions>
-				<RowDefinition  Height="140"/>
+				<RowDefinition  Height="168"/>
 				<RowDefinition Height="26" />
 				<RowDefinition />
 			</Grid.RowDefinitions>
 
 			<Border Grid.Row="0" CornerRadius="4" BorderBrush="Black" BorderThickness="2" Padding="2">
-				<controls:iDnaSequenceStatsCtrl Grid.Row="0" Grid.Column="1" Margin="0" Background="#FFF6F6F6" />
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="24" />
+						<ColumnDefinition />
+					</Grid.ColumnDefinitions>
+
+					<TextBlock Grid.Row="0" Grid.Column="0" Text="Statistics" FontSize="12" FontWeight="Bold"
+							   VerticalAlignment="Center" Margin="-48,0,190,0" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" >
+						<TextBlock.RenderTransform>
+							<TransformGroup>
+								<ScaleTransform/>
+								<SkewTransform/>
+								<RotateTransform Angle="-90"/>
+								<TranslateTransform/>
+							</TransformGroup>
+						</TextBlock.RenderTransform>
+					</TextBlock>
+
+					<controls:iDnaSequenceStatsCtrl Grid.Row="0" Grid.Column="1" Margin="0" Background="#FFF6F6F6" />
+				</Grid>
 			</Border>
 
 			<StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="0">
 				<Image Source="{Binding Source={StaticResource imgCovid5ync48}, Path=Source}" Width="24" Margin="4,0"/>
 				<TextBlock Grid.Row="1" Grid.Column="0" Text="Sequence baskets" FontSize="12" FontWeight="Bold" VerticalAlignment="Center" Margin="2,0" />
 			</StackPanel>
-			
+
 			<Border Grid.Row="2" CornerRadius="4" BorderBrush="Black" BorderThickness="2" Padding="2" HorizontalAlignment="Stretch">
 				<controls:iDnaSequenceBasketsCtrl Grid.Row="2" DataContext="{Binding Mode=OneWay, IsAsync=True}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
 			</Border>
@@ -317,7 +197,7 @@
 
 					<TextBlock Grid.Row="1" VerticalAlignment="Center" FontWeight="Bold" Margin="4,0"
 							   Text="This version info" />
-					
+
 					<TextBox x:Name="textBoxAppInfo"
 							 Grid.Row="2"
 							 VerticalScrollBarVisibility="Auto"

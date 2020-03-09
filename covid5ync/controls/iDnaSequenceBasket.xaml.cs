@@ -25,6 +25,7 @@ namespace iDna.controls
 			InitializeComponent();
 		}
 
+
 		private void buttonGotoPage_Click(object sender, RoutedEventArgs e)
 		{
 			Button	button		= sender as Button;

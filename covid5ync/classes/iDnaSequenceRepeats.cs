@@ -1,20 +1,104 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Threading;
+using isosoft.root;
+using System.ComponentModel;
 
 namespace iDna
 {
+	public enum iDnaBasketSortOption
+	{
+		[Description("No sort")]
+		NoSort,
+
+		[Description("By position")]
+		SortByPosition,
+
+		[Description("By number of occurrences")]
+		SortByNumberOfOccurrences,
+	};
+
+
 	public partial class iDnaSequence
 	{
+		protected vm.iDnaSequenceSortOptionList	_repeatSortOptions		= new vm.iDnaSequenceSortOptionList();
 		protected iDnaSequenceList				_repeatsBasket			= new iDnaSequenceList(),
 												_repeatSearch			= new iDnaSequenceList();
 		protected int							_reaptSearchPosition	= 0;
 		protected bool							_isRepeatProcessRunning	= false;
+		protected CancellationTokenSource		_repeatCancelSource		= new CancellationTokenSource(5);
 
+		public CancellationTokenSource RepeatCancellation
+		{
+			get { return _repeatCancelSource; }
+		}
+
+
+
+		public vm.iDnaSequenceSortOptionList RepeatSortOptionList
+		{
+			get {  return _repeatSortOptions; }
+		}
+
+
+
+
+		#region xxxxxxxxxxxxxxxxxxxxxx occurrence classes xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+		public class StringOccurrence
+		{
+			public string	ItemString	{ get; set; }
+			public int		Occurrs		{ get; set; }	= 0;
+
+			public StringOccurrence(string str, int occurrs)
+			{
+				ItemString		= str;
+				Occurrs			= occurrs;
+			}
+		}
+
+		public class StringOccurrenceList : List<StringOccurrence>
+		{
+			public StringOccurrenceList()
+			{
+
+			}
+
+			public StringOccurrence this[string str]
+			{
+				get { return this.FirstOrDefault(i => i.ItemString == str); }
+			}
+
+			public void AddUnique(StringOccurrence item)
+			{
+				if(item == null || string.IsNullOrEmpty(item.ItemString))
+					return;
+
+				var	existent	= this[item.ItemString];
+				if(existent == null)
+					base.Add(item);
+			}
+		}
+
+#endregion // xxxxxxxxxxxxxxxxxxxxxx occurrence classes xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+		protected StringOccurrenceList		_stringOccurList		= new StringOccurrenceList();
+
+		public int RepeatsCount
+		{
+			get
+			{
+				if(_repeatsBasket == null || _repeatsBasket.Count <= 0)
+					return 0;
+
+				return _repeatsBasket.Select(i => i.SequenceString).Distinct().Count();
+			}
+		}
 
 		public bool IsRepeatProcessRunning
 		{
@@ -43,6 +127,41 @@ namespace iDna
 
 				_reaptSearchPosition = value;
 				NotifyPropertyChanged(() => RepeatSearchPosition);
+			}
+		}
+
+
+		iDnaBasketSortOption RepeatSortOption
+		{
+			get { return _repeatSortOptions.SelectedOption; }
+			set
+			{
+				if(value == _repeatSortOptions.SelectedOption)
+					return;
+
+				_repeatSortOptions.SelectedOption	= value;
+				NotifyPropertyChanged(()=> RepeatSortOption);
+				NotifyPropertyChanged(() => RepeatsBasketSorted);
+			}
+		}
+
+
+		public IEnumerable<iDnaSequence> RepeatsBasketSorted
+		{
+			get
+			{
+				switch(RepeatSortOption)
+				{
+					case iDnaBasketSortOption.NoSort:
+					default:
+						return RepeatsBasket;
+
+					case iDnaBasketSortOption.SortByNumberOfOccurrences:
+						return _repeatsBasket.OrderBy(i => i._nOccurrences).ToList();
+
+					case iDnaBasketSortOption.SortByPosition:
+						return _repeatsBasket.OrderBy(s => (s == null || s.Count<=0) ? 0 : s[0].Index).ToList();
+				}
 			}
 		}
 
@@ -99,6 +218,8 @@ namespace iDna
 				dispatcher	= Dispatcher.CurrentDispatcher;
 
 			_repeatsBasket.Clear();
+			_stringOccurList.Clear();
+			RepeatSortOption		= iDnaBasketSortOption.NoSort;
 
 			iDnaRepeatSettings		settings			= iDnaRepeatSettings.Instance;
 			iDnaMinMaxValues		minMax				= settings.MinMaxValues;
@@ -122,20 +243,21 @@ namespace iDna
 			RepeatSearchPosition	= 0;
 			_repeatsBasket.Clear();
 			NotifyPropertyChanged(() => RepeatsBasket);
+			NotifyPropertyChanged(() => RepeatsBasketSorted);
 
-			if (_cancelSource != null)
+			if (_repeatCancelSource != null)
 			{
-				_cancelSource.Cancel();
-				_cancelSource.Dispose();
+				_repeatCancelSource.Cancel();
+				_repeatCancelSource.Dispose();
 			}
-			
-			_cancelSource	= new CancellationTokenSource();
+
+			_repeatCancelSource = new CancellationTokenSource();
 			
 			await Task.Run( () =>
 			{
 				while( (startIndex + minMax.MinNodes) < this.Count )
 				{
-					if(_cancelSource.IsCancellationRequested)
+					if(_repeatCancelSource.IsCancellationRequested)
 						break;
 
 					RepeatSearchPosition	= startIndex;
@@ -151,16 +273,33 @@ namespace iDna
 					if(showPosition)
 					{
 						this[startIndex].IsSelected = true;
-						Thread.Sleep(40);
+						Thread.Sleep(15);
 					}
 
 					string		strAtStart	= this.StringAtIndex(startIndex, minMax.MaxNodes);
 					int			lenStrMax	= strAtStart.Length;
 
+					if(lenStrMax < minMax.MinNodes)
+						goto next_location;
+
+					sequenceString				= strAtStart;			// seqMax.SequenceString;
+					lenSeqString				= lenStrMax;			// seqMax.SequenceString.Length;
+					lenSearch					= lenSeqString;
+					string		shortestString	= strAtStart.Substring(0, minMax.MinNodes);
+
+					// we already searched for this as shortest string: skip this location
+					if (_stringOccurList.Count > 0 && _stringOccurList.Any(s => s.ItemString == shortestString))
+					{
+						lenSearch		= minMax.MinNodes;
+						foundRepeats	= true;
+						goto next_location;
+					}
+
 					for(int len = lenStrMax; len > minMax.MinNodes && len > 0; len --)
 					{
 						string			str		= strAtStart.Substring(0, len);
-						if (_repeatsBasket.Any(s => s.SequenceString == str))
+
+						if (_stringOccurList.Count > 0 && _stringOccurList.Any(s => s.ItemString == str))		//if (_repeatsBasket.Any(s => s.SequenceString == str))
 						{
 							lenSearch		= len;
 							foundRepeats	= true;
@@ -168,99 +307,62 @@ namespace iDna
 						}
 					}
 
-					//seqMax = new iDnaSequence("repeatMax", this.Where( 
-					//									i => i.Index > startIndex && i.Index <= endIndexMax
-					//									&& ! _repeatsBasket.Exists(s => s.Count > 0 && s[0].Index == startIndex + 1)		// is it already in our basket?
-					//									), refOnly: true);
-
-					//if(seqMax.Count <= 0)	// || seqMax._stats.SequenceMeltingTm > TmMax || seqMax._stats.SequenceMeltingTm < TmMin)
-					//	goto next_location;
-
-					sequenceString	= strAtStart;			// seqMax.SequenceString;
-					lenSeqString	= lenStrMax;			// seqMax.SequenceString.Length;
-
 					int				trimEnd		= 0;
-					lenSearch	= lenSeqString;
 
-					while ( lenSearch - trimEnd >= minMax.MinNodes)	// endIndexMax >= endIndexMin)
+					while ( lenSearch - trimEnd >= minMax.MinNodes)
 					{
 						lenSearch		= lenSeqString - trimEnd;
 						searchString	= sequenceString.Substring(0, lenSearch);
 
+						// we already searched for this: skip
+						if (_stringOccurList.Count >0 && _stringOccurList.Any(s => s.ItemString == searchString))
+							goto next_index;
+
+						// add this to the search list
+						_stringOccurList.AddUnique(new StringOccurrence(searchString, 0));
+
 						// string alreay in repeat library? : skip
-						if(_repeatsBasket.Any(s => s.SequenceString == searchString))
+						if (_repeatsBasket.Any(s => s.SequenceString == searchString))
 							goto next_index;
 
 						var		allStartOccurrences	= this.AllStartoccurrencesOfString(searchString);
+						int		occurrences			= allStartOccurrences == null ? 0 : allStartOccurrences.Count();
 
-						if(allStartOccurrences != null && allStartOccurrences.Count() > 1)
+						// keep track of occurrences
+						_stringOccurList[searchString].Occurrs	= occurrences;
+
+						if (allStartOccurrences != null && occurrences > 1)
 						{
 							foundRepeats	= true;
+							int				occurrenceIndex		= 1;
+							string			repeatName			= "R" + (RepeatsCount +1).ToString(),
+											sequenceName		= "";
 
-							foreach(var item in allStartOccurrences)
+							foreach (var item in allStartOccurrences)
 							{
 								//Console.WriteLine(item.Index);
 								var		repeatSeq	= this.SkipWhile( n => n.Index < item.Index).Take(lenSearch);
-								_repeatsBasket.Add( new iDnaSequence("repeat " + (_repeatsBasket.Count + 1).ToString(), repeatSeq, refOnly: true));
+								sequenceName		= repeatName + " oc:" + occurrenceIndex.ToString() + "/" + occurrences.ToString();
+								_repeatsBasket.Add( new iDnaSequence(sequenceName, repeatSeq, refOnly: true, nOccurrences: occurrences));
+								NotifyPropertyChanged(() => RepeatsCount);
+								occurrenceIndex++;
 							}
 							break;
 						}
-
-						//if (settings.ShowSearchPosition)
-						//{
-						//	for(int ndx = startIndex; ndx < lenSearch && ndx < this.Count; ndx++)
-						//	{
-						//		this[ndx].IsSelected = true;
-						//		Thread.Sleep(50);
-						//	}
-						//}
-
-						//// find the longest sequence matches / add any existing
-						//_repeatSearch.Clear();
-						//await this.FindString( searchString, SequenceSearchType.SearchRepeats, dispatcher, updateSeletions: false);
-
-						//if(_repeatSearch.Count > 1)
-						//{
-						//	foundRepeats	= true;
-
-						//	foreach (var occur in _repeatSearch)
-						//	{
-						//		occur.Name	= "repeat " + (_repeatsBasket.Count +1).ToString();
-						//		occur.ResetSelection(true, dispatcher);
-						//		_repeatsBasket.Add(occur);
-						//	}
-
-						//	break;
-						//}
 
 next_index:
 						endIndexMax--;
 						trimEnd++;
 
-						if (_cancelSource.IsCancellationRequested)
+						if (_repeatCancelSource.IsCancellationRequested)
 							break;
-
-						//if (settings.ShowSearchPosition)
-						//{
-						//	for (int ndx = startIndex; ndx < lenSearch && ndx < this.Count; ndx++)
-						//	{
-						//		this[ndx].IsSelected = false;
-						//		Thread.Sleep(50);
-						//	}
-						//}
 					}
 
 next_location:
 
-					if (settings.ShowSearchPosition)
+					if (showPosition || settings.ShowSearchPosition)
 					{
 						this[startIndex].IsSelected	= false;
-
-						for (int ndx = startIndex; ndx < lenSearch && ndx < this.Count; ndx++)
-						{
-							this[ndx].IsSelected	= false;
-							Thread.Sleep(50);
-						}
 					}
 
 					if(findOverlapping || ! foundRepeats)
@@ -274,16 +376,26 @@ next_location:
 						GoToNodePage(this[startIndex]);
 
 					if(_repeatsBasket.Count > 0 && _repeatsBasket.Count != basketLastCount)
+					{
 						NotifyPropertyChanged(() => RepeatsBasket);
+						NotifyPropertyChanged(() => RepeatsBasketSorted);
+					}
 
 					basketLastCount	= _repeatsBasket.Count;
 				}
-			}, _cancelSource.Token);
+			}, _repeatCancelSource.Token);
 
 			IsRepeatProcessRunning	= false;
 			NotifyPropertyChanged(() => RepeatsBasket);
+			NotifyPropertyChanged(() => RepeatsBasketSorted);
 			return _repeatsBasket.Count;
 		}
 
+		private void _repeatSortOptions_SelectedOptionChanged(vm.iDnaSequenceSortOption selectedItem)
+		{
+			NotifyPropertyChanged(() => RepeatSortOption);
+			NotifyPropertyChanged(() => RepeatsBasketSorted);
+
+		}
 	}
 }

@@ -107,6 +107,7 @@ namespace iDna
 				return;
 
 			_total = value;
+			System.Windows.Threading.Dispatcher.CurrentDispatcher.Invoke(() => NotifyPropertyChanged(() => Total));
 		}
 
 

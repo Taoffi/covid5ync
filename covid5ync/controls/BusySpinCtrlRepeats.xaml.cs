@@ -19,9 +19,9 @@ namespace iDna.controls
 	/// <summary>
 	/// Interaction logic for BusySpinCtrl.xaml
 	/// </summary>
-	public partial class BusySpinCtrl : UserControl
+	public partial class BusySpinCtrlRepeats : UserControl
 	{
-		public BusySpinCtrl()
+		public BusySpinCtrlRepeats()
 		{
 			InitializeComponent();
 			Loaded += BusySpinCtrl_Loaded;
@@ -65,15 +65,8 @@ namespace iDna.controls
 
 		private void RotateImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			CancellationTokenSource	cancellation	= iDnaSequence.Instance.CurrentCancellationSource;
-			if(cancellation != null)
-			{
-				RotateImage.ToolTip = "cancelling...";
-				iDnaSequence.Instance.CurrentCancellationSource.Cancel(true);
-				return;
-			}
-
-			RotateImage.ToolTip = "could not cancel!...";
+			RotateImage.ToolTip		= "cancelling...";
+			iDnaSequence.Instance.RepeatCancellation.Cancel(true);
 		}
 	}
 }
