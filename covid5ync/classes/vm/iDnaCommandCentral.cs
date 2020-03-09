@@ -41,6 +41,7 @@ namespace iDna.vm
 								_loadSequenceFromClipboard = null,		// load sequence from clipoard
 								_saveAs						= null,
 								_saveSelections				= null,
+								_resetSelections			= null,
 								_copySelectionToClipboard	= null,
 								_aboutApp					= null,		// about
 								_whatIsNew					= null,		// this app version info
@@ -58,6 +59,7 @@ namespace iDna.vm
 								_searchStringsFromFile		= null,
 								_searchPairStringsFromFile	= null,
 			
+								_defineWorkRegionFromSelection		= null,
 								_notYetImplemented			= null;
 
 		protected iDnaCommandCentral() : base()
@@ -269,6 +271,77 @@ namespace iDna.vm
 				return _saveSelections;
 			}
 		}
+
+		// _resetSelections
+		public ICommand ResetAllSelections
+		{
+			get
+			{
+				if(_resetSelections == null)
+				{
+					_resetSelections = new CommandExecuter(() =>
+					{
+						// ShowNotYetImplemented();
+
+						iDnaSequence seq		= iDnaSequence.Instance;
+
+						if(seq == null)
+							return;
+
+						seq.ResetSelection(false, null);
+					});
+				}
+				return _resetSelections;
+			}
+		}
+
+		// _defineWorkRegionFromSelection
+		public ICommand DefineWorkRegionFromSelection
+		{
+			get
+			{
+				if(_defineWorkRegionFromSelection == null)
+				{
+					_defineWorkRegionFromSelection = new CommandExecuter(() =>
+					{
+						// ShowNotYetImplemented();
+
+						iDnaSequence seq		= iDnaSequence.Instance;
+
+						if(seq == null)
+							return;
+
+						string	dlgTitle		= "Define search region from selection";
+						var		selectedItems	= seq.SkipWhile(i => i.IsSelected == false).TakeWhile(n => n.IsSelected);	// seq.SelectedItems;
+
+						if (selectedItems == null || selectedItems.Count() <= 1)
+						{
+							ShowMessage("No regions currently selected. Please check.", dlgTitle);
+							return;
+						}
+
+						if(MessageBox.Show("This will define the first selected contigous region as the search region for repeats, hairpins and primer.\r\n"
+									+ "Are you ok with this?", dlgTitle, MessageBoxButton.YesNoCancel, MessageBoxImage.Question) != MessageBoxResult.Yes)
+							return;
+
+						int	minIndex	= selectedItems.Min(i => i.Index),
+							maxIndex	= selectedItems.Max(i => i.Index);
+
+						iDnaRepeatSettings.Instance.MinMaxValues.StartRegionIndex	= minIndex;
+						iDnaRepeatSettings.Instance.MinMaxValues.EndRegionIndex		= maxIndex;
+						
+						iDnaPrimerSettings.Instance.MinMaxValues.StartRegionIndex	= minIndex;
+						iDnaPrimerSettings.Instance.MinMaxValues.EndRegionIndex		= maxIndex;
+
+						ShowMessage(string.Format("Your search region is now from (zero-based index): {0:0000} to {1:0000}", minIndex, maxIndex), dlgTitle);
+					});
+				}
+				return _defineWorkRegionFromSelection;
+			}
+		}
+
+
+
 
 		/// <summary>
 		/// command: copy selected nodes to clipboard
@@ -590,7 +663,14 @@ namespace iDna.vm
 						// ShowNotYetImplemented();
 
 						iDnaSequence		sequence	= iDnaSequence.Instance;
-						int					occurrences	= 0;
+
+						if(sequence == null || sequence.Count <= 0)
+						{
+							ShowMessage("The current sequence looks to be empty. Please check", "Search regions from file");
+							return;
+						}
+
+						int occurrences	= 0;
 
 						await Dispatcher.CurrentDispatcher.Invoke( async() =>
 						{
@@ -621,7 +701,14 @@ namespace iDna.vm
 						// ShowNotYetImplemented();
 
 						iDnaSequence		sequence	= iDnaSequence.Instance;
-						int					occurrences	= 0;
+
+						if (sequence == null || sequence.Count <= 0)
+						{
+							ShowMessage("The current sequence looks to be empty. Please check", "Search regions from file");
+							return;
+						}
+
+						int occurrences	= 0;
 
 						await Dispatcher.CurrentDispatcher.Invoke( async() =>
 						{

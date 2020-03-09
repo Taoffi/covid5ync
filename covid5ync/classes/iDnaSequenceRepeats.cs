@@ -256,7 +256,8 @@ namespace iDna
 			
 			await Task.Run( () =>
 			{
-				int		maxEndRegion		= Math.Min(endRegionIndex, this.Count);
+				int		maxEndRegion			= Math.Min(endRegionIndex, this.Count);
+				bool	nodeCurrentSelection	= false;
 
 				while ( (startIndex + minMax.MinNodes) < maxEndRegion)
 				{
@@ -273,7 +274,9 @@ namespace iDna
 
 					foundRepeats	= false;
 
-					if(showPosition)
+					nodeCurrentSelection	= this[startIndex].IsSelected;
+
+					if (showPosition)
 					{
 						this[startIndex].IsSelected = true;
 						Thread.Sleep(15);
@@ -365,7 +368,7 @@ next_location:
 
 					if (showPosition || settings.ShowSearchPosition)
 					{
-						this[startIndex].IsSelected	= false;
+						this[startIndex].IsSelected	= nodeCurrentSelection;
 					}
 
 					if(findOverlapping || ! foundRepeats)

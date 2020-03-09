@@ -31,6 +31,10 @@
 			<Image x:Key="mimgSettings48"		Source="images/processor48x48.png" />
 			<Image x:Key="mimgFile32"			Source="images/file32x30.png" />
 			<Image x:Key="mimgFolder32"			Source="images/folder32x32.png" />
+			<Image x:Key="mimgReset19"			Source="images/del-close19x19.jpg" />
+			<Image x:Key="mimgLoadSearchRegions32"		Source="images/file32x30.png" />
+			<Image x:Key="mimgLoadPairSearchRegions32"	Source="images/file32x30.png" />
+			
 			<Image x:Key="mimgFolderOpen16"		Source="images/folderOpen16x16.png" />
 			<Image x:Key="mimgGears48"			Source="images/gears48x48.png" />
 			<Image x:Key="mimgGears16"			Source="images/gears16x16.png" />
@@ -89,29 +93,43 @@
 	<!-- edit menu -->
 	<MenuItem Header="_Edit">
 		<MenuItem Header="_Copy selection to Clipboard"
-						  Icon="{DynamicResource mimgCopy23}"
-						  ToolTip="copy selected fragments to clipboard"
-				  ToolTipService.ShowOnDisabled="True"
-						  Command="{Binding CopySelectionsToClipboard, Mode=OneWay}"/>
+				Icon="{DynamicResource mimgCopy23}"
+				ToolTip="copy selected fragments to clipboard"
+				ToolTipService.ShowOnDisabled="True"
+				Command="{Binding CopySelectionsToClipboard, Mode=OneWay}"/>
 
 		<Separator />
+		<MenuItem Header="_Reset all selections"
+				ToolTip="un-select all node"
+				ToolTipService.ShowOnDisabled="True"
+				  Icon="{DynamicResource mimgReset19}"
+				Command="{Binding ResetAllSelections, Mode=OneWay}"/>
 
+		<MenuItem Header="_Define search region from selection"
+				ToolTip="define the first selected contigous region as your search region for repeats, hairpins and primers"
+				ToolTipService.ShowOnDisabled="True"
+				  Icon="{DynamicResource mimgCitation48}"
+				Command="{Binding DefineWorkRegionFromSelection, Mode=OneWay}"/>
+
+		<Separator />
 		<MenuItem Header="_Search regions from file"
-				  ToolTip="search for regions from a text file (one region per line)"
+				  ToolTip="load and search for regions from a text file (one region per line)"
 				  ToolTipService.ShowOnDisabled="True"
+				  Icon="{DynamicResource mimgLoadSearchRegions32}"
 				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
 				  Command="{Binding SearchStringsFromFile, Mode=OneWay}" />
 
 		<MenuItem Header="Search _pair regions from file"
-				  ToolTip="search for pairs of regions from a text file (one region per line)"
+				  ToolTip="load and search for pairs of regions from a text file (one region per line)"
 				  ToolTipService.ShowOnDisabled="True"
+				  Icon="{DynamicResource mimgLoadPairSearchRegions32}"
 				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
 				  Command="{Binding SearchPairStringsFromFile, Mode=OneWay}" />
 
 		<Separator />
 		<MenuItem Header="Load sequence from Cli_pboard"
 						  Icon="{DynamicResource mimgPaste23}"
-						  ToolTip="load sequence from text you already copied in the clipboard"
+						  ToolTip="load the sequence from text you already copied in the clipboard"
 				  ToolTipService.ShowOnDisabled="True"
 						  Command="{Binding LoadSequenceFromClipboard, Mode=OneWay}"
 						  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"

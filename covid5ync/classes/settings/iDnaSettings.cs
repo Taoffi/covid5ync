@@ -9,10 +9,10 @@ namespace iDna
 {
 	public class iDnaMinMaxValues : RootObject
 	{
-		const int					_constMinIntNodes		= 8,
+		const int					_constMinIntNodes		= 6,
 									_constMaxIntNodes		= 32;
 									
-		protected int					_minNodes			= 8,
+		protected int					_minNodes			= _constMinIntNodes,
 										_maxNodes			= 16;
 		
 		protected int					_startRegionIndex	= 0,
@@ -231,7 +231,7 @@ namespace iDna
 	{
 		static iDnaRepeatSettings		_instance			= null;
 
-		protected iDnaMinMaxValues		_minMaxValues		= new iDnaMinMaxValues(8, 12, (decimal) 0.0, (decimal) 55.50);
+		protected iDnaMinMaxValues		_minMaxValues		= new iDnaMinMaxValues(6, 12, (decimal) 0.0, (decimal) 55.50);
 		protected bool					_searchOverlapping	= false,
 										_showSearchPosition	= true;
 
