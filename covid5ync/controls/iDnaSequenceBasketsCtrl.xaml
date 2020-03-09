@@ -5,32 +5,34 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:iDna.controls"
              mc:Ignorable="d" 
-             d:DesignHeight="292" d:DesignWidth="260">
+             d:DesignHeight="292" d:DesignWidth="338">
 	
     <Grid DataContext="{StaticResource mainSequence}" VerticalAlignment="Stretch">
 		<TabControl>
 			<TabItem>
 				<TabItem.Header>
-					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="4,2" Width="86">
-						<!--<Image Source="{Binding Source={StaticResource imgCovid5ync48}, Path=Source}" Width="16" Margin="4" />-->
-						<TextBlock Text="Search" Margin="4,0" />
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="4,2" Width="52" ToolTip="Search results">
+						<Image Source="{Binding Source={StaticResource imgSearch48}, Path=Source}" Width="16" Margin="4" />
+						<!--<TextBlock Text="Search" Margin="4,0" />-->
 						<TextBlock Text="{Binding CurrentSearchBasket.Count, Mode=OneWay, IsAsync=True}" FontSize="9" Foreground="Blue" />
 					</StackPanel>
 				</TabItem.Header>
 
 				<Grid x:Name="gridSearchMain" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#FFF7EFCC" >
 					<Grid.RowDefinitions>
-						<RowDefinition Height="26" />
+						<RowDefinition Height="32" />
 						<RowDefinition />
 					</Grid.RowDefinitions>
 
-					<local:iDnaSequenceSortOptionsCtrl Grid.Row="0" 
+					<Border Grid.Row="0" Background="#FFF6F6F6" BorderBrush="Black" BorderThickness="1" Margin="0">
+						<local:iDnaSequenceSortOptionsCtrl Grid.Row="0" 
 													   VerticalAlignment="Center" HorizontalAlignment="Left"
 													   Margin="4,1" 
 													   Width="180"
 													   DataContext="{Binding SearchSortOptionList, IsAsync=True, Mode=OneWay}"
 													   />
-
+					</Border>
+					
 					<Grid x:Name="gridSearchItems" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
 						<local:iDnaSequenceBasket DataContext="{Binding SearchBasketSorted, IsAsync=True}"
 												  Margin="4"
@@ -46,55 +48,55 @@
 
 			<TabItem>
 				<TabItem.Header>
-					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="4,2" Width="86">
-						<!--<Image Source="{Binding Source={StaticResource imgCovid5ync48}, Path=Source}" Width="16" Margin="4" />-->
-						<TextBlock Text="Repeats" Margin="4,0" Foreground="{Binding Source={StaticResource mainSequence}, Path=IsRepeatProcessRunning, Converter={StaticResource busyToColor}}" />
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="4,2" Width="52" ToolTip="Repeats">
+						<Image Source="{Binding Source={StaticResource imgRefresh48}, Path=Source}" Width="16" Margin="4" />
+						<!--<TextBlock Text="Repeats" Margin="4,0" Foreground="{Binding Source={StaticResource mainSequence}, Path=IsRepeatProcessRunning, Converter={StaticResource busyToColor}}" />-->
 						<TextBlock Text="{Binding RepeatsCount, Mode=OneWay, IsAsync=True}" FontSize="9" Foreground="Blue" />
 					</StackPanel>
 				</TabItem.Header>
 
 				<Grid x:Name="gridRepeatsMain" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#FFF7EFCC" >
-					<Grid x:Name="gridRepeatsItems" VerticalAlignment="Stretch" HorizontalAlignment="Left" >
-						<Grid.RowDefinitions>
-							<RowDefinition Height="24" />
-							<RowDefinition Height="26" />
-							<RowDefinition />
-						</Grid.RowDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="56" />
+						<RowDefinition />
+					</Grid.RowDefinitions>
 
-						<Grid Grid.Row="0" VerticalAlignment="Stretch" Margin="4,0" Background="#FFF7EFCC">
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="120" />
-								<ColumnDefinition />
-							</Grid.ColumnDefinitions>
-
-							<StackPanel Orientation="Horizontal" Grid.Column="0">
+					<Border Grid.Row="0" Grid.Column="0"
+							HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+							Background="#FFF6F6F6" 
+							BorderBrush="Black" 
+							BorderThickness="1">
+						<StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,0,4">
+							<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Height="25" Background="#FFF6F6F6">
 								<TextBlock FontSize="9" Style="{StaticResource label}" Text="Search position" Margin="4,0" />
 								<TextBlock VerticalAlignment="Center" FontSize="9" Text="{Binding RepeatSearchPosition, IsAsync=True}" Margin="8,0" />
 							</StackPanel>
 
-
-							<local:BusySpinCtrlRepeats Grid.Row="0" Grid.Column="1" x:Name="busyRepeatControl" 
-											HorizontalAlignment="Right" 
-											Margin="0,0,12,0"
-										    Width="20"
-										    Cursor="Hand"
-										    Visibility="{Binding Source={StaticResource mainSequence}, Path=IsRepeatProcessRunning, Converter={StaticResource bool2visible}, IsAsync=True}" />
-
-
-						</Grid>
-
-						<local:iDnaSequenceSortOptionsCtrl Grid.Row="1" 
+							<local:iDnaSequenceSortOptionsCtrl Grid.Row="1" 
 													   VerticalAlignment="Center" HorizontalAlignment="Left"
-													   Margin="32,1" 
+													   Margin="4,1" 
 													   Width="180"
 													   DataContext="{Binding RepeatSortOptionList}"
 													   />
 
 
+						</StackPanel>
+					</Border>
+					
+					
+						<local:BusySpinCtrlRepeats Grid.Row="0" Grid.Column="1" x:Name="busyRepeatControl" 
+										HorizontalAlignment="Right" 
+										Margin="0,0,12,0"
+										Width="20"
+										Cursor="Hand"
+										Visibility="{Binding Source={StaticResource mainSequence}, Path=IsRepeatProcessRunning, Converter={StaticResource bool2visible}, IsAsync=True}" 
+												   />
+
+
 						<local:iDnaSequenceBasket Grid.Row="2"
 												  DataContext="{Binding RepeatsBasketSorted, IsAsync=True, Mode=OneWay}"
 												  Margin="4,0,0,0"
-												  Padding="0,0,-12,0"
+												  Padding="0,0"
 												  HorizontalAlignment="Stretch"
 												  VerticalAlignment="Stretch"
 												  Width="252"
@@ -103,9 +105,67 @@
 												  Background="#FFF7EFCC"
 												  VirtualizingPanel.IsVirtualizing="False"/>
 					</Grid>
+			</TabItem>
+
+			<!--<TabItem>
+				<TabItem.Header>
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="4,2" Width="52" ToolTip="Hairpins">
+						<Image Source="{Binding Source={StaticResource imgCovid5ync48}, Path=Source}" Width="16" Margin="4" />
+						--><!--<TextBlock Text="Hairpins" Margin="4,0" Foreground="{Binding Source={StaticResource mainSequence}, Path=IsRepeatProcessRunning, Converter={StaticResource busyToColor}}" />--><!--
+						<TextBlock Text="{Binding HairpinCount, IsAsync=True, Mode=OneWay}" FontSize="9" Foreground="Blue" />
+					</StackPanel>
+				</TabItem.Header>
+
+				<Grid x:Name="gridHairpinsMain" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#FFF7EFCC" >
+					<Grid.RowDefinitions>
+						<RowDefinition Height="56" />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+
+					<Border Grid.Row="0" Grid.Column="0"
+							HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+							Background="#FFF6F6F6" 
+							BorderBrush="Black" 
+							BorderThickness="1">
+						<StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,0,4">
+							<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Height="25" Background="#FFF6F6F6">
+								<TextBlock FontSize="9" Style="{StaticResource label}" Text="Search position" Margin="4,0" />
+								<TextBlock VerticalAlignment="Center" FontSize="9" Text="{Binding RepeatSearchPosition, IsAsync=True}" Margin="8,0" />
+							</StackPanel>
+
+							<local:iDnaSequenceSortOptionsCtrl Grid.Row="1" 
+													   VerticalAlignment="Center" HorizontalAlignment="Left"
+													   Margin="4,1" 
+													   Width="180"
+													   Background="#FFF6F6F6"
+													   DataContext="{Binding HairpinSortOptionList}"
+													   />
+						</StackPanel>
+					</Border>
+
+					<local:BusySpinCtrlRepeats Grid.Row="0" Grid.Column="0" x:Name="busyRepeatControlx" 
+											HorizontalAlignment="Right" VerticalAlignment="Top"
+											Margin="0,8,12,0"
+										    Width="20" Height="20"
+										    Cursor="Hand"
+										    Visibility="{Binding Source={StaticResource mainSequence}, Path=IsRepeatProcessRunning, Converter={StaticResource bool2visible}, IsAsync=True}"
+											   />
+
+						<local:iDnaSequenceBasket Grid.Row="1" Grid.Column="0"
+												  DataContext="{Binding HairpinBasketSorted, IsAsync=True}"
+												  Margin="4,0,0,0"
+												  Padding="0"
+												  HorizontalAlignment="Stretch"
+												  VerticalAlignment="Stretch"
+												  Width="252"
+												  MinWidth="252"
+												  MaxWidth="252"
+												  Background="#FFF7EFCC"
+												  VirtualizingPanel.IsVirtualizing="False"/>
 				</Grid>
 
-			</TabItem>
+			</TabItem>-->
+			
 		</TabControl>
 
     </Grid>

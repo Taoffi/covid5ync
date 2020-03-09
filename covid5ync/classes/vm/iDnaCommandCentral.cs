@@ -50,6 +50,8 @@ namespace iDna.vm
 								_contactSupport				= null,		// contact and bug report
 
 								_findRepeats				= null,		// search repeats
+								_findHairpins				= null,		// search for hairpins
+
 								_resetSelectionToRepeats	= null,
 								_copyRepeatsToClipboard		= null,
 								_saveRepeatsToFile			= null,
@@ -327,11 +329,7 @@ namespace iDna.vm
 						int	minIndex	= selectedItems.Min(i => i.Index),
 							maxIndex	= selectedItems.Max(i => i.Index);
 
-						iDnaRepeatSettings.Instance.MinMaxValues.StartRegionIndex	= minIndex;
-						iDnaRepeatSettings.Instance.MinMaxValues.EndRegionIndex		= maxIndex;
-						
-						iDnaPrimerSettings.Instance.MinMaxValues.StartRegionIndex	= minIndex;
-						iDnaPrimerSettings.Instance.MinMaxValues.EndRegionIndex		= maxIndex;
+						iDnaGobalSettings.Instance.SetSearchRegion(minIndex, maxIndex);
 
 						ShowMessage(string.Format("Your search region is now from (zero-based index): {0:0000} to {1:0000}", minIndex, maxIndex), dlgTitle);
 					});
@@ -749,7 +747,7 @@ namespace iDna.vm
 
 						Task.Run( async() =>
 						{
-							await iDnaSequence.Instance.GetRepeats(null);
+							await iDnaSequence.Instance.GetRepeatsOrHairpins(null, searchHairpins: false);
 						});
 
 					});
@@ -757,6 +755,37 @@ namespace iDna.vm
 				return _findRepeats;
 			}
 		}
+
+
+		public ICommand FindHairpins
+		{
+			get
+			{
+				if (_findHairpins == null)
+				{
+					_findHairpins = new CommandExecuter(() =>
+					{
+						// ShowNotYetImplemented();
+
+						iDnaSequence		seq		= iDnaSequence.Instance;
+
+						if(seq.Count <= 0)
+						{
+							ShowMessage("Current sequence seems to be empty. Please check.", "Find hairpins");
+							return;
+						}
+
+						Task.Run( async() =>
+						{
+							await iDnaSequence.Instance.GetRepeatsOrHairpins(null, searchHairpins: true);
+						});
+
+					});
+				}
+				return _findHairpins;
+			}
+		}
+
 
 
 		public ICommand AboutApp

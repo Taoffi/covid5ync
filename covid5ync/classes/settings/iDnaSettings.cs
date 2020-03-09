@@ -379,6 +379,19 @@ namespace iDna
 			}
 		}
 
+		public bool SetSearchRegion(int minIndex, int maxIndex)
+		{
+			_repeatsSettings.MinMaxValues.StartRegionIndex		=
+				_hairpinSettings.MinMaxValues.StartRegionIndex	=
+				_primersSettings.MinMaxValues.StartRegionIndex	= minIndex;
+
+			_repeatsSettings.MinMaxValues.EndRegionIndex		=
+				_hairpinSettings.MinMaxValues.EndRegionIndex	=
+				_primersSettings.MinMaxValues.EndRegionIndex	= maxIndex;
+
+			return true;
+		}
+
 		public static iDnaGobalSettings GetInstance()
 		{
 			return Instance;

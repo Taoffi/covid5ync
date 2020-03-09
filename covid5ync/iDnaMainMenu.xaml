@@ -139,10 +139,16 @@
 	<!-- tools menu -->
 	<MenuItem Header="_Tools">
 		<MenuItem Header="Find _repeats"
-						  ToolTip="find repeats according to your settings"
-				  ToolTipService.ShowOnDisabled="True"
-						  Command="{Binding FindRepeats, Mode=OneWay}"
-						  IsEnabled="{Binding IsRepeatProcessRunning, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"/>
+				ToolTip="find repeats according to your settings"
+				ToolTipService.ShowOnDisabled="True"
+				Command="{Binding FindRepeats, Mode=OneWay}"
+				IsEnabled="{Binding IsRepeatProcessRunning, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"/>
+
+		<!--<MenuItem Header="Find _hairpins"
+				ToolTip="find hairpins according to your settings"
+				ToolTipService.ShowOnDisabled="True"
+				Command="{Binding FindHairpins, Mode=OneWay}"
+				IsEnabled="{Binding IsRepeatProcessRunning, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"/>-->
 
 		<Separator />
 		<MenuItem Header="_Reset selections to found repeats"

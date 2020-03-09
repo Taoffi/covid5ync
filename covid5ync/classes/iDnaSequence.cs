@@ -57,8 +57,9 @@ namespace iDna
 		public iDnaSequence() : base()
 		{
 			_paging.SourceCollection	= this;
-			_repeatSortOptions.SelectedOptionChanged += _repeatSortOptions_SelectedOptionChanged;
-			_searchSortOptions.SelectedOptionChanged += _searchSortOptions_SelectedOptionChanged;
+			_repeatSortOptions.SelectedOptionChanged	+= _repeatSortOptions_SelectedOptionChanged;
+			_searchSortOptions.SelectedOptionChanged	+= _searchSortOptions_SelectedOptionChanged;
+			_hairpinSortOptions.SelectedOptionChanged	+= _hairpinSortOptions_SelectedOptionChanged;
 		}
 
 		protected iDnaSequence(string name, IEnumerable<iDnaNode> nodeList, bool refOnly = true, int nOccurrences = 1) : base()

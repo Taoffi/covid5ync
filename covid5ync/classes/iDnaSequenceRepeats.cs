@@ -23,15 +23,28 @@ namespace iDna
 		SortByNumberOfOccurrences,
 	};
 
+	public enum RepeatSerachType
+	{
+		[Description("Search for repeats")]
+		SearchRepeats,
+
+		[Description("Search for hairpins")]
+		SerachHiarpins,
+	};
+
 
 	public partial class iDnaSequence
 	{
 		protected vm.iDnaSequenceSortOptionList	_repeatSortOptions		= new vm.iDnaSequenceSortOptionList();
+		protected vm.iDnaSequenceSortOptionList	_hairpinSortOptions		= new vm.iDnaSequenceSortOptionList();
 		protected iDnaSequenceList				_repeatsBasket			= new iDnaSequenceList(),
+												_hairPinBasket			= new iDnaSequenceList(),
 												_repeatSearch			= new iDnaSequenceList();
-		protected int							_reaptSearchPosition	= 0;
+		protected int							_repeatSearchPosition	= 0;
 		protected bool							_isRepeatProcessRunning	= false;
 		protected CancellationTokenSource		_repeatCancelSource		= new CancellationTokenSource(5);
+		protected RepeatSerachType				_repeatSerachType		= RepeatSerachType.SearchRepeats;
+
 
 		public CancellationTokenSource RepeatCancellation
 		{
@@ -39,12 +52,28 @@ namespace iDna
 		}
 
 
+		public RepeatSerachType CurrentRepeatSearchType
+		{
+			get { return _repeatSerachType; }
+			protected set
+			{
+				_repeatSerachType	= value;
+				NotifyPropertyChanged(() => CurrentRepeatsBasket);
+				NotifyPropertyChanged(() => CurrentRepeatsBasketSorted);
+			}
+		}
+
 
 		public vm.iDnaSequenceSortOptionList RepeatSortOptionList
 		{
 			get {  return _repeatSortOptions; }
 		}
 
+
+		public vm.iDnaSequenceSortOptionList HairpinSortOptionList
+		{
+			get { return _hairpinSortOptions; }
+		}
 
 
 
@@ -100,6 +129,17 @@ namespace iDna
 			}
 		}
 
+		public int HairpinCount
+		{
+			get
+			{
+				if (_hairPinBasket == null || _hairPinBasket.Count <= 0)
+					return 0;
+
+				return _hairPinBasket.Select(i => i.SequenceString).Distinct().Count();
+			}
+		}
+
 		public bool IsRepeatProcessRunning
 		{
 			get {  return _isRepeatProcessRunning; }
@@ -119,17 +159,31 @@ namespace iDna
 
 		public int RepeatSearchPosition
 		{
-			get { return _reaptSearchPosition; }
+			get { return _repeatSearchPosition; }
 			protected set
 			{
-				if(value == _reaptSearchPosition)
+				if(value == _repeatSearchPosition)
 					return;
 
-				_reaptSearchPosition = value;
+				_repeatSearchPosition = value;
 				NotifyPropertyChanged(() => RepeatSearchPosition);
 			}
 		}
 
+
+		iDnaBasketSortOption HairpinSortOption
+		{
+			get { return _hairpinSortOptions.SelectedOption; }
+			set
+			{
+				if(value == _hairpinSortOptions.SelectedOption)
+					return;
+
+				_hairpinSortOptions.SelectedOption	= value;
+				NotifyPropertyChanged(()=> HairpinSortOption);
+				NotifyPropertyChanged(() => HairpinBasketSorted);
+			}
+		}
 
 		iDnaBasketSortOption RepeatSortOption
 		{
@@ -179,8 +233,60 @@ namespace iDna
 					_repeatsBasket = value;
 
 				NotifyPropertyChanged(() => RepeatsBasket);
+				NotifyPropertyChanged(() => CurrentRepeatsBasket);
+				NotifyPropertyChanged(() => CurrentRepeatsBasketSorted);
 			}
 		}
+
+		public iDnaSequenceList CurrentRepeatsBasket
+		{
+			get {  return _repeatSerachType == RepeatSerachType.SearchRepeats ? _repeatsBasket : _hairPinBasket; }
+		}
+
+		public IEnumerable<iDnaSequence> CurrentRepeatsBasketSorted
+		{
+			get { return _repeatSerachType == RepeatSerachType.SearchRepeats ? RepeatsBasketSorted : HairpinBasketSorted; }
+		}
+
+
+		public IEnumerable<iDnaSequence> HairpinBasketSorted
+		{
+			get
+			{
+				switch (HairpinSortOption)
+				{
+					case iDnaBasketSortOption.NoSort:
+					default:
+						return HairpinBasket;
+
+					case iDnaBasketSortOption.SortByNumberOfOccurrences:
+						return _hairPinBasket.OrderBy(i => i._nOccurrences).ToList();
+
+					case iDnaBasketSortOption.SortByPosition:
+						return _hairPinBasket.OrderBy(s => (s == null || s.Count <= 0) ? 0 : s[0].Index).ToList();
+				}
+			}
+		}
+
+
+		public iDnaSequenceList HairpinBasket
+		{
+			get {  return _hairPinBasket; }
+			protected set
+			{
+				if(value == _hairPinBasket)
+					return;
+
+				if(value == null)
+					_hairPinBasket.Clear();
+				else
+					_hairPinBasket = value;
+
+				NotifyPropertyChanged(() => HairpinBasket);
+				NotifyPropertyChanged(() => HairpinBasketSorted);
+			}
+		}
+
 
 
 		IEnumerable<iDnaNode> AllStartoccurrencesOfString(string str)
@@ -212,28 +318,31 @@ namespace iDna
 		}
 
 
-		public async Task<int> GetRepeats(Dispatcher dispatcher)
+		public async Task<int> GetRepeatsOrHairpins(Dispatcher dispatcher, bool searchHairpins)
 		{
 			if(dispatcher == null)
 				dispatcher	= Dispatcher.CurrentDispatcher;
 
-			_repeatsBasket.Clear();
+			iDnaSequenceList	targetBasket	= searchHairpins ? _repeatsBasket : _hairPinBasket;
+
+			CurrentRepeatSearchType	= searchHairpins ? RepeatSerachType.SerachHiarpins : RepeatSerachType.SearchRepeats;
+
+			targetBasket.Clear();
 			_stringOccurList.Clear();
 			RepeatSortOption		= iDnaBasketSortOption.NoSort;
 
-			iDnaRepeatSettings		settings			= iDnaRepeatSettings.Instance;
-			iDnaMinMaxValues		minMax				= settings.MinMaxValues;
+			iDnaRepeatSettings		repeatSettings		= iDnaRepeatSettings.Instance;
+			iDnaHairpinSettings		hairSettings		= iDnaHairpinSettings.Instance;
+			iDnaMinMaxValues		minMax				= (searchHairpins) ? hairSettings.MinMaxValues : repeatSettings.MinMaxValues;
 			int						startIndex			= minMax.StartRegionIndex,
 									endRegionIndex		= minMax.EndRegionIndex,
 									endIndexMin			= minMax.MinNodes,
 									endIndexMax			= minMax.MaxNodes;
-			//iDnaSequence			seqMax				= null;
 			double					TmMin				= (double)minMax.MinMeltingTm,
 									TmMax				= (double) minMax.MaxMeltingTm;
 			bool					foundRepeats		= false,
-									//nodeSeleted			= false,
-									findOverlapping		= settings.SearchOverlapping,
-									showPosition		= settings.ShowSearchPosition;
+									findOverlapping		= repeatSettings.SearchOverlapping,
+									showPosition		= repeatSettings.ShowSearchPosition;
 			int						basketLastCount		= 0;
 			int						lenSeqString,
 									lenSearch			= 0;
@@ -242,9 +351,18 @@ namespace iDna
 
 			IsRepeatProcessRunning	= true;
 			RepeatSearchPosition	= 0;
-			_repeatsBasket.Clear();
-			NotifyPropertyChanged(() => RepeatsBasket);
-			NotifyPropertyChanged(() => RepeatsBasketSorted);
+
+			if(searchHairpins)
+			{
+				NotifyPropertyChanged(() => HairpinBasket);
+				NotifyPropertyChanged(() => HairpinBasketSorted);
+			}
+				
+			else
+			{
+				NotifyPropertyChanged(() => RepeatsBasket);
+				NotifyPropertyChanged(() => RepeatsBasketSorted);
+			}
 
 			if (_repeatCancelSource != null)
 			{
@@ -267,18 +385,19 @@ namespace iDna
 					RepeatSearchPosition	= startIndex;
 					endIndexMin				= startIndex	+ minMax.MinNodes;
 
-					if(startIndex + minMax.MaxNodes >= maxEndRegion)	//this.Count)
-						endIndexMax		= maxEndRegion - 1;				// this.Count - 1;
+					if(startIndex + minMax.MaxNodes >= maxEndRegion)
+						endIndexMax		= maxEndRegion - 1;
 					else
 						endIndexMax		= startIndex	+ minMax.MaxNodes;
 
 					foundRepeats	= false;
 
+					// keep track of current node selection
 					nodeCurrentSelection	= this[startIndex].IsSelected;
 
 					if (showPosition)
 					{
-						this[startIndex].IsSelected = true;
+						this[startIndex].IsSelected = !nodeCurrentSelection;	/// invert selection
 						Thread.Sleep(15);
 					}
 
@@ -293,7 +412,7 @@ namespace iDna
 					lenSearch					= lenSeqString;
 					string		shortestString	= strAtStart.Substring(0, minMax.MinNodes);
 
-					// we already searched for this as shortest string: skip this location
+					/// we already searched for this as shortest string: skip this location
 					if (_stringOccurList.Count > 0 && _stringOccurList.Any(s => s.ItemString == shortestString))
 					{
 						lenSearch		= minMax.MinNodes;
@@ -305,7 +424,8 @@ namespace iDna
 					{
 						string			str		= strAtStart.Substring(0, len);
 
-						if (_stringOccurList.Count > 0 && _stringOccurList.Any(s => s.ItemString == str))		//if (_repeatsBasket.Any(s => s.SequenceString == str))
+						/// did we already searched fro this string?: skip
+						if (_stringOccurList.Count > 0 && _stringOccurList.Any(s => s.ItemString == str))
 						{
 							lenSearch		= len;
 							foundRepeats	= true;
@@ -320,37 +440,46 @@ namespace iDna
 						lenSearch		= lenSeqString - trimEnd;
 						searchString	= sequenceString.Substring(0, lenSearch);
 
-						// we already searched for this: skip
+						/// we already searched for this: skip
 						if (_stringOccurList.Count >0 && _stringOccurList.Any(s => s.ItemString == searchString))
 							goto next_index;
 
-						// add this to the search list
+						/// add this to the search list
 						_stringOccurList.AddUnique(new StringOccurrence(searchString, 0));
 
-						// string alreay in repeat library? : skip
-						if (_repeatsBasket.Any(s => s.SequenceString == searchString))
+						/// string alreay in repeat library? : skip
+						if (targetBasket.Any(s => s.SequenceString == searchString))
 							goto next_index;
 
-						var		allStartOccurrences	= this.AllStartoccurrencesOfString(searchString);
+						/// for hairpin: get the pair string
+						
+						var		allStartOccurrences	= this.AllStartoccurrencesOfString( searchHairpins 
+																						? iDnaBaseNucleotides.Instance.GetPairString(searchString) 
+																						: searchString);
 						int		occurrences			= allStartOccurrences == null ? 0 : allStartOccurrences.Count();
 
-						// keep track of occurrences
+						/// keep track of occurrences
 						_stringOccurList[searchString].Occurrs	= occurrences;
 
 						if (allStartOccurrences != null && occurrences > 1)
 						{
 							foundRepeats	= true;
 							int				occurrenceIndex		= 1;
-							string			repeatName			= "R" + (RepeatsCount +1).ToString(),
+							string			repeatName			= (searchHairpins ? "H" : "R") + (RepeatsCount +1).ToString(),
 											sequenceName		= "";
 
 							foreach (var item in allStartOccurrences)
 							{
-								//Console.WriteLine(item.Index);
+								/// Console.WriteLine(item.Index);
 								var		repeatSeq	= this.SkipWhile( n => n.Index < item.Index).Take(lenSearch);
 								sequenceName		= repeatName + " oc:" + occurrenceIndex.ToString() + "/" + occurrences.ToString();
-								_repeatsBasket.Add( new iDnaSequence(sequenceName, repeatSeq, refOnly: true, nOccurrences: occurrences));
-								NotifyPropertyChanged(() => RepeatsCount);
+								targetBasket.Add( new iDnaSequence(sequenceName, repeatSeq, refOnly: true, nOccurrences: occurrences));
+
+								if(searchHairpins)
+									NotifyPropertyChanged(() => HairpinCount);
+								else
+									NotifyPropertyChanged(() => RepeatsCount);
+	
 								occurrenceIndex++;
 							}
 							break;
@@ -366,7 +495,7 @@ next_index:
 
 next_location:
 
-					if (showPosition || settings.ShowSearchPosition)
+					if (showPosition || repeatSettings.ShowSearchPosition)
 					{
 						this[startIndex].IsSelected	= nodeCurrentSelection;
 					}
@@ -378,30 +507,57 @@ next_location:
 						startIndex	+= Math.Max(lenSearch, 1);
 					}
 
-					if(settings.ShowSearchPosition)
+					if(repeatSettings.ShowSearchPosition)
 						GoToNodePage(this[startIndex]);
 
-					if(_repeatsBasket.Count > 0 && _repeatsBasket.Count != basketLastCount)
+					if(targetBasket.Count > 0 && targetBasket.Count != basketLastCount)
 					{
-						NotifyPropertyChanged(() => RepeatsBasket);
-						NotifyPropertyChanged(() => RepeatsBasketSorted);
+						//NotifyPropertyChanged(() => CurrentRepeatsBasket);
+						//NotifyPropertyChanged(() => CurrentRepeatsBasketSorted);
+
+						if (searchHairpins)
+						{
+							NotifyPropertyChanged(() => HairpinBasket);
+							NotifyPropertyChanged(() => HairpinBasketSorted);
+						}
+						else
+						{
+							NotifyPropertyChanged(() => RepeatsBasket);
+							NotifyPropertyChanged(() => RepeatsBasketSorted);
+						}
 					}
 
-					basketLastCount	= _repeatsBasket.Count;
+					basketLastCount	= targetBasket.Count;
 				}
 			}, _repeatCancelSource.Token);
 
 			IsRepeatProcessRunning	= false;
-			NotifyPropertyChanged(() => RepeatsBasket);
-			NotifyPropertyChanged(() => RepeatsBasketSorted);
-			return _repeatsBasket.Count;
+			if(searchHairpins)
+			{
+				NotifyPropertyChanged(() => HairpinBasket);
+				NotifyPropertyChanged(() => HairpinBasketSorted);
+			}
+			else
+			{
+				NotifyPropertyChanged(() => RepeatsBasket);
+				NotifyPropertyChanged(() => RepeatsBasketSorted);
+			}
+
+			return targetBasket.Count;
 		}
+
 
 		private void _repeatSortOptions_SelectedOptionChanged(vm.iDnaSequenceSortOption selectedItem)
 		{
 			NotifyPropertyChanged(() => RepeatSortOption);
-			NotifyPropertyChanged(() => RepeatsBasketSorted);
-
+			Dispatcher.CurrentDispatcher.InvokeAsync(() => NotifyPropertyChanged(() => RepeatsBasketSorted));
 		}
+
+		private void _hairpinSortOptions_SelectedOptionChanged(vm.iDnaSequenceSortOption selectedItem)
+		{
+			NotifyPropertyChanged(() => HairpinSortOption);
+			Dispatcher.CurrentDispatcher.InvokeAsync(() => NotifyPropertyChanged(() => HairpinBasketSorted));
+		}
+
 	}
 }
