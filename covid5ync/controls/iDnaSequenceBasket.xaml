@@ -51,6 +51,9 @@
 														VirtualizingPanel.IsVirtualizing="False"
 												/>
 
+								<Border BorderBrush="Black" BorderThickness="1" Padding="2">
+									<TextBox HorizontalAlignment="Stretch" Margin="1,0" MaxWidth="200" MinWidth="200" VerticalAlignment="Center" Text="{Binding SequenceString, Mode=OneWay}" IsReadOnly="True" />
+								</Border>
 								<StackPanel Grid.Row="1" Background="#FFF6F6F6"
 											Orientation="Horizontal"
 											HorizontalAlignment="Stretch"
