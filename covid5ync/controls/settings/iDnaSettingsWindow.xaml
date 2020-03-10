@@ -20,7 +20,7 @@
 
 		<TextBlock Grid.Row="0" Grid.Column="0" FontSize="16" FontWeight="Bold" Margin="8,0" VerticalAlignment="Center" Text="Settings" />
 
-		<TabControl Grid.Row="1" Grid.Column="0">
+		<TabControl Grid.Row="1" Grid.Column="0" Margin="4">
 			<TabItem>
 				<TabItem.Header>
 					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="8,0">
@@ -30,7 +30,7 @@
 				</TabItem.Header>
 
 				<Grid Background="#FFF6F6F6">
-					<local:iDnaRepeatSettings Margin="8" DataContext="{Binding RepeatsSettings, Mode=OneWay}" />
+					<local:iDnaRepeatSettings Margin="0" DataContext="{Binding RepeatsSettings, Mode=OneWay}" />
 				</Grid>
 			</TabItem>
 

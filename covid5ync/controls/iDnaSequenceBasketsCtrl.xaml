@@ -11,10 +11,10 @@
 		<TabControl>
 			<TabItem>
 				<TabItem.Header>
-					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="4,2" Width="52" ToolTip="Search results">
-						<Image Source="{Binding Source={StaticResource imgSearch48}, Path=Source}" Width="16" Margin="4" />
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="2,0" Width="52" ToolTip="Search results">
+						<Image Source="{Binding Source={StaticResource imgSearch48}, Path=Source}" Width="20" Margin="4,0" />
 						<!--<TextBlock Text="Search" Margin="4,0" />-->
-						<TextBlock Text="{Binding CurrentSearchBasket.Count, Mode=OneWay, IsAsync=True}" FontSize="9" Foreground="Blue" />
+						<TextBlock Text="{Binding CurrentSearchBasket.Count, Mode=OneWay, IsAsync=True}" FontSize="9" />
 					</StackPanel>
 				</TabItem.Header>
 
@@ -48,10 +48,10 @@
 
 			<TabItem>
 				<TabItem.Header>
-					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="4,2" Width="52" ToolTip="Repeats">
-						<Image Source="{Binding Source={StaticResource imgRefresh48}, Path=Source}" Width="16" Margin="4" />
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="4,0" Width="52" ToolTip="Repeats">
+						<Image Source="{Binding Source={StaticResource imgRefresh48}, Path=Source}" Width="20" Margin="2,0" />
 						<!--<TextBlock Text="Repeats" Margin="4,0" Foreground="{Binding Source={StaticResource mainSequence}, Path=IsRepeatProcessRunning, Converter={StaticResource busyToColor}}" />-->
-						<TextBlock Text="{Binding RepeatsCount, Mode=OneWay, IsAsync=True}" FontSize="9" Foreground="Blue" />
+						<TextBlock Text="{Binding RepeatsCount, Mode=OneWay, IsAsync=True}" FontSize="9" />
 					</StackPanel>
 				</TabItem.Header>
 
@@ -110,10 +110,10 @@
 
 			<TabItem>
 				<TabItem.Header>
-					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="4,2" Width="52" ToolTip="Hairpins">
-						<Image Source="{Binding Source={StaticResource imgCovid5ync48}, Path=Source}" Width="16" Margin="4" />
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="2,0" Width="52" ToolTip="Hairpins">
+						<Image Source="{Binding Source={StaticResource imgCovid5ync48}, Path=Source}" Width="20" Margin="2,0" />
 						<!--<TextBlock Text="Hairpins" Margin="4,0" Foreground="{Binding Source={StaticResource mainSequence}, Path=IsRepeatProcessRunning, Converter={StaticResource busyToColor}}" />-->
-						<TextBlock Text="{Binding HairpinCount, IsAsync=True, Mode=OneWay}" FontSize="9" Foreground="Blue" />
+						<TextBlock Text="{Binding HairpinCount, IsAsync=True, Mode=OneWay}" FontSize="9" />
 					</StackPanel>
 				</TabItem.Header>
 

@@ -6,7 +6,7 @@
 			 xmlns:conv="clr-namespace:iDna.controls"
 			 xmlns:vm="clr-namespace:iDna.vm"
              StartupUri="MainWindow.xaml">
-    <Application.Resources>
+	<Application.Resources>
 		<ResourceDictionary>
 			<ObjectDataProvider x:Key="dnaBases"		ObjectType="{x:Type data:iDnaBaseNucleotides}"	MethodName="GetInstance" />
 			<ObjectDataProvider x:Key="mainSequence"	ObjectType="{x:Type data:iDnaSequence}"			MethodName="GetInstance" />
@@ -50,7 +50,7 @@
 			<Image x:Key="imgGears48"		Source="images/gears48x48.png" />
 			<Image x:Key="imgGears16"		Source="images/gears16x16.png" />
 			<Image x:Key="imgGearsData"		Source="images/data-gears34x22.gif" />
-			
+
 			<Image x:Key="imgMap48"			Source="images/map48x48.png" />
 			<Image x:Key="imgToolbox32"		Source="images/toolbox32x32.png" />
 			<Image x:Key="imgSave16"		Source="images/save16x16.png" />
@@ -59,16 +59,38 @@
 			<Style TargetType="{x:Type TextBlock}">
 				<Setter Property="VerticalAlignment"		Value="Center" />
 			</Style>
-			
+
 			<Style x:Key="label" TargetType="{x:Type TextBlock}">
 				<Setter	Property="VerticalAlignment"	Value="Center" />
 				<Setter Property="Foreground"			Value="Blue" />
 				<Setter	Property="TextAlignment"		Value="Right" />
 				<Setter	Property="Margin"				Value="4,0" />
 			</Style>
-			
-			
+
+
+			<Style TargetType="{x:Type TabItem}">
+				<Setter Property="Height"			Value="30" />
+				<Setter Property="Background"		Value="#FF40568D" />
+				<Setter Property="Foreground"		Value="White" />
+				<Style.Triggers>
+					<Trigger Property="IsSelected" Value="True">
+						<Trigger.Setters>
+							<Setter Property="Background"		Value="White" />
+							<Setter Property="Foreground"		Value="Black" />
+						</Trigger.Setters>
+					</Trigger>
+					<Trigger Property="IsMouseOver" Value="True">
+						<Setter Property="Foreground"			Value="Black" />
+						<Setter Property="Background" >
+							<Setter.Value>
+								<SolidColorBrush Color="#FF8091C7" Opacity="0.9"/>
+							</Setter.Value>
+						</Setter>
+					</Trigger>
+				</Style.Triggers>
+			</Style>
+
 		</ResourceDictionary>
-         
-    </Application.Resources>
+
+	</Application.Resources>
 </Application>

@@ -12,7 +12,7 @@
 
 	<Grid DataContext="{Binding Source={StaticResource mainSequence}}" Background="#FFD8DCF5">
 		<Grid.RowDefinitions>
-			<RowDefinition Height="24" />
+			<RowDefinition Height="26" />
 			<RowDefinition Height="42" />
 			<RowDefinition />
 			<RowDefinition Height="28" />
@@ -23,7 +23,7 @@
 		</Grid.ColumnDefinitions>
 
 		<!-- xxxxxxxxxxxxx *********** main menu ********************* xxxxxxxxxxxxx -->
-		<local:iDnaMainMenu IsMainMenu="True" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+		<local:iDnaMainMenu IsMainMenu="True" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0" Padding="4" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" />
 		<!-- xxxxxxxxxxxxx *********** end of main menu ********************* xxxxxxxxxxxxx -->
 
 		<GridSplitter Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" 
@@ -110,7 +110,7 @@
 			<TabItem>
 				<TabItem.Header>
 					<StackPanel Orientation="Horizontal">
-						<Image Source="{Binding Source={StaticResource imgQuickStart48}, Path=Source}" Width="24" Margin="4" />
+						<Image Source="{Binding Source={StaticResource imgQuickStart48}, Path=Source}" Width="28" Margin="4,0" />
 						<TextBlock Text="Quick start" Margin="4,0" />
 					</StackPanel>
 				</TabItem.Header>
@@ -124,7 +124,7 @@
 			<TabItem>
 				<TabItem.Header>
 					<StackPanel Orientation="Horizontal">
-						<Image Source="{Binding Source={StaticResource imgSequence}, Path=Source}" Width="20" Margin="4" />
+						<Image Source="{Binding Source={StaticResource imgSequence}, Path=Source}" Width="22" Margin="3" />
 						<TextBlock Text="Explore sequence" Margin="4,0" />
 					</StackPanel>
 				</TabItem.Header>
@@ -137,7 +137,7 @@
 			<TabItem >
 				<TabItem.Header>
 					<StackPanel Orientation="Horizontal">
-						<Image Source="{Binding Source={StaticResource imgSequenceFile}, Path=Source}" Width="20" Margin="4" />
+						<Image Source="{Binding Source={StaticResource imgSequenceFile}, Path=Source}" Width="22" Margin="4" />
 						<TextBlock Text="Sequence file info" Margin="4,0" />
 					</StackPanel>
 				</TabItem.Header>
@@ -181,7 +181,7 @@
 			<TabItem>
 				<TabItem.Header>
 					<StackPanel Orientation="Horizontal">
-						<Image Source="{Binding Source={StaticResource imgAbout}, Path=Source}" Width="20" Margin="4" />
+						<Image Source="{Binding Source={StaticResource imgAbout}, Path=Source}" Width="22" Margin="4,3" />
 						<TextBlock Text="About this app" Margin="4,0" />
 					</StackPanel>
 				</TabItem.Header>
