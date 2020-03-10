@@ -289,6 +289,15 @@ namespace iDna
 			CurrentCancellationSource	= new CancellationTokenSource();
 		}
 
+		void InitializeNewSequence()
+		{
+			this._selectionBasket.Clear();
+			this._pairSelectionBasket.Clear();
+			this._repeatsBasket.Clear();
+			this._hairPinBasket.Clear();
+			this._repeatSearch.Clear();
+		}
+
 
 		public async Task<bool> ParseString(string str)
 		{
@@ -296,11 +305,7 @@ namespace iDna
 				return false;
 
 			InitializeCancellationSource();
-
-			this._selectionBasket.Clear();
-			this._pairSelectionBasket.Clear();
-			this._repeatsBasket.Clear();
-			this._repeatSearch.Clear();
+			InitializeNewSequence();
 			this.Clear(false);
 
 			this.Id					= Guid.NewGuid().ToString();
@@ -321,7 +326,7 @@ namespace iDna
 
 					this.AddNode(this, c, ++index);
 
-					//// refersh if we areon first non-full page
+					//// refersh if we are on first non-full page
 					//if(_paging.CurrentPage <= 1 && this.Count <= _paging.PageSize)
 					//	Dispatcher.CurrentDispatcher.Invoke(()=> NotifyPropertyChanged(() => SequencePaging));
 				}
