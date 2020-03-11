@@ -36,6 +36,7 @@ namespace iDna.vm
 
 
 		protected ICommand		_downLoadSequences			= null,
+								_gotoSARS_site				= null,
 								_openFile					= null,
 								_loadBuiltinSequence		= null,     // load application's delivered sequence
 								_loadSequenceFromClipboard = null,		// load sequence from clipoard
@@ -67,11 +68,59 @@ namespace iDna.vm
 								_searchPairStringsFromFile	= null,
 			
 								_defineWorkRegionFromSelection		= null,
+
+								_clearHairpinBaskets		= null,
+								_clearRepeatBaskets			= null,
+								_clearSearchBaskets			= null,
+
+								_editSequenceInfo = null,
 								_notYetImplemented			= null;
 
 		protected iDnaCommandCentral() : base()
 		{
 
+		}
+
+
+		public ICommand EditSequenceInfo
+		{
+			get
+			{
+				if(_editSequenceInfo == null)
+				{
+					_editSequenceInfo = new CommandExecuter(() =>
+					{
+						// ShowNotYetImplemented();
+
+						iDnaSequence seq		= iDnaSequence.Instance;
+
+						if(seq == null)
+							return;
+
+						SequenceInfoWindow seqWnd		= new SequenceInfoWindow() {  DataContext = seq };
+
+						seqWnd.Owner	= Application.Current.MainWindow;
+						seqWnd.ShowDialog();
+					});
+				}
+				return _editSequenceInfo;
+			}
+		}
+
+
+		public ICommand GotoSARS_Website
+		{
+			get
+			{
+				if(_gotoSARS_site == null)
+				{
+					_gotoSARS_site = new CommandExecuter(() =>
+					{
+						TryOpenWebPage("https://www.ncbi.nlm.nih.gov/genomes/SARS/SARS.html");
+					});
+				}
+				return _gotoSARS_site;
+			}
 		}
 
 		public ICommand DownloadSequences
@@ -301,6 +350,79 @@ namespace iDna.vm
 				return _resetSelections;
 			}
 		}
+
+
+		// _clearHairpinBaskets
+		// _clearRepeatBaskets
+		// _clearSearchBaskets
+
+		public ICommand ClearSearchBaskets
+		{
+			get
+			{
+				if(_clearSearchBaskets == null)
+				{
+					_clearSearchBaskets = new CommandExecuter(() =>
+					{
+						// ShowNotYetImplemented();
+
+						iDnaSequence seq		= iDnaSequence.Instance;
+
+						if(seq == null)
+							return;
+
+						seq.ClearSearchAndSelectionBaskets();
+					});
+				}
+				return _clearSearchBaskets;
+			}
+		}
+
+
+		public ICommand ClearRepeatBaskets
+		{
+			get
+			{
+				if (_clearRepeatBaskets == null)
+				{
+					_clearRepeatBaskets = new CommandExecuter(() =>
+					{
+						// ShowNotYetImplemented();
+
+						iDnaSequence seq = iDnaSequence.Instance;
+
+						if (seq == null)
+							return;
+
+						seq.ClearRepeatsBaskets();
+					});
+				}
+				return _clearRepeatBaskets;
+			}
+		}
+
+		public ICommand ClearHairpinBaskets
+		{
+			get
+			{
+				if (_clearHairpinBaskets == null)
+				{
+					_clearHairpinBaskets = new CommandExecuter(() =>
+					{
+						// ShowNotYetImplemented();
+
+						iDnaSequence seq = iDnaSequence.Instance;
+
+						if (seq == null)
+							return;
+
+						seq.ClearHairpinBaskets();
+					});
+				}
+				return _clearHairpinBaskets;
+			}
+		}
+
 
 		// _defineWorkRegionFromSelection
 		public ICommand DefineWorkRegionFromSelection

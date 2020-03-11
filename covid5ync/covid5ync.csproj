@@ -38,7 +38,7 @@
     <SuiteName>covid5ync</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>24</ApplicationRevision>
+    <ApplicationRevision>25</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -118,6 +118,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="controls\iDnaSequenceBasketsCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\iDnaSequenceInfoCtrl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -231,6 +235,9 @@
     <Compile Include="controls\converters\iDnaConverters.cs" />
     <Compile Include="controls\iDnaSequenceBasketsCtrl.xaml.cs">
       <DependentUpon>iDnaSequenceBasketsCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\iDnaSequenceInfoCtrl.xaml.cs">
+      <DependentUpon>iDnaSequenceInfoCtrl.xaml</DependentUpon>
     </Compile>
     <Compile Include="controls\iDnaSequenceSortOptionsCtrl.xaml.cs">
       <DependentUpon>iDnaSequenceSortOptionsCtrl.xaml</DependentUpon>
@@ -395,6 +402,25 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\del-close19x19.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ncbi\ncbi.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\desktop16x16.png" />
+    <Resource Include="images\details24x24.png" />
+    <Resource Include="images\details48x48.png" />
+    <Resource Include="images\folder16x16.png" />
+    <Resource Include="images\ok24x24.png" />
+    <Resource Include="images\ok48x48.png" />
+    <Resource Include="images\property16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\citationBlack48x48.png" />
+    <Resource Include="images\citationPink96x96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\edit15x12.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

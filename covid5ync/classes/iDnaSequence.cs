@@ -349,6 +349,39 @@ namespace iDna
 			return this.Count > 0;
 		}
 
+		internal void ClearSearchAndSelectionBaskets()
+		{
+			_selectionBasket.Clear();
+			_pairSelectionBasket.Clear();
+
+			NotifyPropertyChanged(() => SelectionBasket);
+			NotifyPropertyChanged(() => PairSelectionBasket);
+			NotifyPropertyChanged(() => CurrentSearchBasket);
+			NotifyPropertyChanged(() => CurrentSearchBasketSorted);
+			NotifyPropertyChanged(() => PairSelectionBasket);
+		}
+
+
+		internal void ClearRepeatsBaskets()
+		{
+			_repeatsBasket.Clear();
+			_repeatSearch.Clear();
+
+			NotifyPropertyChanged(() => RepeatsBasket);
+			NotifyPropertyChanged(() => RepeatsBasketSorted);
+			NotifyPropertyChanged(() => RepeatsCount);
+		}
+
+
+		internal void ClearHairpinBaskets()
+		{
+			_hairPinBasket.Clear();
+			_repeatSearch.Clear();
+
+			NotifyPropertyChanged(() => HairpinBasket);
+			NotifyPropertyChanged(() => HairpinBasketSorted);
+			NotifyPropertyChanged(() => HairpinCount);
+		}
 
 
 		internal void ResetSelection(bool selectValue, Dispatcher dispatcher)
@@ -367,6 +400,9 @@ namespace iDna
 			_pairSelectionBasket.Clear();
 
 			NotifyPropertyChanged(() => SelectionBasket);
+			NotifyPropertyChanged(() => PairSelectionBasket);
+			NotifyPropertyChanged(() => CurrentSearchBasket);
+			NotifyPropertyChanged(() => CurrentSearchBasketSorted);
 			NotifyPropertyChanged(() => PairSelectionBasket);
 		}
 

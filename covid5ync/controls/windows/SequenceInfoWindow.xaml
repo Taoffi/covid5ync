@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:iDna.controls"
         mc:Ignorable="d"
-        Title="Sequence Info" Height="450" Width="800">
+		ResizeMode="CanResizeWithGrip"
+		Icon="{Binding Source={StaticResource imgCovid5ync48}, Path=Source}"
+        Title="Sequence Info" Height="263.836" Width="529.589" Background="#FFF6F6F6">
     <Grid>
-        
-    </Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="32" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+
+		<TextBlock Grid.Row="0" FontSize="16" FontWeight="Bold" Text="Sequence info" Margin="8,0" />
+
+		<local:iDnaSequenceInfoCtrl Grid.Row="1" Margin="4" DataContext="{Binding }" />
+	</Grid>
 </Window>

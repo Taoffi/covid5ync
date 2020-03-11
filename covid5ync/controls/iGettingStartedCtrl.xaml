@@ -50,7 +50,7 @@
 						Padding="-4" Margin="8,4" 
 						Command="{Binding LoadBuiltinSequence, Mode=OneWay}"
 						Background="Transparent" BorderBrush="Transparent" Height="48" Width="60"
-						ToolTip="load the covid-19 sequence embedded in the application"
+						ToolTip="load the covid-19 sequence embedded in the application&#10;LR757995 29872 bp RNA linear VRL 01-FEB-2020 whole genome"
 						>
 					<Button.Content>
 						<Border BorderBrush="Maroon" BorderThickness="0">

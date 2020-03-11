@@ -8,13 +8,31 @@ With this application, we aim to offer a very modest contribution for you to do 
 WE STRIVE TO HEAR FROM YOU TO ADD THE FEATURES MOST USEFUL FOR YOUR WORK.
 Please send your feedback to covid5ync@5ync.net.. we will answer as quickly as we can.
 ==================================================================================================
+THE FUTURE OF THIS APP:
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+We aim to integrate in your environement. Many tools are already out there. Our goal is to integrate their
+services and data into this app. We are working on a few near-future targets:
+    * Connect to NCBI databases and services to use their great features and let you join other research projects
+    * Structuring application data for interoperability with common research environments
+        + Handle various sequences' formats either online or offline to receive or transmit data
+    * Build an application local databases for managing your sequences information as libraries
+==================================================================================================
 Change log
+==================================================================================================
+-----------------------------
+2020-03-11
+-----------------------------
+* edit sequence name and summary (future use for saving/loading sequences)
+* edit found search fragments' name and info (for search, repeats, pair-repeats)
+* individually clear search baskets
+* added link to NCBI SARS web site (File menu)
+
 -----------------------------
 2020-03-08
 -----------------------------
 * define search region (for repeats/hairpins/primers) from 1st contigous selection
-* search for pair-repeats (future feature: hairpins need more settings)
-* search (and pair-search) strings from text file (work in progress: check source text)
+* search for pair-repeats (future feature: hairpins needs more settings)
+* search (and pair-search) strings from text file (one string per line): work in progress: check source text
 * reset selection to found repeats
 * save or copy pair-repeats to file or to clipboard
 

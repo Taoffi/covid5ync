@@ -38,7 +38,7 @@ namespace iDna
 
 				_searchSortOptions.SelectedOption	= value;
 				NotifyPropertyChanged(()=> SearchSortOption);
-				NotifyPropertyChanged(() => SearchBasketSorted);
+				NotifyPropertyChanged(() => CurrentSearchBasketSorted);
 			}
 		}
 
@@ -46,11 +46,11 @@ namespace iDna
 		private void _searchSortOptions_SelectedOptionChanged(vm.iDnaSequenceSortOption selectedItem)
 		{
 			NotifyPropertyChanged(() => SearchSortOption);
-			NotifyPropertyChanged(() => SearchBasketSorted);
+			NotifyPropertyChanged(() => CurrentSearchBasketSorted);
 		}
 
 
-		public IEnumerable<iDnaSequence> SearchBasketSorted
+		public IEnumerable<iDnaSequence> CurrentSearchBasketSorted
 		{
 			get
 			{
@@ -82,6 +82,7 @@ namespace iDna
 				_currentSearchType	= value;
 				NotifyPropertyChanged(() => CurrentSearchType);
 				NotifyPropertyChanged(() => CurrentSearchBasket);
+				NotifyPropertyChanged(() => CurrentSearchBasketSorted);
 			}
 		}
 
@@ -106,6 +107,7 @@ namespace iDna
 					_selectionBasket	= value;
 				NotifyPropertyChanged(() => SelectionBasket);
 				NotifyPropertyChanged(() => CurrentSearchBasket);
+				NotifyPropertyChanged(() => CurrentSearchBasketSorted);
 			}
 		}
 
@@ -124,6 +126,7 @@ namespace iDna
 					_pairSelectionBasket = value;
 				NotifyPropertyChanged(() => PairSelectionBasket);
 				NotifyPropertyChanged(() => CurrentSearchBasket);
+				NotifyPropertyChanged(() => CurrentSearchBasketSorted);
 			}
 		}
 
@@ -289,12 +292,20 @@ namespace iDna
 					if(_cancelSource.IsCancellationRequested)
 						break;
 
-					if(foundCollection != null)
-						occurrences	+= foundCollection.Count();
+					int itemsFound		= foundCollection == null ? 0 : foundCollection.Count();
+
+					//if(itemsFound > 0)
+					{
+						occurrences += itemsFound;
+					}
 				}
 			}, _cancelSource.Token);
 
-			NotifyPropertyChanged(() => CurrentSearchBasket);
+			Dispatcher.CurrentDispatcher.Invoke(() =>
+			{
+				NotifyPropertyChanged(() => CurrentSearchBasket);
+				NotifyPropertyChanged(() => CurrentSearchBasketSorted);
+			});
 			return occurrences;
 		}
 

@@ -73,7 +73,25 @@
 										</Button.Content>
 									</Button>
 
-									<TextBlock Text="{Binding Name}" FontSize="9" VerticalAlignment="Center" Margin="8,0" />
+									<TextBox Text="{Binding Name, Mode=TwoWay}"
+											 FontSize="10" VerticalAlignment="Center" Width="84" Margin="4,0"
+											 ToolTip="sequence name. modify as needed"
+											 />
+
+									<Button x:Name="buttonEditInfo" ToolTip="edit sequence info"
+											Background="{x:Null}" BorderBrush="{x:Null}"
+											HorizontalContentAlignment="Left"
+											Padding="0"
+											Click="buttonEditInfo_Click">
+										<Button.Content>
+											<Border BorderBrush="Black" BorderThickness="1" Width="20" Height="16"
+													Margin="0,-2" Padding="1" Background="LightGray"
+											ToolTip="locate on page">
+												<Image Source="{Binding Source={StaticResource imgEdit15x12}, Path=Source}" Width="12" Margin="0" />
+											</Border>
+										</Button.Content>
+									</Button>
+
 									<TextBlock Text="(" FontSize="9" VerticalAlignment="Center" Margin="8,0,0,0" Foreground="Blue" />
 									<TextBlock Text="{Binding Count, Mode=OneWay}" FontSize="9" VerticalAlignment="Center" Margin="0" Foreground="Blue"/>
 									<TextBlock Text=" nodes)" FontSize="9" VerticalAlignment="Center" Margin="0" Foreground="Blue"/>

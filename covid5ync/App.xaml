@@ -38,6 +38,7 @@
 			<Image x:Key="imgRefresh48"		Source="images/refresh48x48.png" />
 			<Image x:Key="imgSearch48"		Source="images/search48x48.png" />
 			<Image x:Key="imgDoc48"			Source="images/doc48x48.png" />
+			<Image x:Key="imgReset19"		Source="images/del-close19x19.jpg" />
 
 			<Image x:Key="imgMail32"		Source="images/mail32x32.png" />
 			<Image x:Key="imgCopy23"		Source="images/copy23x22.png" />
@@ -46,6 +47,7 @@
 			<Image x:Key="imgClient75"		Source="images/client75x75.png" />
 			<Image x:Key="imgFile32"		Source="images/file32x30.png" />
 			<Image x:Key="imgFolder32"		Source="images/folder32x32.png" />
+			<Image x:Key="imgFolder16"		Source="images/folder16x16.png" />
 			<Image x:Key="imgFolderOpen16"	Source="images/folderOpen16x16.png" />
 			<Image x:Key="imgGears48"		Source="images/gears48x48.png" />
 			<Image x:Key="imgGears16"		Source="images/gears16x16.png" />
@@ -55,6 +57,16 @@
 			<Image x:Key="imgToolbox32"		Source="images/toolbox32x32.png" />
 			<Image x:Key="imgSave16"		Source="images/save16x16.png" />
 			<Image x:Key="imgQuickStart48"	Source="images/quickstart48x48.png" />
+
+			<Image x:Key="imgEdit15x12"		Source="images/edit15x12.gif" />
+			<Image x:Key="imgDesktop16"		Source="images/desktop16x16.png" />
+			<Image x:Key="imgDetails48"		Source="images/details48x48.png" />
+			<Image x:Key="imgDetails24"		Source="images/details24x24.png" />
+			<Image x:Key="imgCitationBlack"	Source="images/citationBlack48x48.png" />
+			<Image x:Key="imgCitation96"	Source="images/citationPink96x96.png" />
+			<Image x:Key="imgok48"			Source="images/ok48x48.png" />
+			<Image x:Key="imgok24"			Source="images/ok24x24.png" />
+			<Image x:Key="imgokProperty16"	Source="images/property16x16.png" />
 
 			<Style TargetType="{x:Type TextBlock}">
 				<Setter Property="VerticalAlignment"		Value="Center" />

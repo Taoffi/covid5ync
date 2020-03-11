@@ -8,7 +8,8 @@
         mc:Ignorable="d"
 		Icon="iDna.ico"
 		SnapsToDevicePixels="True"
-        Title="covid-5ync" Height="640" Width="1024" ResizeMode="CanResizeWithGrip">
+        Title="covid-5ync" Height="640" Width="1024"
+		ResizeMode="CanResizeWithGrip">
 
 	<Grid DataContext="{Binding Source={StaticResource mainSequence}}" Background="#FFD8DCF5">
 		<Grid.RowDefinitions>
@@ -40,10 +41,11 @@
 					 Text="covid-5ync" Background="{x:Null}"
 					 ToolTip="Built-in sequence source: ncbi, date: 2020-02-28"/>
 
-			<TextBlock FontWeight="Bold" VerticalAlignment="Center" Margin="4,0"
-					   Text="{Binding Name, IsAsync=True}"
-					   MaxWidth="480"
-					   TextTrimming="CharacterEllipsis"
+			<TextBox x:Name="sequenceName" FontWeight="Bold" VerticalAlignment="Center" Margin="4,0"
+					 Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, IsAsync=True}"
+					 MaxWidth="600"
+					 Width="464"
+					 Height="22"
 					   />
 
 			<TextBox x:Name="textBlockNodeCount"
@@ -138,7 +140,7 @@
 				<TabItem.Header>
 					<StackPanel Orientation="Horizontal">
 						<Image Source="{Binding Source={StaticResource imgSequenceFile}, Path=Source}" Width="22" Margin="4" />
-						<TextBlock Text="Sequence file info" Margin="4,0" />
+						<TextBlock Text="Sequence summary" Margin="4,0" />
 					</StackPanel>
 				</TabItem.Header>
 
@@ -154,22 +156,25 @@
 
 					<StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="4,0" VerticalAlignment="Center">
 						<TextBlock Style="{StaticResource label}" Text="Sequence Id" />
-						<TextBlock VerticalAlignment="Center" Margin="4,0" Text="{Binding Id, IsAsync=True}" />
+						<TextBlock VerticalAlignment="Center" Margin="4,0"
+								   Text="{Binding Id, IsAsync=True}" />
 					</StackPanel>
 
-					<TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center" Margin="8,0"
-							   Text="Sequence file info" />
+					<TextBlock Grid.Row="1" Grid.Column="0"
+							   FontWeight="Bold" VerticalAlignment="Center"
+							   Margin="8,0"
+							   Text="Sequence summary / file info" />
 
 					<TextBox x:Name="textBoxSequenceInfo"
 							 Grid.Row="2" Grid.Column="0"
 							 VerticalScrollBarVisibility="Auto"
 							 HorizontalScrollBarVisibility="Auto"
 							 AcceptsReturn="True"
-							 IsReadOnly="True"
+							 IsReadOnly="False"
 							 VerticalAlignment="Stretch"
 							 HorizontalAlignment="Stretch"
 							 FontFamily="Consolas"
-							 Text="{Binding SequenceFileInfo, IsAsync=True}"
+							 Text="{Binding SequenceFileInfo, UpdateSourceTrigger=PropertyChanged, IsAsync=True}"
 							 Padding="8" FontSize="13"
 							 Margin="4"
 							 BorderBrush="Black"
