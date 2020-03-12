@@ -54,11 +54,11 @@
 	<!-- file menu -->
 	<MenuItem Header="_File">
 		<MenuItem Header="_Open"
-					Icon="{DynamicResource mimgFolderOpen16}"
-					ToolTip="load a sequence file from your pc"
+				  Icon="{DynamicResource mimgFolderOpen16}"
+				  ToolTip="load a sequence file from your pc"
 				  ToolTipService.ShowOnDisabled="True"
-					Command="{Binding OpenFile, Mode=OneWay}"
-					IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
+				  Command="{Binding OpenFile, Mode=OneWay}"
+				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
 						  />
 
 		<MenuItem Header="Load built-in se_quence"
@@ -69,6 +69,16 @@
 				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
 						  />
 
+		<Separator />
+		<MenuItem Header="Load sequence from Cli_pboard"
+				  Icon="{DynamicResource mimgPaste23}"
+				  ToolTip="load the sequence from text you already copied in the clipboard"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding LoadSequenceFromClipboard, Mode=OneWay}"
+				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
+				  />
+
+		<Separator />
 		<MenuItem Header="_Save sequence As..."
 				  Icon="{DynamicResource mimgSave16}"
 				  ToolTip="save current sequence to file"
@@ -111,23 +121,23 @@
 	<!-- edit menu -->
 	<MenuItem Header="_Edit">
 		<MenuItem Header="_Copy selection to Clipboard"
-				Icon="{DynamicResource mimgCopy23}"
-				ToolTip="copy selected fragments to clipboard"
-				ToolTipService.ShowOnDisabled="True"
-				Command="{Binding CopySelectionsToClipboard, Mode=OneWay}"/>
+				  Icon="{DynamicResource mimgCopy23}"
+				  ToolTip="copy selected fragments to clipboard"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding CopySelectionsToClipboard, Mode=OneWay}"/>
 
 		<Separator />
 		<MenuItem Header="_Reset all selections"
-				ToolTip="un-select all node"
-				ToolTipService.ShowOnDisabled="True"
+				  ToolTip="un-select all node"
+				  ToolTipService.ShowOnDisabled="True"
 				  Icon="{DynamicResource mimgReset19}"
-				Command="{Binding ResetAllSelections, Mode=OneWay}"/>
+				  Command="{Binding ResetAllSelections, Mode=OneWay}"/>
 
 		<MenuItem Header="_Define search region from selection"
-				ToolTip="define the first selected contigous region as your search region for repeats, hairpins and primers"
-				ToolTipService.ShowOnDisabled="True"
+				  ToolTip="define the first selected contigous region as your search region for repeats, hairpins and primers"
+				  ToolTipService.ShowOnDisabled="True"
 				  Icon="{DynamicResource mimgCitation48}"
-				Command="{Binding DefineWorkRegionFromSelection, Mode=OneWay}"/>
+				  Command="{Binding DefineWorkRegionFromSelection, Mode=OneWay}"/>
 
 		<Separator />
 		<MenuItem Header="_Search regions from file"
@@ -143,15 +153,6 @@
 				  Icon="{DynamicResource mimgLoadPairSearchRegions32}"
 				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
 				  Command="{Binding SearchPairStringsFromFile, Mode=OneWay}" />
-
-		<Separator />
-		<MenuItem Header="Load sequence from Cli_pboard"
-						  Icon="{DynamicResource mimgPaste23}"
-						  ToolTip="load the sequence from text you already copied in the clipboard"
-				  ToolTipService.ShowOnDisabled="True"
-						  Command="{Binding LoadSequenceFromClipboard, Mode=OneWay}"
-						  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
-						  />
 
 		<Separator />
 
@@ -229,24 +230,25 @@
 	<!-- help menu -->
 	<MenuItem Header="Help">
 		<!--<MenuItem Header="_What is new"
-						  Icon="{StaticResource imgFile32}"
-						  Command="{Binding WhatIsNew, Mode=OneWay}"/>-->
+					  Icon="{StaticResource imgFile32}"
+					  Command="{Binding WhatIsNew, Mode=OneWay}"/>-->
 
 		<MenuItem Header="_About the project"
-						  Icon="{DynamicResource mimgAboutProject}"
-						  Command="{Binding GotoProjectPage, Mode=OneWay}"/>
+				  Icon="{DynamicResource mimgAboutProject}"
+				  ToolTip="open project web page"
+				  Command="{Binding GotoProjectPage, Mode=OneWay}"/>
 
 		<MenuItem Header="_About this app"
-						  Icon="{DynamicResource mimgCovid5ync48}"
-						  Command="{Binding AboutApp, Mode=OneWay}"
-						  />
+				  Icon="{DynamicResource mimgCovid5ync48}"
+				  Command="{Binding AboutApp, Mode=OneWay}"
+				  />
 
 		<Separator />
 
 		<MenuItem Header="_Contact us"
-						  Icon="{DynamicResource mimgMail32}"
-						  ToolTip="your feedback is important. send us your remarks, suggestions and bug reports. thank you"
+				  Icon="{DynamicResource mimgMail32}"
+				  ToolTip="your feedback is important. send us your remarks, suggestions and bug reports. thank you"
 				  ToolTipService.ShowOnDisabled="True"
-						  Command="{Binding ContactSupport, Mode=OneWay}" />
+				  Command="{Binding ContactSupport, Mode=OneWay}" />
 	</MenuItem>
 </Menu>

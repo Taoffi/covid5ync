@@ -9,7 +9,10 @@
 		Height="300" Width="480" 
 		ResizeMode="CanResizeWithGrip"
 		Icon="/covid5ync;component/images/gears48x48.png"
-		DataContext="{StaticResource dnaSettings}">
+		DataContext="{StaticResource dnaSettings}"
+		ShowInTaskbar="False"
+		WindowStartupLocation="CenterOwner"
+		>
 
 
 	<Grid Background="#FFF6F6F6">
@@ -23,7 +26,7 @@
 		<TabControl Grid.Row="1" Grid.Column="0" Margin="4">
 			<TabItem>
 				<TabItem.Header>
-					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="8,0">
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="8,2">
 						<Image Source="{Binding Source={StaticResource imgCitation48}, Path=Source}" Height="20" Margin="4,0"/>
 						<TextBlock VerticalAlignment="Center" Text="Repeats settings" />
 					</StackPanel>
@@ -36,7 +39,7 @@
 
 			<TabItem>
 				<TabItem.Header>
-					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="8,0">
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="8,2">
 						<Image Source="{Binding Source={StaticResource imgGears16}, Path=Source}" Height="20" Margin="4,0"/>
 						<TextBlock VerticalAlignment="Center" Text="Hirpins settings" />
 					</StackPanel>

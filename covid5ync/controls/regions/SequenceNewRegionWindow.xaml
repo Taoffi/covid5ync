@@ -4,7 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:iDna.controls"
+		xmlns:data="clr-namespace:iDna"
         mc:Ignorable="d"
+		d:DataContext="{d:DesignInstance Type={x:Type data:iDnaRegionIndexDesignTime}, CreateList=False, IsDesignTimeCreatable=True}"
 		ResizeMode="NoResize"
 		Icon="{Binding Source={StaticResource imgCovid5ync48}, Path=Source}"
         Title="Define new sequence region"
@@ -28,7 +30,9 @@
 				VerticalAlignment="Center"
 				HorizontalAlignment="Left"
 				MinWidth="100"
+				Height="26"
 				Content="Add region" 
+				IsEnabled="{Binding IsInError, Mode=OneWay, Converter={StaticResource reverseBool}}"
 				Click="buttonOk_Click" />
 	</Grid>
 </Window>

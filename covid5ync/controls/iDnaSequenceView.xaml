@@ -24,20 +24,20 @@
     <Grid SnapsToDevicePixels="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition x:Name="colPageLocationBar" Width="14" />
+            <ColumnDefinition x:Name="colPageLocationBar" Width="6" />
         </Grid.ColumnDefinitions>
 
         <ListView x:Name="listItems" 
 				  Grid.Row="0" Grid.Column="0" 
 				  ItemsSource="{Binding SequencePaging.CurrentPageData, IsAsync=True}" 
 				  BorderBrush="#FFA3A3A4" BorderThickness="1"
-				  Background="{x:Null}"
 				  Padding="2"
 				  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
 				  VirtualizingPanel.IsVirtualizing="True"
 				  UseLayoutRounding="True"
 				  IsSynchronizedWithCurrentItem="True"
 				  VerticalContentAlignment="Stretch"
+				  Background="#FF323030"
 				  >
             <ListView.Resources>
                 <Style TargetType="{x:Type ListViewItem}">
@@ -71,7 +71,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
 
-            <ListView.ContextMenu>
+            <!--<ListView.ContextMenu>
                 <ContextMenu DataContext="{Binding Source={StaticResource commandCentral}}">
                     <MenuItem x:Name="menuItemCopySelection2Clipboard"
 							  Command="{Binding CopySelectionsToClipboard, Mode=OneWay}"
@@ -79,7 +79,7 @@
 							  IsEnabled="True"
 							  />
                 </ContextMenu>
-            </ListView.ContextMenu>
+            </ListView.ContextMenu>-->
 
         </ListView>
 
@@ -90,7 +90,7 @@
 				Margin="0" Background="#FF789AC3"
 				Padding="0">
 
-            <Border Background="White" VerticalAlignment="Top" HorizontalAlignment="Stretch" BorderThickness="0.5" BorderBrush="Black">
+            <Border Background="White" VerticalAlignment="Top" HorizontalAlignment="Stretch" BorderThickness="0.1" BorderBrush="Black">
                 <Border.Style>
                     <Style TargetType="{x:Type Border}">
                         <Setter	Property="Margin">

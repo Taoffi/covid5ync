@@ -38,20 +38,29 @@
 					<TextBox Grid.Row="1" Grid.Column="1" 
 							 VerticalAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Right" 
 							 Margin="4,0" Width="80" Height="21"
-							 Text="{Binding MinValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+							 Text="{Binding MinValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+							 BorderBrush="{Binding IsInError, Converter={StaticResource boolToErrorValidator}}"
+							 BorderThickness="1" 
+							 Foreground="{Binding IsInError, Converter={StaticResource boolToErrorValidator}}"
+							 />
 
 					<TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource label}"
 							   Text="End index" />
 					<TextBox Grid.Row="2" Grid.Column="1" 
 							 VerticalAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Right" 
 							 Margin="4,0" Width="80" Height="21"
-							 Text="{Binding MaxValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+							 Text="{Binding MaxValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+							 BorderBrush="{Binding IsInError, Converter={StaticResource boolToErrorValidator}, Mode=OneWay}"
+							 BorderThickness="1"
+							 Foreground="{Binding IsInError, Converter={StaticResource boolToErrorValidator}}"
+							 />
 
 					<TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource label}" Text="Region name" />
 					<TextBox Grid.Row="3" Grid.Column="1" 
 							 VerticalAlignment="Center" HorizontalAlignment="Stretch"
 							 Margin="4,0" Height="21"
-							 Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+							 Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+							 />
 				</Grid>
 			</TabItem>
 

@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:iDna.controls"
 		xmlns:controls="clr-namespace:iDna.controls"
         mc:Ignorable="d"
-		
         Title="About covid-5ync"
 		Height="320" Width="700" 
 		Background="#FFF6F6F6" 
 		ResizeMode="CanResizeWithGrip" 
-		WindowStartupLocation="CenterScreen"
+		WindowStartupLocation="CenterOwner"
+		ShowInTaskbar="False"
 		Icon="/covid5ync;component/iDna.ico">
 	
 	

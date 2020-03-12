@@ -34,6 +34,30 @@ namespace iDna.controls
 		}
 	}
 
+	public class ValidBoolToColor : IValueConverter
+	{
+		static SolidColorBrush	_black = new SolidColorBrush(Colors.Black),
+								_red = new SolidColorBrush(Colors.Red);
+
+		public object Convert(object objIsInErrorValue, Type targetType, object parameter, CultureInfo culture)
+		{
+			if (objIsInErrorValue == null || ! (objIsInErrorValue is bool))
+				return _black;
+
+			bool	inError		= false;
+
+			if(! bool.TryParse(objIsInErrorValue.ToString(), out inError))
+				return _black;
+
+			return inError ? _red : _black;
+		}
+
+		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			throw new NotImplementedException();
+		}
+	}
+
 
 	public class Bool2Visibility : IValueConverter
 	{

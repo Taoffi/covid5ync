@@ -5,13 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:iDna.controls"
         mc:Ignorable="d"
+		WindowStartupLocation="CenterOwner"
 		ResizeMode="CanResizeWithGrip"
+		ShowInTaskbar="False"
 		Icon="{Binding Source={StaticResource imgCovid5ync48}, Path=Source}"
-        Title="Sequence Info" Height="263.836" Width="529.589" Background="#FFF6F6F6">
+        Title="Sequence Info" Height="264" Width="530" Background="#FFF6F6F6">
     <Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="32" />
 			<RowDefinition />
+			<RowDefinition Height="24" />
 		</Grid.RowDefinitions>
 
 		<TextBlock Grid.Row="0" FontSize="16" FontWeight="Bold" Text="Sequence info" Margin="8,0" />

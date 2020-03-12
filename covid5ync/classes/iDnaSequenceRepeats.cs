@@ -235,6 +235,7 @@ namespace iDna
 				NotifyPropertyChanged(() => RepeatsBasket);
 				NotifyPropertyChanged(() => CurrentRepeatsBasket);
 				NotifyPropertyChanged(() => CurrentRepeatsBasketSorted);
+				NotifyPropertyChanged(() => RepeatsCount);
 			}
 		}
 
@@ -284,6 +285,7 @@ namespace iDna
 
 				NotifyPropertyChanged(() => HairpinBasket);
 				NotifyPropertyChanged(() => HairpinBasketSorted);
+				NotifyPropertyChanged(() => HairpinCount);
 			}
 		}
 
@@ -356,11 +358,13 @@ namespace iDna
 			{
 				NotifyPropertyChanged(() => HairpinBasket);
 				NotifyPropertyChanged(() => HairpinBasketSorted);
+				NotifyPropertyChanged(() => HairpinCount);
 			}
 			else
 			{
 				NotifyPropertyChanged(() => RepeatsBasket);
 				NotifyPropertyChanged(() => RepeatsBasketSorted);
+				NotifyPropertyChanged(() => RepeatsCount);
 			}
 
 			if (_repeatCancelSource != null)
@@ -531,11 +535,13 @@ next_location:
 						{
 							NotifyPropertyChanged(() => HairpinBasket);
 							NotifyPropertyChanged(() => HairpinBasketSorted);
+							NotifyPropertyChanged(() => HairpinCount);
 						}
 						else
 						{
 							NotifyPropertyChanged(() => RepeatsBasket);
 							NotifyPropertyChanged(() => RepeatsBasketSorted);
+							NotifyPropertyChanged(() => RepeatsCount);
 						}
 					}
 
@@ -548,11 +554,13 @@ next_location:
 			{
 				NotifyPropertyChanged(() => HairpinBasket);
 				NotifyPropertyChanged(() => HairpinBasketSorted);
+				NotifyPropertyChanged(() => HairpinCount);
 			}
 			else
 			{
 				NotifyPropertyChanged(() => RepeatsBasket);
 				NotifyPropertyChanged(() => RepeatsBasketSorted);
+				NotifyPropertyChanged(() => RepeatsCount);
 			}
 
 			return targetBasket.Count;

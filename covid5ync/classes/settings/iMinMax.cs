@@ -34,6 +34,20 @@ namespace iDna
 		{
 		}
 
+		public bool IsInError
+		{
+			get
+			{
+				return _minValue > _maxValue 
+					
+					|| _maxValue > _limitMax 
+					|| _minValue > _limitMax
+
+					|| _maxValue < _limitMin
+					|| _minValue < _limitMin;
+			}
+		}
+
 		public int MinValue
 		{
 			get { return _minValue; }
@@ -44,6 +58,7 @@ namespace iDna
 				_minValue	= value;
 				AdjustMinMaxValues();
 				RaisePropertyChanged();
+				NotifyPropertyChanged(() => IsInError);
 			}
 		}
 
@@ -58,6 +73,7 @@ namespace iDna
 				_maxValue	= value;
 				AdjustMinMaxValues();
 				RaisePropertyChanged();
+				NotifyPropertyChanged(() => IsInError);
 			}
 		}
 
@@ -72,6 +88,7 @@ namespace iDna
 				_limitMin = value;
 				AdjustMinMaxLimitValues();
 				RaisePropertyChanged();
+				NotifyPropertyChanged(() => IsInError);
 			}
 		}
 
@@ -86,6 +103,7 @@ namespace iDna
 				_limitMax = value;
 				AdjustMinMaxLimitValues();
 				RaisePropertyChanged();
+				NotifyPropertyChanged(() => IsInError);
 			}
 		}
 

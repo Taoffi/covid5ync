@@ -8,7 +8,7 @@
         mc:Ignorable="d"
 		Icon="iDna.ico"
 		SnapsToDevicePixels="True"
-        Title="covid-5ync" Height="640" Width="1024"
+        Title="covid-5ync" Height="640" Width="1032"
 		ResizeMode="CanResizeWithGrip">
 
 	<Grid DataContext="{Binding Source={StaticResource mainSequence}}" Background="#FFD8DCF5">

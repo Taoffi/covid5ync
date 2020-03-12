@@ -11,7 +11,7 @@
 			 >
     <Grid x:Name="gridMain" Background="#FFF6F6F6" HorizontalAlignment="Stretch">
 		<Grid.RowDefinitions>
-			<RowDefinition Height="32" />
+			<RowDefinition Height="26" />
 			<RowDefinition />
 		</Grid.RowDefinitions>
 
@@ -24,7 +24,7 @@
 				>
 			<Button.Content>
 				<Border>
-					<Image Source="{Binding Source={StaticResource imgPlus24}, Path=Source}" Width="28" />
+					<Image Source="{Binding Source={StaticResource imgPlus24}, Path=Source}" Width="20" />
 				</Border>
 			</Button.Content>
 		</Button>

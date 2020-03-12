@@ -515,16 +515,16 @@ namespace iDna.vm
 							return;
 						}
 
-						if(MessageBox.Show("This will define the first selected contigous region as the search region for repeats, hairpins and primer.\r\n"
-									+ "Are you ok with this?", dlgTitle, MessageBoxButton.YesNoCancel, MessageBoxImage.Question) != MessageBoxResult.Yes)
-							return;
+						//if(MessageBox.Show("This will define the first selected contigous region as the search region for repeats, hairpins and primer.\r\n"
+						//			+ "Are you ok with this?", dlgTitle, MessageBoxButton.YesNoCancel, MessageBoxImage.Question) != MessageBoxResult.Yes)
+						//	return;
 
 						int	minIndex	= selectedItems.Min(i => i.Index),
 							maxIndex	= selectedItems.Max(i => i.Index);
 
 						iDnaGobalSettings.Instance.SetSearchRegion(minIndex, maxIndex);
 
-						ShowMessage(string.Format("Your search region is now from (zero-based index): {0:0000} to {1:0000}", minIndex, maxIndex), dlgTitle);
+						//ShowMessage(string.Format("Your search region is now from (zero-based index): {0:0000} to {1:0000}", minIndex, maxIndex), dlgTitle);
 					});
 				}
 				return _defineWorkRegionFromSelection;
