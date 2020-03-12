@@ -38,7 +38,7 @@
     <SuiteName>covid5ync</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>25</ApplicationRevision>
+    <ApplicationRevision>26</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -103,6 +103,7 @@
     <Compile Include="classes\iDnaSequenceRepeats.cs" />
     <Compile Include="classes\iDnaSequenceSearch.cs" />
     <Compile Include="classes\root objects\iEnumBinderTemplate.cs" />
+    <Compile Include="classes\settings\iMinMax.cs" />
     <Compile Include="classes\settings\iDnaSettings.cs" />
     <Compile Include="classes\vm\iDnaCommandCentral.cs" />
     <Page Include="controls\BusySpinCtrlRepeats.xaml">
@@ -125,9 +126,25 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="controls\regions\iDnaRangeSliderCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="controls\regions\iDnaSequenceRegionCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="controls\iDnaSequenceSortOptionsCtrl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\regions\iDnaSequenceRegionListCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\regions\SequenceNewRegionWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="controls\windows\iAboutWindow.xaml">
       <SubType>Designer</SubType>
@@ -239,8 +256,21 @@
     <Compile Include="controls\iDnaSequenceInfoCtrl.xaml.cs">
       <DependentUpon>iDnaSequenceInfoCtrl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="controls\regions\iDnaRegionConverters.cs" />
+    <Compile Include="controls\regions\iDnaRangeSliderCtrl.xaml.cs">
+      <DependentUpon>iDnaRangeSliderCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\regions\iDnaSequenceRegionCtrl.xaml.cs">
+      <DependentUpon>iDnaSequenceRegionCtrl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="controls\iDnaSequenceSortOptionsCtrl.xaml.cs">
       <DependentUpon>iDnaSequenceSortOptionsCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\regions\iDnaSequenceRegionListCtrl.xaml.cs">
+      <DependentUpon>iDnaSequenceRegionListCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\regions\SequenceNewRegionWindow.xaml.cs">
+      <DependentUpon>SequenceNewRegionWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="controls\windows\iAboutWindow.xaml.cs">
       <DependentUpon>iAboutWindow.xaml</DependentUpon>
@@ -421,6 +451,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\edit15x12.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\plus24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\plus75x75.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\stats16x16.png" />
+    <Resource Include="images\stats78x78.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

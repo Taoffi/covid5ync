@@ -96,9 +96,9 @@ namespace iDna
 				_isSelected		= value;
 
 				//if(value == false)
-					NotifyPropertyChanged(null);
+				//	NotifyPropertyChanged(null);
 				//else
-				//	RaisePropertyChanged();
+				RaisePropertyChanged();
 			}
 		}
 	}

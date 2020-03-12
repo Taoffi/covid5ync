@@ -9,19 +9,15 @@ namespace iDna
 {
 	public class iDnaMinMaxValues : RootObject
 	{
-		const int					_constMinIntNodes		= 6,
-									_constMaxIntNodes		= 32;
-									
-		protected int					_minNodes			= _constMinIntNodes,
-										_maxNodes			= 16;
-		
-		protected int					_startRegionIndex	= 0,
-										_endRegionIndex		= int.MaxValue;
+		const int						_constMinIntNodes		= 6,
+										_constMaxIntNodes		= 32;
+		protected iMinMaxInt			_nodesMinMax			= new iMinMaxInt(_constMinIntNodes, _constMaxIntNodes, _constMinIntNodes, 16);
+		protected iMinMaxInt			_searchRegionMinMax		= new iMinMaxInt(0, int.MaxValue, 0, 0);
 
 		protected decimal				_minTm			= new decimal(0.0),
 										_maxTm			= new decimal(59.80);
 
-		protected static List<int>		_minMaxNodeSelectionList;
+		protected List<int>				_minMaxNodesSelectionList	= null;
 		protected static List<decimal>	_minMaxTmSelectionList;
 
 		protected iDnaMinMaxValues() : base()
@@ -31,8 +27,9 @@ namespace iDna
 
 		public iDnaMinMaxValues(int minNodes, int maxNodes, decimal minTm, decimal maxTm) : base()
 		{
-			_minNodes		= minNodes;
-			_maxNodes		= maxNodes;
+			_nodesMinMax.MinValue	= minNodes;
+			_nodesMinMax.MaxValue	= maxNodes;
+
 			_minTm			= minTm;
 			_maxTm			= maxTm;
 			init_instance();
@@ -40,34 +37,35 @@ namespace iDna
 
 		void init_instance()
 		{
-			if(_minMaxNodeSelectionList == null)
-				_minMaxNodeSelectionList	= InitMinMaxNodeSelectionList;
+			if(_minMaxNodesSelectionList == null)
+				_minMaxNodesSelectionList	= initMinMaxNodeSelectionList;
+
 			if(_minMaxTmSelectionList == null)
 				_minMaxTmSelectionList		= initMinMaxMeltingTmSelectionList;
 		}
 
 		public int MinNodes
 		{
-			get { return _minNodes; }
+			get { return _nodesMinMax.MinValue; }
 			set
 			{
-				if(value == _minNodes || value <= 0)
+				if (value == _nodesMinMax.MinValue || value <= 0)
 					return;
-				_minNodes	= value;
-				AdjustMinMaxNodes();
+
+				_nodesMinMax.MinValue	= value;
 				RaisePropertyChanged();
 			}
 		}
 
 		public int MaxNodes
 		{
-			get { return _maxNodes; }
+			get { return _nodesMinMax.MaxValue; }
 			set
 			{
-				if(value == _maxNodes || value <= 0)
+				if (value == _nodesMinMax.MaxValue || value <= 0)
 					return;
-				_maxNodes	= value;
-				AdjustMinMaxNodes();
+
+				_nodesMinMax.MaxValue	= value;
 				RaisePropertyChanged();
 			}
 		}
@@ -112,18 +110,6 @@ namespace iDna
 			}
 		}
 
-		public int MinTmIndex
-		{
-			get {  return _minMaxTmSelectionList.IndexOf(_minTm); }
-			set
-			{
-				if(value < 0 || value >= _minMaxNodeSelectionList.Count)
-					return;
-
-				MinMeltingTm	= _minMaxTmSelectionList[value];
-			}
-		}
-
 		public int MaxTmIndex
 		{
 			get {  return _minMaxTmSelectionList.IndexOf(_maxTm); }
@@ -137,51 +123,27 @@ namespace iDna
 		}
 
 
-		void AdjustMinMaxNodes()
+		public int StartSearchRegionIndex
 		{
-			int		tmp		= _minNodes;
-
-			if(_minNodes > _maxNodes)
-			{
-				_minNodes	= _maxNodes;
-				_minNodes	= tmp;
-			}
-		}
-
-
-		public int StartRegionIndex
-		{
-			get { return _startRegionIndex; }
+			get { return _searchRegionMinMax.MinValue; }
 			set
 			{
-				if(value == _startRegionIndex || value < 0)
+				if(value == _searchRegionMinMax.MinValue || value < 0)
 					return;
-				_startRegionIndex	= value;
-				AdjustStartEndRegions();
+				_searchRegionMinMax.MinValue	= value;
 				RaisePropertyChanged();
 			}
 		}
 
-		private void AdjustStartEndRegions()
-		{
-			if(_startRegionIndex > _endRegionIndex)
-			{
-				int		tmp	= _endRegionIndex;
 
-				_endRegionIndex		= _startRegionIndex;
-				_startRegionIndex	= tmp;
-			}
-		}
-
-		public int EndRegionIndex
+		public int EndSearchRegionIndex
 		{
-			get { return _endRegionIndex; }
+			get { return _searchRegionMinMax.MaxValue; }
 			set
 			{
-				if(value == _endRegionIndex || value < 0)
+				if(value == _searchRegionMinMax.MaxValue || value < 0)
 					return;
-				_endRegionIndex = value;
-				AdjustStartEndRegions();
+				_searchRegionMinMax.MaxValue = value;
 				RaisePropertyChanged();
 			}
 		}
@@ -189,24 +151,12 @@ namespace iDna
 
 		public List<int> MinMaxNodeSelectionList
 		{
-			get {  return _minMaxNodeSelectionList; }
+			get {  return _minMaxNodesSelectionList; }
 		}
 
 		public List<decimal> MinMaxMeltingTmSelectionList
 		{
 			get { return _minMaxTmSelectionList; }
-		}
-
-		static List<int> InitMinMaxNodeSelectionList
-		{
-			get
-			{
-				List<int>		list	= new List<int>();
-				for(int i = _constMinIntNodes; i < _constMaxIntNodes; i++)
-					list.Add(i);
-
-				return list;
-			}
 		}
 
 		static List<decimal> initMinMaxMeltingTmSelectionList
@@ -219,6 +169,19 @@ namespace iDna
 									incr	= new decimal(0.10);
 
 				for(decimal i = min; i <= max; i += incr)
+					list.Add(i);
+
+				return list;
+			}
+		}
+
+		static List<int> initMinMaxNodeSelectionList
+		{
+			get
+			{
+				List<int>			list	= new List<int>();
+
+				for(int i = _constMinIntNodes; i <= _constMaxIntNodes; i ++)
 					list.Add(i);
 
 				return list;
@@ -381,13 +344,13 @@ namespace iDna
 
 		public bool SetSearchRegion(int minIndex, int maxIndex)
 		{
-			_repeatsSettings.MinMaxValues.StartRegionIndex		=
-				_hairpinSettings.MinMaxValues.StartRegionIndex	=
-				_primersSettings.MinMaxValues.StartRegionIndex	= minIndex;
+			_repeatsSettings.MinMaxValues.StartSearchRegionIndex		=
+				_hairpinSettings.MinMaxValues.StartSearchRegionIndex	=
+				_primersSettings.MinMaxValues.StartSearchRegionIndex	= minIndex;
 
-			_repeatsSettings.MinMaxValues.EndRegionIndex		=
-				_hairpinSettings.MinMaxValues.EndRegionIndex	=
-				_primersSettings.MinMaxValues.EndRegionIndex	= maxIndex;
+			_repeatsSettings.MinMaxValues.EndSearchRegionIndex		=
+				_hairpinSettings.MinMaxValues.EndSearchRegionIndex	=
+				_primersSettings.MinMaxValues.EndSearchRegionIndex	= maxIndex;
 
 			return true;
 		}
@@ -431,10 +394,11 @@ namespace iDna
 	{
 		public iDnaMinMaxValuesDesignTime() : base()
 		{
-			_minNodes	= 6;
-			_maxNodes	= 32;
+			_nodesMinMax.MinValue	= 6;
+			_nodesMinMax.MaxValue	= 32;
 			_minTm		= (decimal) 0.0;
 			_maxTm		= (decimal) 59.80;
+			NotifyPropertyChanged(() => MinMaxNodeSelectionList);
 		}
 	}
 

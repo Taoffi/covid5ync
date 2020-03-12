@@ -73,7 +73,9 @@ namespace iDna.vm
 								_clearRepeatBaskets			= null,
 								_clearSearchBaskets			= null,
 
-								_editSequenceInfo = null,
+								//_selectAllNamedRegions		= null,
+
+								//_editSequenceInfo = null,
 								_notYetImplemented			= null;
 
 		protected iDnaCommandCentral() : base()
@@ -82,31 +84,67 @@ namespace iDna.vm
 		}
 
 
-		public ICommand EditSequenceInfo
-		{
-			get
-			{
-				if(_editSequenceInfo == null)
-				{
-					_editSequenceInfo = new CommandExecuter(() =>
-					{
-						// ShowNotYetImplemented();
+		//public ICommand EditSequenceInfo
+		//{
+		//	get
+		//	{
+		//		if(_editSequenceInfo == null)
+		//		{
+		//			_editSequenceInfo = new CommandExecuter(() =>
+		//			{
+		//				// ShowNotYetImplemented();
 
-						iDnaSequence seq		= iDnaSequence.Instance;
+		//				iDnaSequence seq		= iDnaSequence.Instance;
 
-						if(seq == null)
-							return;
+		//				if(seq == null)
+		//					return;
 
-						SequenceInfoWindow seqWnd		= new SequenceInfoWindow() {  DataContext = seq };
+		//				SequenceInfoWindow seqWnd		= new SequenceInfoWindow() {  DataContext = seq };
 
-						seqWnd.Owner	= Application.Current.MainWindow;
-						seqWnd.ShowDialog();
-					});
-				}
-				return _editSequenceInfo;
-			}
-		}
+		//				seqWnd.Owner	= Application.Current.MainWindow;
+		//				seqWnd.ShowDialog();
+		//			});
+		//		}
+		//		return _editSequenceInfo;
+		//	}
+		//}
 
+		
+		//// _selectAllNamedRegions
+		//public ICommand SelectAllNamedRegions
+		//{
+		//	get
+		//	{
+		//		if (_selectAllNamedRegions == null)
+		//		{
+		//			_selectAllNamedRegions = new CommandExecuter(() =>
+		//			{
+		//				// ShowNotYetImplemented();
+
+		//				iDnaSequence seq = iDnaSequence.Instance;
+
+		//				if (seq == null || seq.Count <= 0 || seq.SequenceNamedRegionList == null || seq.SequenceNamedRegionList.Count <= 0)
+		//				{
+		//					ShowMessage("This sequence is either empty or has no defined named regions. Please check.", "Select named regions");
+		//					return;
+		//				}
+
+		//				seq.ResetSelection(false, null);
+
+		//				foreach(var region in seq.SequenceNamedRegionList)
+		//				{
+		//					var	nodes	= seq.Where(i => i.Index >= region.MinValue && i.Index <= region.MaxValue);
+		//					if(nodes == null || nodes.Count() <= 0)
+		//						continue;
+
+		//					foreach(var node in nodes)
+		//						node.IsSelected	= true;
+		//				}
+		//			});
+		//		}
+		//		return _selectAllNamedRegions;
+		//	}
+		//}
 
 		public ICommand GotoSARS_Website
 		{
@@ -138,6 +176,17 @@ namespace iDna.vm
 			}
 		}
 
+		internal bool AskLoadNewSequence()
+		{
+			if (MessageBox.Show("This will initialize all current selections and region definitions\r\n"
+							+ "Are you sure you want to continue?", "Initialize new sequence",
+							MessageBoxButton.YesNoCancel, 
+							MessageBoxImage.Warning) != System.Windows.MessageBoxResult.Yes)
+				return false;
+			return true;
+		}
+
+
 		public ICommand OpenFile
 		{
 			get
@@ -153,7 +202,14 @@ namespace iDna.vm
 						if(string.IsNullOrEmpty(fileName))
 							return;
 
-						iDnaSequence	sequence		= iDnaSequence.Instance;
+						iDnaSequence	sequence			= iDnaSequence.Instance;
+						bool			canLoadNewSequence	= true;
+
+						if(sequence.HasPendingChanges)
+							canLoadNewSequence	= AskLoadNewSequence();
+
+						if(!canLoadNewSequence)
+							return;
 
 						await Dispatcher.CurrentDispatcher.Invoke(async() =>
 						{
@@ -196,6 +252,16 @@ namespace iDna.vm
 						string			strInfo,
 										strSequence;
 						iDnaSequence	sequence		= iDnaSequence.Instance;
+						bool			canLoadNew		= true;
+
+						if(sequence.HasPendingChanges)
+						{
+							canLoadNew	= AskLoadNewSequence();
+						}
+
+						if(!canLoadNew)
+							return;
+
 						Uri				seqInfoUri		= new Uri("/data/covid-19-sequence-info.txt", UriKind.Relative),
 										seqUri			= new Uri("/data/covid-19-sequence.txt", UriKind.Relative);
 

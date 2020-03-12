@@ -77,13 +77,13 @@
 				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
 				  />
 
-		<Separator />
+		<!--<Separator />
 
 		<MenuItem Header="Edit sequence info..."
 				  ToolTip="edit current sequence information"
 				  ToolTipService.ShowOnDisabled="True"
 				  Command="{Binding EditSequenceInfo, Mode=OneWay}"
-				  Icon="{DynamicResource imgEdit15x12}"/>
+				  Icon="{DynamicResource imgEdit15x12}"/>-->
 
 		<Separator />
 		
@@ -152,6 +152,16 @@
 						  Command="{Binding LoadSequenceFromClipboard, Mode=OneWay}"
 						  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
 						  />
+
+		<Separator />
+
+		<!-- SelectAllNamedRegions-->
+		<!--<MenuItem Header="Reset selection to named regions"
+				  ToolTip="set current selections to named regions"
+				  ToolTipService.ShowOnDisabled="True"
+				  Icon="{DynamicResource mimgSettings48}"
+				  Command="{Binding SelectAllNamedRegions, Mode=OneWay}"/>-->
+
 	</MenuItem>
 
 	<!-- tools menu -->

@@ -34,6 +34,7 @@ namespace iDna
 		protected string							_sequenceFileInfo		= "";
 		protected iDnaSequencePaging				_paging					= new iDnaSequencePaging(1000);
 		protected int								_nOccurrences			= 1;
+		protected iDnaRegionIndexList				_namedRegionsList			= new iDnaRegionIndexList();
 
 
 		public static iDnaSequence Instance
@@ -54,9 +55,12 @@ namespace iDna
 			
 
 		
+		
 		public iDnaSequence() : base()
 		{
 			_paging.SourceCollection	= this;
+			_namedRegionsList			= new iDnaRegionIndexList(this, "Sequence Regions");
+
 			_repeatSortOptions.SelectedOptionChanged	+= _repeatSortOptions_SelectedOptionChanged;
 			_searchSortOptions.SelectedOptionChanged	+= _searchSortOptions_SelectedOptionChanged;
 			_hairpinSortOptions.SelectedOptionChanged	+= _hairpinSortOptions_SelectedOptionChanged;
@@ -64,7 +68,9 @@ namespace iDna
 
 		protected iDnaSequence(string name, IEnumerable<iDnaNode> nodeList, bool refOnly = true, int nOccurrences = 1) : base()
 		{
-			_paging.SourceCollection = this;
+			_paging.SourceCollection	= this;
+			_namedRegionsList			= new iDnaRegionIndexList(this, "Sequence Regions");
+
 			_name			= name;
 			_nOccurrences	= nOccurrences;
 			CopyNodeList(nodeList, refOnly);
@@ -108,6 +114,13 @@ namespace iDna
 		{
 			get { return _paging; }
 		}
+
+
+		public iDnaRegionIndexList SequenceNamedRegionList
+		{
+			get {  return _namedRegionsList; }
+		}
+
 
 
 		public int PaginPageSize
@@ -289,13 +302,43 @@ namespace iDna
 			CurrentCancellationSource	= new CancellationTokenSource();
 		}
 
-		void InitializeNewSequence()
+		public bool HasPendingChanges
+		{
+			get
+			{
+				if (_selectionBasket.Count > 0
+						|| _pairSelectionBasket.Count > 0
+						|| _repeatsBasket.Count > 0
+						|| _hairPinBasket.Count > 0
+						|| _namedRegionsList.Count > 0)
+					return true;
+
+				return false;
+			}
+		}
+
+
+		bool InitializeNewSequence()
 		{
 			this._selectionBasket.Clear();
 			this._pairSelectionBasket.Clear();
 			this._repeatsBasket.Clear();
 			this._hairPinBasket.Clear();
 			this._repeatSearch.Clear();
+
+			_namedRegionsList = new iDnaRegionIndexList(this, "Sequence Regions");
+
+			NotifyPropertyChanged(() => SelectionBasket);
+			NotifyPropertyChanged(() => CurrentSearchBasket);
+			NotifyPropertyChanged(() => CurrentSearchBasketSorted);
+			NotifyPropertyChanged(() => CurrentRepeatsBasket);
+			NotifyPropertyChanged(() => CurrentRepeatsBasketSorted);
+			NotifyPropertyChanged(() => SequenceNamedRegionList);
+			NotifyPropertyChanged(() => HairpinCount);
+			NotifyPropertyChanged(() => RepeatsCount);
+			NotifyPropertyChanged(() => SearchOccurrences);
+
+			return true;
 		}
 
 
@@ -304,8 +347,9 @@ namespace iDna
 			if (string.IsNullOrEmpty(str))
 				return false;
 
-			InitializeCancellationSource();
 			InitializeNewSequence();
+			InitializeCancellationSource();
+			
 			this.Clear(false);
 
 			this.Id					= Guid.NewGuid().ToString();

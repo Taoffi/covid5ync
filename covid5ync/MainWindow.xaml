@@ -69,8 +69,8 @@
 
 		<Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Margin="6,0">
 			<Grid.RowDefinitions>
-				<RowDefinition  Height="168"/>
-				<RowDefinition Height="26" />
+				<RowDefinition  Height="184"/>
+				<RowDefinition Height="32" />
 				<RowDefinition />
 			</Grid.RowDefinitions>
 
@@ -80,20 +80,21 @@
 						<ColumnDefinition Width="24" />
 						<ColumnDefinition />
 					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="26" />
+						<RowDefinition />
+					</Grid.RowDefinitions>
 
-					<TextBlock Grid.Row="0" Grid.Column="0" Text="Statistics" FontSize="12" FontWeight="Bold"
-							   VerticalAlignment="Center" Margin="-48,0,190,0" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" >
-						<TextBlock.RenderTransform>
-							<TransformGroup>
-								<ScaleTransform/>
-								<SkewTransform/>
-								<RotateTransform Angle="-90"/>
-								<TranslateTransform/>
-							</TransformGroup>
-						</TextBlock.RenderTransform>
-					</TextBlock>
+					<StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center"
+								Orientation="Horizontal">
+						<Image Source="{Binding Source={StaticResource imgStats78}, Path=Source}" Width="18" Margin="8,0" />
+						<TextBlock Text="Statistics" FontSize="12" FontWeight="Bold"
+								   VerticalAlignment="Center" Margin="0" />
+					</StackPanel>
 
-					<controls:iDnaSequenceStatsCtrl Grid.Row="0" Grid.Column="1" Margin="0" Background="#FFF6F6F6" />
+					<controls:iDnaSequenceStatsCtrl Grid.Row="1" Grid.Column="1" Margin="0,0,0,0" 
+													Padding="0,4"
+													Background="#FFF6F6F6" BorderBrush="Black" BorderThickness="1" />
 				</Grid>
 			</Border>
 

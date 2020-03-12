@@ -67,6 +67,10 @@
 			<Image x:Key="imgok48"			Source="images/ok48x48.png" />
 			<Image x:Key="imgok24"			Source="images/ok24x24.png" />
 			<Image x:Key="imgokProperty16"	Source="images/property16x16.png" />
+			<Image x:Key="imgPlus24"		Source="images/plus24x24.png" />
+			<Image x:Key="imgPlus75"		Source="images/plus75x75.png" />
+			<Image x:Key="imgStats78"		Source="images/stats78x78.png" />
+			<Image x:Key="imgStats16"		Source="images/stats16x16.png" />
 
 			<Style TargetType="{x:Type TextBlock}">
 				<Setter Property="VerticalAlignment"		Value="Center" />

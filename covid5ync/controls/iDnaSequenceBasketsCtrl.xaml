@@ -11,8 +11,8 @@
         <TabControl>
             <TabItem>
                 <TabItem.Header>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="2,0" Width="52" ToolTip="Search results">
-                        <Image Source="{Binding Source={StaticResource imgSearch48}, Path=Source}" Width="20" Margin="4,0" />
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0" Width="46" ToolTip="Search results">
+                        <Image Source="{Binding Source={StaticResource imgSearch48}, Path=Source}" Width="18" Margin="0" SnapsToDevicePixels="True" />
                         <!--<TextBlock Text="Search" Margin="4,0" />-->
                         <TextBlock Text="{Binding CurrentSearchBasket.Count, Mode=OneWay, IsAsync=True}" FontSize="9" />
                     </StackPanel>
@@ -64,8 +64,8 @@
 
             <TabItem>
                 <TabItem.Header>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="4,0" Width="52" ToolTip="Repeats">
-                        <Image Source="{Binding Source={StaticResource imgRefresh48}, Path=Source}" Width="20" Margin="2,0" />
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0" Width="42" ToolTip="Repeats">
+                        <Image Source="{Binding Source={StaticResource imgRefresh48}, Path=Source}" Width="18" Margin="0" />
                         <!--<TextBlock Text="Repeats" Margin="4,0" Foreground="{Binding Source={StaticResource mainSequence}, Path=IsRepeatProcessRunning, Converter={StaticResource busyToColor}}" />-->
                         <TextBlock Text="{Binding RepeatsCount, Mode=OneWay, IsAsync=True}" FontSize="9" />
                     </StackPanel>
@@ -143,8 +143,8 @@
 
             <TabItem>
                 <TabItem.Header>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="2,0" Width="52" ToolTip="Hairpins">
-                        <Image Source="{Binding Source={StaticResource imgCovid5ync48}, Path=Source}" Width="20" Margin="2,0" />
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0" Width="42" ToolTip="Hairpins">
+                        <Image Source="{Binding Source={StaticResource imgCovid5ync48}, Path=Source}" Width="18" SnapsToDevicePixels="True" Margin="0" />
                         <!--<TextBlock Text="Hairpins" Margin="4,0" Foreground="{Binding Source={StaticResource mainSequence}, Path=IsRepeatProcessRunning, Converter={StaticResource busyToColor}}" />-->
                         <TextBlock Text="{Binding HairpinCount, IsAsync=True, Mode=OneWay}" FontSize="9" />
                     </StackPanel>
@@ -222,7 +222,24 @@
 
             </TabItem>
 
-        </TabControl>
+			<TabItem>
+				<TabItem.Header>
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0" Width="42" ToolTip="Named regions">
+						<Image Source="{Binding Source={StaticResource imgFile32}, Path=Source}" Width="18" Margin="0" SnapsToDevicePixels="True" />
+						<!--<TextBlock Text="named regions" Margin="4,0" Foreground="{Binding Source={StaticResource mainSequence}, Path=IsRepeatProcessRunning, Converter={StaticResource busyToColor}}" />-->
+						<TextBlock Text="{Binding SequenceNamedRegionList.Count, IsAsync=True, Mode=OneWay}" FontSize="9" />
+					</StackPanel>
+				</TabItem.Header>
+
+				<Grid>
+					<local:iDnaSequenceRegionListCtrl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+													  Margin="4,0" 
+													  DataContext="{Binding SequenceNamedRegionList, IsAsync=True}"/>
+				</Grid>
+
+			</TabItem>
+			
+		</TabControl>
 
     </Grid>
 </UserControl>

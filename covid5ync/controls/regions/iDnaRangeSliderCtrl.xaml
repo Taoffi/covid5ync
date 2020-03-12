@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="iDna.controls.iDnaRangeSliderCtrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:iDna.controls"
+			 xmlns:conv="clr-namespace:iDna.controls"
+			 xmlns:data="clr-namespace:iDna"
+             mc:Ignorable="d" 
+             d:DesignHeight="32" d:DesignWidth="280"
+			 d:DataContext="{d:DesignInstance Type={x:Type data:iDnaRegionIndex}, IsDesignTimeCreatable=True, CreateList=False}">
+
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<!-- range slider control template credit: http://thejoyofcode.com/Creating_a_Range_Slider_in_WPF_and_other_cool_tips_and_tricks_for_UserControls_.aspx -->
+			<ControlTemplate x:Key="rangeSlider" TargetType="{x:Type Slider}">
+				<Border SnapsToDevicePixels="true"
+						BorderBrush="{TemplateBinding BorderBrush}"
+						BorderThickness="{TemplateBinding BorderThickness}" ToolTip="{TemplateBinding Value}">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+
+						<Rectangle x:Name="PART_SelectionRange" />
+
+						<Track x:Name="PART_Track" Grid.Row="1">
+							<Track.Thumb>
+								<Thumb x:Name="Thumb">
+									<Thumb.Template>
+										<ControlTemplate TargetType="Thumb">
+											<Rectangle Fill="White"
+													   Stroke="Black"
+													   StrokeThickness="1"
+													   Width="9"
+													   Height="16"
+													   SnapsToDevicePixels="True"
+													   />
+										</ControlTemplate>
+									</Thumb.Template>
+								</Thumb>
+							</Track.Thumb>
+						</Track>
+					</Grid>
+				</Border>
+			</ControlTemplate>
+
+		</ResourceDictionary>
+	</UserControl.Resources>
+
+	<Grid Margin="0" Height="32" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+		<Grid x:Name="gridSlider" Margin="4,0,8,0" Grid.Column="0" Grid.ColumnSpan="2">
+
+			<Border Grid.Row="0" Grid.Column="0"
+								Background="LightGreen" 
+								VerticalAlignment="Center" Padding="0" 
+								Margin="2,0,0,0"
+								BorderBrush="Black" BorderThickness="1"
+								Width="{Binding ElementName=UpperSlider, Path=MaxWidth}"
+								Height="6" />
+
+			<Slider x:Name="LowerSlider" Grid.Column="0" HorizontalAlignment="Stretch"
+								Padding="0"
+								Margin="0,7,0,0"
+								Minimum="{Binding LimitMin, Mode=OneWay}"
+								Maximum="{Binding LimitMax, Mode=OneWay}"
+								Value="{Binding MinValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+								Template="{StaticResource rangeSlider}"
+								>
+			</Slider>
+
+			<Slider x:Name="UpperSlider" Grid.Column="0" HorizontalAlignment="Stretch"
+								Padding="0"
+								Margin="0,7,0,0"
+								Minimum="{Binding LimitMin, Mode=OneWay}"
+								Maximum="{Binding LimitMax, Mode=OneWay}"
+								Value="{Binding MaxValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+								Template="{StaticResource rangeSlider}"
+								>
+			</Slider>
+		</Grid>
+	</Grid>
+</UserControl>

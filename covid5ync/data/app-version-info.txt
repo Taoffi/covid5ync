@@ -20,6 +20,18 @@ services and data into this app. We are working on a few near-future targets:
 Change log
 ==================================================================================================
 -----------------------------
+2020-03-12
+-----------------------------
+* edit sequence name and summary (on start main window)
+* define and managae named regions:
+    define start / end coordinates, name and summary.
+    locate region on sequence
+    set region as main search region for repeat search
+* warn on load new sequence if pending changes
+    - yes!... that is not yet perfect. just a first step preparing for library management!
+* better property change notification on new sequence
+
+-----------------------------
 2020-03-11
 -----------------------------
 * edit sequence name and summary (future use for saving/loading sequences)

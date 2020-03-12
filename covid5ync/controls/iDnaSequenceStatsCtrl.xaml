@@ -8,14 +8,14 @@
              mc:Ignorable="d" 
 			 d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type data:iDnaBaseStats}}"
              d:DesignHeight="163" d:DesignWidth="150">
-	<Grid DataContext="{Binding Statistics, Source={StaticResource mainSequence}, IsAsync=True}">
+	<Grid DataContext="{Binding Statistics, Source={StaticResource mainSequence}, IsAsync=True}" SnapsToDevicePixels="True">
 		<Grid.RowDefinitions>
-			<RowDefinition Height="26" />
-			<RowDefinition Height="26" />
-			<RowDefinition Height="26" />
-			<RowDefinition Height="26" />
-			<RowDefinition Height="20" />
-			<RowDefinition Height="20" />
+			<RowDefinition Height="24" />
+			<RowDefinition Height="24" />
+			<RowDefinition Height="24" />
+			<RowDefinition Height="24" />
+			<RowDefinition Height="18" />
+			<RowDefinition Height="18" />
 			<RowDefinition />
 		</Grid.RowDefinitions>
 

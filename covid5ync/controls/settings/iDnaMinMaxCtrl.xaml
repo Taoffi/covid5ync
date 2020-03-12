@@ -43,12 +43,12 @@
 
 		<TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource label}" Text="Min nodes" />
 		<ComboBox Grid.Row="0" Grid.Column="1" Style="{StaticResource comboIntValues}"
-				  ItemsSource="{Binding MinMaxNodeSelectionList}"
+				  ItemsSource="{Binding MinMaxNodeSelectionList, IsAsync=True}"
 				  SelectedValue="{Binding MinNodes, Mode=TwoWay}" />
 
 		<TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource label}" Text="Max nodes" />
 		<ComboBox Grid.Row="0" Grid.Column="3" Style="{StaticResource comboIntValues}"
-				  ItemsSource="{Binding MinMaxNodeSelectionList}"
+				  ItemsSource="{Binding MinMaxNodeSelectionList, IsAsync=True}"
 				  SelectedValue="{Binding MaxNodes, Mode=TwoWay}" />
 
 		<TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource label}" Text="Min Tm"

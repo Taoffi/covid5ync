@@ -334,8 +334,8 @@ namespace iDna
 			iDnaRepeatSettings		repeatSettings		= iDnaRepeatSettings.Instance;
 			iDnaHairpinSettings		hairSettings		= iDnaHairpinSettings.Instance;
 			iDnaMinMaxValues		minMax				= (searchHairpins) ? hairSettings.MinMaxValues : repeatSettings.MinMaxValues;
-			int						startIndex			= minMax.StartRegionIndex,
-									endRegionIndex		= minMax.EndRegionIndex,
+			int						startIndex			= minMax.StartSearchRegionIndex,
+									endRegionIndex		= minMax.EndSearchRegionIndex,
 									endIndexMin			= minMax.MinNodes,
 									endIndexMax			= minMax.MaxNodes;
 			double					TmMin				= (double)minMax.MinMeltingTm,
