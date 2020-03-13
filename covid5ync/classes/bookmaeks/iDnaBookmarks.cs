@@ -68,6 +68,28 @@ namespace iDna
 			}
 		}
 
+		public string ImageUrl
+		{
+			get
+			{
+				if(string.IsNullOrEmpty(_url))
+					return "";
+
+				Uri		uriResult;
+				bool	couldConvert		= Uri.TryCreate(this._url, UriKind.Absolute, out uriResult)
+									&& (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+
+				if(couldConvert)
+				{
+					string		str	= uriResult.Scheme + "://" + uriResult.Authority + "/favicon.ico";
+					return str;
+					//return uriResult.GetLeftPart(UriPartial.Path) + "/favicon.ico";
+				}
+					
+				return "";
+			}
+		}
+
 		internal void CopyOther(iDnaBookmark item)
 		{
 			if(item == null || item == this)
