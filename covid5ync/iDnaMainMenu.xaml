@@ -236,7 +236,7 @@
 			</MenuItem.ItemTemplate>
 			<MenuItem.ItemsPanel>
 				<ItemsPanelTemplate>
-					<StackPanel Margin="-18,0,0,0" Background="WhiteSmoke"/>
+					<StackPanel Margin="-30,0,0,0" Background="WhiteSmoke"/>
 				</ItemsPanelTemplate>
 			</MenuItem.ItemsPanel>
 		</MenuItem>
