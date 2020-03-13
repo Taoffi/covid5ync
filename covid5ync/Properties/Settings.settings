@@ -1,7 +1,15 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="iDna.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="UserBookMarks" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;covid-5|http://covid-5.5ync.net/|covid-5ync project home page&lt;/string&gt;
+  &lt;string&gt;ncbi covid-19 sequence download|https://www.ncbi.nlm.nih.gov/genbank/sars-cov-2-seqs/|ncbi covid-19 genome page&lt;/string&gt;
+  &lt;string&gt;ncbi sars web page|https://www.ncbi.nlm.nih.gov/genomes/SARS/SARS.html|ncbi sars home page&lt;/string&gt;
+  &lt;string&gt;covid-19 situation|https://www.cdc.gov/coronavirus/2019-nCoV/summary.html|latest information about covid-19 epidemic&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

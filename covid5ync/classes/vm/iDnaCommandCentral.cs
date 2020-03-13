@@ -73,10 +73,13 @@ namespace iDna.vm
 								_clearRepeatBaskets			= null,
 								_clearSearchBaskets			= null,
 
+								_gotoCovid_19_situationPage	= null,
+								_maangeBookMarks			= null,
+
 								//_selectAllNamedRegions		= null,
 
 								//_editSequenceInfo = null,
-								_notYetImplemented			= null;
+								_notYetImplemented = null;
 
 		protected iDnaCommandCentral() : base()
 		{
@@ -160,6 +163,42 @@ namespace iDna.vm
 				return _gotoSARS_site;
 			}
 		}
+
+		public ICommand GotoCovid19Situation_Website
+		{
+			get
+			{
+				if (_gotoCovid_19_situationPage == null)
+				{
+					_gotoCovid_19_situationPage = new CommandExecuter(() =>
+					{
+						TryOpenWebPage("https://www.cdc.gov/coronavirus/2019-nCoV/summary.html");
+					});
+				}
+				return _gotoCovid_19_situationPage;
+			}
+		}
+
+		// _maangeBookMarks
+		public ICommand ManageBookmarks
+		{
+			get
+			{
+				if (_maangeBookMarks == null)
+				{
+					_maangeBookMarks = new CommandExecuter(() =>
+					{
+						var					bookmarkList	= iDnaBookmarkList.Instance;
+						BookMarksWindow		window			= new BookMarksWindow() {  DataContext = bookmarkList };
+
+						window.Owner	= Application.Current.MainWindow;
+						window.ShowDialog();
+					});
+				}
+				return _maangeBookMarks;
+			}
+		}
+
 
 		public ICommand DownloadSequences
 		{
@@ -1181,7 +1220,7 @@ namespace iDna.vm
 			ShowMessage("This is not yet implemented!. Thank you for your patience!", "Feature not yet implemented");
 		}
 
-		void TryOpenWebPage(string url)
+		internal void TryOpenWebPage(string url)
 		{
 			TryLaunchApplication(url, "Sorry!...\r\nCould not open the web page. Please check your system configuration", "Oups!");
 		}

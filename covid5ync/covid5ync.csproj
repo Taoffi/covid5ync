@@ -38,7 +38,7 @@
     <SuiteName>covid5ync</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>26</ApplicationRevision>
+    <ApplicationRevision>27</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -80,6 +80,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
@@ -100,12 +101,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="classes\bookmaeks\iDnaBookmarks.cs" />
     <Compile Include="classes\iDnaSequenceRepeats.cs" />
     <Compile Include="classes\iDnaSequenceSearch.cs" />
     <Compile Include="classes\root objects\iEnumBinderTemplate.cs" />
     <Compile Include="classes\settings\iMinMax.cs" />
     <Compile Include="classes\settings\iDnaSettings.cs" />
     <Compile Include="classes\vm\iDnaCommandCentral.cs" />
+    <Page Include="controls\bookmarks\BookMarkListCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="controls\bookmarks\BookMarkCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\bookmarks\NewBookMarkWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="controls\bookmarks\BookMarksWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="controls\BusySpinCtrlRepeats.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -239,6 +257,18 @@
     <Compile Include="classes\paging\iSequencePaging.cs" />
     <Compile Include="classes\root objects\RootListTemplate.cs" />
     <Compile Include="classes\vm\iDnaSortOptions.cs" />
+    <Compile Include="controls\bookmarks\BookMarkListCtrl.xaml.cs">
+      <DependentUpon>BookMarkListCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\bookmarks\BookMarkCtrl.xaml.cs">
+      <DependentUpon>BookMarkCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\bookmarks\NewBookMarkWindow.xaml.cs">
+      <DependentUpon>NewBookMarkWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\bookmarks\BookMarksWindow.xaml.cs">
+      <DependentUpon>BookMarksWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="controls\BusySpinCtrlRepeats.xaml.cs">
       <DependentUpon>BusySpinCtrlRepeats.xaml</DependentUpon>
     </Compile>

@@ -20,6 +20,12 @@ services and data into this app. We are working on a few near-future targets:
 Change log
 ==================================================================================================
 -----------------------------
+2020-03-13
+-----------------------------
+* added feature: user managed favorite web sites => menu Bookmarks/favorites
+* fixed some update issues with repeats and search collections
+
+-----------------------------
 2020-03-12
 -----------------------------
 * edit sequence name and summary (on start main window)

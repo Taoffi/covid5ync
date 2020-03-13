@@ -10,27 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace iDna
+namespace iDna.controls
 {
 	/// <summary>
-	/// Interaction logic for iDnaMainMenu.xaml
+	/// Interaction logic for BookMarksWindow.xaml
 	/// </summary>
-	public partial class iDnaMainMenu : Menu
+	public partial class BookMarksWindow : Window
 	{
-		internal static iDnaMainMenu		Instance;
-
-		internal MenuItem			BookMarkFavorites 
-		{
-			get { return this.bookmarksFavorits; }
-		}
-
-		public iDnaMainMenu()
+		public BookMarksWindow()
 		{
 			InitializeComponent();
-			Instance		= this;
 		}
 	}
 }

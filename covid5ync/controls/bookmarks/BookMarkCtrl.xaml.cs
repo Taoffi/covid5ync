@@ -13,24 +13,25 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace iDna
+namespace iDna.controls
 {
 	/// <summary>
-	/// Interaction logic for iDnaMainMenu.xaml
+	/// Interaction logic for BookMarkCtrl.xaml
 	/// </summary>
-	public partial class iDnaMainMenu : Menu
+	public partial class BookMarkCtrl : UserControl
 	{
-		internal static iDnaMainMenu		Instance;
-
-		internal MenuItem			BookMarkFavorites 
-		{
-			get { return this.bookmarksFavorits; }
-		}
-
-		public iDnaMainMenu()
+		public BookMarkCtrl()
 		{
 			InitializeComponent();
-			Instance		= this;
+		}
+
+		private void buttonNew_Click(object sender, RoutedEventArgs e)
+		{
+			iDnaBookmark	item		= new iDnaBookmark("new item", "new url");
+			var				list		= iDnaBookmarkList.Instance;
+
+			list.InsertNew(item);
+			list.SelectedItem	= item;
 		}
 	}
 }

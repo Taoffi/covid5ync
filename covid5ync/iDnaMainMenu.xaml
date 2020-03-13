@@ -70,7 +70,7 @@
 						  />
 
 		<Separator />
-		<MenuItem Header="Load sequence from Cli_pboard"
+		<MenuItem Header="Paste sequence from Cli_pboard"
 				  Icon="{DynamicResource mimgPaste23}"
 				  ToolTip="load the sequence from text you already copied in the clipboard"
 				  ToolTipService.ShowOnDisabled="True"
@@ -102,20 +102,6 @@
 				  ToolTipService.ShowOnDisabled="True"
 				  Command="{Binding SaveSelectedRegions, Mode=OneWay}"
 				  Icon="{DynamicResource mimgSave16_2}"/>
-
-		<Separator />
-
-		<MenuItem Header="_Download sequence files"	
-				  Icon="{DynamicResource mimghttp48}"
-				  ToolTip="download sequences from ncbi web site"
-				  ToolTipService.ShowOnDisabled="True"
-				  Command="{Binding DownloadSequences, Mode=OneWay}" />
-
-		<MenuItem Header="_Go to NCBI SARS web page"	
-				  Icon="{DynamicResource mimgNcbi16}"
-				  ToolTip="open the SARS web site of ncbi"
-				  ToolTipService.ShowOnDisabled="True"
-				  Command="{Binding GotoSARS_Website, Mode=OneWay}" />
 	</MenuItem>
 
 	<!-- edit menu -->
@@ -225,6 +211,50 @@
 				  ToolTip="application settings"
 				  ToolTipService.ShowOnDisabled="True"
 				  Command="{Binding OptionsCommand, Mode=OneWay}"/>
+	</MenuItem>
+
+	<MenuItem Margin="8,0" Header="Bookmar_ks" x:Name="bokMarks">
+		<MenuItem x:Name="bookmarksFavorits" Margin="0" Header="Favorites" ItemsSource="{Binding Source={StaticResource dnaBokmarks}, IsAsync=True}">
+			<MenuItem.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+						<TextBlock>
+						<Hyperlink Command="{Binding OpenUrl}" >
+							<TextBlock Text="{Binding Name, IsAsync=True}" ToolTip="{Binding Description, IsAsync=True}" />
+						</Hyperlink>
+					</TextBlock>
+					</StackPanel>
+				</DataTemplate>
+			</MenuItem.ItemTemplate>
+			<MenuItem.ItemsPanel>
+				<ItemsPanelTemplate>
+					<StackPanel Margin="-18,0,0,0" Background="WhiteSmoke"/>
+				</ItemsPanelTemplate>
+			</MenuItem.ItemsPanel>
+		</MenuItem>
+
+		<Separator />
+
+		<MenuItem Header="_Download sequence files"	
+				  Icon="{DynamicResource mimghttp48}"
+				  ToolTip="download sequences from ncbi web site"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding DownloadSequences, Mode=OneWay}" />
+
+		<MenuItem Header="_Go to NCBI SARS web page"	
+				  Icon="{DynamicResource mimgNcbi16}"
+				  ToolTip="open the SARS web site of ncbi"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding GotoSARS_Website, Mode=OneWay}" />
+
+		<!-- ManageBookmarks-->
+			<Separator />
+			<MenuItem Header="Manage _bookmarks..."	
+				  Icon="{DynamicResource mimgGears16}"
+				  ToolTip="manage your bookmarks list"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding ManageBookmarks, Mode=OneWay}" />
+
 	</MenuItem>
 
 	<!-- help menu -->
