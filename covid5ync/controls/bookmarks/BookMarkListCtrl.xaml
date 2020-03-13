@@ -22,7 +22,7 @@
 			<Button x:Name="buttonNewBookmark" Grid.Row="0" VerticalAlignment="Center"
 					HorizontalAlignment="Left" Padding="0"
 					Margin="8,0"
-					ToolTip="add new named region"
+					ToolTip="add new bookmark"
 					Click="buttonNewBookmark_Click"
 					Background="{x:Null}" BorderBrush="{x:Null}"
 					>
@@ -36,7 +36,7 @@
 			<Button x:Name="buttonRefresh" Grid.Row="0" VerticalAlignment="Center"
 					HorizontalAlignment="Left" Padding="0"
 					Margin="8,0"
-					ToolTip="add new named region"
+					ToolTip="refresh bookmark list"
 					Click="buttonRefresh_Click"
 					Background="{x:Null}" BorderBrush="{x:Null}"
 					>
