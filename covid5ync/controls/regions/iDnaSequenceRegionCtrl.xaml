@@ -59,6 +59,7 @@
 					<TextBox Grid.Row="3" Grid.Column="1" 
 							 VerticalAlignment="Center" HorizontalAlignment="Stretch"
 							 Margin="4,0" Height="21"
+							 MaxWidth="260"
 							 Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 							 />
 				</Grid>

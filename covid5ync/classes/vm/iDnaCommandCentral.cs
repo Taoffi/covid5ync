@@ -5,11 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
+using System.Xml;
 
 namespace iDna.vm
 {
@@ -38,9 +40,14 @@ namespace iDna.vm
 		protected ICommand		_downLoadSequences			= null,
 								_gotoSARS_site				= null,
 								_openFile					= null,
+
+								_openXml					= null,
+
 								_loadBuiltinSequence		= null,     // load application's delivered sequence
 								_loadSequenceFromClipboard = null,		// load sequence from clipoard
 								_saveAs						= null,
+								_saveXml					= null,
+
 								_saveSelections				= null,
 								_resetSelections			= null,
 								_copySelectionToClipboard	= null,
@@ -87,32 +94,7 @@ namespace iDna.vm
 		}
 
 
-		//public ICommand EditSequenceInfo
-		//{
-		//	get
-		//	{
-		//		if(_editSequenceInfo == null)
-		//		{
-		//			_editSequenceInfo = new CommandExecuter(() =>
-		//			{
-		//				// ShowNotYetImplemented();
 
-		//				iDnaSequence seq		= iDnaSequence.Instance;
-
-		//				if(seq == null)
-		//					return;
-
-		//				SequenceInfoWindow seqWnd		= new SequenceInfoWindow() {  DataContext = seq };
-
-		//				seqWnd.Owner	= Application.Current.MainWindow;
-		//				seqWnd.ShowDialog();
-		//			});
-		//		}
-		//		return _editSequenceInfo;
-		//	}
-		//}
-
-		
 		//// _selectAllNamedRegions
 		//public ICommand SelectAllNamedRegions
 		//{
@@ -236,7 +218,7 @@ namespace iDna.vm
 					{
 						// ShowNotYetImplemented();
 
-						string			fileName		= OpenReadTextFile();
+						string			fileName		= OpenReadTextOrXmlFile();
 
 						if(string.IsNullOrEmpty(fileName))
 							return;
@@ -375,7 +357,7 @@ namespace iDna.vm
 						if(string.IsNullOrEmpty(targetFile))
 							return;
 
-						string		str			= FormattedNodeSttring(seq);
+						string		str			= iDnaSequence.FormattedNodeSttring(seq);
 
 						if(str.Length <= 0)
 						{
@@ -389,6 +371,93 @@ namespace iDna.vm
 				return _saveAs;
 			}
 		}
+
+
+		// _saveXml
+		public ICommand SaveXml
+		{
+			get
+			{
+				if (_saveXml == null)
+				{
+					_saveXml = new CommandExecuter(() =>
+					{
+						// ShowNotYetImplemented();
+
+						iDnaSequence seq		= iDnaSequence.Instance;
+
+						if(seq == null)
+							return;
+
+						if (seq.Count <= 0)
+						{
+							ShowMessage("This sequence seems to be empty. Please check.", "Save sequence");
+							return;
+						}
+
+						string		targetFile	= SelectSaveSequenceFile();
+
+						if(string.IsNullOrEmpty(targetFile))
+							return;
+
+						iDnaSequenceContract	seqContract		= new iDnaSequenceContract(seq);
+						try
+						{
+							DataContractSerializer	ser			= new DataContractSerializer(typeof(iDnaSequenceContract));
+							XmlWriterSettings		xmlSettings	= new XmlWriterSettings() { Indent = true, CloseOutput = true, Encoding = Encoding.UTF8};
+							XmlWriter				xml			= XmlWriter.Create(targetFile, xmlSettings);
+
+							ser.WriteObject(xml, seqContract);
+							xml.Close();
+						}
+						catch (Exception ex)
+						{
+							ShowMessage("Sorry!. An error occurred: \r\n" + ex.Message, "Save xml");
+						}
+					});
+				}
+				return _saveXml;
+			}
+		}
+
+
+		public ICommand LoadFromXml
+		{
+			get
+			{
+				if (_openXml == null)
+				{
+					_openXml = new CommandExecuter(() =>
+					{
+						// ShowNotYetImplemented();
+						string		srcFile	= OpenReadTextOrXmlFile( defaultToXml: true);
+
+						if(string.IsNullOrEmpty(srcFile))
+							return;
+
+						iDnaSequenceContract	seqContract		= null;
+						try
+						{
+							DataContractSerializer	ser			= new DataContractSerializer(typeof(iDnaSequenceContract));
+							XmlReaderSettings		xmlSettings	= new XmlReaderSettings() { CloseInput = true};
+							XmlReader				xml			= XmlReader.Create(srcFile, xmlSettings);
+
+							seqContract	= ser.ReadObject(xml) as iDnaSequenceContract;
+							xml.Close();
+						}
+						catch (Exception ex)
+						{
+							ShowMessage("Sorry!. An error occurred: \r\n" + ex.Message, "Save xml");
+						}
+					});
+
+					iDnaSequence seq		= iDnaSequence.Instance;
+					Task.Run(() => seq.NotifySequenceLoaded());
+				}
+				return _openXml;
+			}
+		}
+
 
 		public ICommand SaveSelectedRegions
 		{
@@ -418,7 +487,7 @@ namespace iDna.vm
 						if(string.IsNullOrEmpty(targetFile))
 							return;
 
-						string		str			= FormattedNodeSttring(selectedItems);
+						string		str			= iDnaSequence.FormattedNodeSttring(selectedItems);
 
 						if(str.Length <= 0)
 						{
@@ -599,7 +668,7 @@ namespace iDna.vm
 							return;
 						}
 
-						string		str			= FormattedNodeSttring(selectedItems);
+						string		str			= iDnaSequence.FormattedNodeSttring(selectedItems);
 
 						if(str.Length <= 0)
 							return;
@@ -626,7 +695,7 @@ namespace iDna.vm
 
 			foreach (var r in repeatSequences)
 			{
-				str += FormattedNodeSttring(r) + "\r\n";
+				str += iDnaSequence.FormattedNodeSttring(r) + "\r\n";
 			}
 			return str;
 		}
@@ -911,7 +980,7 @@ namespace iDna.vm
 
 		string SelectAndGetTextFileString(string errorDialgTitle)
 		{
-			string			fileName	= OpenReadTextFile();
+			string			fileName	= OpenReadTextOrXmlFile();
 
 			if (string.IsNullOrEmpty(fileName))
 				return null;
@@ -1246,54 +1315,23 @@ namespace iDna.vm
 			}
 		}
 
-		string FormattedNodeSttring(IEnumerable<iDnaNode> nodeList)
-		{
-			if(nodeList == null || nodeList.Count() <= 0)
-				return "";
 
-			string		str			= "";
-			int			lastIndex	= 0,
-						counter		= 0;
-
-			foreach(var node in nodeList)
-			{
-				// for non consecutive selection: add new line
-				if (lastIndex > 0 && lastIndex + 1 != node.Index)
-				{
-					str += "\r\n";
-					counter	= 0;
-				}
-				else if(counter >= 100)
-				{
-					str		+= "\r\n" + string.Format("{0:000000} ", node.Index);
-					counter = 0;
-				}
-
-				// the very first and for non consecutive selection: add new line + coordinate
-				if (lastIndex <= 0 || lastIndex + 1 != node.Index)
-					str += string.Format("{0:000000} ", node.Index);
-				else
-				{
-					if(counter % 10 == 0 && counter > 0)
-						str	+= " ";
-				}
-				str		+= node.Code;
-				lastIndex	= node.Index;
-				counter++;
-			}
-
-			return str;
-		}
-
-
-
-		string OpenReadTextFile()
+		string OpenReadTextOrXmlFile(bool defaultToXml = false)
 		{
 			OpenFileDialog		dialog		= new OpenFileDialog();
-
-			dialog.Filter	= "Text files|*.txt|All files|*.*";
+			string			extText	= "Text files|*.txt",
+							extXml	= "Xml file|*.xml",
+							extAll	= "All files|*.*";
+			// "Text files|*.txt|Xml file|*.xml|All files|*.*";
+			dialog.Filter			= defaultToXml	? extXml	+ "|" + extText	+ "|" + extAll
+													: extText	+ "|" + extXml	+ "|" + extAll;
 			dialog.CheckFileExists	= true;
-			dialog.DefaultExt		= "*.txt";
+
+			if(defaultToXml)
+				dialog.DefaultExt	= ".xml";
+			else
+				dialog.DefaultExt	= ".txt";
+
 			dialog.Multiselect		= false;
 
 			var			result			= dialog.ShowDialog(Application.Current.MainWindow);

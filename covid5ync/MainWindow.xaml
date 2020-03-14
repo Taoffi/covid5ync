@@ -29,8 +29,8 @@
 
 		<GridSplitter Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" 
 					  HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="4"
-					  Background="#FFC5CAEC"
-					  BorderBrush="#FFD8DCF5"
+					  Background="#FFD8DCF5"
+					  BorderBrush="#FF919BD8"
 					  BorderThickness="1,0,1,0"/>
 
 		<StackPanel Grid.Row="1"
@@ -74,7 +74,15 @@
 				<RowDefinition />
 			</Grid.RowDefinitions>
 
-			<Border Grid.Row="0" CornerRadius="4" BorderBrush="Black" BorderThickness="2" Padding="2">
+			<GridSplitter Grid.Row="0" Grid.Column="0" SnapsToDevicePixels="True"
+						  HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+						  Height="4"
+						  Margin="-6,0,0,0"
+						  Background="#FFD8DCF5"
+						  BorderBrush="#FF919BD8"
+						  BorderThickness="0,1,0,1" />
+			
+			<Border Grid.Row="0" CornerRadius="4" BorderBrush="Black" BorderThickness="2" Padding="2" Margin="0,0,0,6">
 				<Grid>
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="24" />

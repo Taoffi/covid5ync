@@ -55,7 +55,7 @@
 	<MenuItem Header="_File">
 		<MenuItem Header="_Open"
 				  Icon="{DynamicResource mimgFolderOpen16}"
-				  ToolTip="load a sequence file from your pc"
+				  ToolTip="load a sequence text file from your pc (nucleotides only)"
 				  ToolTipService.ShowOnDisabled="True"
 				  Command="{Binding OpenFile, Mode=OneWay}"
 				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
@@ -70,6 +70,15 @@
 						  />
 
 		<Separator />
+
+		<MenuItem Header="Open from _xml file"
+				  Icon="{DynamicResource mimgFolderOpen16}"
+				  ToolTip="load a sequence file from this application's previously saved xml file"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding LoadFromXml, Mode=OneWay}"
+				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
+						  />
+
 		<MenuItem Header="Paste sequence from Cli_pboard"
 				  Icon="{DynamicResource mimgPaste23}"
 				  ToolTip="load the sequence from text you already copied in the clipboard"
@@ -84,6 +93,15 @@
 				  ToolTip="save current sequence to file"
 				  ToolTipService.ShowOnDisabled="True"
 				  Command="{Binding SaveAs, Mode=OneWay}"
+				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
+				  />
+
+		<Separator />
+		<MenuItem Header="Save sequence _xml..."
+				  Icon="{DynamicResource mimgSave16}"
+				  ToolTip="save current sequence information to xml file"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding SaveXml, Mode=OneWay}"
 				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
 				  />
 

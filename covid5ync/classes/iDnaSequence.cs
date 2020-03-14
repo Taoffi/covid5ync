@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -96,6 +97,7 @@ namespace iDna
 				ReIndexNodes();
 		}
 
+
 		/// <summary>
 		/// embed nodes: set parent to this and reset nodes index
 		/// </summary>
@@ -113,12 +115,6 @@ namespace iDna
 		public iDnaSequencePaging SequencePaging
 		{
 			get { return _paging; }
-		}
-
-
-		public iDnaRegionIndexList SequenceNamedRegionList
-		{
-			get {  return _namedRegionsList; }
 		}
 
 
@@ -153,34 +149,6 @@ namespace iDna
 			get { return this.Where(i => i.RootBaseItem == rootBase); }
 		}
 
-
-		public string Id
-		{
-			get {  return _id; }
-			protected set
-			{
-				if(value == _id)
-					return;
-
-				_id = value;
-				NotifyPropertyChanged(() => Id);
-			}
-		}
-
-
-		public string Name
-		{
-			get { return _name; }
-			set
-			{
-				if(value == _name)
-					return;
-
-				_name		= value;
-				NotifyPropertyChanged(() => Name);
-			}
-		}
-
 		public double SequenceLinearBaseValue
 		{
 			get { return this.Sum(i => i.LinearBaseValue); }
@@ -194,22 +162,7 @@ namespace iDna
 		}
 
 
-		public string SequenceFileInfo
-		{
-			get { return _sequenceFileInfo; }
-			set
-			{
-				if(value == _sequenceFileInfo)
-					return;
-
-				_sequenceFileInfo	= value;
-				NotifyPropertyChanged(() => SequenceFileInfo);
-			}
-		}
-
-
-
-		public string SequenceString
+		public string SequenceFlatString
 		{
 			get
 			{
@@ -467,14 +420,6 @@ namespace iDna
 			_paging.CurrentPage	= nodePageNumber;
 		}
 
-
-		public static async Task<iDnaSequence> FromString(string str)
-		{
-			iDnaSequence		sequence	= new iDnaSequence();
-
-			await sequence.ParseString(str);
-			return sequence;
-		}
 	}
 
 

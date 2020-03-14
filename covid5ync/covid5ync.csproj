@@ -102,8 +102,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="classes\bookmaeks\iDnaBookmarks.cs" />
+    <Compile Include="classes\iDnaSequenceBaseContract.cs" />
     <Compile Include="classes\iDnaSequenceRepeats.cs" />
     <Compile Include="classes\iDnaSequenceSearch.cs" />
+    <Compile Include="classes\iDnaSequenceUtils.cs" />
+    <Compile Include="classes\regions\iDnaRegionIndex.cs" />
     <Compile Include="classes\root objects\iEnumBinderTemplate.cs" />
     <Compile Include="classes\settings\iMinMax.cs" />
     <Compile Include="classes\settings\iDnaSettings.cs" />
@@ -228,7 +231,7 @@
       <Link>classes\root objects\CommandExecuterWpf.cs</Link>
     </Compile>
     <Compile Include="..\..\iTrieApp\doc5Words\extensions\LinqPaging.cs">
-      <Link>classes\paging\LinqPaging.cs</Link>
+      <Link>classes\extensions\LinqPaging.cs</Link>
     </Compile>
     <Compile Include="..\..\iTrieApp\doc5Words\extensions\stringExtensions2020.cs">
       <Link>classes\extensions\stringExtensions2020.cs</Link>
@@ -370,6 +373,7 @@
     </EmbeddedResource>
     <None Include="classes\documentation\covid5yncClassDiagram-hierarchy.cd" />
     <None Include="classes\documentation\covid5yncClassDiagram1.cd" />
+    <None Include="classes\documentation\SequenceClassDiagram1.cd" />
     <None Include="covid5ync_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -380,6 +384,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="data\covid-19-sequence-info.txt" />
     <Resource Include="data\covid-19-sequence.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -387,9 +392,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="iDna.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="data\covid-19-sequence-info.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -406,6 +408,7 @@
   <ItemGroup>
     <Folder Include="classes\paging\future\" />
     <Folder Include="data\data backup\" />
+    <Folder Include="data\ncbi\" />
     <Folder Include="web pages\css\" />
     <Folder Include="web pages\images\" />
   </ItemGroup>

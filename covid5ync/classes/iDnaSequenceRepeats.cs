@@ -8,6 +8,7 @@ using System.Threading;
 using System.Windows.Threading;
 using isosoft.root;
 using System.ComponentModel;
+using System.Runtime.Serialization;
 
 namespace iDna
 {
@@ -37,13 +38,14 @@ namespace iDna
 	{
 		protected vm.iDnaSequenceSortOptionList	_repeatSortOptions		= new vm.iDnaSequenceSortOptionList();
 		protected vm.iDnaSequenceSortOptionList	_hairpinSortOptions		= new vm.iDnaSequenceSortOptionList();
-		protected List<iDnaSequence>			_repeatsBasket		= new List<iDnaSequence>(),		// iDnaSequenceList(),
+		protected List<iDnaSequence>			_repeatsBasket			= new List<iDnaSequence>(),			// iDnaSequenceList(),
 												_hairPinBasket			= new List<iDnaSequence>(),			// iDnaSequenceList(),
 												_repeatSearch			= new List<iDnaSequence>();			// iDnaSequenceList();
 		protected int							_repeatSearchPosition	= 0;
 		protected bool							_isRepeatProcessRunning	= false;
 		protected CancellationTokenSource		_repeatCancelSource		= new CancellationTokenSource(5);
 		protected RepeatSerachType				_repeatSerachType		= RepeatSerachType.SearchRepeats;
+
 
 
 		public CancellationTokenSource RepeatCancellation
@@ -125,7 +127,7 @@ namespace iDna
 				if(_repeatsBasket == null || _repeatsBasket.Count <= 0)
 					return 0;
 
-				return _repeatsBasket.Select(i => i.SequenceString).Distinct().Count();
+				return _repeatsBasket.Select(i => i.SequenceFlatString).Distinct().Count();
 			}
 		}
 
@@ -136,7 +138,7 @@ namespace iDna
 				if (_hairPinBasket == null || _hairPinBasket.Count <= 0)
 					return 0;
 
-				return _hairPinBasket.Select(i => i.SequenceString).Distinct().Count();
+				return _hairPinBasket.Select(i => i.SequenceFlatString).Distinct().Count();
 			}
 		}
 
@@ -451,7 +453,7 @@ namespace iDna
 						_stringOccurList.AddUnique(new StringOccurrence(searchString, 0));
 
 						/// string alreay in repeat library? : skip
-						if (targetBasket.Any(s => s.SequenceString == searchString))
+						if (targetBasket.Any(s => s.SequenceFlatString == searchString))
 							goto next_index;
 
 						/// for hairpin: get the pair string

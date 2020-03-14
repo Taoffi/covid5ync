@@ -50,7 +50,8 @@
 						Padding="-4" Margin="8,4" 
 						Command="{Binding LoadBuiltinSequence, Mode=OneWay}"
 						Background="Transparent" BorderBrush="Transparent" Height="48" Width="60"
-						ToolTip="load the covid-19 sequence embedded in the application&#10;LR757995 29872 bp RNA linear VRL 01-FEB-2020 whole genome"
+						ToolTip="load the covid-19 sequence embedded in the application&#10;MT163719 29872 bp RNA linear VRL 01-FEB-2020 whole genome"
+						IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}, Source={StaticResource mainSequence}, IsAsync=True}"
 						>
 					<Button.Content>
 						<Border BorderBrush="Maroon" BorderThickness="0">
@@ -76,7 +77,9 @@
 						Command="{Binding OpenFile, Mode=OneWay}"
 						Background="Transparent" BorderBrush="Transparent"
 						Height="48" Width="60"
-						ToolTip="load a sequence from text file">
+						ToolTip="load a sequence from text file"
+						IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}, Source={StaticResource mainSequence}, IsAsync=True}"
+						>
 					<Button.Content>
 						<Border BorderBrush="Maroon" BorderThickness="0" Padding="2">
 							<Image Source="{Binding Source={StaticResource imgDoc48}, Path=Source}" Width="48" />
