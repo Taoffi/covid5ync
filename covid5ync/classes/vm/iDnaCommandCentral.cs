@@ -395,7 +395,7 @@ namespace iDna.vm
 							return;
 						}
 
-						string		targetFile	= SelectSaveSequenceFileTextOrXml(defaultToXml: true);
+						string		targetFile	= SelectSaveSequenceFileTextOrXml(defaultToAppXml: true);
 
 						if(string.IsNullOrEmpty(targetFile))
 							return;
@@ -420,6 +420,30 @@ namespace iDna.vm
 			}
 		}
 
+		internal bool LoadXmlFile(string srcFile)
+		{
+			if(string.IsNullOrEmpty(srcFile) || ! File.Exists(srcFile))
+				return false;
+
+			iDnaSequenceContract	seqContract		= null;
+			try
+			{
+				DataContractSerializer	ser			= new DataContractSerializer(typeof(iDnaSequenceContract));
+				XmlReaderSettings		xmlSettings	= new XmlReaderSettings() { CloseInput = true};
+				XmlReader				xml			= XmlReader.Create(srcFile, xmlSettings);
+
+				seqContract	= ser.ReadObject(xml) as iDnaSequenceContract;
+				xml.Close();
+			}
+			catch (Exception ex)
+			{
+				ShowMessage("Sorry!. An error occurred: \r\n" + ex.Message, "Load xml file");
+				return false;
+			}
+
+			return true;
+		}
+
 
 		public ICommand LoadFromXml
 		{
@@ -430,25 +454,26 @@ namespace iDna.vm
 					_openXml = new CommandExecuter(() =>
 					{
 						// ShowNotYetImplemented();
-						string		srcFile	= OpenReadTextOrXmlFile( defaultToXml: true);
+						string		srcFile	= OpenReadTextOrXmlFile( defaultToAppXml: true);
 
 						if(string.IsNullOrEmpty(srcFile))
 							return;
 
-						iDnaSequenceContract	seqContract		= null;
-						try
-						{
-							DataContractSerializer	ser			= new DataContractSerializer(typeof(iDnaSequenceContract));
-							XmlReaderSettings		xmlSettings	= new XmlReaderSettings() { CloseInput = true};
-							XmlReader				xml			= XmlReader.Create(srcFile, xmlSettings);
+						LoadXmlFile(srcFile);
+						//iDnaSequenceContract	seqContract		= null;
+						//try
+						//{
+						//	DataContractSerializer	ser			= new DataContractSerializer(typeof(iDnaSequenceContract));
+						//	XmlReaderSettings		xmlSettings	= new XmlReaderSettings() { CloseInput = true};
+						//	XmlReader				xml			= XmlReader.Create(srcFile, xmlSettings);
 
-							seqContract	= ser.ReadObject(xml) as iDnaSequenceContract;
-							xml.Close();
-						}
-						catch (Exception ex)
-						{
-							ShowMessage("Sorry!. An error occurred: \r\n" + ex.Message, "Load xml file");
-						}
+						//	seqContract	= ser.ReadObject(xml) as iDnaSequenceContract;
+						//	xml.Close();
+						//}
+						//catch (Exception ex)
+						//{
+						//	ShowMessage("Sorry!. An error occurred: \r\n" + ex.Message, "Load xml file");
+						//}
 					});
 
 					iDnaSequence seq		= iDnaSequence.Instance;
@@ -980,7 +1005,7 @@ namespace iDna.vm
 
 		string SelectAndGetTextFileString(string errorDialgTitle)
 		{
-			string			fileName	= OpenReadTextOrXmlFile();
+			string			fileName	= OpenReadTextOrXmlFile(defaultToAppXml: false);
 
 			if (string.IsNullOrEmpty(fileName))
 				return null;
@@ -1315,24 +1340,25 @@ namespace iDna.vm
 			}
 		}
 
-		string GetOpenSaveFileDialogFilterString(bool defaultToXml)
+		string GetOpenSaveFileDialogFilterString(bool defaultToAppXml)
 		{
 			string			extText	= "Text files|*.txt",
 							extXml	= "Xml file|*.xml",
+							appXml	= "Covid-5ync file|*." + App._appFilesExtension,
 							extAll	= "All files|*.*";
-			return defaultToXml			? extXml	+ "|" + extText	+ "|" + extAll
-										: extText	+ "|" + extXml	+ "|" + extAll;
+			return defaultToAppXml		? appXml	+ "|"	+ extXml	+ "|" + extText	+ "|"	+ extAll
+										: extText	+ "|"	+ extXml	+ "|" + appXml	+ "|"   + extAll;
 		}
 
-		string OpenReadTextOrXmlFile(bool defaultToXml = false)
+		string OpenReadTextOrXmlFile(bool defaultToAppXml = false)
 		{
 			OpenFileDialog		dialog		= new OpenFileDialog();
 			
-			dialog.Filter			= GetOpenSaveFileDialogFilterString(defaultToXml);
+			dialog.Filter			= GetOpenSaveFileDialogFilterString(defaultToAppXml);
 			dialog.CheckFileExists	= true;
 
-			if(defaultToXml)
-				dialog.DefaultExt	= "*.xml";
+			if(defaultToAppXml)
+				dialog.DefaultExt	= "*." + App._appFilesExtension;	// "*.xml";
 			else
 				dialog.DefaultExt	= "*.txt";
 
@@ -1349,15 +1375,15 @@ namespace iDna.vm
 		}
 
 
-		string SelectSaveSequenceFileTextOrXml( bool defaultToXml = false)
+		string SelectSaveSequenceFileTextOrXml( bool defaultToAppXml = false)
 		{
 			SaveFileDialog		dialog		= new SaveFileDialog();
 
-			dialog.Filter			= GetOpenSaveFileDialogFilterString(defaultToXml);
+			dialog.Filter			= GetOpenSaveFileDialogFilterString(defaultToAppXml);
 			dialog.CheckPathExists	= true;
 			//dialog.CheckFileExists	= true;
 			
-			dialog.DefaultExt		= defaultToXml ? "*.xml" : "*.txt";
+			dialog.DefaultExt		= defaultToAppXml ? "*." + App._appFilesExtension : "*.txt";
 
 			var			result			= dialog.ShowDialog(Application.Current.MainWindow);
 			string		selectedFile	= null;
@@ -1368,6 +1394,7 @@ namespace iDna.vm
 			selectedFile	= dialog.FileName;
 			return selectedFile;
 		}
+
 
 		bool WriteStringToFile(string str, string targetFile)
 		{
@@ -1390,6 +1417,11 @@ namespace iDna.vm
 			}
 
 			return true;
+		}
+
+		public string AppVersionInfo
+		{
+			get {  return ApplicationVersionInfoString(); }
 		}
 
 		public static string ApplicationVersionInfoString()

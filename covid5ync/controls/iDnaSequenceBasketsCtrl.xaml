@@ -4,16 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:iDna.controls"
-             mc:Ignorable="d" 
-             d:DesignHeight="292" d:DesignWidth="338">
+			 xmlns:data="clr-namespace:iDna"
+             mc:Ignorable="d"
+			 d:DataContext="{d:DesignInstance Type={x:Type data:iDnaSequenceDesignTime}, CreateList=False, IsDesignTimeCreatable=True}"
+             d:DesignHeight="292" d:DesignWidth="342">
 
-    <Grid DataContext="{StaticResource mainSequence}" VerticalAlignment="Stretch">
+	<!--  DataContext="{StaticResource mainSequence}" VerticalAlignment="Stretch"-->
+    <Grid>
         <TabControl>
             <TabItem>
                 <TabItem.Header>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0" Width="46" ToolTip="Search results">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0" Width="42" ToolTip="Search results">
                         <Image Source="{Binding Source={StaticResource imgSearch48}, Path=Source}" Width="18" Margin="0" SnapsToDevicePixels="True" />
-                        <!--<TextBlock Text="Search" Margin="4,0" />-->
+                        <!--<TextBlock Text="Search" FontSize="9.5" Margin="4,0" />-->
                         <TextBlock Text="{Binding CurrentSearchBasket.Count, Mode=OneWay, IsAsync=True}" FontSize="9" Margin="4,0" />
                     </StackPanel>
                 </TabItem.Header>
@@ -39,6 +42,7 @@
 									VerticalAlignment="Center"
 									ToolTip="clear search basket"
 									Command="{Binding Source={StaticResource commandCentral}, Path=ClearSearchBaskets, Mode=OneWay}"
+									IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}}"
 									>
                                 <Button.Content>
                                     <Border Padding="0" Margin="0">
@@ -52,7 +56,7 @@
                     <Grid x:Name="gridSearchItems" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                         <local:iDnaSequenceBasket DataContext="{Binding CurrentSearchBasketSorted, IsAsync=True}"
 												  Margin="4"
-												  MinWidth="280"
+												  MinWidth="300"
 												  HorizontalAlignment="Stretch"
 												  VerticalAlignment="Stretch"
 												  VirtualizingPanel.IsVirtualizing="False"/>
@@ -103,6 +107,7 @@
 										VerticalAlignment="Center"
 										ToolTip="clear repeats basket"
 										Command="{Binding Source={StaticResource commandCentral}, Path=ClearRepeatBaskets, Mode=OneWay}"
+										IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}}"
 									>
 									<Button.Content>
 										<Border Padding="0" Margin="0">
@@ -116,20 +121,11 @@
                     </Border>
 
 
-                    <!--<local:BusySpinCtrlRepeats Grid.Row="0" Grid.Column="1" x:Name="busyRepeatControl" 
-													HorizontalAlignment="Right" 
-													VerticalAlignment="Top"
-													Margin="0,8,12,0"
-													Width="20"
-													Cursor="Hand"
-													Visibility="{Binding Source={StaticResource mainSequence}, Path=IsRepeatProcessRunning, Converter={StaticResource bool2visible}, IsAsync=True}" 
-												   />-->
-
                     <local:iDnaSequenceBasket Grid.Row="2"
 							DataContext="{Binding RepeatsBasketSorted, IsAsync=True, Mode=OneWay}"
 							Margin="4,0,0,0"
 							Padding="0,0"
-							MinWidth="280"
+							MinWidth="300"
 							HorizontalAlignment="Stretch"
 							VerticalAlignment="Stretch"
 							Background="#FFF7EFCC"
@@ -183,6 +179,7 @@
 										VerticalAlignment="Center"
 										ToolTip="clear pair-repeats baskets"
 										Command="{Binding Source={StaticResource commandCentral}, Path=ClearHairpinBaskets, Mode=OneWay}"
+										IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}, IsAsync=True}"
 										>
 									<Button.Content>
 										<Border Padding="0" Margin="0">
@@ -194,20 +191,11 @@
                         </StackPanel>
                     </Border>
 
-                    <!--<local:BusySpinCtrlRepeats Grid.Row="0" Grid.Column="0" x:Name="busyRepeatControlx" 
-												HorizontalAlignment="Right"
-												VerticalAlignment="Top"
-												Margin="0,8,12,0"
-												Width="20" Height="20"
-												Cursor="Hand"
-												Visibility="{Binding Source={StaticResource mainSequence}, Path=IsRepeatProcessRunning, Converter={StaticResource bool2visible}, IsAsync=True}"
-											   />-->
-
                     <local:iDnaSequenceBasket Grid.Row="1" Grid.Column="0"
 									DataContext="{Binding HairpinBasketSorted, IsAsync=True}"
 									Margin="4,0,0,0"
 									Padding="0"
-									MinWidth="280"
+									MinWidth="300"
 									HorizontalAlignment="Stretch"
 									VerticalAlignment="Stretch"
 									Background="#FFF7EFCC"

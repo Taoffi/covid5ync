@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:iDna.controls"
 			 xmlns:data="clr-namespace:iDna"
              mc:Ignorable="d" 
-             d:DesignHeight="413" d:DesignWidth="383"
+             d:DesignHeight="413" d:DesignWidth="342"
 			 d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type data:iDnaRegionIndexDesignTime}, CreateList=True}" Background="#FFF6F6F6"
 			 >
     <Grid x:Name="gridMain" Background="#FFF6F6F6" HorizontalAlignment="Stretch">

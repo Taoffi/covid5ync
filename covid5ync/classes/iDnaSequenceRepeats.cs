@@ -118,7 +118,8 @@ namespace iDna
 
 #endregion // xxxxxxxxxxxxxxxxxxxxxx occurrence classes xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-		protected StringOccurrenceList		_stringOccurList		= new StringOccurrenceList();
+		protected StringOccurrenceList		_stringOccurList		= new StringOccurrenceList(),
+											_pairStringOccurList	= new StringOccurrenceList();
 
 		public int RepeatsCount
 		{
@@ -286,7 +287,7 @@ namespace iDna
 				if(value == null)
 				{
 					_hairPinBasket.Clear();
-					_stringOccurList.Clear();
+					_pairStringOccurList.Clear();
 				}
 				else
 					_hairPinBasket = value;
@@ -361,6 +362,7 @@ namespace iDna
 									lenSearch			= 0;
 			string					sequenceString,
 									searchString;
+			StringOccurrenceList	occurList			= searchHairpins ? _pairStringOccurList : _stringOccurList;
 
 			IsRepeatProcessRunning	= true;
 			RepeatSearchPosition	= 0;
@@ -427,7 +429,7 @@ namespace iDna
 					string		shortestString	= strAtStart.Substring(0, minMax.MinNodes);
 
 					/// we already searched for this as shortest string: skip this location
-					if (_stringOccurList.Count > 0 && _stringOccurList.Any(s => s.ItemString == shortestString))
+					if (occurList.Count > 0 && occurList.Any(s => s.ItemString == shortestString))
 					{
 						lenSearch		= minMax.MinNodes;
 						foundRepeats	= true;
@@ -439,7 +441,7 @@ namespace iDna
 						string			str		= strAtStart.Substring(0, len);
 
 						/// did we already searched fro this string?: skip
-						if (_stringOccurList.Count > 0 && _stringOccurList.Any(s => s.ItemString == str))
+						if (occurList.Count > 0 && occurList.Any(s => s.ItemString == str))
 						{
 							lenSearch		= len;
 							foundRepeats	= true;
@@ -455,11 +457,11 @@ namespace iDna
 						searchString	= sequenceString.Substring(0, lenSearch);
 
 						/// we already searched for this: skip
-						if (_stringOccurList.Count >0 && _stringOccurList.Any(s => s.ItemString == searchString))
+						if (occurList.Count >0 && occurList.Any(s => s.ItemString == searchString))
 							goto next_index;
 
 						/// add this to the search list
-						_stringOccurList.AddUnique(new StringOccurrence(searchString, 0));
+						occurList.AddUnique(new StringOccurrence(searchString, 0));
 
 						/// string alreay in repeat library? : skip
 						if (targetBasket.Any(s => s.SequenceFlatString == searchString))
@@ -473,7 +475,7 @@ namespace iDna
 						int		occurrences			= allStartOccurrences == null ? 0 : allStartOccurrences.Count();
 
 						/// keep track of occurrences
-						_stringOccurList[searchString].Occurrs	= occurrences;
+						occurList[searchString].Occurrs	= occurrences;
 
 						if (allStartOccurrences != null && occurrences > (searchHairpins ? 0 : 1))
 						{

@@ -8,7 +8,7 @@
 			 xmlns:data="clr-namespace:iDna"
              mc:Ignorable="d" 
 			 d:DataContext="{d:DesignInstance Type={x:Type data:iDnaSequenceDesignTime}, IsDesignTimeCreatable=True, CreateList=True}"
-             d:DesignHeight="334" d:DesignWidth="310"
+             d:DesignHeight="334" d:DesignWidth="342"
 			 >
 
 	<Grid x:Name="gridMain" VerticalAlignment="Stretch" Background="#FFF7EFCC">
@@ -41,9 +41,9 @@
 														ViewPageIndicatorBar="False"
 														Margin="0,0,0,0"
 														HorizontalAlignment="Stretch"
-														Width="276"
-														MaxWidth="276"
-														MinWidth="276"
+														Width="300"
+														MaxWidth="300"
+														MinWidth="300"
 														Height="58"
 														MinHeight="58"
 														MaxHeight="58"
@@ -78,9 +78,9 @@
 										</Button.Content>
 									</Button>
 
-									<TextBox Text="{Binding Name, Mode=TwoWay}"
-											 FontSize="10" VerticalAlignment="Center"
-											 Width="100"
+									<TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+											 FontSize="12" VerticalAlignment="Center"
+											 Width="160"
 											 Margin="4,0"
 											 ToolTip="sequence name. modify as needed"
 											 />

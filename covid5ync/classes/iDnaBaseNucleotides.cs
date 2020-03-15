@@ -95,7 +95,13 @@ namespace iDna
 				pair	+= node.Pair.Code;
 			}
 
-			return pair;
+			if(string.IsNullOrEmpty(pair))
+				return pair;
+
+			// from 5'->3' to 3'->5'
+			char[]		pairChars		= pair.ToCharArray();
+			Array.Reverse(pairChars);
+			return new string(pairChars);
 		}
 
 

@@ -67,7 +67,7 @@ namespace iDna
 			_hairpinSortOptions.SelectedOptionChanged	+= _hairpinSortOptions_SelectedOptionChanged;
 		}
 
-		protected iDnaSequence(string name, IEnumerable<iDnaNode> nodeList, bool refOnly = true, int nOccurrences = 1) : base()
+		internal iDnaSequence(string name, IEnumerable<iDnaNode> nodeList, bool refOnly = true, int nOccurrences = 1) : base()
 		{
 			_paging.SourceCollection	= this;
 			_namedRegionsList			= new iDnaRegionIndexList(this, "Sequence Regions");
@@ -278,6 +278,8 @@ namespace iDna
 			this._repeatsBasket.Clear();
 			this._hairPinBasket.Clear();
 			this._repeatSearch.Clear();
+			this._stringOccurList.Clear();
+			this._pairStringOccurList.Clear();
 
 			_namedRegionsList = new iDnaRegionIndexList(this, "Sequence Regions");
 
@@ -454,6 +456,27 @@ ataactaattactgtcgttgacaggacacgagtaactcgtctatcttctgcaggctgctt");
 
 			foreach(int ndx in selectedNodes)
 				this[ndx].IsSelected	= true;
+
+			string[]			str_repeats	= { "caggtaacaaa", "caggtaacaaa" },
+								str_hp		= { "caggtaacaaa", iDnaBaseNucleotides.Instance.GetPairString("caggtaacaaa") };
+			List<iDnaNode>		repeats		= new List<iDnaNode>(),
+								hairpins	= new List<iDnaNode>();
+			foreach(var s in str_repeats)
+			{
+				int ndx = 1;
+				foreach(var c in s)
+					repeats.Add(new iDnaNode(this, iDnaBaseNucleotides.Instance[c], ndx++));
+			}
+
+			foreach (var s in str_hp)
+			{
+				int ndx = 1;
+				foreach (var c in s)
+					hairpins.Add(new iDnaNode(this, iDnaBaseNucleotides.Instance[c], ndx++));
+			}
+
+			this._repeatsBasket.Add(new iDnaSequence($"repeat 1", repeats, true, 1));
+			this._hairPinBasket.Add(new iDnaSequence($"hairpin 1", hairpins, true, 1));
 		}
 	}
 

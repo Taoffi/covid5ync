@@ -40,7 +40,7 @@ namespace iDna
 
 			// assign repeats and hairpins only after parse string process is complete
 			_sequence.RepeatsRegionIndex	= _deserializedRepeatIndexes;
-			_sequence.HairpinsRegionIndex	= _deserializedRepeatIndexes;
+			_sequence.HairpinsRegionIndex	= _deserializedHairPinIndexes;
 			_sequence.NotifySequenceLoaded();
 		}
 

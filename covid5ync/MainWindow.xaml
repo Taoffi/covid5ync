@@ -8,7 +8,7 @@
         mc:Ignorable="d"
 		Icon="iDna.ico"
 		SnapsToDevicePixels="True"
-        Title="covid-5ync" Height="640" Width="1032"
+        Title="covid-5ync" Height="680" Width="1086"
 		ResizeMode="CanResizeWithGrip">
 
 	<Grid DataContext="{Binding Source={StaticResource mainSequence}}" Background="#FFD8DCF5">
@@ -20,7 +20,7 @@
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition />
-			<ColumnDefinition Width="274" />
+			<ColumnDefinition Width="300" />
 		</Grid.ColumnDefinitions>
 
 		<!-- xxxxxxxxxxxxx *********** main menu ********************* xxxxxxxxxxxxx -->
@@ -69,7 +69,7 @@
 
 		<Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Margin="6,0">
 			<Grid.RowDefinitions>
-				<RowDefinition  Height="184"/>
+				<RowDefinition  Height="124"/>
 				<RowDefinition Height="32" />
 				<RowDefinition />
 			</Grid.RowDefinitions>
@@ -85,7 +85,7 @@
 			<Border Grid.Row="0" CornerRadius="4" BorderBrush="Black" BorderThickness="2" Padding="2" Margin="0,0,0,6">
 				<Grid>
 					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="24" />
+						<ColumnDefinition Width="8" />
 						<ColumnDefinition />
 					</Grid.ColumnDefinitions>
 					<Grid.RowDefinitions>
@@ -102,6 +102,7 @@
 
 					<controls:iDnaSequenceStatsCtrl Grid.Row="1" Grid.Column="1" Margin="0,0,0,0" 
 													Padding="0,4"
+													SnapsToDevicePixels="True"
 													Background="#FFF6F6F6" BorderBrush="Black" BorderThickness="1" />
 				</Grid>
 			</Border>
@@ -221,7 +222,7 @@
 							 VerticalAlignment="Stretch"
 							 HorizontalAlignment="Stretch"
 							 FontFamily="Consolas"
-							 Text=""
+							 Text="{Binding Source={StaticResource commandCentral}, Path=AppVersionInfo, Mode=OneTime, IsAsync=True}"
 							 Padding="8" FontSize="13"
 							 Margin="4"
 							 BorderBrush="Black"
