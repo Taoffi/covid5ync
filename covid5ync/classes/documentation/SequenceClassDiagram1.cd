@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="iDna.iDnaSequence">
+  <Class Name="iDna.iDnaSequence" Collapsed="true">
     <Position X="1.25" Y="0.5" Width="2.25" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
@@ -18,34 +18,54 @@
         </TypeIdentifier>
       </Class>
     </NestedTypes>
+    <AssociationLine Name="Id" Type="System.String">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="2.339" Y="0.091" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Name" Type="System.String">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="1.558" Y="0.081" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="SequenceFileInfo" Type="System.String">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="2.308" Y="-0.273" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="RepeatsBasket" Type="System.Collections.Generic.List&lt;T&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="3.5" Y="1.188" />
+        <Point X="5.25" Y="1.188" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>EAI3oRBAFYoRMMAPGChgDyzxhoxDwlleVwrISKIOBBI=</HashCode>
+      <HashCode>EgI3oRBRFYoRMMAPGChgDyTxhsxDwlleVwrISLoOBBI=</HashCode>
       <FileName>classes\iDnaSequence.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="HairpinBasket" />
-      <Property Name="RepeatsBasket" />
-      <Property Name="SequenceNamedRegionList" />
-      <Property Name="SequenceString" />
-      <Property Name="SequenceFileInfo" />
       <Property Name="Id" />
       <Property Name="Name" />
+      <Property Name="SequenceFileInfo" />
+      <Property Name="SequenceNamedRegionList" />
+      <Property Name="RepeatsBasket" />
+      <Property Name="HairpinBasket" />
     </ShowAsAssociation>
   </Class>
   <Class Name="System.Collections.Generic.List&lt;T&gt;" Collapsed="true">
-    <Position X="6" Y="1.5" Width="2" />
+    <Position X="5.25" Y="0.75" Width="2" />
     <TypeIdentifier />
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="iDna.iDnaRegionIndexList" Collapsed="true">
-    <Position X="6" Y="2.75" Width="2" />
+    <Position X="5.25" Y="1.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAIAABAAAAAAAAAACQAAAAAAAAAAEAAAAAAAAAAgAAA=</HashCode>
-      <FileName>classes\settings\iMinMax.cs</FileName>
+      <HashCode>AAIAABAAAAgAAAAACQAAAAAAAAAAEAAAAAAAUAAgAAA=</HashCode>
+      <FileName>classes\regions\iDnaRegionIndex.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="System.String" Collapsed="true">
-    <Position X="6" Y="3.75" Width="2" />
+    <Position X="5.25" Y="2.5" Width="2" />
     <TypeIdentifier />
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>

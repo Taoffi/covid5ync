@@ -374,6 +374,7 @@
     <None Include="classes\documentation\covid5yncClassDiagram-hierarchy.cd" />
     <None Include="classes\documentation\covid5yncClassDiagram1.cd" />
     <None Include="classes\documentation\SequenceClassDiagram1.cd" />
+    <None Include="classes\documentation\serializationClassDiagram1.cd" />
     <None Include="covid5ync_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
