@@ -56,7 +56,9 @@
 									<TextBox HorizontalAlignment="Stretch"
 											 Margin="8,0,20,0"
 											 VerticalAlignment="Center"
-											 Text="{Binding SequenceString, Mode=OneWay}"
+											 Text="{Binding SequenceFlatString, Mode=OneWay}"
+											 TextWrapping="NoWrap"
+											 MaxWidth="298"
 											 IsReadOnly="True" />
 								</Border>
 								<StackPanel Grid.Row="1" Background="#FFF6F6F6"
