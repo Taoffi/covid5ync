@@ -8,20 +8,21 @@
 			 xmlns:data="clr-namespace:iDna"
              mc:Ignorable="d" 
 			 d:DataContext="{d:DesignInstance Type={x:Type data:iDnaSequenceDesignTime}, IsDesignTimeCreatable=True, CreateList=True}"
-             d:DesignHeight="334" d:DesignWidth="248"
+             d:DesignHeight="334" d:DesignWidth="310"
 			 >
 
 	<Grid x:Name="gridMain" VerticalAlignment="Stretch" Background="#FFF7EFCC">
 		<ListView x:Name="listSequences" Grid.Row="0"
-					ItemsSource="{Binding IsAsync=True}"
-					HorizontalAlignment="Left"
-					Height="auto"
-					ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-					VerticalAlignment="Top"
-					SelectionMode="Single"
+				  ItemsSource="{Binding IsAsync=True}"
+				  HorizontalAlignment="Left"
+				  Height="auto"
+				  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+				  VerticalAlignment="Top"
+				  SelectionMode="Single"
 				  VirtualizingPanel.IsVirtualizing="False"
-					Margin="0,0,0,0" Padding="-4,0,-3,0"
+				  Margin="0,0,0,0" Padding="-4,0,-3,0"
 				  Background="#FFF7EFCC" BorderBrush="{x:Null}"
+				  ScrollViewer.CanContentScroll="False"
 				>
 
 			<ListView.ItemTemplate>
@@ -40,9 +41,9 @@
 														ViewPageIndicatorBar="False"
 														Margin="0,0,0,0"
 														HorizontalAlignment="Stretch"
-														Width="210"
-														MaxWidth="210"
-														MinWidth="210"
+														Width="276"
+														MaxWidth="276"
+														MinWidth="276"
 														Height="58"
 														MinHeight="58"
 														MaxHeight="58"
@@ -52,7 +53,11 @@
 												/>
 
 								<Border BorderBrush="Black" BorderThickness="1" Padding="2">
-									<TextBox HorizontalAlignment="Stretch" Margin="1,0" MaxWidth="200" MinWidth="200" VerticalAlignment="Center" Text="{Binding SequenceString, Mode=OneWay}" IsReadOnly="True" />
+									<TextBox HorizontalAlignment="Stretch"
+											 Margin="8,0,20,0"
+											 VerticalAlignment="Center"
+											 Text="{Binding SequenceString, Mode=OneWay}"
+											 IsReadOnly="True" />
 								</Border>
 								<StackPanel Grid.Row="1" Background="#FFF6F6F6"
 											Orientation="Horizontal"
@@ -74,7 +79,9 @@
 									</Button>
 
 									<TextBox Text="{Binding Name, Mode=TwoWay}"
-											 FontSize="10" VerticalAlignment="Center" Width="84" Margin="4,0"
+											 FontSize="10" VerticalAlignment="Center"
+											 Width="100"
+											 Margin="4,0"
 											 ToolTip="sequence name. modify as needed"
 											 />
 
@@ -86,15 +93,24 @@
 										<Button.Content>
 											<Border BorderBrush="Black" BorderThickness="1" Width="20" Height="16"
 													Margin="0,-2" Padding="1" Background="LightGray"
-											ToolTip="locate on page">
+											ToolTip="edit sequence info">
 												<Image Source="{Binding Source={StaticResource imgEdit15x12}, Path=Source}" Width="12" Margin="0" />
 											</Border>
 										</Button.Content>
 									</Button>
 
-									<TextBlock Text="(" FontSize="9" VerticalAlignment="Center" Margin="8,0,0,0" Foreground="Blue" />
-									<TextBlock Text="{Binding Count, Mode=OneWay}" FontSize="9" VerticalAlignment="Center" Margin="0" Foreground="Blue"/>
-									<TextBlock Text=" nodes)" FontSize="9" VerticalAlignment="Center" Margin="0" Foreground="Blue"/>
+									<TextBlock Text="{Binding Count, Mode=OneWay}"
+											   FontSize="9"
+											   VerticalAlignment="Center" Margin="2,0" 
+											   Foreground="Blue"
+											   ToolTip="number of nodes"/>
+
+									<TextBlock Text="{Binding Converter={StaticResource sequenceStartEndIndexes}, Mode=OneWay}"
+											   FontSize="9"
+											   VerticalAlignment="Center"
+											   Margin="4,0" 
+											   Foreground="Maroon"
+											   ToolTip="start/end"/>
 
 								</StackPanel>
 							</StackPanel>

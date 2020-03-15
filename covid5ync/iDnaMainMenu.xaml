@@ -36,7 +36,7 @@
 			<Image x:Key="mimgReset19"			Source="images/del-close19x19.jpg" />
 			<Image x:Key="mimgLoadSearchRegions32"		Source="images/file32x30.png" />
 			<Image x:Key="mimgLoadPairSearchRegions32"	Source="images/file32x30.png" />
-			
+
 			<Image x:Key="mimgFolderOpen16"		Source="images/folderOpen16x16.png" />
 			<Image x:Key="mimgGears48"			Source="images/gears48x48.png" />
 			<Image x:Key="mimgGears16"			Source="images/gears16x16.png" />
@@ -72,7 +72,7 @@
 		<Separator />
 
 		<MenuItem Header="Open from _xml file"
-				  Icon="{DynamicResource mimgFolderOpen16}"
+				  Icon="{DynamicResource mimgFolder32}"
 				  ToolTip="load a sequence file from this application's previously saved xml file"
 				  ToolTipService.ShowOnDisabled="True"
 				  Command="{Binding LoadFromXml, Mode=OneWay}"

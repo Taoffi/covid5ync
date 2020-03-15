@@ -22,6 +22,7 @@
 			<conv:ValidSearchStringColor	x:Key="searchStringValidator" />
 			<conv:ValidBoolToColor			x:Key="boolToErrorValidator" />
 			<conv:BusyToColorConverter		x:Key="busyToColor" />
+			<conv:iDnaSequenceStartEndIndexString		x:Key="sequenceStartEndIndexes" />
 
 			<conv:Bool2Visibility			x:Key="bool2visible" />
 			<Image x:Key="imgBusy"			Source="images/busy48x48.png" />

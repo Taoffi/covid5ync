@@ -230,7 +230,10 @@ namespace iDna
 					return;
 
 				if(value == null)
+				{
 					_repeatsBasket.Clear();
+					_stringOccurList.Clear();
+				}
 				else
 					_repeatsBasket = value;
 
@@ -281,7 +284,10 @@ namespace iDna
 					return;
 
 				if(value == null)
+				{
 					_hairPinBasket.Clear();
+					_stringOccurList.Clear();
+				}
 				else
 					_hairPinBasket = value;
 
@@ -331,8 +337,11 @@ namespace iDna
 
 			CurrentRepeatSearchType	= searchHairpins ? RepeatSerachType.SerachHiarpins : RepeatSerachType.SearchRepeats;
 
-			targetBasket.Clear();
-			_stringOccurList.Clear();
+			/// 15-03-2020: do not clear the basket: the user will do this when he or she needs to
+			// targetBasket.Clear();
+			/// idem for search occurrences
+			// _stringOccurList.Clear();
+
 			RepeatSortOption		= HairpinSortOption	= iDnaBasketSortOption.NoSort;
 
 			iDnaRepeatSettings		repeatSettings		= iDnaRepeatSettings.Instance;

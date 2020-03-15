@@ -352,7 +352,7 @@ namespace iDna.vm
 							return;
 						}
 
-						string		targetFile	= SelectSaveSequenceFile();
+						string		targetFile	= SelectSaveSequenceFileTextOrXml();
 
 						if(string.IsNullOrEmpty(targetFile))
 							return;
@@ -395,7 +395,7 @@ namespace iDna.vm
 							return;
 						}
 
-						string		targetFile	= SelectSaveSequenceFile();
+						string		targetFile	= SelectSaveSequenceFileTextOrXml(defaultToXml: true);
 
 						if(string.IsNullOrEmpty(targetFile))
 							return;
@@ -447,7 +447,7 @@ namespace iDna.vm
 						}
 						catch (Exception ex)
 						{
-							ShowMessage("Sorry!. An error occurred: \r\n" + ex.Message, "Save xml");
+							ShowMessage("Sorry!. An error occurred: \r\n" + ex.Message, "Load xml file");
 						}
 					});
 
@@ -482,7 +482,7 @@ namespace iDna.vm
 							return;
 						}
 
-						string		targetFile	= SelectSaveSequenceFile();
+						string		targetFile	= SelectSaveSequenceFileTextOrXml();
 
 						if(string.IsNullOrEmpty(targetFile))
 							return;
@@ -861,7 +861,7 @@ namespace iDna.vm
 							return;
 						}
 
-						string		targetFile	= SelectSaveSequenceFile();
+						string		targetFile	= SelectSaveSequenceFileTextOrXml();
 
 						if(string.IsNullOrEmpty(targetFile))
 							return;
@@ -899,7 +899,7 @@ namespace iDna.vm
 							return;
 						}
 
-						string		targetFile	= SelectSaveSequenceFile();
+						string		targetFile	= SelectSaveSequenceFileTextOrXml();
 
 						if(string.IsNullOrEmpty(targetFile))
 							return;
@@ -1315,22 +1315,26 @@ namespace iDna.vm
 			}
 		}
 
+		string GetOpenSaveFileDialogFilterString(bool defaultToXml)
+		{
+			string			extText	= "Text files|*.txt",
+							extXml	= "Xml file|*.xml",
+							extAll	= "All files|*.*";
+			return defaultToXml			? extXml	+ "|" + extText	+ "|" + extAll
+										: extText	+ "|" + extXml	+ "|" + extAll;
+		}
 
 		string OpenReadTextOrXmlFile(bool defaultToXml = false)
 		{
 			OpenFileDialog		dialog		= new OpenFileDialog();
-			string			extText	= "Text files|*.txt",
-							extXml	= "Xml file|*.xml",
-							extAll	= "All files|*.*";
-			// "Text files|*.txt|Xml file|*.xml|All files|*.*";
-			dialog.Filter			= defaultToXml	? extXml	+ "|" + extText	+ "|" + extAll
-													: extText	+ "|" + extXml	+ "|" + extAll;
+			
+			dialog.Filter			= GetOpenSaveFileDialogFilterString(defaultToXml);
 			dialog.CheckFileExists	= true;
 
 			if(defaultToXml)
-				dialog.DefaultExt	= ".xml";
+				dialog.DefaultExt	= "*.xml";
 			else
-				dialog.DefaultExt	= ".txt";
+				dialog.DefaultExt	= "*.txt";
 
 			dialog.Multiselect		= false;
 
@@ -1345,14 +1349,15 @@ namespace iDna.vm
 		}
 
 
-		string SelectSaveSequenceFile()
+		string SelectSaveSequenceFileTextOrXml( bool defaultToXml = false)
 		{
 			SaveFileDialog		dialog		= new SaveFileDialog();
 
-			dialog.Filter			= "Text files|*.txt|All files|*.*";
+			dialog.Filter			= GetOpenSaveFileDialogFilterString(defaultToXml);
 			dialog.CheckPathExists	= true;
 			//dialog.CheckFileExists	= true;
-			dialog.DefaultExt		= "*.txt";
+			
+			dialog.DefaultExt		= defaultToXml ? "*.xml" : "*.txt";
 
 			var			result			= dialog.ShowDialog(Application.Current.MainWindow);
 			string		selectedFile	= null;

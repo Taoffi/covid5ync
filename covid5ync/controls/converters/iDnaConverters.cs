@@ -207,6 +207,25 @@ namespace iDna.controls
 			throw new NotImplementedException();
 		}
 	}
+
+
+	public class iDnaSequenceStartEndIndexString : IValueConverter
+	{
+		public object Convert(object seqObject, Type targetType, object parameter, CultureInfo culture)
+		{
+			iDnaSequence	seq		= seqObject as iDnaSequence;
+
+			if(seq == null)
+				return null;
+
+			return seq.Min(i => i.Index) + "-" + seq.Max(i => i.Index);
+		}
+
+		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }
 
 

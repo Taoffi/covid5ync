@@ -35,14 +35,14 @@
 
                             <Button x:Name="buttonClearCurrentSelections" 
 									BorderBrush="{x:Null}" Background="{x:Null}" 
-									Padding="0" Margin="24,0" Height="28"
+									Padding="0" Margin="24,0" Height="24"
 									VerticalAlignment="Center"
-									ToolTip="clear search baskets"
+									ToolTip="clear search basket"
 									Command="{Binding Source={StaticResource commandCentral}, Path=ClearSearchBaskets, Mode=OneWay}"
 									>
                                 <Button.Content>
                                     <Border Padding="0" Margin="0">
-                                        <Image Source="{Binding Source={StaticResource imgReset19}, Path=Source}" Margin="4" />
+                                        <Image Source="{Binding Source={StaticResource imgReset19}, Path=Source}" Margin="0" Height="20" />
                                     </Border>
                                 </Button.Content>
                             </Button>
@@ -99,14 +99,14 @@
 								<Button x:Name="buttonClearCurrentSelections2" 
 										BorderBrush="{x:Null}" Background="{x:Null}" 
 										Padding="0" Margin="24,0"
-										Height="28"
+										Height="24"
 										VerticalAlignment="Center"
-										ToolTip="clear repeat baskets"
+										ToolTip="clear repeats basket"
 										Command="{Binding Source={StaticResource commandCentral}, Path=ClearRepeatBaskets, Mode=OneWay}"
 									>
 									<Button.Content>
 										<Border Padding="0" Margin="0">
-											<Image Source="{Binding Source={StaticResource imgReset19}, Path=Source}" Margin="4" />
+											<Image Source="{Binding Source={StaticResource imgReset19}, Path=Source}" Margin="0" Height="22" />
 										</Border>
 									</Button.Content>
 								</Button>
@@ -179,14 +179,14 @@
 								<Button x:Name="buttonClearCurrentSelections3" 
 										BorderBrush="{x:Null}" Background="{x:Null}" 
 										Padding="0" Margin="24,0"
-										Height="28"
+										Height="24"
 										VerticalAlignment="Center"
 										ToolTip="clear pair-repeats baskets"
 										Command="{Binding Source={StaticResource commandCentral}, Path=ClearHairpinBaskets, Mode=OneWay}"
 										>
 									<Button.Content>
 										<Border Padding="0" Margin="0">
-											<Image Source="{Binding Source={StaticResource imgReset19}, Path=Source}" Margin="4" />
+											<Image Source="{Binding Source={StaticResource imgReset19}, Path=Source}" Margin="0" Height="22" />
 										</Border>
 									</Button.Content>
 								</Button>

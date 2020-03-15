@@ -36,6 +36,7 @@
 				  Background="#FFE7E8EC"
 				  HorizontalAlignment="Stretch"
 				  Width="{Binding ElementName=gridMain, Path=ActualWidth}"
+				  ScrollViewer.CanContentScroll="False"
 				  >
 			<ListView.ItemTemplate>
 				<DataTemplate>
@@ -50,21 +51,21 @@
 								Padding="4" HorizontalAlignment="Stretch"
 								>
 							<local:iDnaSequenceRegionCtrl DataContext="{Binding }" 
-														  MinWidth="310"
-														  MaxWidth="380" 
+														  Width="300"
+														  MaxWidth="300" MinWidth="300"
 														  HorizontalAlignment="Stretch"
-														  Height="168"/>
+														  Height="154"/>
 						</Border>
 						
 						<Border Grid.Row="1" VerticalAlignment="Center" Height="26" Margin="0"
 								BorderBrush="Black" Background="#FFFFE6B1"
 								BorderThickness="1,0,1,1"
-								Padding="2"
+								Padding="0"
 								SnapsToDevicePixels="True">
 							<StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" Margin="0">
 								<Button x:Name="buttonSelectRegion" Margin="4,0,0,0" Padding="0" 
-									Background="{x:Null}"
-									Click="buttonSelectRegion_Click">
+										Background="{x:Null}"
+										Click="buttonSelectRegion_Click">
 									<Button.Content>
 										<Border>
 											<Image Source="{Binding Source={StaticResource imgPrev}, Path=Source}"

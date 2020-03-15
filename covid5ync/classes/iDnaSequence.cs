@@ -403,21 +403,30 @@ namespace iDna
 			NotifyPropertyChanged(() => PairSelectionBasket);
 		}
 
-		internal void GoToNodePage(iDnaNode node)
+
+		internal void GoToNodePage(int nodeIndex)
 		{
-			if(node == null)
+			if(nodeIndex < 0 || nodeIndex >= this.Count)
 				return;
 
-			int		index			= node.Index,
-					curPageNumber	= _paging.CurrentPage,
+			int		curPageNumber	= _paging.CurrentPage,
 					nodesPerPage	= _paging.PageSize,
-					nodePageNumber	= index / nodesPerPage + 1;
+					nodePageNumber	= nodeIndex / nodesPerPage + 1;
 			bool	isVisible		= nodePageNumber == curPageNumber;
 
 			if(isVisible)
 				return;
 
 			_paging.CurrentPage	= nodePageNumber;
+		}
+
+
+		internal void GoToNodePage(iDnaNode node)
+		{
+			if(node == null)
+				return;
+
+			GoToNodePage(node.Index);
 		}
 
 	}

@@ -63,6 +63,7 @@ namespace iDna
 				_minValue	= value;
 				AdjustMinMaxValues();
 				RaisePropertyChanged();
+				NotifyPropertyChanged(() => Length);
 				NotifyPropertyChanged(() => IsInError);
 			}
 		}
@@ -78,10 +79,15 @@ namespace iDna
 				_maxValue	= value;
 				AdjustMinMaxValues();
 				RaisePropertyChanged();
+				NotifyPropertyChanged(() => Length);
 				NotifyPropertyChanged(() => IsInError);
 			}
 		}
 
+		public int Length
+		{
+			get {  return _maxValue - MinValue; }
+		}
 
 		public int LimitMax
 		{
