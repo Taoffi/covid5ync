@@ -155,7 +155,7 @@ namespace iDna.controls
 
         private void ApplyZoom(int delta)
         {
-            var zoomScale = delta / 500.0;
+            var zoomScale = delta / 2500.0;
             var newZoomFactor = _currentZoomFactor += zoomScale;
             _element.LayoutTransform = new ScaleTransform(newZoomFactor, newZoomFactor);
             _currentZoomFactor = newZoomFactor;

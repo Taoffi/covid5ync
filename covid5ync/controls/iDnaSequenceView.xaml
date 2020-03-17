@@ -56,6 +56,7 @@
                 <ItemsPanelTemplate>
                     <WrapPanel Width="{Binding Width, ElementName=listItems}"
 							   HorizontalAlignment="Left" Height="auto" 
+							   VerticalAlignment="Top"
 							   Margin="0,0,0,0"
 							   Background="#FF323030" />
                 </ItemsPanelTemplate>
