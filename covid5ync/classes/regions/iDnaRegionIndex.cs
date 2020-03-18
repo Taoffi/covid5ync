@@ -30,6 +30,11 @@ namespace iDna
 			_description	= description;
 		}
 
+		/// <summary>
+		/// initialize a region for entier sequence lenght
+		/// </summary>
+		/// <param name="sequence">the sequence</param>
+		/// <param name="regionName">region's name</param>
 		public iDnaRegionIndex(iDnaSequence sequence, string regionName) : base()
 		{
 			_name		= regionName;

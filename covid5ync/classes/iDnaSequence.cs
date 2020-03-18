@@ -278,8 +278,10 @@ namespace iDna
 			this._repeatsBasket.Clear();
 			this._hairPinBasket.Clear();
 			this._repeatSearch.Clear();
-			this._stringOccurList.Clear();
-			this._pairStringOccurList.Clear();
+			//this._stringOccurList.Clear();
+			//this._pairStringOccurList.Clear();
+			this._stringOccurList		= "";
+			this._pairStringOccurList	= "";
 
 			_namedRegionsList = new iDnaRegionIndexList(this, "Sequence Regions");
 
@@ -365,6 +367,8 @@ namespace iDna
 		{
 			_repeatsBasket.Clear();
 			_repeatSearch.Clear();
+			//_stringOccurList.Clear();
+			_stringOccurList		= "";
 
 			NotifyPropertyChanged(() => RepeatsBasket);
 			NotifyPropertyChanged(() => RepeatsBasketSorted);
@@ -376,6 +380,9 @@ namespace iDna
 		{
 			_hairPinBasket.Clear();
 			_repeatSearch.Clear();
+			//_pairStringOccurList.Clear();
+			this._pairStringOccurList	= "";
+
 
 			NotifyPropertyChanged(() => HairpinBasket);
 			NotifyPropertyChanged(() => HairpinBasketSorted);

@@ -12,7 +12,7 @@ namespace iDna
 		const int						_constMinIntNodes		= 6,
 										_constMaxIntNodes		= 32;
 		protected iMinMaxInt			_nodesMinMax			= new iMinMaxInt(_constMinIntNodes, _constMaxIntNodes, _constMinIntNodes, 16);
-		protected iMinMaxInt			_searchRegionMinMax		= new iMinMaxInt(0, int.MaxValue, 0, 0);
+		protected iMinMaxInt			_searchRegionMinMax		= new iMinMaxInt(0, int.MaxValue, 0, int.MaxValue);
 
 		protected decimal				_minTm			= new decimal(0.0),
 										_maxTm			= new decimal(59.80);

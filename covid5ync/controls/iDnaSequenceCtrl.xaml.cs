@@ -134,6 +134,7 @@ namespace iDna.controls
 
         public async void Zoom(object sender, MouseWheelEventArgs e)
         {
+            e.Handled   = false;
             if(_element == null)
                 return;
 
@@ -143,15 +144,18 @@ namespace iDna.controls
             {
                 var handle = (Keyboard.Modifiers & ModifierKeys.Control) > 0;
                 if (!handle)
+                {
                     return;
+                }
 
                 ApplyZoom(e.Delta);
+                e.Handled  = true;
             });
         }
 
         private void ApplyZoom(int delta)
         {
-            var zoomScale = delta / 500.0;
+            var zoomScale = delta / 2500.0;
             var newZoomFactor = _currentZoomFactor += zoomScale;
             _element.LayoutTransform = new ScaleTransform(newZoomFactor, newZoomFactor);
             _currentZoomFactor = newZoomFactor;

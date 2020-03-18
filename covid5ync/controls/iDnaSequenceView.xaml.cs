@@ -40,7 +40,7 @@ namespace iDna.controls
 			get { return this.colPageLocationBar.Width.Value > 0.0; }
 			set
 			{
-				this.colPageLocationBar.Width		= value ? new GridLength(14.0) : new GridLength(0.0);
+				this.colPageLocationBar.Width		= value ? new GridLength(6.0) : new GridLength(0.0);
 				borderCurPageIndicator.Visibility	= value ? Visibility.Visible : Visibility.Collapsed;
 			}
 		}

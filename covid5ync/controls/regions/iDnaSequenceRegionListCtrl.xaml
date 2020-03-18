@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:iDna.controls"
 			 xmlns:data="clr-namespace:iDna"
              mc:Ignorable="d" 
-             d:DesignHeight="413" d:DesignWidth="342"
+             d:DesignHeight="413" d:DesignWidth="380"
 			 d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type data:iDnaRegionIndexDesignTime}, CreateList=True}" Background="#FFF6F6F6"
 			 >
     <Grid x:Name="gridMain" Background="#FFF6F6F6" HorizontalAlignment="Stretch">
@@ -51,8 +51,8 @@
 								Padding="4" HorizontalAlignment="Stretch"
 								>
 							<local:iDnaSequenceRegionCtrl DataContext="{Binding }" 
-														  Width="300"
-														  MaxWidth="300" MinWidth="300"
+														  Width="350"
+														  MaxWidth="360" MinWidth="360"
 														  HorizontalAlignment="Stretch"
 														  Height="154"/>
 						</Border>

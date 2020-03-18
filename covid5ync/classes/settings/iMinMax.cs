@@ -15,7 +15,7 @@ namespace iDna
 										_limitMax					= int.MaxValue;
 
 		protected int					_minValue					= 0,
-										_maxValue					= 255;
+										_maxValue					= int.MaxValue;
 
 		public iMinMaxInt(int limitMin, int limitMax, int min, int max) : base()
 		{

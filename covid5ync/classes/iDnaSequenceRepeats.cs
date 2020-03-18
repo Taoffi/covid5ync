@@ -46,7 +46,7 @@ namespace iDna
 		protected CancellationTokenSource		_repeatCancelSource		= new CancellationTokenSource(5);
 		protected RepeatSerachType				_repeatSerachType		= RepeatSerachType.SearchRepeats;
 
-
+		protected string						_flatStringCache		="";
 
 		public CancellationTokenSource RepeatCancellation
 		{
@@ -116,10 +116,14 @@ namespace iDna
 			}
 		}
 
-#endregion // xxxxxxxxxxxxxxxxxxxxxx occurrence classes xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+		#endregion // xxxxxxxxxxxxxxxxxxxxxx occurrence classes xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-		protected StringOccurrenceList		_stringOccurList		= new StringOccurrenceList(),
-											_pairStringOccurList	= new StringOccurrenceList();
+		//protected StringOccurrenceList		_stringOccurList		= new StringOccurrenceList(),
+		//									_pairStringOccurList	= new StringOccurrenceList();
+
+		protected string			_stringOccurList		= "",
+									_pairStringOccurList	= "";
+
 
 		public int RepeatsCount
 		{
@@ -233,7 +237,8 @@ namespace iDna
 				if(value == null)
 				{
 					_repeatsBasket.Clear();
-					_stringOccurList.Clear();
+					//_stringOccurList.Clear();
+					_stringOccurList	= "";
 				}
 				else
 					_repeatsBasket = value;
@@ -287,7 +292,8 @@ namespace iDna
 				if(value == null)
 				{
 					_hairPinBasket.Clear();
-					_pairStringOccurList.Clear();
+					//_pairStringOccurList.Clear();
+					_pairStringOccurList	= "";
 				}
 				else
 					_hairPinBasket = value;
@@ -302,30 +308,51 @@ namespace iDna
 
 		IEnumerable<iDnaNode> AllStartoccurrencesOfString(string str)
 		{
-			if(string.IsNullOrEmpty(str))
+			if(string.IsNullOrEmpty(str) || this.Count <= 0)
 				return null;
 
-			int		len	= str.Length;
+			List<int>		indexes			= new List<int>();
+			int				index1stNode	= this[0].Index,
+							index			= 0,
+							len				= str.Length;
+			int				foundIndex		= _flatStringCache.IndexOf(str, index, StringComparison.InvariantCulture);
+			
+			while(foundIndex >= 0)
+			{
+				indexes.Add(foundIndex + index1stNode);	// 1);
+				index		+= len;
+				foundIndex	= _flatStringCache.IndexOf(str, index, StringComparison.InvariantCulture);
+			}
 
-			return this.Where(i => StringAtIndex(i.Index, len) == str);
+			if(indexes.Count<= 0)
+				return null;
+
+			return this.Where(i =>indexes.IndexOf( i.Index) >= 0);
+
+
+			//int		len	= str.Length;
+
+			//return this.Where(i => StringAtIndex(i.Index, len) == str);
 		}
 
 
 		public string StringAtIndex(int index, int len)
 		{
-			if(index < 0 || len <= 0)
+			if(index < 0 || len <= 0|| index >=_flatStringCache.Length)
 				return "";
+			return _flatStringCache.Substring(index,len);
 
-			string	str			= "";
-			var		nodes		= this.SkipWhile(i => i.Index < index).Take(len);
 
-			if(nodes == null || nodes.Count() <= 0)
-				return str;
+			//string	str			= "";
+			//var		nodes		= this.SkipWhile(i => i.Index < index).Take(len);
 
-			foreach(var n in nodes)
-				str	+= n.Code.ToString();
+			//if(nodes == null || nodes.Count() <= 0)
+			//	return str;
 
-			return str;
+			//foreach(var n in nodes)
+			//	str	+= n.Code.ToString();
+
+			//return str;
 		}
 
 
@@ -342,6 +369,8 @@ namespace iDna
 			// targetBasket.Clear();
 			/// idem for search occurrences
 			// _stringOccurList.Clear();
+
+			_flatStringCache		= SequenceFlatString;		// 200316
 
 			RepeatSortOption		= HairpinSortOption	= iDnaBasketSortOption.NoSort;
 
@@ -362,10 +391,12 @@ namespace iDna
 									lenSearch			= 0;
 			string					sequenceString,
 									searchString;
-			StringOccurrenceList	occurList			= searchHairpins ? _pairStringOccurList : _stringOccurList;
+			//StringOccurrenceList	occurList			= searchHairpins ? _pairStringOccurList : _stringOccurList;
+			string					occurList = searchHairpins ? _pairStringOccurList : _stringOccurList;
 
 			IsRepeatProcessRunning	= true;
 			RepeatSearchPosition	= 0;
+
 
 			if(searchHairpins)
 			{
@@ -429,7 +460,8 @@ namespace iDna
 					string		shortestString	= strAtStart.Substring(0, minMax.MinNodes);
 
 					/// we already searched for this as shortest string: skip this location
-					if (occurList.Count > 0 && occurList.Any(s => s.ItemString == shortestString))
+					//if (occurList.Count > 0 && occurList.Any(s => s.ItemString == shortestString))
+					if (occurList.Length > 0 && occurList.IndexOf("|" + shortestString) >= 0)
 					{
 						lenSearch		= minMax.MinNodes;
 						foundRepeats	= true;
@@ -441,7 +473,8 @@ namespace iDna
 						string			str		= strAtStart.Substring(0, len);
 
 						/// did we already searched fro this string?: skip
-						if (occurList.Count > 0 && occurList.Any(s => s.ItemString == str))
+						//if (occurList.Count > 0 && occurList.Any(s => s.ItemString == str))
+						if (occurList.Length > 0 && occurList.IndexOf("|" + str) >= 0)
 						{
 							lenSearch		= len;
 							foundRepeats	= true;
@@ -457,11 +490,13 @@ namespace iDna
 						searchString	= sequenceString.Substring(0, lenSearch);
 
 						/// we already searched for this: skip
-						if (occurList.Count >0 && occurList.Any(s => s.ItemString == searchString))
+						//if (occurList.Count >0 && occurList.Any(s => s.ItemString == searchString))
+						if (occurList.Length > 0 && occurList.IndexOf("|" + searchString)>= 0)
 							goto next_index;
 
 						/// add this to the search list
-						occurList.AddUnique(new StringOccurrence(searchString, 0));
+						//occurList.AddUnique(new StringOccurrence(searchString, 0));
+						occurList	+= "|" + searchString;
 
 						/// string alreay in repeat library? : skip
 						if (targetBasket.Any(s => s.SequenceFlatString == searchString))
@@ -475,7 +510,7 @@ namespace iDna
 						int		occurrences			= allStartOccurrences == null ? 0 : allStartOccurrences.Count();
 
 						/// keep track of occurrences
-						occurList[searchString].Occurrs	= occurrences;
+						///occurList[searchString].Occurrs	= occurrences;
 
 						if (allStartOccurrences != null && occurrences > (searchHairpins ? 0 : 1))
 						{
@@ -496,8 +531,13 @@ namespace iDna
 							foreach (var item in allStartOccurrences)
 							{
 								/// Console.WriteLine(item.Index);
+								sequenceName			= repeatName + " [" + lenSearch.ToString() + "] oc:" + occurrenceIndex.ToString() + "/" + occurrences.ToString();
+								
+								// try using region instead of sequence
+								iDnaRegionIndex	region	= new iDnaRegionIndex(sequenceName, item.Index, item.Index + lenSearch );
+								
 								var		repeatSeq	= this.SkipWhile( n => n.Index < item.Index).Take(lenSearch);
-								sequenceName		= repeatName + " oc:" + occurrenceIndex.ToString() + "/" + occurrences.ToString();
+								
 								targetBasket.Add( new iDnaSequence(sequenceName, repeatSeq, refOnly: true, nOccurrences: occurrences));
 
 								if(searchHairpins)

@@ -20,6 +20,13 @@ services and data into this app. We are working on a few near-future targets:
 Change log
 ==================================================================================================
 -----------------------------
+2020-03-17
+-----------------------------
+* optimized search process (much faster, work in progress to do better)
+* corrected initial search region end index (was limited to 255!)
+* updated online sequence with latest repeats
+
+-----------------------------
 2020-03-15
 -----------------------------
 * structured application data to save and reload work sessions 
