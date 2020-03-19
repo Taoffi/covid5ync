@@ -81,7 +81,7 @@ namespace iDna.vm
 								_clearSearchBaskets			= null,
 
 								_gotoCovid_19_situationPage	= null,
-								_maangeBookMarks			= null,
+								_manageBookMarks			= null,
 
 								//_selectAllNamedRegions		= null,
 
@@ -166,9 +166,9 @@ namespace iDna.vm
 		{
 			get
 			{
-				if (_maangeBookMarks == null)
+				if (_manageBookMarks == null)
 				{
-					_maangeBookMarks = new CommandExecuter(() =>
+					_manageBookMarks = new CommandExecuter(() =>
 					{
 						var					bookmarkList	= iDnaBookmarkList.Instance;
 						BookMarksWindow		window			= new BookMarksWindow() {  DataContext = bookmarkList };
@@ -177,7 +177,7 @@ namespace iDna.vm
 						window.ShowDialog();
 					});
 				}
-				return _maangeBookMarks;
+				return _manageBookMarks;
 			}
 		}
 
@@ -537,6 +537,7 @@ namespace iDna.vm
 					_resetSelections = new CommandExecuter(() =>
 					{
 						// ShowNotYetImplemented();
+						iDnaGobalSettings.Instance.SetSearchRegion(0, int.MaxValue);
 
 						iDnaSequence seq		= iDnaSequence.Instance;
 
@@ -1161,7 +1162,7 @@ namespace iDna.vm
 			{
 				if (_findRepeats == null)
 				{
-					_findRepeats = new CommandExecuter(() =>
+					_findRepeats = new CommandExecuter( async() =>
 					{
 						// ShowNotYetImplemented();
 
@@ -1173,11 +1174,7 @@ namespace iDna.vm
 							return;
 						}
 
-						Task.Run( async() =>
-						{
-							await iDnaSequence.Instance.GetRepeatsOrHairpins(null, searchHairpins: false);
-						});
-
+						await iDnaSequence.Instance.FindRepeatsOrHairpins(Dispatcher.CurrentDispatcher, searchHairpins: false);
 					});
 				}
 				return _findRepeats;
@@ -1205,7 +1202,7 @@ namespace iDna.vm
 
 						Task.Run( async() =>
 						{
-							await iDnaSequence.Instance.GetRepeatsOrHairpins(null, searchHairpins: true);
+							await iDnaSequence.Instance.FindRepeatsOrHairpins(Dispatcher.CurrentDispatcher, searchHairpins: true);
 						});
 
 					});

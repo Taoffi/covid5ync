@@ -38,7 +38,7 @@
 
                             <Button x:Name="buttonClearCurrentSelections" 
 									BorderBrush="{x:Null}" Background="{x:Null}" 
-									Padding="0" Margin="24,0" Height="24"
+									Padding="0" Margin="124,0" Height="24"
 									VerticalAlignment="Center"
 									ToolTip="clear search basket"
 									Command="{Binding Source={StaticResource commandCentral}, Path=ClearSearchBaskets, Mode=OneWay}"
@@ -102,7 +102,7 @@
 
 								<Button x:Name="buttonClearCurrentSelections2" 
 										BorderBrush="{x:Null}" Background="{x:Null}" 
-										Padding="0" Margin="24,0"
+										Padding="0" Margin="124,0"
 										Height="24"
 										VerticalAlignment="Center"
 										ToolTip="clear repeats basket"
@@ -174,7 +174,7 @@
 
 								<Button x:Name="buttonClearCurrentSelections3" 
 										BorderBrush="{x:Null}" Background="{x:Null}" 
-										Padding="0" Margin="24,0"
+										Padding="0" Margin="124,0"
 										Height="24"
 										VerticalAlignment="Center"
 										ToolTip="clear pair-repeats baskets"
@@ -223,7 +223,7 @@
 			
 		</TabControl>
 
-		<local:BusySpinCtrlRepeats Grid.Row="0" Grid.Column="0" x:Name="busyRepeatControlx" 
+		<local:BusySpinRepeatsCtrl Grid.Row="0" Grid.Column="0" x:Name="busyRepeatControlx" 
 									HorizontalAlignment="Right"
 									VerticalAlignment="Top"
 									Margin="0,4,20,0"

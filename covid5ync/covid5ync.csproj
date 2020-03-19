@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>iDna</RootNamespace>
     <AssemblyName>covid5ync</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -38,7 +38,7 @@
     <SuiteName>covid5ync</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>32</ApplicationRevision>
+    <ApplicationRevision>33</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -67,10 +67,10 @@
     <ApplicationIcon>iDna.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>8E85A987688AC272C4FAECDFD1E2A7D24EAB1830</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>6782051EF762E7B412F7A70F0F6887B1CD1853EE</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>covid5ync_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>covid5ync_2_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -127,7 +127,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="controls\BusySpinCtrlRepeats.xaml">
+    <Page Include="controls\BusySpinRepeatsCtrl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -272,8 +272,8 @@
     <Compile Include="controls\bookmarks\BookMarksWindow.xaml.cs">
       <DependentUpon>BookMarksWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="controls\BusySpinCtrlRepeats.xaml.cs">
-      <DependentUpon>BusySpinCtrlRepeats.xaml</DependentUpon>
+    <Compile Include="controls\BusySpinRepeatsCtrl.xaml.cs">
+      <DependentUpon>BusySpinRepeatsCtrl.xaml</DependentUpon>
     </Compile>
     <Compile Include="controls\BusySpinCtrl.xaml.cs">
       <DependentUpon>BusySpinCtrl.xaml</DependentUpon>
@@ -375,6 +375,7 @@
     <None Include="classes\documentation\covid5yncClassDiagram1.cd" />
     <None Include="classes\documentation\SequenceClassDiagram1.cd" />
     <None Include="classes\documentation\serializationClassDiagram1.cd" />
+    <None Include="covid5ync_2_TemporaryKey.pfx" />
     <None Include="covid5ync_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -408,6 +409,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="classes\paging\future\" />
+    <Folder Include="controls\old\" />
     <Folder Include="data\data backup\" />
     <Folder Include="data\ncbi\" />
     <Folder Include="web pages\css\" />
