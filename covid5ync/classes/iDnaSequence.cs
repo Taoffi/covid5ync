@@ -375,6 +375,17 @@ namespace iDna
 			NotifyPropertyChanged(() => RepeatsCount);
 		}
 
+		internal void NotifyBasketsChanged()
+		{
+
+			NotifyPropertyChanged(() => RepeatsBasket);
+			NotifyPropertyChanged(() => RepeatsBasketSorted);
+			NotifyPropertyChanged(() => RepeatsCount);
+
+			NotifyPropertyChanged(() => HairpinBasket);
+			NotifyPropertyChanged(() => HairpinBasketSorted);
+			NotifyPropertyChanged(() => HairpinCount);
+		}
 
 		internal void ClearHairpinBaskets()
 		{

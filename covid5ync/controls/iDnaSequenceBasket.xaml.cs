@@ -59,5 +59,24 @@ namespace iDna.controls
 			seqWnd.Owner	= Application.Current.MainWindow;
 			seqWnd.ShowDialog();
 		}
+
+		private void buttonDeleteItem_Click(object sender, RoutedEventArgs e)
+		{
+			Button					button		= sender as Button;
+			List<iDnaSequence>		basket		= listSequences.ItemsSource as List<iDnaSequence>;
+			iDnaSequence			seq			= button == null ? null : button.DataContext as iDnaSequence;
+
+			if (button == null || seq == null || basket ==null)
+			{
+				MessageBox.Show("Sorry! couldnot access the item or basket!");
+				return;
+			}
+
+			basket.Remove(seq);
+
+			listSequences.ItemsSource	= null;
+			listSequences.ItemsSource	= basket;
+			iDnaSequence.Instance.NotifyBasketsChanged();
+		}
 	}
 }

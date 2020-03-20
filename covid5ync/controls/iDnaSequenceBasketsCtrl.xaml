@@ -107,7 +107,7 @@
 										VerticalAlignment="Center"
 										ToolTip="clear repeats basket"
 										Command="{Binding Source={StaticResource commandCentral}, Path=ClearRepeatBaskets, Mode=OneWay}"
-										IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}}"
+										IsEnabled="{Binding IsRepeatProcessRunning, Converter={StaticResource reverseBool}}"
 									>
 									<Button.Content>
 										<Border Padding="0" Margin="0">
@@ -179,7 +179,7 @@
 										VerticalAlignment="Center"
 										ToolTip="clear pair-repeats baskets"
 										Command="{Binding Source={StaticResource commandCentral}, Path=ClearHairpinBaskets, Mode=OneWay}"
-										IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}, IsAsync=True}"
+										IsEnabled="{Binding IsRepeatProcessRunning, Converter={StaticResource reverseBool}, IsAsync=True}"
 										>
 									<Button.Content>
 										<Border Padding="0" Margin="0">

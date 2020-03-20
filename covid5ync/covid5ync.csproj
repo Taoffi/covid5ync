@@ -38,7 +38,7 @@
     <SuiteName>covid5ync</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>33</ApplicationRevision>
+    <ApplicationRevision>34</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -67,10 +67,10 @@
     <ApplicationIcon>iDna.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>6782051EF762E7B412F7A70F0F6887B1CD1853EE</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>8E85A987688AC272C4FAECDFD1E2A7D24EAB1830</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>covid5ync_2_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>covid5ync_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -146,6 +146,10 @@
     <Page Include="controls\iDnaSequenceInfoCtrl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\iDnaSequenceSimpleView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="controls\regions\iDnaRangeSliderCtrl.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -289,6 +293,9 @@
     <Compile Include="controls\iDnaSequenceInfoCtrl.xaml.cs">
       <DependentUpon>iDnaSequenceInfoCtrl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="controls\iDnaSequenceSimpleView.xaml.cs">
+      <DependentUpon>iDnaSequenceSimpleView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="controls\regions\iDnaRegionConverters.cs" />
     <Compile Include="controls\regions\iDnaRangeSliderCtrl.xaml.cs">
       <DependentUpon>iDnaRangeSliderCtrl.xaml</DependentUpon>
@@ -375,7 +382,6 @@
     <None Include="classes\documentation\covid5yncClassDiagram1.cd" />
     <None Include="classes\documentation\SequenceClassDiagram1.cd" />
     <None Include="classes\documentation\serializationClassDiagram1.cd" />
-    <None Include="covid5ync_2_TemporaryKey.pfx" />
     <None Include="covid5ync_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

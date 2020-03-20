@@ -334,7 +334,7 @@ namespace iDna
 			while(foundIndex >= 0)
 			{
 				indexes.Add(foundIndex + index1stNode);	// 1);
-				index		+= len;
+				index		+= len - 1;
 				foundIndex	= _flatStringCache.IndexOf(str, index, StringComparison.InvariantCulture);
 			}
 
@@ -425,7 +425,7 @@ namespace iDna
 			string					sequenceString,
 									searchString;
 			//StringOccurrenceList	occurList			= searchHairpins ? _pairStringOccurList : _stringOccurList;
-			string					occurList = searchHairpins ? _pairStringOccurList : _stringOccurList;
+			string					occurList			= searchHairpins ? _pairStringOccurList : _stringOccurList;
 
 			IsRepeatProcessRunning	= true;
 			RepeatSearchPosition	= 0;
@@ -555,19 +555,18 @@ namespace iDna
 							/// for hairpins: explicitly add the current search string. otherwise teh string is in the occurrences
 							if(searchHairpins)
 							{
-								var		repeatSeq	= this.SkipWhile( n => n.Index < startIndex).Take(lenSearch);
-								sequenceName		= repeatName + " Origin: oc=" + occurrences.ToString();
+								var		repeatSeq	= this.SkipWhile( n => n.Index <= startIndex).Take(lenSearch);
+								sequenceName		= repeatName + " Origin:[" + (startIndex +1).ToString() + " - " + (startIndex + lenSearch).ToString() + "] oc=" + occurrences.ToString();
 								targetBasket.Add( new iDnaSequence(sequenceName, repeatSeq, refOnly: true, nOccurrences: occurrences));
 							}
 
 							foreach (var item in allStartOccurrences)
 							{
 								/// Console.WriteLine(item.Index);
-								sequenceName			= repeatName + " [" + lenSearch.ToString() + "] oc:" + occurrenceIndex.ToString() + "/" + occurrences.ToString();
+								sequenceName			= repeatName + " [" + item.Index.ToString() + " - " + (item.Index + lenSearch - 1).ToString() + "] [" + lenSearch.ToString() + "] oc:" + occurrenceIndex.ToString() + "/" + occurrences.ToString();
 								
 								// try using region instead of sequence
 								iDnaRegionIndex	region		= new iDnaRegionIndex(sequenceName, item.Index, item.Index + lenSearch );
-								
 								var				repeatSeq	= this.SkipWhile( n => n.Index < item.Index).Take(lenSearch);
 								
 								targetBasket.Add( new iDnaSequence(sequenceName, repeatSeq, refOnly: true, nOccurrences: occurrences));

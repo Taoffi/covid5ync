@@ -27,7 +27,7 @@
 
 			<ListView.ItemTemplate>
 				<DataTemplate>
-					<Grid Background="#FFF7EFCC">
+					<Grid Background="#FFF7EFCC" x:Name="gridItem">
 						<TabControl HorizontalAlignment="Stretch" Width="370" Background="#FFF6F6F6" Margin="0,0,4,0">
 							<TabItem Header="Fragment">
 								<Border x:Name="borderItem" BorderBrush="#FFCBA279" BorderThickness="1" 
@@ -38,20 +38,23 @@
 												VerticalAlignment="Top" 
 												Height="auto"
 												Margin="0,0,0,0">
+										<TextBox VerticalAlignment="Center" HorizontalAlignment="Stretch" 
+												 Height="22" Margin="4,2"
+												 Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-										<local:iDnaSequenceView Grid.Row="0" DataContext="{Binding }"
-																ViewPageIndicatorBar="False"
-																Margin="0,0,0,0"
-																HorizontalAlignment="Stretch"
-																Width="350"
-																MaxWidth="350"
-																MinWidth="350"
-																Height="51"
-																MinHeight="51"
-																MaxHeight="51"
-																VerticalAlignment="Top"
-																BorderBrush="#FF292834" BorderThickness="1"
-																VirtualizingPanel.IsVirtualizing="False"
+										<local:iDnaSequenceSimpleView x:Name="seqViewCtrl"
+																		Grid.Row="0" DataContext="{Binding }"
+																		Margin="0,0,0,0"
+																		HorizontalAlignment="Stretch"
+																		Width="350"
+																		MaxWidth="350"
+																		MinWidth="350"
+																		Height="51"
+																		MinHeight="51"
+																		MaxHeight="51"
+																		VerticalAlignment="Top"
+																		BorderBrush="#FF292834" BorderThickness="1"
+																		VirtualizingPanel.IsVirtualizing="False"
 														/>
 
 										<Border BorderBrush="Black" BorderThickness="1" Padding="4">
@@ -62,10 +65,11 @@
 													>
 
 												<Button x:Name="buttonGotoPage" ToolTip="go to fragment's page"
-													Background="{x:Null}" BorderBrush="{x:Null}"
-													HorizontalContentAlignment="Left"
-													Padding="0"
-													Click="buttonGotoPage_Click">
+														Background="{x:Null}" BorderBrush="{x:Null}"
+														HorizontalContentAlignment="Left"
+														Padding="0"
+														Click="buttonGotoPage_Click"
+														IsEnabled="{Binding IsRepeatProcessRunning, Converter={StaticResource reverseBool}, IsAsync=True}">
 													<Button.Content>
 														<Border BorderBrush="Black" BorderThickness="0" Width="24" Height="20" 
 													Margin="0" Padding="1" Background="{x:Null}"
@@ -76,14 +80,14 @@
 												</Button>
 												
 												<TextBox HorizontalAlignment="Left"
-													 Margin="4,0,10,0"
-													 VerticalAlignment="Center"
-													 Text="{Binding SequenceFlatString, Mode=OneWay}"
-													 TextWrapping="NoWrap"
-													 MinWidth="210"
+														 Margin="4,0,10,0"
+														 VerticalAlignment="Center"
+														 Text="{Binding SequenceFlatString, Mode=OneWay}"
+														 TextWrapping="NoWrap"
+														 MinWidth="210"
 														 MaxWidth="210"
-													 FontSize="13"
-													 IsReadOnly="True" />
+														 FontSize="13"
+														 IsReadOnly="True" />
 
 												<TextBlock Text="{Binding Count, Mode=OneWay}"
 													   FontSize="9"
@@ -91,38 +95,27 @@
 													   Foreground="Blue"
 													   ToolTip="number of nodes"/>
 
-												<TextBlock Text="{Binding Converter={StaticResource sequenceStartEndIndexes}, Mode=OneWay}"
-													   FontSize="9"
-													   VerticalAlignment="Center"
-													   Margin="4,0" 
-													   Foreground="Maroon"
-													   ToolTip="start/end"/>
+												<Button x:Name="buttonDeleteItem" 
+														ToolTip="delete item"
+														Background="{x:Null}" BorderBrush="{x:Null}"
+														HorizontalContentAlignment="Right"
+														Padding="0"
+														Margin="32,0"
+														Click="buttonDeleteItem_Click"
+														IsEnabled="{Binding IsRepeatProcessRunning, Converter={StaticResource reverseBool}, IsAsync=True}">
+												<Button.Content>
+													<Border BorderBrush="Black" BorderThickness="1" Width="20" Height="20"
+															Margin="0,0" Padding="1"
+															Background="LightGray"
+															ToolTip="delete item">
+														<Image Source="{Binding Source={StaticResource imgReset19}, Path=Source}" Width="20" Margin="0" />
+													</Border>
+												</Button.Content>
+											</Button>
 
 											</StackPanel>
 										</Border>
 										
-										
-										<!--<StackPanel Grid.Row="1" Background="#FFF6F6F6"
-													Orientation="Horizontal"
-													HorizontalAlignment="Stretch"
-													Margin="0,0,0,0"
-													>-->
-
-
-											<!--<Button x:Name="buttonEditInfo" ToolTip="edit sequence info"
-													Background="{x:Null}" BorderBrush="{x:Null}"
-													HorizontalContentAlignment="Left"
-													Padding="0"
-													Click="buttonEditInfo_Click">
-												<Button.Content>
-													<Border BorderBrush="Black" BorderThickness="1" Width="20" Height="16"
-															Margin="0,-2" Padding="1" Background="LightGray"
-													ToolTip="edit sequence info">
-														<Image Source="{Binding Source={StaticResource imgEdit15x12}, Path=Source}" Width="12" Margin="0" />
-													</Border>
-												</Button.Content>
-											</Button>-->
-										<!--</StackPanel>-->
 									</StackPanel>
 								</Border>
 							</TabItem>
@@ -130,20 +123,10 @@
 							<TabItem Header="Description">
 								<Grid Height="94">
 									<Grid.RowDefinitions>
-										<RowDefinition Height="26" />
 										<RowDefinition />
 									</Grid.RowDefinitions>
 
 									<TextBox Grid.Row="0"
-											 Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-											 FontSize="13" 
-											 VerticalAlignment="Center"
-											 HorizontalAlignment="Stretch"
-												Margin="4,0"
-												ToolTip="sequence name"
-												/>
-
-									<TextBox Grid.Row="1"
 											 AcceptsReturn="True"
 											 Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 											 HorizontalAlignment="Stretch"
