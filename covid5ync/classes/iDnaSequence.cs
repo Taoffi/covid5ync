@@ -33,9 +33,9 @@ namespace iDna
 		protected bool								_isBusy					= false;
 		protected CancellationTokenSource			_cancelSource			= new CancellationTokenSource(5);
 		protected string							_sequenceFileInfo		= "";
-		protected iDnaSequencePaging				_paging					= new iDnaSequencePaging(1000);
+		protected iDnaSequencePaging				_paging					= new iDnaSequencePaging(1032);
 		protected int								_nOccurrences			= 1;
-		protected iDnaRegionIndexList				_namedRegionsList			= new iDnaRegionIndexList();
+		protected iDnaRegionIndexList				_namedRegionsList		= new iDnaRegionIndexList();
 
 
 		public static iDnaSequence Instance
