@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:iDna.controls"
 			 xmlns:data="clr-namespace:iDna"
              mc:Ignorable="d" 
-             d:DesignHeight="413" d:DesignWidth="380"
+             d:DesignHeight="413" d:DesignWidth="383"
 			 d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type data:iDnaRegionIndexDesignTime}, CreateList=True}" Background="#FFF6F6F6"
 			 >
     <Grid x:Name="gridMain" Background="#FFF6F6F6" HorizontalAlignment="Stretch">
@@ -36,7 +36,6 @@
 				  Background="#FFE7E8EC"
 				  HorizontalAlignment="Stretch"
 				  Width="{Binding ElementName=gridMain, Path=ActualWidth}"
-				  ScrollViewer.CanContentScroll="False"
 				  >
 			<ListView.ItemTemplate>
 				<DataTemplate>
@@ -51,21 +50,21 @@
 								Padding="4" HorizontalAlignment="Stretch"
 								>
 							<local:iDnaSequenceRegionCtrl DataContext="{Binding }" 
-														  Width="350"
-														  MaxWidth="360" MinWidth="360"
+														  MinWidth="340"
+														  MaxWidth="340" 
 														  HorizontalAlignment="Stretch"
-														  Height="154"/>
+														  Height="168"/>
 						</Border>
 						
 						<Border Grid.Row="1" VerticalAlignment="Center" Height="26" Margin="0"
 								BorderBrush="Black" Background="#FFFFE6B1"
 								BorderThickness="1,0,1,1"
-								Padding="0"
+								Padding="2"
 								SnapsToDevicePixels="True">
 							<StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" Margin="0">
 								<Button x:Name="buttonSelectRegion" Margin="4,0,0,0" Padding="0" 
-										Background="{x:Null}"
-										Click="buttonSelectRegion_Click">
+									Background="{x:Null}"
+									Click="buttonSelectRegion_Click">
 									<Button.Content>
 										<Border>
 											<Image Source="{Binding Source={StaticResource imgPrev}, Path=Source}"

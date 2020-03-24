@@ -32,6 +32,7 @@ namespace iDna.Properties {
   <string>ncbi covid-19 sequence download|https://www.ncbi.nlm.nih.gov/genbank/sars-cov-2-seqs/|ncbi covid-19 genome page</string>
   <string>ncbi sars web page|https://www.ncbi.nlm.nih.gov/genomes/SARS/SARS.html|ncbi sars home page</string>
   <string>covid-19 situation|https://www.cdc.gov/coronavirus/2019-nCoV/summary.html|latest information about covid-19 epidemic</string>
+  <string>covid-19 NIH research news|https://www.nih.gov/health-information/coronavirus|Latest research information from NIH</string>
 </ArrayOfString>")]
         public global::System.Collections.Specialized.StringCollection UserBookMarks {
             get {

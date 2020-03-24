@@ -38,7 +38,7 @@
     <SuiteName>covid5ync</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>34</ApplicationRevision>
+    <ApplicationRevision>35</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -67,10 +67,11 @@
     <ApplicationIcon>iDna.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>8E85A987688AC272C4FAECDFD1E2A7D24EAB1830</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>6782051EF762E7B412F7A70F0F6887B1CD1853EE</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>covid5ync_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -503,6 +504,9 @@
   <ItemGroup>
     <Resource Include="images\stats16x16.png" />
     <Resource Include="images\stats78x78.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\seqLight78x78.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

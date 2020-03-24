@@ -53,23 +53,14 @@
 	
 	<!-- file menu -->
 	<MenuItem Header="_File">
-		<MenuItem Header="Open app _xml file"
-				  Icon="{DynamicResource mimgFolder32}"
-				  ToolTip="load a sequence file from this application's previously saved session xml file"
-				  ToolTipService.ShowOnDisabled="True"
-				  Command="{Binding LoadFromXml, Mode=OneWay}"
-				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
-						  />
-		<MenuItem Header="_Open _text"
+		<MenuItem Header="_Open"
 				  Icon="{DynamicResource mimgFolderOpen16}"
-				  ToolTip="load a sequence from text file from your pc (nucleotides only)"
+				  ToolTip="load a sequence text file from your pc (nucleotides only)"
 				  ToolTipService.ShowOnDisabled="True"
 				  Command="{Binding OpenFile, Mode=OneWay}"
 				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
 						  />
 
-		<Separator />
-		
 		<MenuItem Header="Load built-in se_quence"
 				  Icon="{DynamicResource mimgBuiltinSeq}"
 				  ToolTip="load the application's delivered sequence&#10;LR757995 29872 bp RNA linear VRL 01-FEB-2020 whole genome"
@@ -80,6 +71,14 @@
 
 		<Separator />
 
+		<MenuItem Header="Open from _xml file"
+				  Icon="{DynamicResource mimgFolder32}"
+				  ToolTip="load a sequence file from this application's previously saved xml file"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding LoadFromXml, Mode=OneWay}"
+				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
+						  />
+
 		<MenuItem Header="Paste sequence from Cli_pboard"
 				  Icon="{DynamicResource mimgPaste23}"
 				  ToolTip="load the sequence from text you already copied in the clipboard"
@@ -89,23 +88,22 @@
 				  />
 
 		<Separator />
-		<MenuItem Header="Save session to app _xml..."
+		<MenuItem Header="_Save sequence As..."
 				  Icon="{DynamicResource mimgSave16}"
-				  ToolTip="save current sequence data and related items to application xml file"
-				  ToolTipService.ShowOnDisabled="True"
-				  Command="{Binding SaveXml, Mode=OneWay}"
-				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
-				  />
-
-		<MenuItem Header="_Save sequence as text..."
-				  Icon="{DynamicResource mimgSave16}"
-				  ToolTip="save current sequence nufleotides to text file"
+				  ToolTip="save current sequence to file"
 				  ToolTipService.ShowOnDisabled="True"
 				  Command="{Binding SaveAs, Mode=OneWay}"
 				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
 				  />
 
 		<Separator />
+		<MenuItem Header="Save sequence _xml..."
+				  Icon="{DynamicResource mimgSave16}"
+				  ToolTip="save current sequence information to xml file"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding SaveXml, Mode=OneWay}"
+				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
+				  />
 
 		<!--<Separator />
 
@@ -117,7 +115,7 @@
 
 		<Separator />
 		
-		<MenuItem Header="Save selected _areas..."
+		<MenuItem Header="Save selected _regions..."
 				  ToolTip="save current selected regions to file"
 				  ToolTipService.ShowOnDisabled="True"
 				  Command="{Binding SaveSelectedRegions, Mode=OneWay}"
@@ -126,7 +124,7 @@
 
 	<!-- edit menu -->
 	<MenuItem Header="_Edit">
-		<MenuItem Header="_Copy selections to Clipboard"
+		<MenuItem Header="_Copy selection to Clipboard"
 				  Icon="{DynamicResource mimgCopy23}"
 				  ToolTip="copy selected fragments to clipboard"
 				  ToolTipService.ShowOnDisabled="True"
@@ -263,7 +261,7 @@
 
 		<Separator />
 
-		<MenuItem Header="_Download sequence files"	
+		<!--<MenuItem Header="_Download sequence files"	
 				  Icon="{DynamicResource mimghttp48}"
 				  ToolTip="download sequences from ncbi web site"
 				  ToolTipService.ShowOnDisabled="True"
@@ -273,7 +271,7 @@
 				  Icon="{DynamicResource mimgNcbi16}"
 				  ToolTip="open the SARS web site of ncbi"
 				  ToolTipService.ShowOnDisabled="True"
-				  Command="{Binding GotoSARS_Website, Mode=OneWay}" />
+				  Command="{Binding GotoSARS_Website, Mode=OneWay}" />-->
 
 		<!-- ManageBookmarks-->
 			<Separator />

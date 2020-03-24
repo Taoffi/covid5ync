@@ -25,31 +25,32 @@ namespace iDna
 		public MainWindow()
 		{
 			InitializeComponent();
-			Loaded		+= MainWindow_Loaded;
+			Loaded += MainWindow_Loaded;
 		}
 
 		private void MainWindow_Loaded(object sender, RoutedEventArgs e)
 		{
 			iDnaSequence.Instance.SequenceParseCompleted += Instance_SequenceParseCompleted;
-			LoadStartupSequence();
+			LoadSequence();
 		}
 
 		private void Instance_SequenceParseCompleted(iDnaSequence sender, int nodeCount)
 		{
 			if(sender != null)
 			{
+				//sequenceCtrl.listItems.ItemsSource = sender;
 				textBlockNodeCount.Text = sender.Count.ToString();
 			}
 		}
 
-		void LoadStartupSequence()
+		/*async*/ void LoadSequence()
 		{
-			string		startuPfile		= App.Instance.StartupFileName;
+			//await Dispatcher.InvokeAsync(() => vm.iDnaCommandCentral.Instance.LoadBuiltinSequence.Execute(null));
 
-			if (! string.IsNullOrEmpty(startuPfile))
-			{
-				vm.iDnaCommandCentral.Instance.LoadXmlFile(startuPfile);
-			}
+			//Uri			appInfoUri		= new Uri("/data/app-version-info.txt", UriKind.Relative);
+			//Stream		appInfoStream	= Application.GetResourceStream(appInfoUri).Stream;
+			string		strAppInfo		= vm.iDnaCommandCentral.ApplicationVersionInfoString();
+			textBoxAppInfo.Text	= strAppInfo;
 		}
 	}
 }

@@ -26,7 +26,7 @@
 
 			<conv:Bool2Visibility			x:Key="bool2visible" />
 			<Image x:Key="imgBusy"			Source="images/busy48x48.png" />
-			<Image x:Key="imgSequence"		Source="images/sequence78x78.png" />
+			<Image x:Key="imgSequence"		Source="images/seqlight78x78.png" />
 			<Image x:Key="imgSequenceFile"	Source="images/sequence-file78x78.png" />
 			<Image x:Key="imgAbout"			Source="images/about78x78.png" />
 			<Image x:Key="imgNext"			Source="images/nav_next16x16.png" />

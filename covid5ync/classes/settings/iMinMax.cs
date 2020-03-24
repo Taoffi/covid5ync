@@ -15,7 +15,7 @@ namespace iDna
 										_limitMax					= int.MaxValue;
 
 		protected int					_minValue					= 0,
-										_maxValue					= int.MaxValue;
+										_maxValue					= int.MaxValue;		// 255;
 
 		public iMinMaxInt(int limitMin, int limitMax, int min, int max) : base()
 		{
@@ -63,7 +63,6 @@ namespace iDna
 				_minValue	= value;
 				AdjustMinMaxValues();
 				RaisePropertyChanged();
-				NotifyPropertyChanged(() => Length);
 				NotifyPropertyChanged(() => IsInError);
 			}
 		}
@@ -79,15 +78,10 @@ namespace iDna
 				_maxValue	= value;
 				AdjustMinMaxValues();
 				RaisePropertyChanged();
-				NotifyPropertyChanged(() => Length);
 				NotifyPropertyChanged(() => IsInError);
 			}
 		}
 
-		public int Length
-		{
-			get {  return _maxValue - MinValue; }
-		}
 
 		public int LimitMax
 		{

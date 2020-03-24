@@ -34,8 +34,8 @@
 											<Rectangle Fill="White"
 													   Stroke="Black"
 													   StrokeThickness="1"
-													   Width="6" Margin="0,2"
-													   Height="18"
+													   Width="9"
+													   Height="16"
 													   SnapsToDevicePixels="True"
 													   />
 										</ControlTemplate>
@@ -50,8 +50,8 @@
 		</ResourceDictionary>
 	</UserControl.Resources>
 
-	<Grid Margin="0" Height="24" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-		<Grid x:Name="gridSlider" Margin="4,0,4,0" Grid.Column="0">
+	<Grid Margin="0" Height="32" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+		<Grid x:Name="gridSlider" Margin="4,0,8,0" Grid.Column="0" Grid.ColumnSpan="2">
 
 			<Border Grid.Row="0" Grid.Column="0"
 								Background="LightGreen" 
@@ -59,11 +59,11 @@
 								Margin="2,0,0,0"
 								BorderBrush="Black" BorderThickness="1"
 								Width="{Binding ElementName=UpperSlider, Path=MaxWidth}"
-								Height="5" />
+								Height="6" />
 
 			<Slider x:Name="LowerSlider" Grid.Column="0" HorizontalAlignment="Stretch"
 								Padding="0"
-								Margin="0,0,0,0"
+								Margin="0,7,0,0"
 								Minimum="{Binding LimitMin, Mode=OneWay}"
 								Maximum="{Binding LimitMax, Mode=OneWay}"
 								Value="{Binding MinValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -73,7 +73,7 @@
 
 			<Slider x:Name="UpperSlider" Grid.Column="0" HorizontalAlignment="Stretch"
 								Padding="0"
-								Margin="0,0,0,0"
+								Margin="0,7,0,0"
 								Minimum="{Binding LimitMin, Mode=OneWay}"
 								Maximum="{Binding LimitMax, Mode=OneWay}"
 								Value="{Binding MaxValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"

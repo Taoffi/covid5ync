@@ -7,7 +7,7 @@
 			 xmlns:conv="clr-namespace:iDna.controls"
 			 xmlns:data="clr-namespace:iDna"
              mc:Ignorable="d" 
-             d:DesignHeight="160" d:DesignWidth="370"
+             d:DesignHeight="180" d:DesignWidth="330"
 			 d:DataContext="{d:DesignInstance Type={x:Type data:iDnaRegionIndexDesignTime}, IsDesignTimeCreatable=True, CreateList=False}">
 
 	<Grid x:Name="gridMain" Margin="0" HorizontalAlignment="Stretch">
@@ -21,15 +21,14 @@
 				
 				<Grid Margin="2">
 					<Grid.RowDefinitions>
-						<RowDefinition Height="28" />
-						<RowDefinition Height="24" />
-						<RowDefinition Height="24" />
-						<RowDefinition Height="24" />
-						<RowDefinition Height="24" />
+						<RowDefinition Height="30" />
+						<RowDefinition Height="26" />
+						<RowDefinition Height="26" />
+						<RowDefinition Height="26" />
 						<RowDefinition />
 					</Grid.RowDefinitions>
 					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="80" />
+						<ColumnDefinition Width="90" />
 						<ColumnDefinition />
 					</Grid.ColumnDefinitions>
 
@@ -58,16 +57,11 @@
 
 					<TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource label}" Text="Region name" />
 					<TextBox Grid.Row="3" Grid.Column="1" 
-							 VerticalAlignment="Center" HorizontalAlignment="Stretch"
+							 VerticalAlignment="Center" HorizontalAlignment="Left"
 							 Margin="4,0" Height="21"
-							 MaxWidth="260"
+							 MaxWidth="220" MinWidth="220"
 							 Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 							 />
-					<TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource label}" Text="Length" />
-					<TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource label}"
-							   HorizontalAlignment="Left" Margin="8,0"
-							   Text="{Binding Length}" FontSize="10"
-							   Foreground="{Binding IsInError, Converter={StaticResource boolToErrorValidator}}" />
 				</Grid>
 			</TabItem>
 

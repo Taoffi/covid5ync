@@ -11,8 +11,8 @@ namespace iDna
 	{
 		const int						_constMinIntNodes		= 6,
 										_constMaxIntNodes		= 32;
-		protected iMinMaxInt			_nodesMinMax			= new iMinMaxInt(limitMin: _constMinIntNodes,limitMax: _constMaxIntNodes, min: _constMinIntNodes, max: 16);
-		protected iMinMaxInt			_searchRegionMinMax		= new iMinMaxInt(limitMin: 0, limitMax: int.MaxValue, min: 0, max: int.MaxValue);
+		protected iMinMaxInt			_nodesMinMax			= new iMinMaxInt(_constMinIntNodes, _constMaxIntNodes, _constMinIntNodes, 16);
+		protected iMinMaxInt			_searchRegionMinMax		= new iMinMaxInt(0, int.MaxValue, 0, 0);
 
 		protected decimal				_minTm			= new decimal(0.0),
 										_maxTm			= new decimal(59.80);
@@ -20,25 +20,20 @@ namespace iDna
 		protected List<int>				_minMaxNodesSelectionList	= null;
 		protected static List<decimal>	_minMaxTmSelectionList;
 
-		protected bool					_allowRegionOverlap			= true;
-
 		protected iDnaMinMaxValues() : base()
 		{
 			init_instance();
 		}
 
-		public iDnaMinMaxValues(int minNodes, int maxNodes, decimal minTm, decimal maxTm, bool allowSearchOverlap) : base()
+		public iDnaMinMaxValues(int minNodes, int maxNodes, decimal minTm, decimal maxTm) : base()
 		{
 			_nodesMinMax.MinValue	= minNodes;
 			_nodesMinMax.MaxValue	= maxNodes;
 
-			_minTm				= minTm;
-			_maxTm				= maxTm;
-			_allowRegionOverlap	= allowSearchOverlap;
-
+			_minTm			= minTm;
+			_maxTm			= maxTm;
 			init_instance();
 		}
-
 
 		void init_instance()
 		{
@@ -127,15 +122,6 @@ namespace iDna
 			}
 		}
 
-		public bool AllowSearchRegionsOverlap
-		{
-			get { return _allowRegionOverlap; }
-			set
-			{
-				_allowRegionOverlap = value;
-				RaisePropertyChanged();
-			}
-		}
 
 		public int StartSearchRegionIndex
 		{
@@ -208,7 +194,7 @@ namespace iDna
 	{
 		static iDnaRepeatSettings		_instance			= null;
 
-		protected iDnaMinMaxValues		_minMaxValues		= new iDnaMinMaxValues(minNodes: 6, maxNodes: 12, minTm: (decimal) 0.0,maxTm: (decimal) 55.50, allowSearchOverlap: false);
+		protected iDnaMinMaxValues		_minMaxValues		= new iDnaMinMaxValues(6, 12, (decimal) 0.0, (decimal) 55.50);
 		protected bool					_searchOverlapping	= false,
 										_showSearchPosition	= true;
 
@@ -271,7 +257,7 @@ namespace iDna
 	{
 		static iDnaHairpinSettings		_instance		= null;
 
-		protected iDnaMinMaxValues		_minMaxValues		= new iDnaMinMaxValues(minNodes: 12, maxNodes: 16, minTm: (decimal) 0.0, maxTm: (decimal) 55.50, allowSearchOverlap: false);
+		protected iDnaMinMaxValues		_minMaxValues		= new iDnaMinMaxValues(12, 16, (decimal) 0.0, (decimal) 55.50);
 
 		public static iDnaHairpinSettings Instance
 		{
@@ -306,8 +292,8 @@ namespace iDna
 	{
 		static iDnaPrimerSettings		_instance		= null;
 
-		protected iDnaMinMaxValues		_minMaxValues35	= new iDnaMinMaxValues(minNodes: 12, maxNodes: 16, minTm: (decimal) 0.0, maxTm: (decimal) 55.50, allowSearchOverlap: false);
-		protected iDnaMinMaxValues		_minMaxValues53	= new iDnaMinMaxValues(minNodes: 12, maxNodes: 16, minTm: (decimal) 0.0, maxTm: (decimal) 55.50, allowSearchOverlap: false);
+		protected iDnaMinMaxValues		_minMaxValues35	= new iDnaMinMaxValues(12, 16, (decimal) 0.0, (decimal) 55.50);
+		protected iDnaMinMaxValues		_minMaxValues53	= new iDnaMinMaxValues(12, 16, (decimal) 0.0, (decimal) 55.50);
 
 		public static iDnaPrimerSettings Instance
 		{

@@ -74,7 +74,7 @@
 		</StackPanel>
 
 		<Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" BorderBrush="Black" BorderThickness="0,1,0,0" Margin="0,2" />
-		<TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource label}" Text="Tm" FontSize="11" />
+		<TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource label}" Text="Tm" FontSize="11" ToolTip="melting (baldino-based)" />
 		<TextBlock Grid.Row="2" Grid.Column="1" Margin="8,0" FontSize="9" 
 				   Text="{Binding SequenceMeltingTm, IsAsync=True, Mode=OneWay, StringFormat=\{0:N\}}" />
 

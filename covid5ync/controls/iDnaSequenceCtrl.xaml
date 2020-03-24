@@ -32,6 +32,7 @@
 					   ToolTip="search for nucleotides 
 (ctrl+f)  (min 3 chars)"/>
 				<TextBox x:Name="textBoxSearch" VerticalAlignment="Center" Width="120"
+						 CharacterCasing="Lower"
 						 Text="{Binding SearchString, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" 
 						 Foreground="{Binding SearchString, Converter={StaticResource searchStringValidator}}"
 						 IsEnabled="{Binding CanSearch, IsAsync=True}"/>
@@ -50,6 +51,7 @@
 							ToolTip="find complementary nucleotides
 (alt+f) (min 3 chars)" />
 				<TextBox x:Name="textBoxSearchPair" VerticalAlignment="Center" Width="120"
+						 CharacterCasing="Lower"
 						 Text="{Binding SearchPairString, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
 						 Foreground="{Binding SearchPairString, Converter={StaticResource searchStringValidator}}"
 						 IsEnabled="{Binding CanSearch, IsAsync=True}"
