@@ -20,6 +20,11 @@ services and data into this app. We are working on a few near-future targets:
 Change log
 ==================================================================================================
 -----------------------------
+2020-03-25
+-----------------------------
+* paste new sequences from clipboard
+
+-----------------------------
 2020-03-13
 -----------------------------
 * added feature: user managed favorite web sites => menu Bookmarks/favorites

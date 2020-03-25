@@ -38,7 +38,7 @@
     <SuiteName>covid5ync</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>35</ApplicationRevision>
+    <ApplicationRevision>36</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -67,11 +67,10 @@
     <ApplicationIcon>iDna.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>6782051EF762E7B412F7A70F0F6887B1CD1853EE</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>F2653C4107DA9CB1B13AD1A05E790B07AC8CF152</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>
-    </ManifestKeyFile>
+    <ManifestKeyFile>covid5ync_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -383,6 +382,7 @@
     <None Include="classes\documentation\covid5yncClassDiagram1.cd" />
     <None Include="classes\documentation\SequenceClassDiagram1.cd" />
     <None Include="classes\documentation\serializationClassDiagram1.cd" />
+    <None Include="covid5ync_1_TemporaryKey.pfx" />
     <None Include="covid5ync_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -321,9 +321,27 @@ namespace iDna.vm
 			{
 				if (_loadSequenceFromClipboard == null)
 				{
-					_loadSequenceFromClipboard = new CommandExecuter(() =>
+					_loadSequenceFromClipboard = new CommandExecuter(async() =>
 					{
-						ShowNotYetImplemented();
+						// ShowNotYetImplemented();
+
+						iDnaSequence	sequence			= iDnaSequence.Instance;
+						string			str					= Clipboard.GetText();
+						bool			canLoadNewSequence	= true;
+
+						if(string.IsNullOrEmpty(str))
+						{
+							ShowMessage("The clipboard looks to be empty or does not contain text.", "Paste sequence from clipboard");
+							return;
+						}
+
+						if (sequence.HasPendingChanges)
+							canLoadNewSequence = AskLoadNewSequence();
+
+						if (!canLoadNewSequence)
+							return;
+
+						await sequence.ParseString(str);
 					});
 				}
 				return _loadSequenceFromClipboard;
