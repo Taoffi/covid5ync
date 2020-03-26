@@ -38,7 +38,7 @@
 						 IsEnabled="{Binding CanSearch, IsAsync=True}"/>
 				<Button x:Name="buttonSearch" Margin="2,0" VerticalAlignment="Center"
 						Width="20" Content="Go" FontSize="10"
-						IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}}"
+						IsEnabled="{Binding IsValidSearchString, IsAsync=True}"
 						ToolTip="search (ctrl+f)"
 						Click="buttonSearch_Click" />
 
@@ -54,11 +54,11 @@
 						 CharacterCasing="Lower"
 						 Text="{Binding SearchPairString, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
 						 Foreground="{Binding SearchPairString, Converter={StaticResource searchStringValidator}}"
-						 IsEnabled="{Binding CanSearch, IsAsync=True}"
+						 IsEnabled="{Binding CanPairSearch, IsAsync=True}"
 					 />
 				<Button x:Name="buttonSearchPair" Margin="2,0" VerticalAlignment="Center"
 						Width="20" Content="Go" FontSize="10"
-						IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}}"
+						IsEnabled="{Binding IsValidSearchPairString, IsAsync=True}"
 						ToolTip="search complementray (alt+f)"
 						Click="buttonSearchPair_Click" />
 

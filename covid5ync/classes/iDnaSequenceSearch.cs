@@ -169,8 +169,9 @@ namespace iDna
 				//if(value == _searchString)
 				//	return;
 
-				_searchString = value;
+				_searchString = value == null ? "" : value;
 				NotifyPropertyChanged(() => SearchString);
+				NotifyPropertyChanged(() => IsValidSearchString);
 			}
 		}
 
@@ -183,9 +184,20 @@ namespace iDna
 				//if (value == _searchPairString)
 				//	return;
 
-				_searchPairString = value;
+				_searchPairString = value == null ? "" : value;
 				NotifyPropertyChanged(() => SearchPairString);
+				NotifyPropertyChanged(()=> IsValidSearchPairString);
 			}
+		}
+
+		public bool IsValidSearchString
+		{
+			get {  return ! IsBusy && _searchString.Length >= 3; }
+		}
+
+		public bool IsValidSearchPairString
+		{
+			get { return ! IsBusy && _searchPairString.Length >= 3; }
 		}
 
 		public bool CanSearch
@@ -195,6 +207,22 @@ namespace iDna
 				if(IsBusy)
 				{
 					if(_searchInProgress)
+						return true;
+
+					return false;
+				}
+
+				return true;
+			}
+		}
+
+		public bool CanPairSearch
+		{
+			get
+			{
+				if (IsBusy)
+				{
+					if (_searchInProgress)
 						return true;
 
 					return false;

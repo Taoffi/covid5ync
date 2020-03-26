@@ -245,9 +245,17 @@ namespace iDna.vm
 								ShowMessage("Sorry!. Could not open or read the file.\r\n" + ex.Message, "Could not open file");
 								return;
 							}
-						
+
+							int			crlfIndex		= strSequence.IndexOf("\n");
+							string		extension		= Path.GetExtension(fileName).ToLower(),
+										info			= extension == ".fasta" ? strSequence.Substring(0, crlfIndex) : "";
+
+							if(info.Length > 0)
+								strSequence	 = strSequence.Substring(crlfIndex + 1);
+
+							sequence.SequenceFileInfo	= fileName + "\r\n" + info;
+
 							sequence.Name				= Path.GetFileName(fileName);
-							sequence.SequenceFileInfo	= fileName;
 							await sequence.ParseString(strSequence);
 						});
 
