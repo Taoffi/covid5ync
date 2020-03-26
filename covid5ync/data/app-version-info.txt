@@ -20,9 +20,30 @@ services and data into this app. We are working on a few near-future targets:
 Change log
 ==================================================================================================
 -----------------------------
-2020-03-25
+2020-03-25/26
 -----------------------------
 * paste new sequences from clipboard
+* default embedded sequence set to NCBI MT226610 29899 bp RNA linear VRL 20-MAR-2020
+* fixed some search errors: notably crash when important number of found items
+* sequence file with ongoing analysis can be loaded at http://covid-5.5ync.net/covid19-work-in-progress.covid-5ync
+
+--------------------------
+2020-03-17
+--------------------------
+* optimized search process (much faster, work in progress to do better)
+* corrected initial search region end index (was limited to 255!)
+* updated online sequence with latest repeats
+
+--------------------------
+2020-03-15
+--------------------------
+* structured application data to save and reload work sessions 
+    (retreive back your previous session analysis: regions, repeats, hairpins...)
+* application file now saved in xml format (extension = .covid-5ync)
+* better search for repeats and hairpins (other optimizations under work)
+* better user interface for managing sequence and regions info
+* default embedded sequence set to NCBI MT163719 29903bp RNA linear VRL 10-MAR-2020
+* sequence file with ongoing analysis can be loaded at http://covid-5.5ync.net/covid19-work-in-progress.xml
 
 -----------------------------
 2020-03-13

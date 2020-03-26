@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Threading;
+using isosoft.root;
 
 namespace iDna
 {
@@ -17,8 +18,8 @@ namespace iDna
 													_searchPairCount		= 0,
 													_minSearchLenght		= 3;
 		protected bool								_searchInProgress		= false;
-		protected List<iDnaSequence>				_selectionBasket		= new List<iDnaSequence>(),		// iDnaSequenceList(),
-													_pairSelectionBasket	= new List<iDnaSequence>();		// iDnaSequenceList();
+		protected RootListTemplate<iDnaSequence>	_selectionBasket		= new RootListTemplate<iDnaSequence>(),		// iDnaSequenceList(),
+													_pairSelectionBasket	= new RootListTemplate<iDnaSequence>();		// iDnaSequenceList();
 		protected SequenceSearchType				_currentSearchType		= SequenceSearchType.SearchNormal;
 		protected vm.iDnaSequenceSortOptionList		_searchSortOptions		= new vm.iDnaSequenceSortOptionList();
 
@@ -87,13 +88,13 @@ namespace iDna
 		}
 
 
-		public List<iDnaSequence> CurrentSearchBasket
+		public RootListTemplate<iDnaSequence> CurrentSearchBasket
 		{
 			get {  return _currentSearchType == SequenceSearchType.SearchNormal ? _selectionBasket : _pairSelectionBasket; }
 		}
 
 
-		public List<iDnaSequence> SelectionBasket
+		public RootListTemplate<iDnaSequence> SelectionBasket
 		{
 			get {  return _selectionBasket; }
 			protected set
@@ -112,7 +113,7 @@ namespace iDna
 		}
 
 
-		public List<iDnaSequence> PairSelectionBasket
+		public RootListTemplate<iDnaSequence> PairSelectionBasket
 		{
 			get {  return _pairSelectionBasket; }
 			protected set

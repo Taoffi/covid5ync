@@ -46,14 +46,31 @@ namespace isosoft.root
 			PropertyChanged.Invoke( this, new PropertyChangedEventArgs( property_name));
 		}
 
-		protected void NotifyCollectionChanged( object sender)
+		protected void NotifyCollectionChanged( object sender, NotifyCollectionChangedAction action, T changedItem)
 		{
 			//NotifyCollectionReset( sender);
 
-			if( CollectionChangedInternal == null)
+			if( CollectionChangedInternal != null)
+				CollectionChangedInternal.Invoke( sender, this);
+
+			if(CollectionChanged == null)
 				return;
-			
-			CollectionChangedInternal.Invoke( sender, this);
+
+			CollectionChanged.Invoke(this, new NotifyCollectionChangedEventArgs( action, changedItem));
+		}
+
+
+		protected void NotifyCollectionChanged( object sender, NotifyCollectionChangedAction action, IEnumerable<T> changedItems)
+		{
+			//NotifyCollectionReset( sender);
+
+			if( CollectionChangedInternal != null)
+				CollectionChangedInternal.Invoke( sender, this);
+
+			if(CollectionChanged == null)
+				return;
+
+			CollectionChanged.Invoke(this, new NotifyCollectionChangedEventArgs( action, changedItems));
 		}
 
 
@@ -79,7 +96,7 @@ namespace isosoft.root
 			{
 				lock(_syncLock)
 				{
-					NotifyCollectionChanged(this);
+					NotifyCollectionChanged(this, NotifyCollectionChangedAction.Remove, item);
 				}
 				return true;
 			}
@@ -95,7 +112,7 @@ namespace isosoft.root
 			lock(_syncLock)
 			{
 				base.Add(item);
-				NotifyCollectionChanged(this);
+				NotifyCollectionChanged(this, NotifyCollectionChangedAction.Add, item);
 			}
 		}
 
@@ -117,7 +134,7 @@ namespace isosoft.root
 			lock (_syncLock)
 			{
 				base.AddRange(list);
-				NotifyCollectionChanged(this);
+				NotifyCollectionChanged(this, NotifyCollectionChangedAction.Add, list);
 			}
 		}
 

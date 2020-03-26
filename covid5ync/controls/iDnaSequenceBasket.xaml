@@ -13,7 +13,7 @@
 
 	<Grid x:Name="gridMain" VerticalAlignment="Stretch" Background="#FFF7EFCC">
 		<ListView x:Name="listSequences" Grid.Row="0"
-				  ItemsSource="{Binding IsAsync=True}"
+				  ItemsSource="{Binding ., Mode=OneWay}"
 				  HorizontalAlignment="Left"
 				  Height="auto"
 				  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
