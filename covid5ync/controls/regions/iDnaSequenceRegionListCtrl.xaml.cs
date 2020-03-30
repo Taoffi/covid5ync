@@ -38,6 +38,7 @@ namespace iDna.controls
 			int		minNdx	= objNdx.MinValue,
 					maxNdx	= objNdx.MaxValue;
 
+			seq.GoToNodePage(minNdx);
 			seq.Select(minNdx, maxNdx, true);
 		}
 

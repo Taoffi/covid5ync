@@ -36,6 +36,7 @@
 				  Background="#FFE7E8EC"
 				  HorizontalAlignment="Stretch"
 				  Width="{Binding ElementName=gridMain, Path=ActualWidth}"
+				  ScrollViewer.CanContentScroll="False"
 				  >
 			<ListView.ItemTemplate>
 				<DataTemplate>
