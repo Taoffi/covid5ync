@@ -40,12 +40,12 @@
 				BorderThickness="2" BorderBrush="#FFF59522"
 				Margin="4">
 			<StackPanel>
-				<Button x:Name="buttonLoadBuiltinSeq"
+				<Button x:Name="buttonLoadBuiltinTextSeq"
 						HorizontalAlignment="Center" VerticalAlignment="Bottom" 
 						Padding="0" Margin="4" 
 						Background="Transparent" BorderBrush="Transparent"
-						Command="{Binding LoadBuiltinSequence, Mode=OneWay}"
-						ToolTip="load the covid-19 sequence embedded in the application&#10;MT163719 29903 bp RNA linear VRL 10-MAR-2020 complete genome"
+						Command="{Binding LoadBuiltinXmlSequence, Mode=OneWay}"
+						ToolTip="load the covid-19 (xml) sequence embedded in the application&#10;MT226610 20-MAR-2020 complete genome"
 						IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}, Source={StaticResource mainSequence}, IsAsync=True}"
 						>
 					<Button.Content>
@@ -91,6 +91,8 @@
 					    />
 			</StackPanel>
 		</Border>
+
+
 
 		<TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" Margin="8,0"
 				   TextWrapping="Wrap"

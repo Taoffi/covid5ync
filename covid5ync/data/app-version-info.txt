@@ -20,6 +20,10 @@ services and data into this app. We are working on a few near-future targets:
 Change log
 ==================================================================================================
 -----------------------------
+2020-03-30
+-----------------------------
+* embedded sequence (xml format) with defined regions and other analysis
+-----------------------------
 2020-03-25/26
 -----------------------------
 * paste new sequences from clipboard

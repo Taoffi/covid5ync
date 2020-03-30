@@ -43,7 +43,8 @@ namespace iDna.vm
 
 								_openXml					= null,
 
-								_loadBuiltinSequence		= null,     // load application's delivered sequence
+								_loadBuiltinTextSequence	= null,     // load application's delivered sequence
+								_loadBuiltinXmlSequence		= null,     // load application's delivered xml sequence (with analysis)
 								_loadSequenceFromClipboard = null,		// load sequence from clipoard
 								_saveAs						= null,
 								_saveXml					= null,
@@ -268,13 +269,13 @@ namespace iDna.vm
 		/// <summary>
 		/// load the built-in sequence (application's resource file)
 		/// </summary>
-		public ICommand LoadBuiltinSequence
+		public ICommand LoadBuiltinTextSequence
 		{
 			get
 			{
-				if (_loadBuiltinSequence == null)
+				if (_loadBuiltinTextSequence == null)
 				{
-					_loadBuiltinSequence = new CommandExecuter(async() =>
+					_loadBuiltinTextSequence = new CommandExecuter(async() =>
 					{
 						//ShowNotYetImplemented();
 
@@ -318,11 +319,66 @@ namespace iDna.vm
 						});
 					});
 				}
-				return _loadBuiltinSequence;
+				return _loadBuiltinTextSequence;
 			}
 		}
 
-		// 
+		// _loadBuiltinXmlSequence
+		public ICommand LoadBuiltinXmlSequence
+		{
+			get
+			{
+				if (_loadBuiltinXmlSequence == null)
+				{
+					_loadBuiltinXmlSequence = new CommandExecuter(() =>
+					{
+						//ShowNotYetImplemented();
+
+						iDnaSequence	sequence		= iDnaSequence.Instance;
+						bool			canLoadNew		= true;
+
+						if(sequence.HasPendingChanges)
+						{
+							canLoadNew	= AskLoadNewSequence();
+						}
+
+						if(!canLoadNew)
+							return;
+
+						Uri				seqUri			= new Uri("/data/covid19-work-in-progress.xml", UriKind.Relative);
+
+						sequence.Name		= "Wuhan seafood market pneumonia virus genome assembly, whole_genome";
+						iDnaSequenceContract	seqContract = null;
+
+						Dispatcher.CurrentDispatcher.Invoke(() =>
+						{
+							Stream		seqStream		= Application.GetResourceStream(seqUri).Stream;
+
+							try
+							{
+								DataContractSerializer	ser			= new DataContractSerializer(typeof(iDnaSequenceContract));
+								XmlReaderSettings		xmlSettings = new XmlReaderSettings() { CloseInput = true };
+								XmlReader				xml			= XmlReader.Create(seqStream, xmlSettings);
+
+								seqContract = ser.ReadObject(xml) as iDnaSequenceContract;
+								xml.Close();
+							}
+							catch (Exception ex)
+							{
+								ShowMessage("Sorry!. An error occurred: \r\n" + ex.Message, "Load xml built-in resource");
+								return;
+							}
+
+							//seqStream.Close();
+						});
+					});
+				}
+				return _loadBuiltinXmlSequence;
+			}
+		}
+
+
+
 		public ICommand LoadSequenceFromClipboard
 		{
 			get
@@ -486,20 +542,6 @@ namespace iDna.vm
 							return;
 
 						LoadXmlFile(srcFile);
-						//iDnaSequenceContract	seqContract		= null;
-						//try
-						//{
-						//	DataContractSerializer	ser			= new DataContractSerializer(typeof(iDnaSequenceContract));
-						//	XmlReaderSettings		xmlSettings	= new XmlReaderSettings() { CloseInput = true};
-						//	XmlReader				xml			= XmlReader.Create(srcFile, xmlSettings);
-
-						//	seqContract	= ser.ReadObject(xml) as iDnaSequenceContract;
-						//	xml.Close();
-						//}
-						//catch (Exception ex)
-						//{
-						//	ShowMessage("Sorry!. An error occurred: \r\n" + ex.Message, "Load xml file");
-						//}
 					});
 
 					iDnaSequence seq		= iDnaSequence.Instance;
