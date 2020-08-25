@@ -1,0 +1,24 @@
+﻿<Window x:Class="iDna.controls.SequenceInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:iDna.controls"
+        mc:Ignorable="d"
+		WindowStartupLocation="CenterOwner"
+		ResizeMode="CanResizeWithGrip"
+		ShowInTaskbar="False"
+		Icon="{Binding Source={StaticResource imgCovid5ync48}, Path=Source}"
+        Title="Sequence Info" Height="264" Width="530" Background="#FFF6F6F6">
+    <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="32" />
+			<RowDefinition />
+			<RowDefinition Height="24" />
+		</Grid.RowDefinitions>
+
+		<TextBlock Grid.Row="0" FontSize="16" FontWeight="Bold" Text="Sequence info" Margin="8,0" />
+
+		<local:iDnaSequenceInfoCtrl Grid.Row="1" Margin="4" DataContext="{Binding }" />
+	</Grid>
+</Window>

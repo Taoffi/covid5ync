@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,9 +18,10 @@ namespace iDna
 	{
 		SearchNormal,
 		SearchPairs,
+		SearchRepeats,
 	};
 
-	public class iDnaSequence : RootListTemplate<iDnaNode>
+	public partial class iDnaSequence : RootListTemplate<iDnaNode>
 	{
 		static iDnaSequence							_instance			= null;
 
@@ -32,15 +34,8 @@ namespace iDna
 		protected CancellationTokenSource			_cancelSource			= new CancellationTokenSource(5);
 		protected string							_sequenceFileInfo		= "";
 		protected iDnaSequencePaging				_paging					= new iDnaSequencePaging(1000);
-		protected string							_searchString			= "",
-													_searchPairString		= "";
-		protected int								_searchCount			= 0,
-													_searchPairCount		= 0,
-													_minSearchLenght		= 3;
-		protected bool								_searchInProgress		= false;
-		protected iDnaSequenceList					_selectionBasket		= new iDnaSequenceList(),
-													_pairSelectionBasket	= new iDnaSequenceList();
-		protected SequenceSearchType				_currentSearchType		= SequenceSearchType.SearchNormal;
+		protected int								_nOccurrences			= 1;
+		protected iDnaRegionIndexList				_namedRegionsList			= new iDnaRegionIndexList();
 
 
 		public static iDnaSequence Instance
@@ -61,15 +56,24 @@ namespace iDna
 			
 
 		
+		
 		public iDnaSequence() : base()
 		{
 			_paging.SourceCollection	= this;
+			_namedRegionsList			= new iDnaRegionIndexList(this, "Sequence Regions");
+
+			_repeatSortOptions.SelectedOptionChanged	+= _repeatSortOptions_SelectedOptionChanged;
+			_searchSortOptions.SelectedOptionChanged	+= _searchSortOptions_SelectedOptionChanged;
+			_hairpinSortOptions.SelectedOptionChanged	+= _hairpinSortOptions_SelectedOptionChanged;
 		}
 
-		protected iDnaSequence(string name, IEnumerable<iDnaNode> nodeList, bool refOnly = true) : base()
+		internal iDnaSequence(string name, IEnumerable<iDnaNode> nodeList, bool refOnly = true, int nOccurrences = 1) : base()
 		{
-			_paging.SourceCollection = this;
+			_paging.SourceCollection	= this;
+			_namedRegionsList			= new iDnaRegionIndexList(this, "Sequence Regions");
+
 			_name			= name;
+			_nOccurrences	= nOccurrences;
 			CopyNodeList(nodeList, refOnly);
 		}
 
@@ -86,11 +90,13 @@ namespace iDna
 				return;
 
 			this.AddRange(nodeList);
+			_stats.Total		= this.Count;
 
 			// embed nodes: set parent to this and reset nodes index
 			if( ! refOnly)
 				ReIndexNodes();
 		}
+
 
 		/// <summary>
 		/// embed nodes: set parent to this and reset nodes index
@@ -110,6 +116,7 @@ namespace iDna
 		{
 			get { return _paging; }
 		}
+
 
 
 		public int PaginPageSize
@@ -142,80 +149,12 @@ namespace iDna
 			get { return this.Where(i => i.RootBaseItem == rootBase); }
 		}
 
-
-		public string Id
+		public double SequenceLinearBaseValue
 		{
-			get {  return _id; }
+			get { return this.Sum(i => i.LinearBaseValue); }
 		}
 
 
-		public string Name
-		{
-			get { return _name; }
-			set
-			{
-				if(value == _name)
-					return;
-
-				_name	= value;
-			}
-		}
-
-		public SequenceSearchType CurrebtSearchType
-		{
-			get { return _currentSearchType; }
-			protected set
-			{
-				if(value == _currentSearchType)
-					return;
-
-				_currentSearchType	= value;
-				NotifyPropertyChanged(() => CurrebtSearchType);
-				NotifyPropertyChanged(() => CurrentSearchBasket);
-			}
-		}
-
-
-		public iDnaSequenceList CurrentSearchBasket
-		{
-			get {  return _currentSearchType == SequenceSearchType.SearchNormal ? _selectionBasket : _pairSelectionBasket; }
-		}
-
-
-		public iDnaSequenceList SelectionBasket
-		{
-			get {  return _selectionBasket; }
-			protected set
-			{
-				if(value == _selectionBasket)
-					return;
-
-				if(value == null)
-					_selectionBasket.Clear();
-				else
-					_selectionBasket	= value;
-				NotifyPropertyChanged(() => SelectionBasket);
-				NotifyPropertyChanged(() => CurrentSearchBasket);
-			}
-		}
-
-
-		public iDnaSequenceList PairSelectionBasket
-		{
-			get {  return _pairSelectionBasket; }
-			protected set
-			{
-				if(value == _pairSelectionBasket)
-					return;
-
-				if(value == null)
-					_pairSelectionBasket.Clear();
-				else
-					_pairSelectionBasket = value;
-				NotifyPropertyChanged(() => PairSelectionBasket);
-				NotifyPropertyChanged(() => CurrentSearchBasket);
-			}
-		}
 
 		public IEnumerable<iDnaNode> SelectedItems
 		{
@@ -223,22 +162,7 @@ namespace iDna
 		}
 
 
-		public string SequenceFileInfo
-		{
-			get { return _sequenceFileInfo; }
-			set
-			{
-				if(value == _sequenceFileInfo)
-					return;
-
-				_sequenceFileInfo	= value;
-				NotifyPropertyChanged(() => SequenceFileInfo);
-			}
-		}
-
-
-
-		public string SequenceString
+		public string SequenceFlatString
 		{
 			get
 			{
@@ -273,6 +197,17 @@ namespace iDna
 			get { return _cancelSource; }
 		}
 
+		public CancellationTokenSource CurrentCancellationSource
+		{
+			get { return _cancelSource; }
+			set
+			{
+				_cancelSource	= value;
+				NotifyPropertyChanged(()=> CurrentCancellationSource);
+				NotifyPropertyChanged(() => Cancellation);
+			}
+		}
+
 		public bool AddNode(iDnaSequence parentSequence, char code, int index)
 		{
 			iDnaBase	rootBase	= iDnaBaseNucleotides.Instance[code];
@@ -290,18 +225,17 @@ namespace iDna
 			if(_stats == null)
 				return;
 
-			foreach(var baseIem in iDnaBaseNucleotides.Instance)
+			foreach (var baseIem in iDnaBaseNucleotides.Instance)
 			{
 				var item	= _stats[baseIem];
 
 				if(item != null)
 				{
 					item.Count = this.Count(i => i.RootBaseItem == baseIem);
-					item.Total = this.Count;
 				}
-
-				NotifyPropertyChanged(() => Statistics);
 			}
+			_stats.SetTotalNoNotify(this.Count);
+			_stats.NotifyChanges();
 		}
 
 
@@ -310,16 +244,72 @@ namespace iDna
 			get { return _stats; }
 		}
 
+		void InitializeCancellationSource()
+		{
+			if (this._cancelSource != null)
+			{
+				_cancelSource.Cancel();
+			}
+
+			_cancelSource.Dispose();
+			CurrentCancellationSource	= new CancellationTokenSource();
+		}
+
+		public bool HasPendingChanges
+		{
+			get
+			{
+				if (_selectionBasket.Count > 0
+						|| _pairSelectionBasket.Count > 0
+						|| _repeatsBasket.Count > 0
+						|| _hairPinBasket.Count > 0
+						|| _namedRegionsList.Count > 0)
+					return true;
+
+				return false;
+			}
+		}
+
+
+		bool InitializeNewSequence()
+		{
+			this._selectionBasket.Clear();
+			this._pairSelectionBasket.Clear();
+			this._repeatsBasket.Clear();
+			this._hairPinBasket.Clear();
+			this._repeatSearch.Clear();
+			this._stringOccurList.Clear();
+			this._pairStringOccurList.Clear();
+
+			_namedRegionsList = new iDnaRegionIndexList(this, "Sequence Regions");
+
+			NotifyPropertyChanged(() => SelectionBasket);
+			NotifyPropertyChanged(() => CurrentSearchBasket);
+			NotifyPropertyChanged(() => CurrentSearchBasketSorted);
+			NotifyPropertyChanged(() => CurrentRepeatsBasket);
+			NotifyPropertyChanged(() => CurrentRepeatsBasketSorted);
+			NotifyPropertyChanged(() => SequenceNamedRegionList);
+			NotifyPropertyChanged(() => HairpinCount);
+			NotifyPropertyChanged(() => RepeatsCount);
+			NotifyPropertyChanged(() => SearchOccurrences);
+
+			return true;
+		}
+
 
 		public async Task<bool> ParseString(string str)
 		{
 			if (string.IsNullOrEmpty(str))
 				return false;
 
+			InitializeNewSequence();
+			InitializeCancellationSource();
+			
 			this.Clear(false);
-			IsBusy	= true;
-			_cancelSource.Dispose();
-			_cancelSource			= new CancellationTokenSource();
+
+			this.Id					= Guid.NewGuid().ToString();
+
+			IsBusy					= true;
 			int				index	= 0;
 
 			await Task.Run(() =>
@@ -329,12 +319,13 @@ namespace iDna
 					if(_cancelSource.Token.IsCancellationRequested)
 						break;
 
-					if(! iDnaBaseNucleotides.IsValidChar(chr))
+					char	c		= char.ToLower(chr);
+					if(! iDnaBaseNucleotides.IsValidChar( c))
 						continue;
 
-					this.AddNode(this, chr, ++index);
+					this.AddNode(this, c, ++index);
 
-					//// refersh if we areon first non-full page
+					//// refersh if we are on first non-full page
 					//if(_paging.CurrentPage <= 1 && this.Count <= _paging.PageSize)
 					//	Dispatcher.CurrentDispatcher.Invoke(()=> NotifyPropertyChanged(() => SequencePaging));
 				}
@@ -347,7 +338,6 @@ namespace iDna
 				if(SequenceParseCompleted != null)
 					SequenceParseCompleted.Invoke(this, this.Count);
 
-				//NotifyCollectionChanged(this);
 				NotifyPropertyChanged(() => Count);
 				NotifyPropertyChanged(() => Statistics);
 				NotifyPropertyChanged(() => SequencePaging);
@@ -358,92 +348,42 @@ namespace iDna
 			return this.Count > 0;
 		}
 
-
-		public int SearchOccurrences
+		internal void ClearSearchAndSelectionBaskets()
 		{
-			get { return _searchCount; }
-			protected set
-			{
-				if(value == _searchCount)
-					return;
+			_selectionBasket.Clear();
+			_pairSelectionBasket.Clear();
 
-				_searchCount	= value;
-				NotifyPropertyChanged(() => SearchOccurrences);
-			}
+			NotifyPropertyChanged(() => SelectionBasket);
+			NotifyPropertyChanged(() => PairSelectionBasket);
+			NotifyPropertyChanged(() => CurrentSearchBasket);
+			NotifyPropertyChanged(() => CurrentSearchBasketSorted);
+			NotifyPropertyChanged(() => PairSelectionBasket);
 		}
 
 
-		public int SearchPairOccurrences
+		internal void ClearRepeatsBaskets()
 		{
-			get { return _searchPairCount; }
-			protected set
-			{
-				if(value == _searchPairCount)
-					return;
+			_repeatsBasket.Clear();
+			_repeatSearch.Clear();
 
-				_searchPairCount = value;
-				NotifyPropertyChanged(() => SearchPairOccurrences);
-			}
+			NotifyPropertyChanged(() => RepeatsBasket);
+			NotifyPropertyChanged(() => RepeatsBasketSorted);
+			NotifyPropertyChanged(() => RepeatsCount);
 		}
 
 
-		public string SearchString
+		internal void ClearHairpinBaskets()
 		{
-			get { return _searchString; }
-			set
-			{
-				if(value == _searchString)
-					return;
+			_hairPinBasket.Clear();
+			_repeatSearch.Clear();
 
-				_searchString = value;
-				NotifyPropertyChanged(() => SearchString);
-
-				//ResetSelection(false);
-
-				//if (!_searchInProgress && !string.IsNullOrEmpty(value) && value.Length > _minSearchLenght)
-				//{
-				//	Task.Run(() => FindString( value, isPairSearch: false, null));
-				//}
-			}
+			NotifyPropertyChanged(() => HairpinBasket);
+			NotifyPropertyChanged(() => HairpinBasketSorted);
+			NotifyPropertyChanged(() => HairpinCount);
 		}
 
 
-		public string SearchPairString
-		{
-			get { return _searchPairString; }
-			set
-			{
-				if (value == _searchPairString)
-					return;
-
-				_searchPairString = value;
-				NotifyPropertyChanged(() => SearchPairString);
-
-				//ResetSelection(false);
-
-				//if (! _searchInProgress && !string.IsNullOrEmpty(value) && value.Length > _minSearchLenght)
-				//	Task.Run(() => FindString( iDnaBaseNucleotides.Instance.GetPairString(_searchPairString), isPairSearch: true, null));
-			}
-		}
-
-		public bool CanSearch
-		{
-			get
-			{
-				if(IsBusy)
-				{
-					if(_searchInProgress)
-						return true;
-
-					return false;
-				}
-
-				return true;
-			}
-		}
-
-
-		void ResetSelection(bool selectValue, Dispatcher dispatcher)
+		internal void ResetSelection(bool selectValue, Dispatcher dispatcher)
 		{
 			if (dispatcher == null)
 				dispatcher = Dispatcher.CurrentDispatcher;
@@ -454,151 +394,43 @@ namespace iDna
 					item.IsSelected	= selectValue;
 			}
 			);
-		}
 
+			_selectionBasket.Clear();
+			_pairSelectionBasket.Clear();
 
-		public async Task<IEnumerable<iDnaNode>> FindString(string str, bool isPairSearch, Dispatcher dispatcher)
-		{
-			if (string.IsNullOrWhiteSpace(str))
-				return null;
-
-			iDnaSequenceList		basket	= isPairSearch ? _pairSelectionBasket : _selectionBasket;
-
-			basket.Clear();
-
-			CurrebtSearchType	 = isPairSearch ? SequenceSearchType.SearchPairs : SequenceSearchType.SearchNormal;
-
-			if (isPairSearch)
-			{
-				SearchPairOccurrences	= 0;
-				NotifyPropertyChanged(() => PairSelectionBasket);
-			}
-			else
-			{
-				SearchOccurrences = 0;
-				NotifyPropertyChanged(() => SelectionBasket);
-			}
-
-			str		= iDnaBaseNucleotides.TrimInvalidChars(str);
-
-			if (! iDnaBaseNucleotides.Instance.IsValidSearchString(str))
-				return null;
-
-			bool		resetBusy	= false;
-
-			_searchInProgress	= true;
-			if(! _isBusy)
-			{
-				resetBusy		= true;
-				IsBusy		= true;
-			}
-			
-			NotifyPropertyChanged(() => CanSearch);
-
-			if( dispatcher == null)
-				dispatcher	= Dispatcher.CurrentDispatcher;
-
-			List<iDnaNode>	list		= new List<iDnaNode>();
-			var				allStarts	= this.Where( i => str[0] == i.Code).ToList();
-			int				nodeNdx,
-							ndxEnd,
-							ndxStr,
-							lenStr			= str.Length;
-
-			if(allStarts == null)
-				return null;
-
-			int				startsCount		= allStarts.Count(),
-							ndxStarts		= 0,
-							nOccurrences	= 0;
-
-			await Task.Run(() =>
-			{
-
-				//foreach(var item in allStarts)
-				while ((ndxStarts /*+ lenStr*/) < startsCount)
-				{
-					iDnaNode item	= allStarts[ndxStarts];
-
-					nodeNdx			= item.Index;
-					ndxEnd			= nodeNdx + lenStr;
-					var subSeq		= this.Where(i => i.Index >= nodeNdx && i.Index < ndxEnd);
-
-					if (subSeq == null)
-						continue;
-
-					ndxStr			= 0;
-					bool mismatch	= false;
-
-					foreach (var node in subSeq)
-					{
-						if (node.Code != str[ndxStr] && ndxStr < lenStr)
-						{
-							mismatch	= true;
-							break;
-						}
-						ndxStr++;
-					}
-
-					if (!mismatch && ndxStr == lenStr)
-					{
-						nOccurrences++;
-
-						list.AddRange(subSeq);
-						//ndxStarts		+= lenStr;
-
-						basket.Add( new iDnaSequence("search match " + nOccurrences.ToString(), subSeq));
-						NotifyPropertyChanged(() => SelectionBasket);
-						NotifyPropertyChanged(() => PairSelectionBasket);
-						NotifyPropertyChanged(() => CurrentSearchBasket);
-					}
-
-					ndxStarts++;
-				}
-			});
-			
-
-			// select found nodes
-			dispatcher.Invoke(() =>
-			{
-				ResetSelection(false, dispatcher: dispatcher);
-
-				foreach (var item in list)
-					item.IsSelected = true;
-			}
-			);
-
-			var		distinctIndexes	= list.Select(i => i.Index).Distinct();
-			int		distinctCount	= distinctIndexes.Count() / lenStr;
-
-			if (isPairSearch)
-				SearchPairOccurrences = distinctCount;
-			else
-				SearchOccurrences = distinctCount;
-			
-			_searchInProgress	= false;
-
-			if(resetBusy)
-				IsBusy				= false;
-
-			NotifyPropertyChanged(() => CanSearch);
+			NotifyPropertyChanged(() => SelectionBasket);
+			NotifyPropertyChanged(() => PairSelectionBasket);
 			NotifyPropertyChanged(() => CurrentSearchBasket);
-
-			//_paging.RaisePagingEvents();
-			//NotifyPropertyChanged(() => _paging.CurrentPageData);
-			//NotifyPropertyChanged(() => _paging.CurrentPage);
-
-			return list;
+			NotifyPropertyChanged(() => CurrentSearchBasketSorted);
+			NotifyPropertyChanged(() => PairSelectionBasket);
 		}
 
 
-		public static async Task<iDnaSequence> FromString(string str)
+		internal void GoToNodePage(int nodeIndex)
 		{
-			iDnaSequence		sequence	= new iDnaSequence();
+			if(nodeIndex < 0 || nodeIndex >= this.Count)
+				return;
 
-			await sequence.ParseString(str);
-			return sequence;
+			int		curPageNumber	= _paging.CurrentPage,
+					nodesPerPage	= _paging.PageSize,
+					nodePageNumber	= nodeIndex / nodesPerPage + 1;
+			bool	isVisible		= nodePageNumber == curPageNumber;
+
+			if(isVisible)
+				return;
+
+			_paging.CurrentPage	= nodePageNumber;
 		}
+
+
+		internal void GoToNodePage(iDnaNode node)
+		{
+			if(node == null)
+				return;
+
+			GoToNodePage(node.Index);
+		}
+
 	}
 
 
@@ -624,6 +456,27 @@ ataactaattactgtcgttgacaggacacgagtaactcgtctatcttctgcaggctgctt");
 
 			foreach(int ndx in selectedNodes)
 				this[ndx].IsSelected	= true;
+
+			string[]			str_repeats	= { "caggtaacaaa", "caggtaacaaa" },
+								str_hp		= { "caggtaacaaa", iDnaBaseNucleotides.Instance.GetPairString("caggtaacaaa") };
+			List<iDnaNode>		repeats		= new List<iDnaNode>(),
+								hairpins	= new List<iDnaNode>();
+			foreach(var s in str_repeats)
+			{
+				int ndx = 1;
+				foreach(var c in s)
+					repeats.Add(new iDnaNode(this, iDnaBaseNucleotides.Instance[c], ndx++));
+			}
+
+			foreach (var s in str_hp)
+			{
+				int ndx = 1;
+				foreach (var c in s)
+					hairpins.Add(new iDnaNode(this, iDnaBaseNucleotides.Instance[c], ndx++));
+			}
+
+			this._repeatsBasket.Add(new iDnaSequence($"repeat 1", repeats, true, 1));
+			this._hairPinBasket.Add(new iDnaSequence($"hairpin 1", hairpins, true, 1));
 		}
 	}
 

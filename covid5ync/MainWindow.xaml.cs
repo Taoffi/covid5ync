@@ -25,65 +25,31 @@ namespace iDna
 		public MainWindow()
 		{
 			InitializeComponent();
-			Loaded += MainWindow_Loaded;
+			Loaded		+= MainWindow_Loaded;
 		}
 
 		private void MainWindow_Loaded(object sender, RoutedEventArgs e)
 		{
 			iDnaSequence.Instance.SequenceParseCompleted += Instance_SequenceParseCompleted;
-			LoadSequence();
+			LoadStartupSequence();
 		}
 
 		private void Instance_SequenceParseCompleted(iDnaSequence sender, int nodeCount)
 		{
 			if(sender != null)
 			{
-				//sequenceCtrl.listItems.ItemsSource = sender;
 				textBlockNodeCount.Text = sender.Count.ToString();
 			}
 		}
 
-		async void LoadSequence()
+		void LoadStartupSequence()
 		{
-			string			strInfo,
-							strSequence,
-							strAppInfo;
-			iDnaSequence	sequence		= iDnaSequence.Instance;
-			Uri				seqInfoUri		= new Uri("/data/covid-19-sequence-info.txt", UriKind.Relative),
-							seqUri			= new Uri("/data/covid-19-sequence.txt", UriKind.Relative),
-							appInfoUri		= new Uri("/data/app-version-info.txt", UriKind.Relative);
+			string		startuPfile		= App.Instance.StartupFileName;
 
-			sequence.Name	= "Wuhan seafood market pneumonia virus genome assembly, whole_genome";
-
-			await Dispatcher.Invoke(async() =>
+			if (! string.IsNullOrEmpty(startuPfile))
 			{
-				Stream		infStream		= Application.GetResourceStream(seqInfoUri).Stream,
-							seqStream		= Application.GetResourceStream(seqUri).Stream,
-							appInfoStream	= Application.GetResourceStream(appInfoUri).Stream;
-
-				using (StreamReader reader = new StreamReader(infStream))
-				{
-					strInfo = reader.ReadToEnd();
-				}
-				infStream.Close();
-				sequence.SequenceFileInfo = strInfo;
-
-				using (StreamReader reader = new StreamReader(seqStream))
-				{
-					strSequence = reader.ReadToEnd();
-				}
-				seqStream.Close();
-
-				using (StreamReader reader = new StreamReader(appInfoStream))
-				{
-					strAppInfo = reader.ReadToEnd();
-				}
-				appInfoStream.Close();
-				textBoxAppInfo.Text = strAppInfo;
-
-				await sequence.ParseString(strSequence);
-			});
-
+				vm.iDnaCommandCentral.Instance.LoadXmlFile(startuPfile);
+			}
 		}
 	}
 }

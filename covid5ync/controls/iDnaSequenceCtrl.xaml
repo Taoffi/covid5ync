@@ -11,8 +11,8 @@
 			 SnapsToDevicePixels="True"
 			 >
 	<UserControl.InputBindings>
-		<KeyBinding Key="F"		Modifiers="Ctrl"	Command="{Binding SearchCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:iDnaSequenceCtrl}}}" />
-		<KeyBinding Key="F"		Modifiers="Alt"		Command="{Binding SearchPairsCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:iDnaSequenceCtrl}}}" />
+		<KeyBinding Key="F"		Modifiers="Ctrl"	Command="{Binding Search, Mode=OneWay, Source={StaticResource commandCentral}}" />
+		<KeyBinding Key="F"		Modifiers="Alt"		Command="{Binding SearchPairs, Mode=OneWay, Source={StaticResource commandCentral}}" />
 
 		<KeyBinding Key="Next"		Modifiers="Ctrl" 	Command="{Binding NextPageCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:iDnaSequenceCtrl}}}" />
 		<KeyBinding Key="PageUp"	Modifiers="Ctrl"	Command="{Binding PrevPageCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:iDnaSequenceCtrl}}}" />
@@ -38,15 +38,16 @@
 				<Button x:Name="buttonSearch" Margin="2,0" VerticalAlignment="Center"
 						Width="20" Content="Go" FontSize="10"
 						IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}}"
+						ToolTip="search (ctrl+f)"
 						Click="buttonSearch_Click" />
 
-				<TextBlock VerticalAlignment="Center" Margin="4,0"
-					   Text="{Binding SearchOccurrences, Mode=OneWay, IsAsync=True, UpdateSourceTrigger=PropertyChanged}"
-					   Foreground="Maroon" FontSize="9"
-					   ToolTip="found occurrences"/>
+				<TextBlock VerticalAlignment="Center" Margin="4,0" Width="42"
+							Text="{Binding SearchOccurrences, Mode=OneWay, IsAsync=True, UpdateSourceTrigger=PropertyChanged}"
+							Foreground="Maroon" FontSize="9"
+							ToolTip="found occurrences"/>
 
 				<TextBlock Style="{StaticResource label}" Text="Search pair" Margin="12,0,4,0" 
-					   ToolTip="find complementary nucleotides
+							ToolTip="find complementary nucleotides
 (alt+f) (min 3 chars)" />
 				<TextBox x:Name="textBoxSearchPair" VerticalAlignment="Center" Width="120"
 						 Text="{Binding SearchPairString, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
@@ -54,66 +55,23 @@
 						 IsEnabled="{Binding CanSearch, IsAsync=True}"
 					 />
 				<Button x:Name="buttonSearchPair" Margin="2,0" VerticalAlignment="Center"
-					Width="20" Content="Go" FontSize="10"
-					IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}}"
-					Click="buttonSearchPair_Click" />
+						Width="20" Content="Go" FontSize="10"
+						IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}}"
+						ToolTip="search complementray (alt+f)"
+						Click="buttonSearchPair_Click" />
 
 				<TextBlock VerticalAlignment="Center" Margin="4,0"
-					   Text="{Binding SearchPairOccurrences, Mode=OneWay, IsAsync=True, UpdateSourceTrigger=PropertyChanged}"
-					   Foreground="Maroon" FontSize="9" 
-					   ToolTip="number of complementary nucleotides' occurrences"/>
+							Text="{Binding SearchPairOccurrences, Mode=OneWay, IsAsync=True, UpdateSourceTrigger=PropertyChanged}"
+							Foreground="Maroon" FontSize="9" 
+							ToolTip="number of complementary nucleotides' occurrences"/>
 			</StackPanel>
 		</Border>
 
 		<!-- ************** sequence view ************** -->
 		<local:iDnaSequenceView Grid.Row="1" DataContext="{Binding }" />
 		
-		<!--<ListView x:Name="listItems" 
-				  Grid.Row="1" 
-				  ItemsSource="{Binding SequencePaging.CurrentPageData, IsAsync=True}" 
-				  BorderBrush="#FFA3A3A4" BorderThickness="1"
-				  Background="{x:Null}"
-				  Padding="2"
-				  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-				  VirtualizingPanel.IsVirtualizing="True"
-				  UseLayoutRounding="True"
-				  IsSynchronizedWithCurrentItem="True"
-				  >
-			<ListView.Resources>
-				<Style TargetType="{x:Type ListViewItem}">
-					<Style.Resources>
-						<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{x:Static SystemColors.HighlightColor}"/>
-					</Style.Resources>
 
-					<Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay, IsAsync=True}" />
-					<Setter Property="Padding"		Value="0,0.5,0,0" />
-					<Setter Property="Margin"		Value="-1,0,0.5,-1" />
-					<Setter	Property="Background"	Value="Blue" />
-				</Style>
-			</ListView.Resources>
-
-			<ListBox.ItemsPanel>
-				<ItemsPanelTemplate>
-					<WrapPanel Width="{Binding Width, ElementName=listItems}"
-							   HorizontalAlignment="Left" Height="auto" 
-							   Margin="0,0,0,0"
-							   Background="#FF323030" />
-				</ItemsPanelTemplate>
-			</ListBox.ItemsPanel>
-
-			<ListView.ItemTemplate>
-				<DataTemplate>
-					<local:iDnaNodeCtrl DataContext="{Binding }"
-										Width="20" Height="20"
-										Margin="-2.8,0,-2,-2" 
-										Padding="0,0,0,-1" 
-										ToolTip="{Binding Index, StringFormat=\{0:# ##0\}}"/>
-				</DataTemplate>
-			</ListView.ItemTemplate>
-
-		</ListView>-->
-
-		<!-- top panel: paging control and node count -->
+		<!-- bottom panel: paging control and node count -->
 		<Border Grid.Row="2" Margin="2,2" Padding="2" VerticalAlignment="Center" HorizontalAlignment="Stretch"
 				BorderBrush="#FF7A7A7A" BorderThickness="0,1.5" Background="#FFE3E2E8">
 			<StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="4,0" >
@@ -122,6 +80,7 @@
 						VerticalContentAlignment="Center" VerticalAlignment="Center" 
 						Width="20" HorizontalAlignment="Left" Margin="4,2" Padding="0,-3,0,0"
 						IsEnabled="{Binding SequencePaging.HasPrevious, Mode=OneWay, IsAsync=True}"
+						ToolTip="previous page"
 						Click="buttonPrevPage_Click">
 					<Button.Style>
 						<Style TargetType="{x:Type Button}">
@@ -170,6 +129,7 @@
 						VerticalContentAlignment="Center" VerticalAlignment="Center"
 						Width="20" HorizontalAlignment="Left" Margin="4,2" Padding="0,-3,0,0"
 						IsEnabled="{Binding SequencePaging.HasNext, Mode=OneWay, IsAsync=True}"
+						ToolTip="next page"
 						Click="buttonPrevNext_Click">
 					<Button.Style>
 						<Style TargetType="{x:Type Button}">

@@ -3,3 +3,8 @@
 covid5ync.vssscc
 *.vssscc
 *.vssscc
+*.dat
+covid5ync/data/covid-19-sequence.txt
+covid5ync/data/covid-19-sequence.txt
+*.pdf
+covid5ync/data/covid-19-sequence.txt

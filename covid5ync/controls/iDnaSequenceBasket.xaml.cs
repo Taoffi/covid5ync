@@ -24,5 +24,40 @@ namespace iDna.controls
 		{
 			InitializeComponent();
 		}
+
+
+		private void buttonGotoPage_Click(object sender, RoutedEventArgs e)
+		{
+			Button	button		= sender as Button;
+
+			if(button == null || button.DataContext == null)
+				return;
+
+			iDnaSequence	seq	= button.DataContext as iDnaSequence;
+
+			if(seq == null || seq.Count <= 0)
+				return;
+
+			iDnaNode	node	= seq[0];
+			iDnaSequence.Instance.GoToNodePage(node);
+		}
+
+		private void buttonEditInfo_Click(object sender, RoutedEventArgs e)
+		{
+			Button	button		= sender as Button;
+
+			if(button == null || button.DataContext == null)
+				return;
+
+			iDnaSequence	seq	= button.DataContext as iDnaSequence;
+
+			if(seq == null || seq.Count <= 0)
+				return;
+
+			SequenceInfoWindow seqWnd		= new SequenceInfoWindow() {  DataContext = seq };
+
+			seqWnd.Owner	= Application.Current.MainWindow;
+			seqWnd.ShowDialog();
+		}
 	}
 }

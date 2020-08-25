@@ -34,6 +34,30 @@ namespace iDna.controls
 		}
 	}
 
+	public class ValidBoolToColor : IValueConverter
+	{
+		static SolidColorBrush	_black = new SolidColorBrush(Colors.Black),
+								_red = new SolidColorBrush(Colors.Red);
+
+		public object Convert(object objIsInErrorValue, Type targetType, object parameter, CultureInfo culture)
+		{
+			if (objIsInErrorValue == null || ! (objIsInErrorValue is bool))
+				return _black;
+
+			bool	inError		= false;
+
+			if(! bool.TryParse(objIsInErrorValue.ToString(), out inError))
+				return _black;
+
+			return inError ? _red : _black;
+		}
+
+		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			throw new NotImplementedException();
+		}
+	}
+
 
 	public class Bool2Visibility : IValueConverter
 	{
@@ -160,6 +184,48 @@ namespace iDna.controls
 		}
 	}
 
+	public class BusyToColorConverter : IValueConverter
+	{
+		static SolidColorBrush	defaultBrush	= new SolidColorBrush(Colors.Black),
+								highlight		= new SolidColorBrush(Colors.Red);
+
+		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			if (value == null || !(value is bool))
+				return defaultBrush;
+
+			bool bvalue = false;
+
+			if (!bool.TryParse(value.ToString(), out bvalue))
+				return defaultBrush;
+
+			return bvalue ? highlight : defaultBrush;
+		}
+
+		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+
+	public class iDnaSequenceStartEndIndexString : IValueConverter
+	{
+		public object Convert(object seqObject, Type targetType, object parameter, CultureInfo culture)
+		{
+			iDnaSequence	seq		= seqObject as iDnaSequence;
+
+			if(seq == null)
+				return null;
+
+			return seq.Min(i => i.Index) + "-" + seq.Max(i => i.Index);
+		}
+
+		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }
 
 

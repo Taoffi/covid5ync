@@ -1,0 +1,127 @@
+﻿<UserControl x:Class="iDna.controls.iGettingStartedCtrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:iDna.controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="310" d:DesignWidth="451" Background="#FFF6F6F6">
+	
+    <Grid Margin="0,0,0,-29" DataContext="{StaticResource commandCentral}">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="28"/>
+			<RowDefinition Height="84" />
+			<RowDefinition Height="40" />
+			<RowDefinition Height="62"/>
+			<RowDefinition Height="58"/>
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="100" />
+			<ColumnDefinition Width="100" />
+			<ColumnDefinition Width="100" />
+			<ColumnDefinition Width="100" />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+
+		<TextBlock Grid.Row="0" Grid.Column="0" FontSize="18" FontWeight="Bold" Text="Quick start" Margin="4,0" />
+
+		<StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5">
+			<TextBlock 
+				   Margin="8,8,0,0"
+				   VerticalAlignment="Top" 
+				   TextWrapping="WrapWithOverflow"
+				   Text="Hello!&#10;To begin, you can choose either to load the covid-19 sequence embedded into application resources, load a previously saved session (xml)&#10;or load a sequence you stored in a text file (nucleotides only)"
+				   />
+		</StackPanel>
+		
+		<Border Grid.Row="2" Grid.Column="0" Grid.RowSpan="2"
+				CornerRadius="4" Background="#FFCCFFA9" Padding="2" 
+				BorderThickness="2" BorderBrush="#FFF59522"
+				Margin="4">
+			<StackPanel>
+				<Button x:Name="buttonLoadBuiltinSeq"
+						HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+						Padding="0" Margin="4" 
+						Background="Transparent" BorderBrush="Transparent"
+						Command="{Binding LoadBuiltinSequence, Mode=OneWay}"
+						ToolTip="load the covid-19 sequence embedded in the application&#10;MT163719 29903 bp RNA linear VRL 10-MAR-2020 complete genome"
+						IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}, Source={StaticResource mainSequence}, IsAsync=True}"
+						>
+					<Button.Content>
+						<Border BorderBrush="Maroon" BorderThickness="0" Padding="0">
+							<Image Source="{Binding Source={StaticResource imgCovid5ync48}, Path=Source}" Width="32" />
+						</Border>
+					</Button.Content>
+				</Button>
+
+				<TextBlock Text="Load built-in sequence" 
+						   Padding="4" TextAlignment="Center" FontSize="10"
+						   TextWrapping="Wrap" Margin="0,4" 
+						   ToolTip="nucleotides only text"/>
+			</StackPanel>
+		</Border>
+
+		<Border Grid.Row="2" Grid.Column="1" Grid.RowSpan="2"
+				CornerRadius="4" Background="#FFCCFFA9" Padding="2" 
+				BorderThickness="2" BorderBrush="#FFF59522"
+				Margin="4">
+			<StackPanel>
+				<Button x:Name="buttonLoadFile" 
+						HorizontalAlignment="Center" VerticalAlignment="Top" 
+						Padding="0" Margin="0,8,0,0" 
+						Background="Transparent" BorderBrush="Transparent"
+						Command="{Binding OpenFile, Mode=OneWay}"
+						ToolTip="load a sequence from text file"
+						IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}, Source={StaticResource mainSequence}, IsAsync=True}"
+						>
+					<Button.Content>
+						<Border BorderBrush="Maroon" BorderThickness="0" Padding="0">
+							<Image Source="{Binding Source={StaticResource imgDoc48}, Path=Source}" Width="32" />
+						</Border>
+					</Button.Content>
+				</Button>
+
+				<TextBlock Text="Load from text file" TextWrapping="Wrap" 
+						   Margin="0,4"
+						   Padding="4" FontSize="10"
+						   TextAlignment="Center"
+						   VerticalAlignment="Bottom"
+						   ToolTip="nucleotides only text"
+					    />
+			</StackPanel>
+		</Border>
+
+		<TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" Margin="8,0"
+				   TextWrapping="Wrap"
+				   Text="Loading an xml-saved file allows you to continue a previous work session where you will retreive your defined regions and other analysis elements.&#10;You can also download online sequences (File menu)" />
+
+
+		<Border Grid.Row="2" Grid.Column="2" Grid.RowSpan="2"
+				CornerRadius="4" Background="#FFCCFFA9" Padding="2" 
+				BorderThickness="2" BorderBrush="#FFF59522"
+				Margin="4">
+			<StackPanel>
+				<Button x:Name="buttonLoadAppXml"
+						HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+						Padding="0" Margin="4" 
+						Background="Transparent" BorderBrush="Transparent"
+						Command="{Binding LoadFromXml, Mode=OneWay}"
+						ToolTip="load from previously saved xml file with this app.&#10;this allows you to continue where you finished&#10;you retreive saved named-regions, repeats and other information."
+						IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}, Source={StaticResource mainSequence}, IsAsync=True}"
+						>
+					<Button.Content>
+						<Border BorderBrush="Maroon" BorderThickness="0" Padding="0">
+							<Image Source="{Binding Source={StaticResource imgCovid5ync48}, Path=Source}" Width="32" />
+						</Border>
+					</Button.Content>
+				</Button>
+
+				<TextBlock Text="Load saved xml sequence" 
+						   Padding="4" TextAlignment="Center" FontSize="10"
+						   TextWrapping="Wrap" Margin="0,4" 
+						   ToolTip="all information saved from a previous work session."/>
+			</StackPanel>
+		</Border>
+	</Grid>
+</UserControl>

@@ -4,70 +4,117 @@
 			xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 			xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			xmlns:local="clr-namespace:iDna.controls"
+			 xmlns:conv="clr-namespace:iDna.controls"
 			 xmlns:data="clr-namespace:iDna"
 			mc:Ignorable="d" 
 			 d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type data:iDnaSequenceDesignTime}}"
 			d:DesignHeight="450" d:DesignWidth="411.5">
 
-	<UserControl.InputBindings>
-		<KeyBinding Key="C" Modifiers="Ctrl" Command="{Binding CopySelectionToClipboardCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:iDnaSequenceView}}}" />
-	</UserControl.InputBindings>
-	
-	<Grid>
+    <UserControl.InputBindings>
+        <KeyBinding Key="C" Modifiers="Ctrl" Command="{Binding CopySelectionToClipboardCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:iDnaSequenceView}}}" />
+    </UserControl.InputBindings>
 
-		<ListView x:Name="listItems" 
-				  Grid.Row="1" 
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <conv:PagingRectangleHeightConverter	x:Key="pagingRectHeight" />
+            <conv:PagingRectangleMarginConverter	x:Key="pagingTop" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid SnapsToDevicePixels="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition x:Name="colPageLocationBar" Width="6" />
+        </Grid.ColumnDefinitions>
+
+        <ListView x:Name="listItems" 
+				  Grid.Row="0" Grid.Column="0" 
 				  ItemsSource="{Binding SequencePaging.CurrentPageData, IsAsync=True}" 
 				  BorderBrush="#FFA3A3A4" BorderThickness="1"
-				  Background="{x:Null}"
 				  Padding="2"
 				  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
 				  VirtualizingPanel.IsVirtualizing="True"
 				  UseLayoutRounding="True"
 				  IsSynchronizedWithCurrentItem="True"
+				  VerticalContentAlignment="Stretch"
+				  Background="#FF323030"
 				  >
-			<ListView.Resources>
-				<Style TargetType="{x:Type ListViewItem}">
-					<Style.Resources>
-						<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{x:Static SystemColors.HighlightColor}"/>
-					</Style.Resources>
+            <ListView.Resources>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{x:Static SystemColors.HighlightColor}"/>
+                    </Style.Resources>
 
-					<Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay, IsAsync=True}" />
-					<Setter Property="Padding"		Value="0,0.5,0,0" />
-					<Setter Property="Margin"		Value="-1,0,0.5,-1" />
-					<Setter	Property="Background"	Value="Blue" />
-				</Style>
-			</ListView.Resources>
+                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay, IsAsync=True}" />
+                    <Setter Property="Padding"		Value="0,0.5,0,0" />
+                    <Setter Property="Margin"		Value="-1,0,0.5,-1" />
+                    <Setter	Property="Background"	Value="Blue" />
+                </Style>
+            </ListView.Resources>
 
-			<ListBox.ItemsPanel>
-				<ItemsPanelTemplate>
-					<WrapPanel Width="{Binding Width, ElementName=listItems}"
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Width="{Binding Width, ElementName=listItems}"
 							   HorizontalAlignment="Left" Height="auto" 
+							   VerticalAlignment="Top"
 							   Margin="0,0,0,0"
 							   Background="#FF323030" />
-				</ItemsPanelTemplate>
-			</ListBox.ItemsPanel>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
 
-			<ListView.ItemTemplate>
-				<DataTemplate>
-					<local:iDnaNodeCtrl DataContext="{Binding }"
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <local:iDnaNodeCtrl DataContext="{Binding }"
 										Width="20" Height="20"
 										Margin="-2.8,0,-2,-2" 
 										Padding="0,0,0,-1" 
 										ToolTip="{Binding Index, StringFormat=\{0:# ##0\}}"/>
-				</DataTemplate>
-			</ListView.ItemTemplate>
+                </DataTemplate>
+            </ListView.ItemTemplate>
 
-			<ListView.ContextMenu>
-				<ContextMenu>
-					<MenuItem x:Name="menuItemCopySelection2Clipboard"
-							  Click="menuItemCopySelection2Clipboard_Click" 
+            <!--<ListView.ContextMenu>
+                <ContextMenu DataContext="{Binding Source={StaticResource commandCentral}}">
+                    <MenuItem x:Name="menuItemCopySelection2Clipboard"
+							  Command="{Binding CopySelectionsToClipboard, Mode=OneWay}"
 							  Header="Copy selection to clipboard (ctrl+c)" 
 							  IsEnabled="True"
 							  />
-				</ContextMenu>
-			</ListView.ContextMenu>
-			
-		</ListView>
-	</Grid>
+                </ContextMenu>
+            </ListView.ContextMenu>-->
+
+        </ListView>
+
+        <!-- ************** relative page position (vertical) bar ************ -->
+        <Border x:Name="borderCurPageIndicator" Grid.Column="1"
+				BorderThickness="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+				DataContext="{Binding SequencePaging, IsAsync=True}"
+				Margin="0" Background="#FF789AC3"
+				Padding="0">
+
+            <Border Background="White" VerticalAlignment="Top" HorizontalAlignment="Stretch" BorderThickness="0.1" BorderBrush="Black">
+                <Border.Style>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter	Property="Margin">
+                            <Setter.Value>
+                                <MultiBinding Converter="{StaticResource pagingTop}">
+                                    <Binding Path="CurrentPagePositionRelativeToTotal" IsAsync="True" />
+                                    <Binding Path="ActualHeight" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Grid}" />
+                                </MultiBinding>
+                            </Setter.Value>
+                        </Setter>
+
+                        <Setter Property="Height">
+                            <Setter.Value>
+                                <MultiBinding Converter="{StaticResource pagingRectHeight}">
+                                    <Binding Path="PageSizeRelativeToTotal" IsAsync="True" />
+                                    <Binding Path="ActualHeight" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Grid}" />
+                                </MultiBinding>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Border.Style>
+            </Border>
+        </Border>
+
+    </Grid>
 </UserControl>

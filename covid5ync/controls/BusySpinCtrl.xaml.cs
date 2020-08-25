@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -61,10 +62,18 @@ namespace iDna.controls
 			}
 		}
 
+
 		private void RotateImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			RotateImage.ToolTip		= "cancelling...";
-			iDnaSequence.Instance.Cancellation.Cancel(true);
+			CancellationTokenSource	cancellation	= iDnaSequence.Instance.CurrentCancellationSource;
+			if(cancellation != null)
+			{
+				RotateImage.ToolTip = "cancelling...";
+				iDnaSequence.Instance.CurrentCancellationSource.Cancel(true);
+				return;
+			}
+
+			RotateImage.ToolTip = "could not cancel!...";
 		}
 	}
 }

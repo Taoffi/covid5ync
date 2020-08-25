@@ -1,0 +1,38 @@
+﻿<Window x:Class="iDna.controls.SequenceNewRegionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:iDna.controls"
+		xmlns:data="clr-namespace:iDna"
+        mc:Ignorable="d"
+		d:DataContext="{d:DesignInstance Type={x:Type data:iDnaRegionIndexDesignTime}, CreateList=False, IsDesignTimeCreatable=True}"
+		ResizeMode="NoResize"
+		Icon="{Binding Source={StaticResource imgCovid5ync48}, Path=Source}"
+        Title="Define new sequence region"
+		WindowStartupLocation="CenterOwner"
+		ShowInTaskbar="False"
+		Height="300" Width="480"
+		Background="#FFF6F6F6">
+	
+    <Grid Margin="8">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="28" />
+			<RowDefinition />
+			<RowDefinition Height="32" />
+		</Grid.RowDefinitions>
+
+		<TextBlock Grid.Row="0" FontSize="14" Text="New sequence region" Margin="8,0" />
+
+		<local:iDnaSequenceRegionCtrl Grid.Row="1" Margin="4" DataContext="{Binding }" />
+
+		<Button x:Name="buttonOk" Grid.Row="2" Grid.Column="0" Margin="8,0"
+				VerticalAlignment="Center"
+				HorizontalAlignment="Left"
+				MinWidth="100"
+				Height="26"
+				Content="Add region" 
+				IsEnabled="{Binding IsInError, Mode=OneWay, Converter={StaticResource reverseBool}}"
+				Click="buttonOk_Click" />
+	</Grid>
+</Window>

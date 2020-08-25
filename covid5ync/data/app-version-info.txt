@@ -1,30 +1,127 @@
-THANK YOU FOR USING covid5ync APPLICATION!
 *******************************************
-We decided to launch this project as a modest contribution in the current Covid-19 epidemic crisis.
+THANK YOU FOR USING covid-5ync APPLICATION!
+*******************************************
+On 2020-02-29, We decided to launch this project as a modest contribution in the current Covid-19 epidemic crisis.
 As you know, all of us are turning to you, the biotechnology community, to help defeat this new epidemic.
 With this application, we aim to offer a very modest contribution for you to do this job.
 
 WE STRIVE TO HEAR FROM YOU TO ADD THE FEATURES MOST USEFUL FOR YOUR WORK.
 Please send your feedback to covid5ync@5ync.net.. we will answer as quickly as we can.
+==================================================================================================
+THE FUTURE OF THIS APP:
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+We aim to integrate in your environement. Many tools are already out there. Our goal is to integrate their
+services and data into this app. We are working on a few near-future targets:
+    * Connect to NCBI databases and services to use their great features and let you join other research projects
+    * Structuring application data for interoperability with common research environments
+        + Handle various sequences' formats either online or offline to receive or transmit data
+    * Build an application local databases for managing your sequences information as libraries
+==================================================================================================
+Change log
+==================================================================================================
+-----------------------------
+2020-03-15
+-----------------------------
+* structured application data to save and reload work sessions 
+    (retreive back your previous session analysis: regions, repeats, hairpins...)
+* application file now saved in xml format (extension = .covid-5ync)
+* better search for repeats and hairpins (other optimizations under work)
+* better user interface for managing sequence and regions info
+* default embedded sequence set to NCBI MT163719 29903bp RNA linear VRL 10-MAR-2020
+* sequence file with ongoing analysis can be loaded at http://covid-5.5ync.net/covid19-work-in-progress.xml
 
-**************************************
-The current (beta) version is a start point in a work in progress:
-* The covid-19 DNA sequence is loaded on application startup
-* You can view, zoom-in / out (using Ctrl + mouse wheel)
-* You can search the sequence for nucleotides OR complementary pairs.
+-----------------------------
+2020-03-13
+-----------------------------
+* added feature: user managed favorite web sites => menu Bookmarks/favorites
+* fixed some update issues with repeats and search collections
+
+-----------------------------
+2020-03-12
+-----------------------------
+* edit sequence name and summary (on start main window)
+* define and managae named regions:
+    define start / end coordinates, name and summary.
+    locate region on sequence
+    set region as main search region for repeat search
+* warn on load new sequence if pending changes
+    - yes!... that is not yet perfect. just a first step preparing for library management!
+* better property change notification on new sequence
+
+-----------------------------
+2020-03-11
+-----------------------------
+* edit sequence name and summary (future use for saving/loading sequences)
+* edit found search fragments' name and info (for search, repeats, pair-repeats)
+* individually clear search baskets
+* added link to NCBI SARS web site (File menu)
+
+-----------------------------
+2020-03-08
+-----------------------------
+* define search region (for repeats/hairpins/primers) from 1st contigous selection
+* search for pair-repeats (future feature: hairpins needs more settings)
+* search (and pair-search) strings from text file (one string per line): work in progress: check source text
+* reset selection to found repeats
+* save or copy pair-repeats to file or to clipboard
+
+-----------------------------
+2020-03-07
+-----------------------------
+- settings: repeats and primers. currently only repeat settings are used
+- search for repeats: that is a lengthy process that can run in the background. you can also choose to visually show
+  current repeat search position on the sequence (see Tools / Settings).
+  we are working for enhancing the process. any advice is greatly welcome -:)
+- search process optimized
+- save repeats to clipboard / to file
+- corrected reading UPPER CASE nucleotide files -:)
+- some more visual ui enhancements
+
+-----------------------------
+2020-03-05
+-----------------------------
+Added Application Menus
+* open sequence file
+* save sequence to file
+* load / reload built-in sequence (covid-19 sequence embedded into the application: source ncbi)
+* copy selected regions to clipboard: 
+* save selected regions to file
+  ===============================
+  HOW TO SELECT SEQUENCE REGIONS
+  ===============================
+   ** click node              = start selection (cancels all previous selections)
+   ** shift+click regions end = region selection end
+   ** ctrl+click node         = add new region selection
+   ** ctrl+shift+click node   = end new region selection
+
+* Goto Covid-19 NCBI page
+* Contact us => send mail
+
+==================================================================================================
+NOTE: If you need to, you can cancel the current sequence load process by clicking the busy spinning wheel!
+==================================================================================================
 -----------------------------
 2020-03-04
 -----------------------------
+- calculate sequence melting temperature (enhanced Baldino-based)
 - use shortcuts:
   * ctrl + f = search
   * alt + f  = search complementary
-  
+ 
 - new feature: selection basket (found search fragments)
 - sequence stats: show nucleotide percentage
 - copy selected fragments (with starting coordinates) to clipboard (shortcut: crl+c)
 
+-----------------------------
+2020-02-29
+-----------------------------
+The current (beta) version is a start point in a work in progress:
+* The covid-19 DNA sequence is loaded on application startup
+* You can view, zoom-in / out (using Ctrl + mouse wheel)
+* You can search the sequence for nucleotides OR complementary pairs.
+==================================================================================================
+
 We are currently preparing (future version in the coming days):
-* Load sequence from file
 * Save sequence to file
 * List repeats
 * List hairpins
@@ -32,4 +129,3 @@ We are currently preparing (future version in the coming days):
 At a longer term:
 * Generate primers according to your settings
 * ... and other features you may request!
-

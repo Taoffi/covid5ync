@@ -4,11 +4,15 @@
              xmlns:local="clr-namespace:iDna"
 			 xmlns:data="clr-namespace:iDna"
 			 xmlns:conv="clr-namespace:iDna.controls"
+			 xmlns:vm="clr-namespace:iDna.vm"
              StartupUri="MainWindow.xaml">
-    <Application.Resources>
+	<Application.Resources>
 		<ResourceDictionary>
 			<ObjectDataProvider x:Key="dnaBases"		ObjectType="{x:Type data:iDnaBaseNucleotides}"	MethodName="GetInstance" />
 			<ObjectDataProvider x:Key="mainSequence"	ObjectType="{x:Type data:iDnaSequence}"			MethodName="GetInstance" />
+			<ObjectDataProvider x:Key="commandCentral"	ObjectType="{x:Type vm:iDnaCommandCentral}"		MethodName="GetInstance" />
+			<ObjectDataProvider x:Key="dnaSettings"		ObjectType="{x:Type data:iDnaGobalSettings}"	MethodName="GetInstance" />
+			<ObjectDataProvider x:Key="dnaBokmarks"		ObjectType="{x:Type data:iDnaBookmarkList}"		MethodName="GetInstance" />
 
 			<conv:iDnaNodeCode2String		x:Key="nodeCode2String" />
 			<conv:iDnaNodeColor2Brush		x:Key="nodeColor2Brush" />
@@ -16,6 +20,9 @@
 			<conv:iDnaBaseColor2Brush		x:Key="baseColorBrush" />
 			<conv:ReverseBool				x:Key="reverseBool" />
 			<conv:ValidSearchStringColor	x:Key="searchStringValidator" />
+			<conv:ValidBoolToColor			x:Key="boolToErrorValidator" />
+			<conv:BusyToColorConverter		x:Key="busyToColor" />
+			<conv:iDnaSequenceStartEndIndexString		x:Key="sequenceStartEndIndexes" />
 
 			<conv:Bool2Visibility			x:Key="bool2visible" />
 			<Image x:Key="imgBusy"			Source="images/busy48x48.png" />
@@ -26,21 +33,83 @@
 			<Image x:Key="imgNextDisabled"	Source="images/nav_next-dis16x16.png" />
 			<Image x:Key="imgPrev"			Source="images/nav_prev16x16.png" />
 			<Image x:Key="imgPrevDisabled"	Source="images/nav_prev-dis16x16.png" />
+			<Image x:Key="imgCovid5ync48"	Source="images/covid5ync48x48.jpg" />
+			<Image x:Key="imgBuiltinSeq"		Source="images/covid5ync48x48.jpg" />
+			<Image x:Key="imgCitation48"	Source="images/citation48x48.png" />
+			<Image x:Key="imghttp48"		Source="images/http48x48.png" />
+			<Image x:Key="imgAboutProject"	Source="images/http48x48.png" />
+			<Image x:Key="imgRefresh48"		Source="images/refresh48x48.png" />
+			<Image x:Key="imgSearch48"		Source="images/search48x48.png" />
+			<Image x:Key="imgDoc48"			Source="images/doc48x48.png" />
+			<Image x:Key="imgReset19"		Source="images/del-close19x19.jpg" />
 
+			<Image x:Key="imgMail32"		Source="images/mail32x32.png" />
+			<Image x:Key="imgCopy23"		Source="images/copy23x22.png" />
+			<Image x:Key="imgPaste23"		Source="images/paste23x22.png" />
+			<Image x:Key="imgSettings48"	Source="images/processor48x48.png" />
+			<Image x:Key="imgClient75"		Source="images/client75x75.png" />
+			<Image x:Key="imgFile32"		Source="images/file32x30.png" />
+			<Image x:Key="imgFolder32"		Source="images/folder32x32.png" />
+			<Image x:Key="imgFolder16"		Source="images/folder16x16.png" />
+			<Image x:Key="imgFolderOpen16"	Source="images/folderOpen16x16.png" />
+			<Image x:Key="imgGears48"		Source="images/gears48x48.png" />
+			<Image x:Key="imgGears16"		Source="images/gears16x16.png" />
+			<Image x:Key="imgGearsData"		Source="images/data-gears34x22.gif" />
+
+			<Image x:Key="imgMap48"			Source="images/map48x48.png" />
+			<Image x:Key="imgToolbox32"		Source="images/toolbox32x32.png" />
+			<Image x:Key="imgSave16"		Source="images/save16x16.png" />
+			<Image x:Key="imgQuickStart48"	Source="images/quickstart48x48.png" />
+
+			<Image x:Key="imgEdit15x12"		Source="images/edit15x12.gif" />
+			<Image x:Key="imgDesktop16"		Source="images/desktop16x16.png" />
+			<Image x:Key="imgDetails48"		Source="images/details48x48.png" />
+			<Image x:Key="imgDetails24"		Source="images/details24x24.png" />
+			<Image x:Key="imgCitationBlack"	Source="images/citationBlack48x48.png" />
+			<Image x:Key="imgCitation96"	Source="images/citationPink96x96.png" />
+			<Image x:Key="imgok48"			Source="images/ok48x48.png" />
+			<Image x:Key="imgok24"			Source="images/ok24x24.png" />
+			<Image x:Key="imgokProperty16"	Source="images/property16x16.png" />
+			<Image x:Key="imgPlus24"		Source="images/plus24x24.png" />
+			<Image x:Key="imgPlus75"		Source="images/plus75x75.png" />
+			<Image x:Key="imgStats78"		Source="images/stats78x78.png" />
+			<Image x:Key="imgStats16"		Source="images/stats16x16.png" />
 
 			<Style TargetType="{x:Type TextBlock}">
 				<Setter Property="VerticalAlignment"		Value="Center" />
 			</Style>
-			
+
 			<Style x:Key="label" TargetType="{x:Type TextBlock}">
 				<Setter	Property="VerticalAlignment"	Value="Center" />
 				<Setter Property="Foreground"			Value="Blue" />
 				<Setter	Property="TextAlignment"		Value="Right" />
 				<Setter	Property="Margin"				Value="4,0" />
 			</Style>
-			
-			
+
+
+			<!--<Style TargetType="{x:Type TabItem}">
+				<Setter Property="Height"			Value="30" />
+				<Setter Property="Background"		Value="#FF40568D" />
+				<Setter Property="Foreground"		Value="White" />
+				<Style.Triggers>
+					<Trigger Property="IsSelected" Value="True">
+						<Trigger.Setters>
+							<Setter Property="Background"		Value="White" />
+							<Setter Property="Foreground"		Value="Black" />
+						</Trigger.Setters>
+					</Trigger>
+					<Trigger Property="IsMouseOver" Value="True">
+						<Setter Property="Foreground"			Value="Black" />
+						<Setter Property="Background" >
+							<Setter.Value>
+								<SolidColorBrush Color="#FF8091C7" Opacity="0.9"/>
+							</Setter.Value>
+						</Setter>
+					</Trigger>
+				</Style.Triggers>
+			</Style>-->
+
 		</ResourceDictionary>
-         
-    </Application.Resources>
+
+	</Application.Resources>
 </Application>

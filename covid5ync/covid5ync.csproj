@@ -20,25 +20,25 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>ftp://ftp-eu.site4now.net/covid5.5ync.net/covid5App/</PublishUrl>
+    <PublishUrl>ftp://ftp-eu.site4now.net/covid-5.5ync.net/covid5App/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
-    <UpdateMode>Background</UpdateMode>
+    <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://covid5.5ync.net/covid5App/</InstallUrl>
-    <SupportUrl>http://covid5.5ync.net/support.html</SupportUrl>
-    <ErrorReportUrl>http://covid5.5ync.net/error.html</ErrorReportUrl>
+    <InstallUrl>http://covid-5.5ync.net/covid5App/</InstallUrl>
+    <SupportUrl>http://covid-5.5ync.net/support.html</SupportUrl>
+    <ErrorReportUrl>http://covid-5.5ync.net/error.html</ErrorReportUrl>
     <ProductName>covid5ync</ProductName>
     <PublisherName>5ync.net</PublisherName>
     <SuiteName>covid5ync</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>9</ApplicationRevision>
+    <ApplicationRevision>30</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -80,6 +80,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
@@ -100,6 +101,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="classes\bookmaeks\iDnaBookmarks.cs" />
+    <Compile Include="classes\iDnaSequenceBaseContract.cs" />
+    <Compile Include="classes\iDnaSequenceRepeats.cs" />
+    <Compile Include="classes\iDnaSequenceSearch.cs" />
+    <Compile Include="classes\iDnaSequenceUtils.cs" />
+    <Compile Include="classes\regions\iDnaRegionIndex.cs" />
+    <Compile Include="classes\root objects\iEnumBinderTemplate.cs" />
+    <Compile Include="classes\settings\iMinMax.cs" />
+    <Compile Include="classes\settings\iDnaSettings.cs" />
+    <Compile Include="classes\vm\iDnaCommandCentral.cs" />
+    <Page Include="controls\bookmarks\BookMarkListCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="controls\bookmarks\BookMarkCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\bookmarks\NewBookMarkWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="controls\bookmarks\BookMarksWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="controls\BusySpinCtrlRepeats.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="controls\BusySpinCtrl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -108,9 +139,57 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="controls\iDnaSequenceBasketsCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\iDnaSequenceInfoCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\regions\iDnaRangeSliderCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="controls\regions\iDnaSequenceRegionCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\iDnaSequenceSortOptionsCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\regions\iDnaSequenceRegionListCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\regions\SequenceNewRegionWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="controls\windows\iAboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="controls\iDnaBaseCtrl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="controls\settings\iDnaSettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\settings\iDnaRepeatSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="controls\settings\iDnaHairpinSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\settings\iDnaMinMaxCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="controls\iDnaNodeCtrl.xaml">
       <SubType>Designer</SubType>
@@ -132,7 +211,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="controls\SequenceInfoWindow.xaml">
+    <Page Include="controls\iGettingStartedCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\windows\SequenceInfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="iDnaMainMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -144,7 +231,7 @@
       <Link>classes\root objects\CommandExecuterWpf.cs</Link>
     </Compile>
     <Compile Include="..\..\iTrieApp\doc5Words\extensions\LinqPaging.cs">
-      <Link>classes\paging\LinqPaging.cs</Link>
+      <Link>classes\extensions\LinqPaging.cs</Link>
     </Compile>
     <Compile Include="..\..\iTrieApp\doc5Words\extensions\stringExtensions2020.cs">
       <Link>classes\extensions\stringExtensions2020.cs</Link>
@@ -169,17 +256,72 @@
     <Compile Include="classes\iDnaBase.cs" />
     <Compile Include="classes\iDnaSequenceList.cs" />
     <Compile Include="classes\iDnaSequenceStats.cs" />
+    <Compile Include="classes\iDnaSequencePrimers.cs" />
     <Compile Include="classes\paging\iSequencePaging.cs" />
     <Compile Include="classes\root objects\RootListTemplate.cs" />
+    <Compile Include="classes\vm\iDnaSortOptions.cs" />
+    <Compile Include="controls\bookmarks\BookMarkListCtrl.xaml.cs">
+      <DependentUpon>BookMarkListCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\bookmarks\BookMarkCtrl.xaml.cs">
+      <DependentUpon>BookMarkCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\bookmarks\NewBookMarkWindow.xaml.cs">
+      <DependentUpon>NewBookMarkWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\bookmarks\BookMarksWindow.xaml.cs">
+      <DependentUpon>BookMarksWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\BusySpinCtrlRepeats.xaml.cs">
+      <DependentUpon>BusySpinCtrlRepeats.xaml</DependentUpon>
+    </Compile>
     <Compile Include="controls\BusySpinCtrl.xaml.cs">
       <DependentUpon>BusySpinCtrl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="controls\converters\iDnaPagingConverters.cs" />
     <Compile Include="controls\iAboutCtrl.xaml.cs">
       <DependentUpon>iAboutCtrl.xaml</DependentUpon>
     </Compile>
     <Compile Include="controls\converters\iDnaConverters.cs" />
+    <Compile Include="controls\iDnaSequenceBasketsCtrl.xaml.cs">
+      <DependentUpon>iDnaSequenceBasketsCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\iDnaSequenceInfoCtrl.xaml.cs">
+      <DependentUpon>iDnaSequenceInfoCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\regions\iDnaRegionConverters.cs" />
+    <Compile Include="controls\regions\iDnaRangeSliderCtrl.xaml.cs">
+      <DependentUpon>iDnaRangeSliderCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\regions\iDnaSequenceRegionCtrl.xaml.cs">
+      <DependentUpon>iDnaSequenceRegionCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\iDnaSequenceSortOptionsCtrl.xaml.cs">
+      <DependentUpon>iDnaSequenceSortOptionsCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\regions\iDnaSequenceRegionListCtrl.xaml.cs">
+      <DependentUpon>iDnaSequenceRegionListCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\regions\SequenceNewRegionWindow.xaml.cs">
+      <DependentUpon>SequenceNewRegionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\windows\iAboutWindow.xaml.cs">
+      <DependentUpon>iAboutWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="controls\iDnaBaseCtrl.xaml.cs">
       <DependentUpon>iDnaBaseCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\settings\iDnaSettingsWindow.xaml.cs">
+      <DependentUpon>iDnaSettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\settings\iDnaRepeatSettings.xaml.cs">
+      <DependentUpon>iDnaRepeatSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\settings\iDnaHairpinSettings.xaml.cs">
+      <DependentUpon>iDnaHairpinSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\settings\iDnaMinMaxCtrl.xaml.cs">
+      <DependentUpon>iDnaMinMaxCtrl.xaml</DependentUpon>
     </Compile>
     <Compile Include="controls\iDnaNodeCtrl.xaml.cs">
       <DependentUpon>iDnaNodeCtrl.xaml</DependentUpon>
@@ -196,10 +338,16 @@
     <Compile Include="controls\iDnaSequenceView.xaml.cs">
       <DependentUpon>iDnaSequenceView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="controls\SequenceInfoWindow.xaml.cs">
+    <Compile Include="controls\iGettingStartedCtrl.xaml.cs">
+      <DependentUpon>iGettingStartedCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\windows\SequenceInfoWindow.xaml.cs">
       <DependentUpon>SequenceInfoWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="controls\UiHelpers.cs" />
+    <Compile Include="controls\helpers\UiHelpers.cs" />
+    <Compile Include="iDnaMainMenu.xaml.cs">
+      <DependentUpon>iDnaMainMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -225,6 +373,8 @@
     </EmbeddedResource>
     <None Include="classes\documentation\covid5yncClassDiagram-hierarchy.cd" />
     <None Include="classes\documentation\covid5yncClassDiagram1.cd" />
+    <None Include="classes\documentation\SequenceClassDiagram1.cd" />
+    <None Include="classes\documentation\serializationClassDiagram1.cd" />
     <None Include="covid5ync_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -235,6 +385,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="data\covid-19-sequence-info.txt" />
     <Resource Include="data\covid-19-sequence.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -242,9 +393,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="iDna.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="data\covid-19-sequence-info.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -261,6 +409,7 @@
   <ItemGroup>
     <Folder Include="classes\paging\future\" />
     <Folder Include="data\data backup\" />
+    <Folder Include="data\ncbi\" />
     <Folder Include="web pages\css\" />
     <Folder Include="web pages\images\" />
   </ItemGroup>
@@ -277,6 +426,75 @@
     <Resource Include="images\nav_next-dis16x16.png" />
     <Resource Include="images\nav_prev16x16.png" />
     <Resource Include="images\nav_prev-dis16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\covid5ync48x48.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\citation48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\doc48x48.png" />
+    <Resource Include="images\http48x48.png" />
+    <Resource Include="images\refresh48x48.png" />
+    <Resource Include="images\search48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\mail32x32.png" />
+    <Resource Include="images\paste23x22.png" />
+    <Resource Include="images\processor48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\client75x75.png" />
+    <Resource Include="images\copy23x22.png" />
+    <Resource Include="images\file32x30.png" />
+    <Resource Include="images\folder32x32.png" />
+    <Resource Include="images\folderOpen16x16.png" />
+    <Resource Include="images\gears48x48.png" />
+    <Resource Include="images\map48x48.png" />
+    <Resource Include="images\toolbox32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\save16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\data-gears34x22.gif" />
+    <Resource Include="images\gears16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\quickstart48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\del-close19x19.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ncbi\ncbi.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\desktop16x16.png" />
+    <Resource Include="images\details24x24.png" />
+    <Resource Include="images\details48x48.png" />
+    <Resource Include="images\folder16x16.png" />
+    <Resource Include="images\ok24x24.png" />
+    <Resource Include="images\ok48x48.png" />
+    <Resource Include="images\property16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\citationBlack48x48.png" />
+    <Resource Include="images\citationPink96x96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\edit15x12.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\plus24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\plus75x75.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\stats16x16.png" />
+    <Resource Include="images\stats78x78.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

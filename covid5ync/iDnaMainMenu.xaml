@@ -1,0 +1,312 @@
+﻿<Menu x:Class="iDna.iDnaMainMenu"
+		IsMainMenu="True"
+		DataContext="{StaticResource commandCentral}"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+		xmlns:local="clr-namespace:iDna"
+		mc:Ignorable="d" 
+		d:DesignHeight="26" d:DesignWidth="447">
+
+	<!--<Menu x:Key="mainMenu" IsMainMenu="True" Cursor="Arrow">-->
+	<Menu.Resources>
+		<ResourceDictionary>
+			<Image x:Key="mimgSequence"			Source="images/sequence78x78.png" />
+			<Image x:Key="mimgSequenceFile"		Source="images/sequence-file78x78.png" />
+			<Image x:Key="mimgAbout"			Source="images/about78x78.png" />
+			<Image x:Key="mimgCovid5ync48"		Source="images/covid5ync48x48.jpg" />
+			<Image x:Key="mimgBuiltinSeq"		Source="images/covid5ync48x48.jpg" />
+			<Image x:Key="mimgCitation48"		Source="images/citation48x48.png" />
+			<Image x:Key="mimghttp48"			Source="images/http48x48.png" />
+			<Image x:Key="mimghttp482"			Source="images/http48x48.png" />
+			<Image x:Key="mimgNcbi16"			Source="images/ncbi/ncbi.ico" />
+			<Image x:Key="mimgAboutProject"		Source="images/http48x48.png" />
+			<Image x:Key="mimgRefresh48"		Source="images/refresh48x48.png" />
+			<Image x:Key="mimgSearch48"			Source="images/search48x48.png" />
+			<Image x:Key="mimgDoc48"			Source="images/doc48x48.png" />
+
+			<Image x:Key="mimgMail32"			Source="images/mail32x32.png" />
+			<Image x:Key="mimgCopy23"			Source="images/copy23x22.png" />
+			<Image x:Key="mimgCopy23_2"			Source="images/copy23x22.png" />
+			<Image x:Key="mimgPaste23"			Source="images/paste23x22.png" />
+			<Image x:Key="mimgSettings48"		Source="images/processor48x48.png" />
+			<Image x:Key="mimgFile32"			Source="images/file32x30.png" />
+			<Image x:Key="mimgFolder32"			Source="images/folder32x32.png" />
+			<Image x:Key="mimgReset19"			Source="images/del-close19x19.jpg" />
+			<Image x:Key="mimgLoadSearchRegions32"		Source="images/file32x30.png" />
+			<Image x:Key="mimgLoadPairSearchRegions32"	Source="images/file32x30.png" />
+
+			<Image x:Key="mimgFolderOpen16"		Source="images/folderOpen16x16.png" />
+			<Image x:Key="mimgGears48"			Source="images/gears48x48.png" />
+			<Image x:Key="mimgGears16"			Source="images/gears16x16.png" />
+			<Image x:Key="mimgGearsData"		Source="images/data-gears34x22.gif" />
+
+			<Image x:Key="mimgMap48"			Source="images/map48x48.png" />
+			<Image x:Key="mimgToolbox32"		Source="images/toolbox32x32.png" />
+			<Image x:Key="mimgSave16"			Source="images/save16x16.png" />
+			<Image x:Key="mimgSave16_2"			Source="images/save16x16.png" />
+			<Image x:Key="mimgSave16_3"			Source="images/save16x16.png" />
+			<Image x:Key="mimgQuickStart48"		Source="images/quickstart48x48.png" />
+		</ResourceDictionary>
+	</Menu.Resources>
+	
+	<!-- file menu -->
+	<MenuItem Header="_File">
+		<MenuItem Header="Open app _xml file"
+				  Icon="{DynamicResource mimgFolder32}"
+				  ToolTip="load a sequence file from this application's previously saved session xml file"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding LoadFromXml, Mode=OneWay}"
+				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
+						  />
+		<MenuItem Header="_Open _text"
+				  Icon="{DynamicResource mimgFolderOpen16}"
+				  ToolTip="load a sequence from text file from your pc (nucleotides only)"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding OpenFile, Mode=OneWay}"
+				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
+						  />
+
+		<Separator />
+		
+		<MenuItem Header="Load built-in se_quence"
+				  Icon="{DynamicResource mimgBuiltinSeq}"
+				  ToolTip="load the application's delivered sequence&#10;LR757995 29872 bp RNA linear VRL 01-FEB-2020 whole genome"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding LoadBuiltinSequence, Mode=OneWay}"
+				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
+						  />
+
+		<Separator />
+
+		<MenuItem Header="Paste sequence from Cli_pboard"
+				  Icon="{DynamicResource mimgPaste23}"
+				  ToolTip="load the sequence from text you already copied in the clipboard"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding LoadSequenceFromClipboard, Mode=OneWay}"
+				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
+				  />
+
+		<Separator />
+		<MenuItem Header="Save session to app _xml..."
+				  Icon="{DynamicResource mimgSave16}"
+				  ToolTip="save current sequence data and related items to application xml file"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding SaveXml, Mode=OneWay}"
+				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
+				  />
+
+		<MenuItem Header="_Save sequence as text..."
+				  Icon="{DynamicResource mimgSave16}"
+				  ToolTip="save current sequence nufleotides to text file"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding SaveAs, Mode=OneWay}"
+				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
+				  />
+
+		<Separator />
+
+		<!--<Separator />
+
+		<MenuItem Header="Edit sequence info..."
+				  ToolTip="edit current sequence information"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding EditSequenceInfo, Mode=OneWay}"
+				  Icon="{DynamicResource imgEdit15x12}"/>-->
+
+		<Separator />
+		
+		<MenuItem Header="Save selected _areas..."
+				  ToolTip="save current selected regions to file"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding SaveSelectedRegions, Mode=OneWay}"
+				  Icon="{DynamicResource mimgSave16_2}"/>
+	</MenuItem>
+
+	<!-- edit menu -->
+	<MenuItem Header="_Edit">
+		<MenuItem Header="_Copy selections to Clipboard"
+				  Icon="{DynamicResource mimgCopy23}"
+				  ToolTip="copy selected fragments to clipboard"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding CopySelectionsToClipboard, Mode=OneWay}"/>
+
+		<Separator />
+		<MenuItem Header="_Reset all selections"
+				  ToolTip="un-select all node"
+				  ToolTipService.ShowOnDisabled="True"
+				  Icon="{DynamicResource mimgReset19}"
+				  Command="{Binding ResetAllSelections, Mode=OneWay}"/>
+
+		<MenuItem Header="_Define search region from selection"
+				  ToolTip="define the first selected contigous region as your search region for repeats, hairpins and primers"
+				  ToolTipService.ShowOnDisabled="True"
+				  Icon="{DynamicResource mimgCitation48}"
+				  Command="{Binding DefineWorkRegionFromSelection, Mode=OneWay}"/>
+
+		<Separator />
+		<MenuItem Header="_Search regions from file"
+				  ToolTip="load and search for regions from a text file (one region per line)"
+				  ToolTipService.ShowOnDisabled="True"
+				  Icon="{DynamicResource mimgLoadSearchRegions32}"
+				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
+				  Command="{Binding SearchStringsFromFile, Mode=OneWay}" />
+
+		<MenuItem Header="Search _pair regions from file"
+				  ToolTip="load and search for pairs of regions from a text file (one region per line)"
+				  ToolTipService.ShowOnDisabled="True"
+				  Icon="{DynamicResource mimgLoadPairSearchRegions32}"
+				  IsEnabled="{Binding IsBusy, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"
+				  Command="{Binding SearchPairStringsFromFile, Mode=OneWay}" />
+
+		<Separator />
+
+		<!-- SelectAllNamedRegions-->
+		<!--<MenuItem Header="Reset selection to named regions"
+				  ToolTip="set current selections to named regions"
+				  ToolTipService.ShowOnDisabled="True"
+				  Icon="{DynamicResource mimgSettings48}"
+				  Command="{Binding SelectAllNamedRegions, Mode=OneWay}"/>-->
+
+	</MenuItem>
+
+	<!-- tools menu -->
+	<MenuItem Header="_Tools">
+		<MenuItem Header="Find _repeats"
+				ToolTip="find repeats according to your settings"
+				ToolTipService.ShowOnDisabled="True"
+				Command="{Binding FindRepeats, Mode=OneWay}"
+				IsEnabled="{Binding IsRepeatProcessRunning, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"/>
+
+		<MenuItem Header="Find _pair repeats"
+				ToolTip="find pair repeats/hairpins according to your settings"
+				ToolTipService.ShowOnDisabled="True"
+				Command="{Binding FindHairpins, Mode=OneWay}"
+				IsEnabled="{Binding IsRepeatProcessRunning, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"/>
+
+		<Separator />
+		<MenuItem Header="_Reset selections to found repeats"
+				  ToolTip="select only found repeats (requires stopping repeat search)"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding ResetSelectionsToRepeats}"
+				  IsEnabled="{Binding IsRepeatProcessRunning, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"/>
+
+		<MenuItem Header="Reset selections to pa_ir repeats"
+				  ToolTip="select only found pair-repeats (requires stopping repeat search)"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding ResetSelectionsToHairpins}"
+				  IsEnabled="{Binding IsRepeatProcessRunning, Source={StaticResource mainSequence}, Converter={StaticResource reverseBool}, IsAsync=True}"/>
+
+		<Separator />
+		<MenuItem Header="_Copy repeats to clipboard"
+				  Icon="{DynamicResource mimgCopy23_2}"
+				  ToolTip="copy found repeats to clipboard"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding CopyRepeatsToClipboard, Mode=OneWay}"/>
+
+		<MenuItem Header="_Save repeats to file"
+				  Icon="{DynamicResource mimgSave16_3}"
+				  ToolTip="save found repeats to file"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding SaveRepeatsToFile, Mode=OneWay}"/>
+
+		<Separator />
+
+		<MenuItem Header="Copy pair-_repeats to clipboard"
+				  Icon="{DynamicResource mimgCopy23_2}"
+				  ToolTip="copy found pair repeats to clipboard"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding CopyHairpinsToClipboard, Mode=OneWay}"/>
+
+		<MenuItem Header="_Save pair-repeats to file"
+				  Icon="{DynamicResource mimgSave16_3}"
+				  ToolTip="save found pair-repeats to file"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding SaveHairpinsToFile, Mode=OneWay}"/>
+
+		<Separator />
+		<MenuItem Header="_Options"
+				  Icon="{DynamicResource mimgGears16}"
+				  ToolTip="application settings"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding OptionsCommand, Mode=OneWay}"/>
+	</MenuItem>
+
+	<MenuItem Margin="8,0" Header="Bookmar_ks" x:Name="bokMarks">
+		<MenuItem x:Name="bookmarksFavorits" Margin="0" Header="Favorites" ItemsSource="{Binding Source={StaticResource dnaBokmarks}, IsAsync=True}">
+			<MenuItem.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+						<Image Source="{Binding ImageUrl}" Width="18" Margin="4,0" />
+						<TextBlock>
+							<Hyperlink Command="{Binding OpenUrl}" >
+								<TextBlock Text="{Binding Name, IsAsync=True}">
+									<TextBlock.ToolTip>
+										<StackPanel>
+											<TextBlock Text="{Binding Description, IsAsync=True}" />
+											<!--<TextBlock Text="{Binding ImageUrl}" />-->
+										</StackPanel>
+									</TextBlock.ToolTip>
+								</TextBlock>
+							</Hyperlink>
+						</TextBlock>
+					</StackPanel>
+				</DataTemplate>
+			</MenuItem.ItemTemplate>
+			<MenuItem.ItemsPanel>
+				<ItemsPanelTemplate>
+					<StackPanel Margin="-30,0,0,0" Background="WhiteSmoke"/>
+				</ItemsPanelTemplate>
+			</MenuItem.ItemsPanel>
+		</MenuItem>
+
+		<Separator />
+
+		<MenuItem Header="_Download sequence files"	
+				  Icon="{DynamicResource mimghttp48}"
+				  ToolTip="download sequences from ncbi web site"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding DownloadSequences, Mode=OneWay}" />
+
+		<MenuItem Header="_Go to NCBI SARS web page"	
+				  Icon="{DynamicResource mimgNcbi16}"
+				  ToolTip="open the SARS web site of ncbi"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding GotoSARS_Website, Mode=OneWay}" />
+
+		<!-- ManageBookmarks-->
+			<Separator />
+			<MenuItem Header="Manage _bookmarks..."	
+				  Icon="{DynamicResource mimgGears16}"
+				  ToolTip="manage your bookmarks list"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding ManageBookmarks, Mode=OneWay}" />
+
+	</MenuItem>
+
+	<!-- help menu -->
+	<MenuItem Header="Help">
+		<!--<MenuItem Header="_What is new"
+					  Icon="{StaticResource imgFile32}"
+					  Command="{Binding WhatIsNew, Mode=OneWay}"/>-->
+
+		<MenuItem Header="_About the project"
+				  Icon="{DynamicResource mimgAboutProject}"
+				  ToolTip="open project web page"
+				  Command="{Binding GotoProjectPage, Mode=OneWay}"/>
+
+		<MenuItem Header="_About this app"
+				  Icon="{DynamicResource mimgCovid5ync48}"
+				  Command="{Binding AboutApp, Mode=OneWay}"
+				  />
+
+		<Separator />
+
+		<MenuItem Header="_Contact us"
+				  Icon="{DynamicResource mimgMail32}"
+				  ToolTip="your feedback is important. send us your remarks, suggestions and bug reports. thank you"
+				  ToolTipService.ShowOnDisabled="True"
+				  Command="{Binding ContactSupport, Mode=OneWay}" />
+	</MenuItem>
+</Menu>

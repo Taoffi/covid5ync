@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using iDna.vm;
 
 namespace iDna.controls
 {
@@ -21,8 +22,6 @@ namespace iDna.controls
 	/// </summary>
 	public partial class iDnaSequenceView : UserControl
 	{
-		ICommand		_copySelectionToClipboard;
-
 		public iDnaSequenceView()
 		{
 			InitializeComponent();
@@ -36,55 +35,14 @@ namespace iDna.controls
 			PreviewMouseWheel   += mouseWheelZoom.Zoom;
 		}
 
-
-		public ICommand CopySelectionToClipboardCommand
+		public bool ViewPageIndicatorBar
 		{
-			get
+			get { return this.colPageLocationBar.Width.Value > 0.0; }
+			set
 			{
-				if(_copySelectionToClipboard == null)
-				{
-					_copySelectionToClipboard = new CommandExecuter(() =>
-					{
-						iDnaSequence seq		= this.DataContext as iDnaSequence;
-
-						if(seq == null)
-							return;
-
-						var		selectedItems			= seq.SelectedItems;
-
-						if (selectedItems == null || selectedItems.Count() <= 0)
-							return;
-
-						string		str			= "";
-						int			lastIndex	= 0;
-
-						foreach(var node in selectedItems)
-						{
-							// for non consecutive selection: add new line
-							if (lastIndex > 0 && lastIndex + 1 != node.Index)
-								str += "\r\n";
-
-							// the very first and for non consecutive selection: add new line + coordinate
-							if (lastIndex <= 0 || lastIndex + 1 != node.Index)
-								str += node.Index.ToString() + " ";
-
-							str		+= node.Code;
-							lastIndex	= node.Index;
-						}
-
-						if(str.Length <= 0)
-							return;
-
-						Clipboard.SetText(str, TextDataFormat.UnicodeText);
-					});
-				}
-				return _copySelectionToClipboard;
+				this.colPageLocationBar.Width		= value ? new GridLength(6.0) : new GridLength(0.0);
+				borderCurPageIndicator.Visibility	= value ? Visibility.Visible : Visibility.Collapsed;
 			}
-		}
-
-		private void menuItemCopySelection2Clipboard_Click(object sender, RoutedEventArgs e)
-		{
-			CopySelectionToClipboardCommand.Execute(null);
 		}
 	}
 }

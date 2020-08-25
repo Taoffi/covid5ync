@@ -4,46 +4,122 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:iDna.controls"
+			 xmlns:conv="clr-namespace:iDna.controls"
 			 xmlns:data="clr-namespace:iDna"
              mc:Ignorable="d" 
-			 d:DataContext="{d:DesignInstance Type={x:Type data:iDnaSequenceListDesigntime}, IsDesignTimeCreatable=True}"
-             d:DesignHeight="280" d:DesignWidth="260"
-			 Margin="0">
-    <Grid Margin="0">
+			 d:DataContext="{d:DesignInstance Type={x:Type data:iDnaSequenceDesignTime}, IsDesignTimeCreatable=True, CreateList=True}"
+             d:DesignHeight="334" d:DesignWidth="342"
+			 >
+
+	<Grid x:Name="gridMain" VerticalAlignment="Stretch" Background="#FFF7EFCC">
 		<ListView x:Name="listSequences" Grid.Row="0"
 				  ItemsSource="{Binding IsAsync=True}"
 				  HorizontalAlignment="Left"
+				  Height="auto"
 				  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-			>
-			<ListView.ItemsPanel>
-				<ItemsPanelTemplate>
-					<StackPanel Margin="0">
-						
-					</StackPanel>
-				</ItemsPanelTemplate>
-			</ListView.ItemsPanel>
+				  VerticalAlignment="Top"
+				  SelectionMode="Single"
+				  VirtualizingPanel.IsVirtualizing="False"
+				  Margin="0,0,0,0" Padding="-4,0,-3,0"
+				  Background="#FFF7EFCC" BorderBrush="{x:Null}"
+				  ScrollViewer.CanContentScroll="False"
+				>
+
 			<ListView.ItemTemplate>
 				<DataTemplate>
-					<Grid HorizontalAlignment="Left" 
-						  VerticalAlignment="Top" 
-						  Margin="0" MaxHeight="128">
-						<Grid.RowDefinitions>
-							<RowDefinition />
-							<RowDefinition Height="24"/>
-						</Grid.RowDefinitions>
+					<Grid Background="#FFF7EFCC">
+						<Border x:Name="borderItem" BorderBrush="#FFCBA279" BorderThickness="1" 
+								HorizontalAlignment="Stretch"
+								Background="#FFFFECAD" Padding="0" Margin="5,4"
+								>
+							<StackPanel HorizontalAlignment="Stretch" 
+										VerticalAlignment="Top" 
+										Height="auto"
+										Margin="0,0,0,0">
 
-						<local:iDnaSequenceView Grid.Row="0" DataContext="{Binding }"
-												Margin="0" HorizontalAlignment="Left"
-												Width="{Binding ActualWidth, ElementName=listSequences, Mode=OneWay}" />
+								<local:iDnaSequenceView Grid.Row="0" DataContext="{Binding }"
+														ViewPageIndicatorBar="False"
+														Margin="0,0,0,0"
+														HorizontalAlignment="Stretch"
+														Width="300"
+														MaxWidth="300"
+														MinWidth="300"
+														Height="58"
+														MinHeight="58"
+														MaxHeight="58"
+														VerticalAlignment="Top"
+														BorderBrush="#FF292834" BorderThickness="1"
+														VirtualizingPanel.IsVirtualizing="False"
+												/>
 
-						<StackPanel Grid.Row="1" Background="#FFA8C0C9" Orientation="Horizontal"
-									HorizontalAlignment="Stretch"
-									ToolTip="{Binding Name}">
-							<TextBlock Text="future action buttons:)" ToolTip="future action buttons... thank you for being patient!" VerticalAlignment="Center" Margin="8,0" />
-						</StackPanel>
+								<Border BorderBrush="Black" BorderThickness="1" Padding="2">
+									<TextBox HorizontalAlignment="Stretch"
+											 Margin="8,0,20,0"
+											 VerticalAlignment="Center"
+											 Text="{Binding SequenceFlatString, Mode=OneWay}"
+											 TextWrapping="NoWrap"
+											 MaxWidth="298"
+											 IsReadOnly="True" />
+								</Border>
+								<StackPanel Grid.Row="1" Background="#FFF6F6F6"
+											Orientation="Horizontal"
+											HorizontalAlignment="Stretch"
+											Margin="0,0,0,0"
+											>
+									<Button x:Name="buttonGotoPage" ToolTip="go to fragment's page"
+											Background="{x:Null}" BorderBrush="{x:Null}"
+											HorizontalContentAlignment="Left"
+											Padding="0"
+											Click="buttonGotoPage_Click">
+										<Button.Content>
+											<Border BorderBrush="Black" BorderThickness="0" Width="24" Height="20" 
+											Margin="0" Padding="1" Background="{x:Null}"
+											ToolTip="locate on page">
+												<Image Source="{Binding Source={StaticResource imgPrev}, Path=Source}" Width="18" Margin="2,0" />
+											</Border>
+										</Button.Content>
+									</Button>
+
+									<TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+											 FontSize="12" VerticalAlignment="Center"
+											 Width="160"
+											 Margin="4,0"
+											 ToolTip="sequence name. modify as needed"
+											 />
+
+									<Button x:Name="buttonEditInfo" ToolTip="edit sequence info"
+											Background="{x:Null}" BorderBrush="{x:Null}"
+											HorizontalContentAlignment="Left"
+											Padding="0"
+											Click="buttonEditInfo_Click">
+										<Button.Content>
+											<Border BorderBrush="Black" BorderThickness="1" Width="20" Height="16"
+													Margin="0,-2" Padding="1" Background="LightGray"
+											ToolTip="edit sequence info">
+												<Image Source="{Binding Source={StaticResource imgEdit15x12}, Path=Source}" Width="12" Margin="0" />
+											</Border>
+										</Button.Content>
+									</Button>
+
+									<TextBlock Text="{Binding Count, Mode=OneWay}"
+											   FontSize="9"
+											   VerticalAlignment="Center" Margin="2,0" 
+											   Foreground="Blue"
+											   ToolTip="number of nodes"/>
+
+									<TextBlock Text="{Binding Converter={StaticResource sequenceStartEndIndexes}, Mode=OneWay}"
+											   FontSize="9"
+											   VerticalAlignment="Center"
+											   Margin="4,0" 
+											   Foreground="Maroon"
+											   ToolTip="start/end"/>
+
+								</StackPanel>
+							</StackPanel>
+						</Border>
 					</Grid>
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
-    </Grid>
+	</Grid>
 </UserControl>

@@ -14,24 +14,70 @@ namespace iDna
 	/// </summary>
 	public partial class App : Application
 	{
+		internal const string		_appFilesExtension		= "covid-5ync";
+		
+		internal static App			Instance;
+		protected static string		_mainWindowTitleBase	= "";
+		protected string			_startupFileName		= null;
+
+
 		public App() : base()
 		{
-			//Task.Run(() => LoadSequence());
+			Instance	= this;
+		}
+
+
+		internal string StartupFileName
+		{
+			get {  return _startupFileName; }
+		}
+
+
+
+		protected override void OnStartup(StartupEventArgs e)
+		{
+			if (e == null)
+			{
+				base.OnStartup(e);
+				return;
+			}
+
+			string[]		args	= e.Args;
+			iDnaSequence	seq		= iDnaSequence.Instance;
+
+			if(args != null && args.Length > 0)
+			{
+				_startupFileName	= args[0];
+			}
+
+			if(seq != null)
+				seq.SequenceParseCompleted += Seq_SequenceParseCompleted;
+
+			base.OnStartup(e);
+		}
+
+		private void Seq_SequenceParseCompleted(iDnaSequence sender, int nodeCount)
+		{
+			SetMainWindowTitle(iDnaSequence.Instance.Name);
+		}
+
+		internal void SetMainWindowTitle(string addThis)
+		{
+			if(MainWindow == null || string.IsNullOrEmpty(addThis))
+				return;
+
+			if(string.IsNullOrEmpty(_mainWindowTitleBase))
+				_mainWindowTitleBase	= MainWindow.Title;
+
+			MainWindow.Title	= _mainWindowTitleBase + " - " + addThis;
 		}
 
 		void LoadSequence()
 		{
-			//iDnaSequence	sequence = iDnaSequence.Instance;
-
-			//sequence.Clear();
-
-			//System.IO.StreamReader sr = new System.IO.StreamReader("coronavirus dna sequence-ncbi-2020-01-all.txt", true);
-
-			//string		strSequence	= sr.ReadToEnd();
-			//sr.Close();
-
-			//await sequence.ParseString(strSequence);	//.Substring(0, 2096));
 		}
+
+
+
 
 	}
 

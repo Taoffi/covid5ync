@@ -7,32 +7,49 @@
 		xmlns:controls="clr-namespace:iDna.controls"
         mc:Ignorable="d"
 		Icon="iDna.ico"
-        Title="covid5ync" Height="600" Width="800" ResizeMode="CanResizeWithGrip">
+		SnapsToDevicePixels="True"
+        Title="covid-5ync" Height="680" Width="1086"
+		ResizeMode="CanResizeWithGrip">
 
 	<Grid DataContext="{Binding Source={StaticResource mainSequence}}" Background="#FFD8DCF5">
 		<Grid.RowDefinitions>
+			<RowDefinition Height="26" />
 			<RowDefinition Height="42" />
 			<RowDefinition />
 			<RowDefinition Height="28" />
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition />
-			<ColumnDefinition Width="160" />
+			<ColumnDefinition Width="300" />
 		</Grid.ColumnDefinitions>
 
-		<GridSplitter Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="4" />
-		<StackPanel Grid.Row="0"
+		<!-- xxxxxxxxxxxxx *********** main menu ********************* xxxxxxxxxxxxx -->
+		<local:iDnaMainMenu IsMainMenu="True" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0" Padding="4" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" />
+		<!-- xxxxxxxxxxxxx *********** end of main menu ********************* xxxxxxxxxxxxx -->
+
+		<GridSplitter Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" 
+					  HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="4"
+					  Background="#FFD8DCF5"
+					  BorderBrush="#FF919BD8"
+					  BorderThickness="1,0,1,0"/>
+
+		<StackPanel Grid.Row="1"
 					Orientation="Horizontal" VerticalAlignment="Center" Margin="2,0" >
 			<TextBox FontWeight="Bold" VerticalAlignment="Center" Margin="8,0" 
 					 BorderThickness="0"
 					 FontSize="24"
-					 Text="covid-19 genome sequence" Background="{x:Null}" />
-			<TextBox VerticalAlignment="Center" Margin="8,0" 
-					 BorderThickness="0"
-					 Text="source: ncbi, date: 2020-02-28" Background="{x:Null}" />
+					 Text="covid-5ync" Background="{x:Null}"
+					 ToolTip="Built-in sequence source: ncbi, date: 2020-02-28"/>
+
+			<TextBox x:Name="sequenceName" FontWeight="Bold" VerticalAlignment="Center" Margin="4,0"
+					 Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, IsAsync=True}"
+					 MaxWidth="600"
+					 Width="464"
+					 Height="22"
+					   />
 
 			<TextBox x:Name="textBlockNodeCount"
-					 VerticalAlignment="Center" Margin="8,0" 
+					 VerticalAlignment="Center" Margin="2,0" 
 					 BorderThickness="0" Foreground="Blue"
 					 Text="{Binding Count, IsAsync=True, Mode=OneWay}" Background="{x:Null}" />
 			<TextBox VerticalAlignment="Center" Margin="0" 
@@ -40,37 +57,86 @@
 					 Text="nodes" Background="{x:Null}" />
 		</StackPanel>
 
-		<controls:BusySpinCtrl Grid.Row="0" x:Name="busyControl" 
+		<controls:BusySpinCtrl Grid.Row="1" x:Name="busyControl" 
 							   HorizontalAlignment="Right" 
 							   Margin="0,0,12,0"
 							   Width="24"
+							   Cursor="Hand"
 							   Visibility="{Binding Source={StaticResource mainSequence}, Path=IsBusy, Converter={StaticResource bool2visible}, IsAsync=True}" />
 
 		<!-- ************ stats and selection basket ********************* -->
-		<TextBlock Grid.Row="0" Grid.Column="1" Text="Statistics" FontSize="12" FontWeight="Bold" VerticalAlignment="Bottom" Margin="8,4" />
+		<!--<TextBlock Grid.Row="1" Grid.Column="1" Text="Statistics" FontSize="12" FontWeight="Bold" VerticalAlignment="Bottom" Margin="8,4" />-->
 
-		<Grid Grid.Row="1" Grid.Column="1" Margin="6,0">
+		<Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Margin="6,0">
 			<Grid.RowDefinitions>
-				<RowDefinition  Height="120"/>
-				<RowDefinition Height="26" />
+				<RowDefinition  Height="124"/>
+				<RowDefinition Height="32" />
 				<RowDefinition />
 			</Grid.RowDefinitions>
 
-			<Border Grid.Row="0" CornerRadius="4" BorderBrush="Black" BorderThickness="2" Padding="2">
-				<controls:iDnaSequenceStatsCtrl Grid.Row="0" Grid.Column="1" Margin="0" Background="#FFF6F6F6" />
-			</Border>
+			<GridSplitter Grid.Row="0" Grid.Column="0" SnapsToDevicePixels="True"
+						  HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+						  Height="4"
+						  Margin="-6,0,0,0"
+						  Background="#FFD8DCF5"
+						  BorderBrush="#FF919BD8"
+						  BorderThickness="0,1,0,1" />
 			
-			<TextBlock Grid.Row="1" Grid.Column="0" Text="Selection basket" FontSize="12" FontWeight="Bold" VerticalAlignment="Center" Margin="8,0" />
-			<Border Grid.Row="2" CornerRadius="4" BorderBrush="Black" BorderThickness="2" Padding="2">
-				<controls:iDnaSequenceBasket Grid.Row="2" DataContext="{Binding CurrentSearchBasket, Mode=OneWay, IsAsync=True}" />
+			<Border Grid.Row="0" CornerRadius="4" BorderBrush="Black" BorderThickness="2" Padding="2" Margin="0,0,0,6">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="8" />
+						<ColumnDefinition />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="26" />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+
+					<StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center"
+								Orientation="Horizontal">
+						<Image Source="{Binding Source={StaticResource imgStats78}, Path=Source}" Width="18" Margin="8,0" />
+						<TextBlock Text="Statistics" FontSize="12" FontWeight="Bold"
+								   VerticalAlignment="Center" Margin="0" />
+					</StackPanel>
+
+					<controls:iDnaSequenceStatsCtrl Grid.Row="1" Grid.Column="1" Margin="0,0,0,0" 
+													Padding="0,4"
+													SnapsToDevicePixels="True"
+													Background="#FFF6F6F6" BorderBrush="Black" BorderThickness="1" />
+				</Grid>
+			</Border>
+
+			<StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="0">
+				<Image Source="{Binding Source={StaticResource imgCovid5ync48}, Path=Source}" Width="24" Margin="4,0"/>
+				<TextBlock Grid.Row="1" Grid.Column="0" Text="Sequence baskets" FontSize="12" FontWeight="Bold" VerticalAlignment="Center" Margin="2,0" />
+			</StackPanel>
+
+			<Border Grid.Row="2" CornerRadius="4" BorderBrush="Black" BorderThickness="2" Padding="2" HorizontalAlignment="Stretch">
+				<controls:iDnaSequenceBasketsCtrl Grid.Row="2" DataContext="{Binding Mode=OneWay, IsAsync=True}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
 			</Border>
 		</Grid>
 
-		<TabControl Grid.Row="1" Grid.Column="0" Background="#FFF6F6F6"  FontSize="14">
+		<TabControl Grid.Row="2" Grid.Column="0" Background="#FFF6F6F6" FontSize="14" Margin="8,4">
+
 			<TabItem>
 				<TabItem.Header>
 					<StackPanel Orientation="Horizontal">
-						<Image Source="{Binding Source={StaticResource imgSequence}, Path=Source}" Width="16" Margin="4" />
+						<Image Source="{Binding Source={StaticResource imgQuickStart48}, Path=Source}" Width="28" Margin="4,0" />
+						<TextBlock Text="Quick start" Margin="4,0" />
+					</StackPanel>
+				</TabItem.Header>
+
+				<Grid>
+					<controls:iGettingStartedCtrl Margin="24" />
+				</Grid>
+
+			</TabItem>
+
+			<TabItem>
+				<TabItem.Header>
+					<StackPanel Orientation="Horizontal">
+						<Image Source="{Binding Source={StaticResource imgSequence}, Path=Source}" Width="22" Margin="3" />
 						<TextBlock Text="Explore sequence" Margin="4,0" />
 					</StackPanel>
 				</TabItem.Header>
@@ -83,26 +149,43 @@
 			<TabItem >
 				<TabItem.Header>
 					<StackPanel Orientation="Horizontal">
-						<Image Source="{Binding Source={StaticResource imgSequenceFile}, Path=Source}" Width="16" Margin="4" />
-						<TextBlock Text="Sequence file info" Margin="4,0" />
+						<Image Source="{Binding Source={StaticResource imgSequenceFile}, Path=Source}" Width="22" Margin="4" />
+						<TextBlock Text="Sequence summary" Margin="4,0" />
 					</StackPanel>
 				</TabItem.Header>
 
 				<Grid Background="#FFF6F6F6">
 					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="413*"/>
-						<ColumnDefinition Width="173*"/>
+						<ColumnDefinition />
 					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="28" />
+						<RowDefinition Height="26" />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+
+					<StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="4,0" VerticalAlignment="Center">
+						<TextBlock Style="{StaticResource label}" Text="Sequence Id" />
+						<TextBlock VerticalAlignment="Center" Margin="4,0"
+								   Text="{Binding Id, IsAsync=True}" />
+					</StackPanel>
+
+					<TextBlock Grid.Row="1" Grid.Column="0"
+							   FontWeight="Bold" VerticalAlignment="Center"
+							   Margin="8,0"
+							   Text="Sequence summary / file info" />
+
 					<TextBox x:Name="textBoxSequenceInfo"
+							 Grid.Row="2" Grid.Column="0"
 							 VerticalScrollBarVisibility="Auto"
 							 HorizontalScrollBarVisibility="Auto"
 							 AcceptsReturn="True"
-							 IsReadOnly="True"
+							 IsReadOnly="False"
 							 VerticalAlignment="Stretch"
 							 HorizontalAlignment="Stretch"
 							 FontFamily="Consolas"
-							 Text="{Binding SequenceFileInfo, IsAsync=True}"
-							 Padding="8" FontSize="13" Grid.ColumnSpan="2"
+							 Text="{Binding SequenceFileInfo, UpdateSourceTrigger=PropertyChanged, IsAsync=True}"
+							 Padding="8" FontSize="13"
 							 Margin="4"
 							 BorderBrush="Black"
 							 BorderThickness="1"
@@ -113,7 +196,7 @@
 			<TabItem>
 				<TabItem.Header>
 					<StackPanel Orientation="Horizontal">
-						<Image Source="{Binding Source={StaticResource imgAbout}, Path=Source}" Width="16" Margin="4" />
+						<Image Source="{Binding Source={StaticResource imgAbout}, Path=Source}" Width="22" Margin="4,3" />
 						<TextBlock Text="About this app" Margin="4,0" />
 					</StackPanel>
 				</TabItem.Header>
@@ -121,7 +204,7 @@
 
 				<Grid Background="#FFF6F6F6">
 					<Grid.RowDefinitions>
-						<RowDefinition Height="120" />
+						<RowDefinition Height="84" />
 						<RowDefinition Height="26" />
 						<RowDefinition />
 					</Grid.RowDefinitions>
@@ -129,7 +212,7 @@
 
 					<TextBlock Grid.Row="1" VerticalAlignment="Center" FontWeight="Bold" Margin="4,0"
 							   Text="This version info" />
-					
+
 					<TextBox x:Name="textBoxAppInfo"
 							 Grid.Row="2"
 							 VerticalScrollBarVisibility="Auto"
@@ -139,8 +222,8 @@
 							 VerticalAlignment="Stretch"
 							 HorizontalAlignment="Stretch"
 							 FontFamily="Consolas"
-							 Text=""
-							 Padding="8" FontSize="13" Grid.ColumnSpan="2"
+							 Text="{Binding Source={StaticResource commandCentral}, Path=AppVersionInfo, Mode=OneTime, IsAsync=True}"
+							 Padding="8" FontSize="13"
 							 Margin="4"
 							 BorderBrush="Black"
 							 BorderThickness="1"
@@ -148,8 +231,9 @@
 
 				</Grid>
 			</TabItem>
-		</TabControl>
 
+
+		</TabControl>
 
 	</Grid>
 </Window>
