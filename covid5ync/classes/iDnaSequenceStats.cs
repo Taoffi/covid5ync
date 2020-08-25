@@ -21,7 +21,7 @@ namespace iDna
 
 		}
 
-		public iDnaBaseStatItem(iDnaBase rootBase, int count, int total)
+		public iDnaBaseStatItem(iDnaBaseStats parent, iDnaBase rootBase, int count, int total)
 		{
 			_parent	= parent;
 			_base	= rootBase;
