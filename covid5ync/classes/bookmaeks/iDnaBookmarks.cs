@@ -217,7 +217,11 @@ namespace iDna
 		public void InsertNew(iDnaBookmark item)
 		{
 			Add(item);
+<<<<<<< HEAD
 			NotifyCollectionChanged(this);
+=======
+			NotifyCollectionChanged(this, NotifyCollectionChangedAction.Add, item);
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 			NotifyPropertyChanged(null);
 		}
 

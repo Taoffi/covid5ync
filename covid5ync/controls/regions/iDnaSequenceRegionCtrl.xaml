@@ -7,7 +7,11 @@
 			 xmlns:conv="clr-namespace:iDna.controls"
 			 xmlns:data="clr-namespace:iDna"
              mc:Ignorable="d" 
+<<<<<<< HEAD
              d:DesignHeight="160" d:DesignWidth="300"
+=======
+             d:DesignHeight="180" d:DesignWidth="330"
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 			 d:DataContext="{d:DesignInstance Type={x:Type data:iDnaRegionIndexDesignTime}, IsDesignTimeCreatable=True, CreateList=False}">
 
 	<Grid x:Name="gridMain" Margin="0" HorizontalAlignment="Stretch">
@@ -21,6 +25,7 @@
 				
 				<Grid Margin="2">
 					<Grid.RowDefinitions>
+<<<<<<< HEAD
 						<RowDefinition Height="28" />
 						<RowDefinition Height="24" />
 						<RowDefinition Height="24" />
@@ -30,6 +35,16 @@
 					</Grid.RowDefinitions>
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="80" />
+=======
+						<RowDefinition Height="30" />
+						<RowDefinition Height="26" />
+						<RowDefinition Height="26" />
+						<RowDefinition Height="26" />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="90" />
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 						<ColumnDefinition />
 					</Grid.ColumnDefinitions>
 
@@ -58,6 +73,7 @@
 
 					<TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource label}" Text="Region name" />
 					<TextBox Grid.Row="3" Grid.Column="1" 
+<<<<<<< HEAD
 							 VerticalAlignment="Center" HorizontalAlignment="Stretch"
 							 Margin="4,0" Height="21"
 							 MaxWidth="260"
@@ -68,6 +84,13 @@
 							   HorizontalAlignment="Left" Margin="8,0"
 							   Text="{Binding Length}" FontSize="10"
 							   Foreground="{Binding IsInError, Converter={StaticResource boolToErrorValidator}}" />
+=======
+							 VerticalAlignment="Center" HorizontalAlignment="Left"
+							 Margin="4,0" Height="21"
+							 MaxWidth="220" MinWidth="220"
+							 Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+							 />
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 				</Grid>
 			</TabItem>
 

@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Threading;
+<<<<<<< HEAD
+=======
+using isosoft.root;
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 
 namespace iDna
 {
@@ -17,8 +21,13 @@ namespace iDna
 													_searchPairCount		= 0,
 													_minSearchLenght		= 3;
 		protected bool								_searchInProgress		= false;
+<<<<<<< HEAD
 		protected List<iDnaSequence>				_selectionBasket		= new List<iDnaSequence>(),		// iDnaSequenceList(),
 													_pairSelectionBasket	= new List<iDnaSequence>();		// iDnaSequenceList();
+=======
+		protected RootListTemplate<iDnaSequence>	_selectionBasket		= new RootListTemplate<iDnaSequence>(),		// iDnaSequenceList(),
+													_pairSelectionBasket	= new RootListTemplate<iDnaSequence>();		// iDnaSequenceList();
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 		protected SequenceSearchType				_currentSearchType		= SequenceSearchType.SearchNormal;
 		protected vm.iDnaSequenceSortOptionList		_searchSortOptions		= new vm.iDnaSequenceSortOptionList();
 
@@ -87,13 +96,21 @@ namespace iDna
 		}
 
 
+<<<<<<< HEAD
 		public List<iDnaSequence> CurrentSearchBasket
+=======
+		public RootListTemplate<iDnaSequence> CurrentSearchBasket
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 		{
 			get {  return _currentSearchType == SequenceSearchType.SearchNormal ? _selectionBasket : _pairSelectionBasket; }
 		}
 
 
+<<<<<<< HEAD
 		public List<iDnaSequence> SelectionBasket
+=======
+		public RootListTemplate<iDnaSequence> SelectionBasket
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 		{
 			get {  return _selectionBasket; }
 			protected set
@@ -112,7 +129,11 @@ namespace iDna
 		}
 
 
+<<<<<<< HEAD
 		public List<iDnaSequence> PairSelectionBasket
+=======
+		public RootListTemplate<iDnaSequence> PairSelectionBasket
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 		{
 			get {  return _pairSelectionBasket; }
 			protected set
@@ -168,8 +189,14 @@ namespace iDna
 				//if(value == _searchString)
 				//	return;
 
+<<<<<<< HEAD
 				_searchString = value;
 				NotifyPropertyChanged(() => SearchString);
+=======
+				_searchString = value == null ? "" : value;
+				NotifyPropertyChanged(() => SearchString);
+				NotifyPropertyChanged(() => IsValidSearchString);
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 			}
 		}
 
@@ -182,11 +209,30 @@ namespace iDna
 				//if (value == _searchPairString)
 				//	return;
 
+<<<<<<< HEAD
 				_searchPairString = value;
 				NotifyPropertyChanged(() => SearchPairString);
 			}
 		}
 
+=======
+				_searchPairString = value == null ? "" : value;
+				NotifyPropertyChanged(() => SearchPairString);
+				NotifyPropertyChanged(()=> IsValidSearchPairString);
+			}
+		}
+
+		public bool IsValidSearchString
+		{
+			get {  return ! IsBusy && _searchString.Length >= 3; }
+		}
+
+		public bool IsValidSearchPairString
+		{
+			get { return ! IsBusy && _searchPairString.Length >= 3; }
+		}
+
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 		public bool CanSearch
 		{
 			get
@@ -203,6 +249,25 @@ namespace iDna
 			}
 		}
 
+<<<<<<< HEAD
+=======
+		public bool CanPairSearch
+		{
+			get
+			{
+				if (IsBusy)
+				{
+					if (_searchInProgress)
+						return true;
+
+					return false;
+				}
+
+				return true;
+			}
+		}
+
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 		public List<string> SearchStringList
 		{
 			get {  return _searchStringList; }

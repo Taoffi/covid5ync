@@ -12,7 +12,7 @@ namespace iDna.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.5.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -32,6 +32,11 @@ namespace iDna.Properties {
   <string>ncbi covid-19 sequence download|https://www.ncbi.nlm.nih.gov/genbank/sars-cov-2-seqs/|ncbi covid-19 genome page</string>
   <string>ncbi sars web page|https://www.ncbi.nlm.nih.gov/genomes/SARS/SARS.html|ncbi sars home page</string>
   <string>covid-19 situation|https://www.cdc.gov/coronavirus/2019-nCoV/summary.html|latest information about covid-19 epidemic</string>
+<<<<<<< HEAD
+=======
+  <string>covid-19 NIH research news|https://www.nih.gov/health-information/coronavirus|Latest research information from NIH</string>
+  <string>medRxiv and bioRxiv about covid-19|https://connect.medrxiv.org/relate/content/181|COVID-19 SARS-CoV-2 preprints from medRxiv and bioRxiv</string>
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 </ArrayOfString>")]
         public global::System.Collections.Specialized.StringCollection UserBookMarks {
             get {

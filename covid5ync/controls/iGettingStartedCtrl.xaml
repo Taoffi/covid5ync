@@ -40,12 +40,21 @@
 				BorderThickness="2" BorderBrush="#FFF59522"
 				Margin="4">
 			<StackPanel>
+<<<<<<< HEAD
 				<Button x:Name="buttonLoadBuiltinSeq"
 						HorizontalAlignment="Center" VerticalAlignment="Bottom" 
 						Padding="0" Margin="4" 
 						Background="Transparent" BorderBrush="Transparent"
 						Command="{Binding LoadBuiltinSequence, Mode=OneWay}"
 						ToolTip="load the covid-19 sequence embedded in the application&#10;MT163719 29903 bp RNA linear VRL 10-MAR-2020 complete genome"
+=======
+				<Button x:Name="buttonLoadBuiltinTextSeq"
+						HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+						Padding="0" Margin="4" 
+						Background="Transparent" BorderBrush="Transparent"
+						Command="{Binding LoadBuiltinXmlSequence, Mode=OneWay}"
+						ToolTip="load the covid-19 (xml) sequence embedded in the application&#10;MT226610 20-MAR-2020 complete genome"
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 						IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}, Source={StaticResource mainSequence}, IsAsync=True}"
 						>
 					<Button.Content>
@@ -92,6 +101,11 @@
 			</StackPanel>
 		</Border>
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 		<TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" Margin="8,0"
 				   TextWrapping="Wrap"
 				   Text="Loading an xml-saved file allows you to continue a previous work session where you will retreive your defined regions and other analysis elements.&#10;You can also download online sequences (File menu)" />

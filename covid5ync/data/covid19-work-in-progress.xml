@@ -1,0 +1,1672 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<iDnaSequenceContract xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+  <Id>4814df64-b928-463c-84b4-40a2c8c1187f</Id>
+  <Name>Wuhan seafood market pneumonia virus genome assembly, whole_genome</Name>
+  <Occurrences>1</Occurrences>
+  <SequenceFileInfo>source      https://www.ncbi.nlm.nih.gov/nuccore/MT226610
+LOCUS       MT226610               29899 bp    RNA     linear   VRL 20-MAR-2020
+DEFINITION  Severe acute respiratory syndrome-related coronavirus isolate
+            SARS-CoV-2/KMS1/human/2020/CHN, complete genome.
+ACCESSION   MT226610
+VERSION     MT226610.1
+KEYWORDS    .
+SOURCE      Severe acute respiratory syndrome-related coronavirus
+  ORGANISM  Severe acute respiratory syndrome-related coronavirus
+            Viruses; Riboviria; Nidovirales; Cornidovirineae; Coronaviridae;
+            Orthocoronavirinae; Betacoronavirus; Sarbecovirus.
+REFERENCE   1  (bases 1 to 29899)
+  AUTHORS   Xu,X., Liao,Y., Wang,L., Zhou,X., Xie,Z., Chen,H., Fan,S., Liu,L.,
+            Zheng,H., Jiang,G. and Li,Q.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (20-MAR-2020) Institute of Medical Biology, Chinese
+            Academy of Medical Sciences and Peking Union Medical College, No.
+            935, Jiao Ling Road, Kunming, Yunnan 650118, China
+COMMENT     ##Assembly-Data-START##
+            Sequencing Technology :: Sanger dideoxy sequencing
+            ##Assembly-Data-END##
+FEATURES             Location/Qualifiers
+     source          1..29899
+                     /organism="Severe acute respiratory syndrome-related
+                     coronavirus"
+                     /mol_type="genomic RNA"
+                     /isolate="SARS-CoV-2/KMS1/human/2020/CHN"
+                     /isolation_source="respiratory secretion"
+                     /host="Homo sapiens"
+                     /db_xref="taxon:694009"
+                     /country="China"
+                     /collection_date="20-Jan-2020"
+     5'UTR           1..265
+     gene            266..21555
+                     /gene="orf1ab"
+     CDS             join(266..13468,13468..21555)
+                     /gene="orf1ab"
+                     /ribosomal_slippage
+                     /note="pp1ab; translated by -1 ribosomal frameshift"
+                     /codon_start=1
+                     /product="orf1ab polyprotein"
+                     /protein_id="QIO04366.1"
+                     /translation="MESLVPGFNEKTHVQLSLPVLQVRDVLVRGFGDSVEEVLSEARQ
+                     HLKDGTCGLVEVEKGVLPQLEQPYVFIKRSDARTAPHGHVMVELVAELEGIQYGRSGE
+                     TLGVLVPHVGEIPVAYRKVLLRKNGNKGAGGHSYGADLKSFDLGDELGTDPYEDFQEN
+                     WNTKHSSGVTRELMRELNGGAYTRYVDNNFCGPDGYPLECIKDLLARAGKASCTLSEQ
+                     LDFIDTKRGVYCCREHEHEIAWYTERSEKSYELQTPFEIKLAKKFDTFNGECPNFVFP
+                     LNSIIKTIQPRVEKKKLDGFMGRIRSVYPVASPNECNQMCLSTLMKCDHCGETSWQTG
+                     DFVKATCEFCGTENLTKEGATTCGYLPQNAVVKIYCPACHNSEVGPEHSLAEYHNESG
+                     LKTILRKGGRTIAFGGCVFSYVGCHNKCAYWVPRASANIGCNHTGVVGEGSEGLNDNL
+                     LEILQKEKVNINIVGDFKLNEEIAIILASFSASTSAFVETVKGLDYKAFKQIVESCGN
+                     FKVTKGKAKKGAWNIGEQKSILSPLYAFASEAARVVRSIFSRTLETAQNSVRVLQKAA
+                     ITILDGISQYSLRLIDAMMFTSDLATNNLVVMAYITGGVVQLTSQWLTNIFGTVYEKL
+                     KPVLDWLEEKFKEGVEFLRDGWEIVKFISTCACEIVGGQIVTCAKEIKESVQTFFKLV
+                     NKFLALCADSIIIGGAKLKALNLGETFVTHSKGLYRKCVKSREETGLLMPLKAPKEII
+                     FLEGETLPTEVLTEEVVLKTGDLQPLEQPTSEAVEAPLVGTPVCINGLMLLEIKDTEK
+                     YCALAPNMMVTNNTFTLKGGAPTKVTFGDDTVIEVQGYKSVNITFELDERIDKVLNEK
+                     CSAYTVELGTEVNEFACVVADAVIKTLQPVSELLTPLGIDLDEWSMATYYLFDESGEF
+                     KLASHMYCSFYPPDEDEEEGDCEEEEFEPSTQYEYGTEDDYQGKPLEFGATSAALQPE
+                     EEQEEDWLDDDSQQTVGQQDGSEDNQTTTIQTIVEVQPQLEMELTPVVQTIEVNSFSG
+                     YLKLTDNVYIKNADIVEEAKKVKPTVVVNAANVYLKHGGGVAGALNKATNNAMQVESD
+                     DYIATNGPLKVGGSCVLSGHNLAKHCLHVVGPNVNKGEDIQLLKSAYENFNQHEVLLA
+                     PLLSAGIFGADPIHSLRVCVDTVRTNVYLAVFDKNLYDKLVSSFLEMKSEKQVEQKIA
+                     EIPKEEVKPFITESKPSVEQRKQDDKKIKACVEEVTTTLEETKFLTENLLLYIDINGN
+                     LHPDSATLVSDIDITFLKKDAPYIVGDVVQEGVLTAVVIPTKKAGGTTEMLAKALRKV
+                     PTDNYITTYPGQGLNGYTVEDAKTVLKQCKSAFYILPSIISNEKQEILGTVSWNLREM
+                     LAHAEETRKLMPVCVETKAIVSTIQRKYKGIKIQEGVVDYGARFYFYTSKTTVASLIN
+                     TLNDLNETLVTMPLGYVTHGLNLEEAARYMRSLKVPATVSVSSPDAVTAYNGYLTSSS
+                     KTPEEHFIETISLAGSYKDWSYSGQSTQLGIEFLKRGDKSVYYTSNPTTFHLDGEVIT
+                     FDNLKTLLSLREVRTIKVFTTVDNINLHTQVVDMSMTYGQQFGPTYLDGADVTKIKPH
+                     NSHEGKTFYVLPNDDTLRVEAFEYYHTTDPSFLGRYMSALNHTKKWKYPQVNGLTSIK
+                     WADNNCYLATALLTLQQIELKFNPPALQDAYYRARAGEAANFCALILAYCNKTVGELG
+                     DVRETMSYLFQHANLDSCKRVLNVVCKTCGQQQTTLKGVEAVMYMGTLSYEQFKKGVQ
+                     IPCTCGKQATKYLVQQESPFVMMSAPPAQYELKHGTFTCASEYTGNYQCGHYKHITSK
+                     ETLYCIDGALLTKSSEYKGPITDVFYKENSYTTTIKPVTYKLDGVVCTEIDPKLDNYY
+                     KKDNSYFTEQPIDLVPNQPYPNASFDNFKFVCDNIKFADDLNQLTGYKKPASRELKVT
+                     FFPDLNGDVVAIDYKHYTPSFKKGAKLLHKPIVWHVNNATNKATYKPNTWCIRCLWST
+                     KPVETSNSFDVLKSEDAQGMDNLACEDLKPVSEEVVENPTIQKDVLECNVKTTEVVGD
+                     IILKPANNSLKITEEVGHTDLMAAYVDNSSLTIKKPNELSRVLGLKTLATHGLAAVNS
+                     VPWDTIANYAKPFLNKVVSTTTNIVTRCLNRVCTNYMPYFFTLLLQLCTFTRSTNSRI
+                     KASMPTTIAKNTVKSVGKFCLEASFNYLKSPNFSKLINIIIWFLLLSVCLGSLIYSTA
+                     ALGVLMSNLGMPSYCTGYREGYLNSTNVTIATYCTGSIPCSVCLSGLDSLDTYPSLET
+                     IQITISSFKWDLTAFGLVAEWFLAYILFTRFFYVLGLAAIMQLFFSYFAVHFISNSWL
+                     MWLIINLVQMAPISAMVRMYIFFASFYYVWKSYVHVVDGCSSSTCMMCYKRNRATRVE
+                     CTTIVNGVRRSFYVYANGGKGFCKLHNWNCVNCDTFCAGSTFISDEVARDLSLQFKRP
+                     INPTDQSSYIVDSVTVKNGSIHLYFDKAGQKTYERHSLSHFVNLDNLRANNTKGSLPI
+                     NVIVFDGKSKCEESSAKSASVYYSQLMCQPILLLDQALVSDVGDSAEVAVKMFDAYVN
+                     TFSSTFNVPMEKLKTLVATAEAELAKNVSLDNVLSTFISAARQGFVDSDVETKDVVEC
+                     LKLSHQSDIEVTGDSCNNYMLTYNKVENMTPRDLGACIDCSARHINAQVAKSHNIALI
+                     WNVKDFMSLSEQLRKQIRSAAKKNNLPFKLTCATTRQVVNVVTTKIALKGGKIVNNWL
+                     KQLIKVTLVFLFVAAIFYLITPVHVMSKHTDFSSEIIGYKAIDGGVTRDIASTDTCFA
+                     NKHADFDTWFSQRGGSYTNDKACPLIAAVITREVGFVVPGLPGTILRTTNGDFLHFLP
+                     RVFSAVGNICYTPSKLIEYTDFATSACVLAAECTIFKDASGKPVPYCYDTNVLEGSVA
+                     YESLRPDTRYVLMDGSIIQFPNTYLEGSVRVVTTFDSEYCRHGTCERSEAGVCVSTSG
+                     RWVLNNDYYRSLPGVFCGVDAVNLLTNMFTPLIQPIGALDISASIVAGGIVAIVVTCL
+                     AYYFMRFRRAFGEYSHVVAFNTLLFLMSFTVLCLTPVYSFLPGVYSVIYLYLTFYLTN
+                     DVSFLAHIQWMVMFTPLVPFWITIAYIICISTKHFYWFFSNYLKRRVVFNGVSFSTFE
+                     EAALCTFLLNKEMYLKLRSDVLLPLTQYNRYLALYNKYKYFSGAMDTTSYREAACCHL
+                     AKALNDFSNSGSDVLYQPPQTSITSAVLQSGFRKMAFPSGKVEGCMVQVTCGTTTLNG
+                     LWLDDVVYCPRHVICTSEDMLNPNYEDLLIRKSNHNFLVQAGNVQLRVIGHSMQNCVL
+                     KLKVDTANPKTPKYKFVRIQPGQTFSVLACYNGSPSGVYQCAMRPNFTIKGSFLNGSC
+                     GSVGFNIDYDCVSFCYMHHMELPTGVHAGTDLEGNFYGPFVDRQTAQAAGTDTTITVN
+                     VLAWLYAAVINGDRWFLNRFTTTLNDFNLVAMKYNYEPLTQDHVDILGPLSAQTGIAV
+                     LDMCASLKELLQNGMNGRTILGSALLEDEFTPFDVVRQCSGVTFQSAVKRTIKGTHHW
+                     LLLTILTSLLVLVQSTQWSLFFFFYENAFLPFAMGIIAMSAFAMMFVKHKHAFLCLFL
+                     LPSLATVPYFNMVYMPASWVMRIMTWLDMVDTSLSGFKLKDCVMYASAVVLLILMTAR
+                     TVYDDGARRVWTLMNVLTLVYKVYYGNALDQAISMWALIISVTSNYSGVVTTVMFLAR
+                     GIVFMCVEYCPIFFITGNTLQCIMLVYCFLGYFCTCYFGLFCLLNRYFRLTLGVYDYL
+                     VSTQEFRYMNSQGLLPPKNSIDAFKLNIKLLGVGGKPCIKVATVQSKMSDVKCTSVVL
+                     LSVLQQLRVESSSKLWAQCVQLHNDILLAKDTTEAFEKMVSLLSVLLSMQGAVHINKL
+                     CEEMLDNRATLQAIASEFSSLPSYAAFATAQEAYDQAVANGDSEVVLKNLNKSLNVAK
+                     SEFDRDAAMQRKLEKMADQAMTQMYKQARSEDKRAKVTSAMHTMLFTMLKKLDNDALN
+                     NIINNARDGCVPLNIIPLTTSSKLMVVIPYYNTYKNTCDGTTFTYASALWEIQQVVYA
+                     YIKIVQLNEISMDNSPNLAWPLIVTALTANSAVKLHNNELSPVALRQMSCAAGTTQTA
+                     CTDDNALSYYNTTNGGRFVLALLSDLQDLKWARFPKSDGTGTIYTELEPPCRFVTDTP
+                     KGPKVKYLYFIKGLNNLNRGMVLGSLAATVRLQAGNATEVPANSTVLSFCAFAVDAAK
+                     AYKDYLASGGQPITNCVKMLCTHTGTGQAITVTPEANMDQESFGGASCCLYCRCHIDH
+                     PNPKGFCDLKGKYVQIPTTCANDPVGFTLKNTVCTVCGMWKGYGCSCDQLREPMLQSA
+                     DAQSFLNRVCGVSAARLTPCGTGTSTDVVYRAFDIYNDKVAGFAKFLKTNCCRFQEKD
+                     EDDNLIDSYFVVKRHTFSNYQHEETIYNLLKDCPAVAKHDFFKFRIDGDMVPHISRQR
+                     LTKYTMADLVYALRHFDEGNCDTLKEILVTYNCCDDDYFNKKDWYDFVENPDILRVYA
+                     NLGERVRQALLKTVQFCDAMRNAGIVGVLTLDNQDLNGNWYDFGDFIQTTPGSGVPVV
+                     DSYYSLLMPILTLTRALTAESHVDTDLTKPYIKWDLLKYDFTEERLKLFDRYFKYWDQ
+                     TYHPNCVNCLDDRCILHCANFNVLFSTVFPPTSFGPLVRKIFVDGVPFVVSTGYHFRE
+                     LGVVHNQDVNLHSSRLSFKELLVYAADPAMHAASGNLLLDKRTTCFSVAALTNNVAFQ
+                     TVKPGNFNKDFYDFAVSKGFFKEGSSVELKHFFFAQDGNAAISDYDYYRYNLPTMCDI
+                     RQLLFVVEVVDKYFDCYDGGCINANQVIVNNLDKSAGFPFNKWGKARLYYDSMSYEDQ
+                     DALFAYTKRNVIPTITQMNLKYAISAKNRARTVAGVSICSTMTNRQFHQKLLKSIAAT
+                     RGATVVIGTSKFYGGWHNMLKTVYSDVENPHLMGWDYPKCDRAMPNMLRIMASLVLAR
+                     KHTTCCSLSHRFYRLANECAQVLSEMVMCGGSLYVKPGGTSSGDATTAYANSVFNICQ
+                     AVTANVNALLSTDGNKIADKYVRNLQHRLYECLYRNRDVDTDFVNEFYAYLRKHFSMM
+                     ILSDDAVVCFNSTYASQGLVASIKNFKSVLYYQNNVFMSEAKCWTETDLTKGPHEFCS
+                     QHTMLVKQGDDYVYLPYPDPSRILGAGCFVDDIVKTDGTLMIERFVSLAIDAYPLTKH
+                     PNQEYADVFHLYLQYIRKLHDELTGHMLDMYSVMLTNDNTSRYWEPEFYEAMYTPHTV
+                     LQAVGACVLCNSQTSLRCGACIRRPFLCCKCCYDHVISTSHKLVLSVNPYVCNAPGCD
+                     VTDVTQLYLGGMSYYCKSHKPPISFPLCANGQVFGLYKNTCVGSDNVTDFNAIATCDW
+                     TNAGDYILANTCTERLKLFAAETLKATEETFKLSYGIATVREVLSDRELHLSWEVGKP
+                     RPPLNRNYVFTGYRVTKNSKVQIGEYTFEKGDYGDAVVYRGTTTYKLNVGDYFVLTSH
+                     TVMPLSAPTLVPQEHYVRITGLYPTLNISDEFSSNVANYQKVGMQKYSTLQGPPGTGK
+                     SHFAIGLALYYPSARIVYTACSHAAVDALCEKALKYLPIDKCSRIIPARARVECFDKF
+                     KVNSTLEQYVFCTVNALPETTADIVVFDEISMATNYDLSVVNARLRAKHYVYIGDPAQ
+                     LPAPRTLLTKGTLEPEYFNSVCRLMKTIGPDMFLGTCRRCPAEIVDTVSALVYDNKLK
+                     AHKDKSAQCFKMFYKGVITHDVSSAINRPQIGVVREFLTRNPAWRKAVFISPYNSQNA
+                     VASKILGLPTQTVDSSQGSEYDYVIFTQTTETAHSCNVNRFNVAITRAKVGILCIMSD
+                     RDLYDKLQFTSLEIPRRNVATLQAENVTGLFKDCSKVITGLHPTQAPTHLSVDTKFKT
+                     EGLCVDIPGIPKDMTYRRLISMMGFKMNYQVNGYPNMFITREEAIRHVRAWIGFDVEG
+                     CHATREAVGTNLPLQLGFSTGVNLVAVPTGYVDTPNNTDFSRVSAKPPPGDQFKHLIP
+                     LMYKGLPWNVVRIKIVQMLSDTLKNLSDRVVFVLWAHGFELTSMKYFVKIGPERTCCL
+                     CDRRATCFSTASDTYACWHHSIGFDYVYNPFMIDVQQWGFTGNLQSNHDLYCQVHGNA
+                     HVASCDAIMTRCLAVHECFVKRVDWTIEYPIIGDELKINAACRKVQHMVVKAALLADK
+                     FPVLHDIGNPKAIKCVPQADVEWKFYDAQPCSDKAYKIEELFYSYATHSDKFTDGVCL
+                     FWNCNVDRYPANSIVCRFDTRVLSNLNLPGCDGGSLYVNKHAFHTPAFDKSAFVNLKQ
+                     LPFFYYSDSPCESHGKQVVSDIDYVPLKSATCITRCNLGGAVCRHHANEYRLYLDAYN
+                     MMISAGFSLWVYKQFDTYNLWNTFTRLQSLENVAFNVVNKGHFDGQQGEVPVSIINNT
+                     VYTKVDGVDVELFENKTTLPVNVAFELWAKRNIKPVPEVKILNNLGVDIAANTVIWDY
+                     KRDAPAHISTIGVCSMTDIAKKPTETICAPLTVFFDGRVDGQVDLFRNARNGVLITEG
+                     SVKGLQPSVGPKQASLNGVTLIGEAVKTQFNYYKKVDGVVQQLPETYFTQSRNLQEFK
+                     PRSQMEIDFLELAMDEFIERYKLEGYAFEHIVYGDFSHSQLGGLHLLIGLAKRFKESP
+                     FELEDFIPMDSTVKNYFITDAQTGSSKCVCSVIDLLLDDFVEIIKSQDLSVVSKVVKV
+                     TIDYTEISFMLWCKDGHVETFYPKLQSSQAWQPGVAMPNLYKMQRMLLEKCDLQNYGD
+                     SATLPKGIMMNVAKYTQLCQYLNTLTLAVPYNMRVIHFGAGSDKGVAPGTAVLRQWLP
+                     TGTLLVDSDLNDFVSDAHSTLIGDCATVHTANKWDLIISDMYDPKTKNVTKENDSKEG
+                     FFTYICGFIQQKLALGGSVAIKITEHSWNADLYKLMGHFAWWTAFVTNVNASSSEAFL
+                     IGCNYLGKPREQIDGYVMHANYIFWRNTNPIQLSSYSLFDMSKFPLKLRGTAVMSLKE
+                     GQINDMILSLLSKGRLIIRENNRVVISSDVLVNN"
+     gene            21563..25384
+                     /gene="S"
+     CDS             21563..25384
+                     /gene="S"
+                     /note="structural protein"
+                     /codon_start=1
+                     /product="surface glycoprotein"
+                     /protein_id="QIO04367.1"
+                     /translation="MFVFLVLLPLVSSQCVNLTTRTQLPPAYTNSFTRGVYYPDKVFR
+                     SSVLHSTQDLFLPFFSNVTWFHAIHVSGTKGTKRFDNPVLPFNDGVYFASTEKSNIIR
+                     GWIFGTTLDSKTQSLLIVNNATNVVIKVCEFQFCNDPFLGVYYHKNNKSWMESEFRVY
+                     SSANNCTFEYVSQPFLMDLEGKQGNFKNLREFVFKNIDGYFKIYSKHTPINLVRDLPQ
+                     GFSALEPLVDLPIGINITRFQTLLALHRSYLTPGDSSSGWTAGAAAYYVGYLQPRTFL
+                     LKYNENGTITDAVDCALDPLSETKCTLKSFTVEKGIYQTSNFRVQPTESIVRFPNITN
+                     LCPFGEVFNATRFASVYAWNRKRISNCVADYSVLYNSASFSTFKCYGVSPTKLNDLCF
+                     TNVYADSFVIRGDEVRQIAPGQTGKIADYNYKLPDDFTGCVIAWNSNNLDSKVGGNYN
+                     YLYRLFRKSNLKPFERDISTEIYQAGSTPCNGVEGFNCYFPLQSYGFQPTNGVGYQPY
+                     RVVVLSFELLHAPATVCGPKKSTNLVKNKCVNFNFNGLTGTGVLTESNKKFLPFQQFG
+                     RDIADTTDAVRDPQTLEILDITPCSFGGVSVITPGTNTSNQVAVLYQDVNCTEVPVAI
+                     HADQLTPTWRVYSTGSNVFQTRAGCLIGAEHVNNSYECDIPIGAGICASYQTQTNSPR
+                     RARSVASQSIIAYTMSLGAENSVAYSNNSIAIPTNFTISVTTEILPVSMTKTSVDCTM
+                     YICGDSTECSNLLLQYGSFCTQLNRALTGIAVEQDKNTQEVFAQVKQIYKTPPIKDFG
+                     GFNFSQILPDPSKPSKRSFIEDLLFNKVTLADAGFIKQYGDCLGDIAARDLICAQKFN
+                     GLTVLPPLLTDEMIAQYTSALLAGTITSGWTFGAGAALQIPFAMQMAYRFNGIGVTQN
+                     VLYENQKLIANQFNSAIGKIQDSLSSTASALGKLQDVVNQNAQALNTLVKQLSSNFGA
+                     ISSVLNDILSRLDKVEAEVQIDRLITGRLQSLQTYVTQQLIRAAEIRASANLAATKMS
+                     ECVLGQSKRVDFCGKGYHLMSFPQSAPHGVVFLHVTYVPAQEKNFTTAPAICHDGKAH
+                     FPREGVFVSNGTHWFVTQRNFYEPQIITTDNTFVSGNCDVVIGIVNNTVYDPLQPELD
+                     SFKEELDKYFKNHTSPDVDLGDISGINASVVNIQKEIDRLNEVAKNLNESLIDLQELG
+                     KYEQYIKWPWYIWLGFIAGLIAIVMVTIMLCCMTSCCSCLKGCCSCGSCCKFDEDDSE
+                     PVLKGVKLHYT"
+     gene            25393..26220
+                     /gene="ORF3a"
+     CDS             25393..26220
+                     /gene="ORF3a"
+                     /codon_start=1
+                     /product="ORF3a protein"
+                     /protein_id="QIO04368.1"
+                     /translation="MDLFMRIFTIGTVTLKQGEIKDATPSDFVRATATIPIQASLPFG
+                     WLIVGVALLAVFQSASKIITLKKRWQLALSKGVHFVCNLLLLFVTVYSHLLLVAAGLE
+                     APFLYLYALVYFLQSINFVRIIMRLWLCWKCRSKNPLLYDANYFLCWHTNCYDYCIPY
+                     NSVTSSIVITSGDGTTSPISEHDYQIGGYTEKWESGVKDCVVLHSYFTSDYYQLYSTQ
+                     LSTDTGVEHVTFFIYNKIVDEPEEHVQIHTIDGSSGVVNPVMEPIYDEPTTTTSVPL"
+     gene            26245..26472
+                     /gene="E"
+     CDS             26245..26472
+                     /gene="E"
+                     /note="structural protein; E protein"
+                     /codon_start=1
+                     /product="envelope protein"
+                     /protein_id="QIO04369.1"
+                     /translation="MYSFVSEETGTLIVNSVLLFLAFVVFLLVTLAILTALRLCAYCC
+                     NIVNVSLVKPSFYVYSRVKNLNSSRVPDLLV"
+     gene            26523..27191
+                     /gene="M"
+     CDS             26523..27191
+                     /gene="M"
+                     /note="structural protein"
+                     /codon_start=1
+                     /product="membrane glycoprotein"
+                     /protein_id="QIO04370.1"
+                     /translation="MADSNGTITVEELKKLLEQWNLVIGFLFLTWICLLQFAYANRNR
+                     FLYIIKLIFLWLLWPVTLACFVLAAVYRINWITGGIAIAMACLVGLMWLSYFIASFRL
+                     FARTRSMWSFNPETNILLNVPLHGTILTRPLLESELVIGAVILRGHLRIAGHHLGRCD
+                     IKDLPKEITVATSRTLSYYKLGASQRVAGDSGFAAYSRYRIGNYKLNTDHSSSSDNIA
+                     LLVQ"
+     gene            27202..27387
+                     /gene="ORF6"
+     CDS             27202..27387
+                     /gene="ORF6"
+                     /codon_start=1
+                     /product="ORF6 protein"
+                     /protein_id="QIO04371.1"
+                     /translation="MFHLVDFQVTIAEILLIIMRTFKVSIWNLDYIINLIIKNLSKSL
+                     TENKYSQLDEEQPMEID"
+     gene            27394..27759
+                     /gene="ORF7a"
+     CDS             27394..27759
+                     /gene="ORF7a"
+                     /codon_start=1
+                     /product="ORF7a protein"
+                     /protein_id="QIO04372.1"
+                     /translation="MKIILFLALITLATCELYHYQECVRGTTVLLKEPCSSGTYEGNS
+                     PFHPLADNKFALTCFSTQFAFACPDGVKHVYQLRARSVSPKLFIRQEEVQELYSPIFL
+                     IVAAIVFITLCFTLKRKTE"
+     gene            27894..28259
+                     /gene="ORF8"
+     CDS             27894..28259
+                     /gene="ORF8"
+                     /codon_start=1
+                     /product="ORF8 protein"
+                     /protein_id="QIO04373.1"
+                     /translation="MKFLVFLGIITTVAAFHQECSLQSCTQHQPYVVDDPCPIHFYSK
+                     WYIRVGARKSAPLIELCVDEAGSKSPIQYIDIGNYTVSCSPFTINCQEPKLGSLVVRC
+                     SFYEDFLEYHDVRVVLDFI"
+     gene            28274..29533
+                     /gene="N"
+     CDS             28274..29533
+                     /gene="N"
+                     /note="structural protein"
+                     /codon_start=1
+                     /product="nucleocapsid phosphoprotein"
+                     /protein_id="QIO04374.1"
+                     /translation="MSDNGPQNQRNAPRITFGGPSDSTGSNQNGERSGARSKQRRPQG
+                     LPNNTASWFTALTQHGKEDLKFPRGQGVPINTNSSPDDQIGYYRRATRRIRGGDGKMK
+                     DLSPRWYFYYLGTGPEAGLPYGANKDGIIWVATEGALNTPKDHIGTRNPANNAAIVLQ
+                     LPQGTTLPKGFYAEGSRGGSQASSRSSSRSRNSSRNSTPGSSRGTSPARMAGNGGDAA
+                     LALLLLDRLNQLESKMSGKGQQQQGQTVTKKSAAEASKKPRQKRTATKAYNVTQAFGR
+                     RGPEQTQGNFGDQELIRQGTDYKHWPQIAQFAPSASAFFGMSRIGMEVTPSGTWLTYT
+                     GAIKLDDKDPNFKDQVILLNKHIDAYKTFPPTEPKKDKKKKADETQALPQRQKKQQTV
+                     TLLPAADLDDFSKQLQQSMSSADSTQA"
+     gene            29558..29674
+                     /gene="ORF10"
+     CDS             29558..29674
+                     /gene="ORF10"
+                     /codon_start=1
+                     /product="ORF10 protein"
+                     /protein_id="QIO04375.1"
+                     /translation="MGYINVFAFPFTIYSLLLCRMNSRNYIAQVDVVNFNLT"
+     3'UTR           29675..29899</SequenceFileInfo>
+  <SequenceFormattedString>000001 attaaaggtt tataccttcc caggtaacaa accaaccaac tttcgatctc ttgtagatct gttctctaaa cgaactttaa aatctgtgtg gctgtcactc
+000101 ggctgcatgc ttagtgcact cacgcagtat aattaataac taattactgt cgttgacagg acacgagtaa ctcgtctatc ttctgcaggc tgcttacggt
+000201 ttcgtccgtg ttgcagccga tcatcagcac atctaggttt cgtccgggtg tgaccgaaag gtaagatgga gagccttgtc cctggtttca acgagaaaac
+000301 acacgtccaa ctcagtttgc ctgttttaca ggttcgcgac gtgctcgtac gtggctttgg agactccgtg gaggaggtct tatcagaggc acgtcaacat
+000401 cttaaagatg gcacttgtgg cttagtagaa gttgaaaaag gcgttttgcc tcaacttgaa cagccctatg tgttcatcaa acgttcggat gctcgaactg
+000501 cacctcatgg tcatgttatg gttgagctgg tagcagaact cgaaggcatt cagtacggtc gtagtggtga gacacttggt gtccttgtcc ctcatgtggg
+000601 cgaaatacca gtggcttacc gcaaggttct tcttcgtaag aacggtaata aaggagctgg tggccatagt tacggcgccg atctaaagtc atttgactta
+000701 ggcgacgagc ttggcactga tccttatgaa gattttcaag aaaactggaa cactaaacat agcagtggtg ttacccgtga actcatgcgt gagcttaacg
+000801 gaggggcata cactcgctat gtcgataaca acttctgtgg ccctgatggc taccctcttg agtgcattaa agaccttcta gcacgtgctg gtaaagcttc
+000901 atgcactttg tccgaacaac tggactttat tgacactaag aggggtgtat actgctgccg tgaacatgag catgaaattg cttggtacac ggaacgttct
+001001 gaaaagagct atgaattgca gacacctttt gaaattaaat tggcaaagaa atttgacacc ttcaatgggg aatgtccaaa ttttgtattt cccttaaatt
+001101 ccataatcaa gactattcaa ccaagggttg aaaagaaaaa gcttgatggc tttatgggta gaattcgatc tgtctatcca gttgcgtcac caaatgaatg
+001201 caaccaaatg tgcctttcaa ctctcatgaa gtgtgatcat tgtggtgaaa cttcatggca gacgggcgat tttgttaaag ccacttgcga attttgtggc
+001301 actgagaatt tgactaaaga aggtgccact acttgtggtt acttacccca aaatgctgtt gttaaaattt attgtccagc atgtcacaat tcagaagtag
+001401 gacctgagca tagtcttgcc gaataccata atgaatctgg cttgaaaacc attcttcgta agggtggtcg cactattgcc tttggaggct gtgtgttctc
+001501 ttatgttggt tgccataaca agtgtgccta ttgggttcca cgtgctagcg ctaacatagg ttgtaaccat acaggtgttg ttggagaagg ttccgaaggt
+001601 cttaatgaca accttcttga aatactccaa aaagagaaag tcaacatcaa tattgttggt gactttaaac ttaatgaaga gatcgccatt attttggcat
+001701 ctttttctgc ttccacaagt gcttttgtgg aaactgtgaa aggtttggat tataaagcat tcaaacaaat tgttgaatcc tgtggtaatt ttaaagttac
+001801 aaaaggaaaa gctaaaaaag gtgcctggaa tattggtgaa cagaaatcaa tactgagtcc tctttatgca tttgcatcag aggctgctcg tgttgtacga
+001901 tcaattttct cccgcactct tgaaactgct caaaattctg tgcgtgtttt acagaaggcc gctataacaa tactagatgg aatttcacag tattcactga
+002001 gactcattga tgctatgatg ttcacatctg atttggctac taacaatcta gttgtaatgg cctacattac aggtggtgtt gttcagttga cttcgcagtg
+002101 gctaactaac atctttggca ctgtttatga aaaactcaaa cccgtccttg attggcttga agagaagttt aaggaaggtg tagagtttct tagagacggt
+002201 tgggaaattg ttaaatttat ctcaacctgt gcttgtgaaa ttgtcggtgg acaaattgtc acctgtgcaa aggaaattaa ggagagtgtt cagacattct
+002301 ttaagcttgt aaataaattt ttggctttgt gtgctgactc tatcattatt ggtggagcta aacttaaagc cttgaattta ggtgaaacat ttgtcacgca
+002401 ctcaaaggga ttgtacagaa agtgtgttaa atccagagaa gaaactggcc tactcatgcc tctaaaagcc ccaaaagaaa ttatcttctt agagggagaa
+002501 acacttccca cagaagtgtt aacagaggaa gttgtcttga aaactggtga tttacaacca ttagaacaac ctactagtga agctgttgaa gctccattgg
+002601 ttggtacacc agtttgtatt aacgggctta tgttgctcga aatcaaagac acagaaaagt actgtgccct tgcacctaat atgatggtaa caaacaatac
+002701 cttcacactc aaaggcggtg caccaacaaa ggttactttt ggtgatgaca ctgtgataga agtgcaaggt tacaagagtg tgaatatcac ttttgaactt
+002801 gatgaaagga ttgataaagt acttaatgag aagtgctctg cctatacagt tgaactcggt acagaagtaa atgagttcgc ctgtgttgtg gcagatgctg
+002901 tcataaaaac tttgcaacca gtatctgaat tacttacacc actgggcatt gatttagatg agtggagtat ggctacatac tacttatttg atgagtctgg
+003001 tgagtttaaa ttggcttcac atatgtattg ttctttctac cctccagatg aggatgaaga agaaggtgat tgtgaagaag aagagtttga gccatcaact
+003101 caatatgagt atggtactga agatgattac caaggtaaac ctttggaatt tggtgccact tctgctgctc ttcaacctga agaagagcaa gaagaagatt
+003201 ggttagatga tgatagtcaa caaactgttg gtcaacaaga cggcagtgag gacaatcaga caactactat tcaaacaatt gttgaggttc aacctcaatt
+003301 agagatggaa cttacaccag ttgttcagac tattgaagtg aatagtttta gtggttattt aaaacttact gacaatgtat acattaaaaa tgcagacatt
+003401 gtggaagaag ctaaaaaggt aaaaccaaca gtggttgtta atgcagccaa tgtttacctt aaacatggag gaggtgttgc aggagcctta aataaggcta
+003501 ctaacaatgc catgcaagtt gaatctgatg attacatagc tactaatgga ccacttaaag tgggtggtag ttgtgtttta agcggacaca atcttgctaa
+003601 acactgtctt catgttgtcg gcccaaatgt taacaaaggt gaagacattc aacttcttaa gagtgcttat gaaaatttta atcagcacga agttctactt
+003701 gcaccattat tatcagctgg tatttttggt gctgacccta tacattcttt aagagtttgt gtagatactg ttcgcacaaa tgtctactta gctgtctttg
+003801 ataaaaatct ctatgacaaa cttgtttcaa gctttttgga aatgaagagt gaaaagcaag ttgaacaaaa gatcgctgag attcctaaag aggaagttaa
+003901 gccatttata actgaaagta aaccttcagt tgaacagaga aaacaagatg ataagaaaat caaagcttgt gttgaagaag ttacaacaac tctggaagaa
+004001 actaagttcc tcacagaaaa cttgttactt tatattgaca ttaatggcaa tcttcatcca gattctgcca ctcttgttag tgacattgac atcactttct
+004101 taaagaaaga tgctccatat atagtgggtg atgttgttca agagggtgtt ttaactgctg tggttatacc tactaaaaag gctggtggca ctactgaaat
+004201 gctagcgaaa gctttgagaa aagtgccaac agacaattat ataaccactt acccgggtca gggtttaaat ggttacactg tagaggatgc aaagacagtg
+004301 cttaaacagt gtaaaagtgc cttttacatt ctaccatcta ttatctctaa tgagaagcaa gaaattcttg gaactgtttc ttggaatttg cgagaaatgc
+004401 ttgcacatgc agaagaaaca cgcaaattaa tgcctgtctg tgtggaaact aaagccatag tttcaactat acagcgtaaa tataagggta ttaaaataca
+004501 agagggtgtg gttgattatg gtgctagatt ttacttttac accagtaaaa caactgtagc gtcacttatc aacacactta acgatctaaa tgaaactctt
+004601 gttacaatgc cacttggcta tgtaacacat ggcttaaatt tggaagaagc tgctcggtat atgagatctc tcaaagtgcc agctacagtt tctgtttctt
+004701 cacctgatgc tgttacagcg tataatggtt atcttacttc ttcttctaaa acacctgaag aacattttat tgaaaccatc tcacttgctg gttcctataa
+004801 agattggtcc tattctggac aatctacaca actaggtata gaatttctta agagaggtga taaaagtgta tattacacta gtaatcctac cacattccac
+004901 ctagatggtg aagttatcac ctttgacaat cttaagacac ttctttcttt gagagaagtg aggactatta aggtgtttac aacagtagac aacattaacc
+005001 tccacacgca agttgtggac atgtcaatga catatggaca acagtttggt ccaacttatt tggatggagc tgatgttact aaaataaaac ctcataattc
+005101 acatgaaggt aaaacatttt atgttttacc taatgatgac actctacgtg ttgaggcttt tgagtactac cacacaactg atcctagttt tctgggtagg
+005201 tacatgtcag cattaaatca cactaaaaag tggaaatacc cacaagttaa tggtttaact tctattaaat gggcagataa caactgttat cttgccactg
+005301 cattgttaac actccaacaa atagagttga agtttaatcc acctgctcta caagatgctt attacagagc aagggctggt gaagctgcta acttttgtgc
+005401 acttatctta gcctactgta ataagacagt aggtgagtta ggtgatgtta gagaaacaat gagttacttg tttcaacatg ccaatttaga ttcttgcaaa
+005501 agagtcttga acgtggtgtg taaaacttgt ggacaacagc agacaaccct taagggtgta gaagctgtta tgtacatggg cacactttct tatgaacaat
+005601 ttaagaaagg tgttcagata ccttgtacgt gtggtaaaca agctacaaaa tatctagtac aacaggagtc accttttgtt atgatgtcag caccacctgc
+005701 tcagtatgaa cttaagcatg gtacatttac ttgtgctagt gagtacactg gtaattacca gtgtggtcac tataaacata taacttctaa agaaactttg
+005801 tattgcatag acggtgcttt acttacaaag tcctcagaat acaaaggtcc tattacggat gttttctaca aagaaaacag ttacacaaca accataaaac
+005901 cagttactta taaattggat ggtgttgttt gtacagaaat tgaccctaag ttggacaatt attataagaa agacaattct tatttcacag agcaaccaat
+006001 tgatcttgta ccaaaccaac catatccaaa cgcaagcttc gataatttta agtttgtatg tgataatatc aaatttgctg atgatttaaa ccagttaact
+006101 ggttataaga aacctgcttc aagagagctt aaagttacat ttttccctga cttaaatggt gatgtggtgg ctattgatta taaacactac acaccctctt
+006201 ttaagaaagg agctaaattg ttacataaac ctattgtttg gcatgttaac aatgcaacta ataaagccac gtataaacca aatacctggt gtatacgttg
+006301 tctttggagc acaaaaccag ttgaaacatc aaattcgttt gatgtactga agtcagagga cgcgcaggga atggataatc ttgcctgcga agatctaaaa
+006401 ccagtctctg aagaagtagt ggaaaatcct accatacaga aagacgttct tgagtgtaat gtgaaaacta ccgaagttgt aggagacatt atacttaaac
+006501 cagcaaataa tagtttaaaa attacagaag aggttggcca cacagatcta atggctgctt atgtagacaa ttctagtctt actattaaga aacctaatga
+006601 attatctaga gtattaggtt tgaaaaccct tgctactcat ggtttagctg ctgttaatag tgtcccttgg gatactatag ctaattatgc taagcctttt
+006701 cttaacaaag ttgttagtac aactactaac atagttacac ggtgtttaaa ccgtgtttgt actaattata tgccttattt ctttacttta ttgctacaat
+006801 tgtgtacttt tactagaagt acaaattcta gaattaaagc atctatgccg actactatag caaagaatac tgttaagagt gtcggtaaat tttgtctaga
+006901 ggcttcattt aattatttga agtcacctaa tttttctaaa ctgataaata ttataatttg gtttttacta ttaagtgttt gcctaggttc tttaatctac
+007001 tcaaccgctg ctttaggtgt tttaatgtct aatttaggca tgccttctta ctgtactggt tacagagaag gctatttgaa ctctactaat gtcactattg
+007101 caacctactg tactggttct ataccttgta gtgtttgtct tagtggttta gattctttag acacctatcc ttctttagaa actatacaaa ttaccatttc
+007201 atcttttaaa tgggatttaa ctgcttttgg cttagttgca gagtggtttt tggcatatat tcttttcact aggtttttct atgtacttgg attggctgca
+007301 atcatgcaat tgtttttcag ctattttgca gtacatttta ttagtaattc ttggcttatg tggttaataa ttaatcttgt acaaatggcc ccgatttcag
+007401 ctatggttag aatgtacatc ttctttgcat cattttatta tgtatggaaa agttatgtgc atgttgtaga cggttgtagt tcatcaactt gtatgatgtg
+007501 ttacaaacgt aatagagcaa caagagtcga atgtacaact attgttaatg gtgttagaag gtccttttat gtctatgcta atggaggtaa aggcttttgc
+007601 aaactacaca attggaattg tgttaattgt gatacattct gtgctggtag tacatttatt agtgatgaag ttgcgagaga cttgtcacta cagtttaaaa
+007701 gaccaataaa tcctactgac cagtcttctt acatcgttga tagtgttaca gtgaagaatg gttccatcca tctttacttt gataaagctg gtcaaaagac
+007801 ttatgaaaga cattctctct ctcattttgt taacttagac aacctgagag ctaataacac taaaggttca ttgcctatta atgttatagt ttttgatggt
+007901 aaatcaaaat gtgaagaatc atctgcaaaa tcagcgtctg tttactacag tcagcttatg tgtcaaccta tactgttact agatcaggca ttagtgtctg
+008001 atgttggtga tagtgcggaa gttgcagtta aaatgtttga tgcttacgtt aatacgtttt catcaacttt taacgtacca atggaaaaac tcaaaacact
+008101 agttgcaact gcagaagctg aacttgcaaa gaatgtgtcc ttagacaatg tcttatctac ttttatttca gcagctcggc aagggtttgt tgattcagat
+008201 gtagaaacta aagatgttgt tgaatgtctt aaattgtcac atcaatctga catagaagtt actggcgata gttgtaataa ctatatgctc acctataaca
+008301 aagttgaaaa catgacaccc cgtgaccttg gtgcttgtat tgactgtagt gcgcgtcata ttaatgcgca ggtagcaaaa agtcacaaca ttgctttgat
+008401 atggaacgtt aaagatttca tgtcattgtc tgaacaacta cgaaaacaaa tacgtagtgc tgctaaaaag aataacttac cttttaagtt gacatgtgca
+008501 actactagac aagttgttaa tgttgtaaca acaaagatag cacttaaggg tggtaaaatt gttaataatt ggttgaagca gttaattaaa gttacacttg
+008601 tgttcctttt tgttgctgct attttctatt taataacacc tgttcatgtc atgtctaaac atactgactt ttcaagtgaa atcataggat acaaggctat
+008701 tgatggtggt gtcactcgtg acatagcatc tacagatact tgttttgcta acaaacatgc tgattttgac acatggttta gtcagcgtgg tggtagttat
+008801 actaatgaca aagcttgccc attgattgct gcagtcataa caagagaagt gggttttgtc gtgcctggtt tgcctggcac gatattacgc acaactaatg
+008901 gtgacttttt gcatttctta cctagagttt ttagtgcagt tggtaacatc tgttacacac catcaaaact tatagagtac actgactttg caacatcagc
+009001 ttgtgttttg gctgctgaat gtacaatttt taaagatgct tctggtaagc cagtaccata ttgttatgat accaatgtac tagaaggttc tgttgcttat
+009101 gaaagtttac gccctgacac acgttatgtg ctcatggatg gctctattat tcaatttcct aacacctacc ttgaaggttc tgttagagtg gtaacaactt
+009201 ttgattctga gtactgtagg cacggcactt gtgaaagatc agaagctggt gtttgtgtat ctactagtgg tagatgggta cttaacaatg attattacag
+009301 atctttacca ggagttttct gtggtgtaga tgctgtaaat ttacttacta atatgtttac accactaatt caacctattg gtgctttgga catatcagca
+009401 tctatagtag ctggtggtat tgtagctatc gtagtaacat gccttgccta ctattttatg aggtttagaa gagcttttgg tgaatacagt catgtagttg
+009501 cctttaatac tttactattc cttatgtcat tcactgtact ctgtttaaca ccagtttact cattcttacc tggtgtttat tctgttattt acttgtactt
+009601 gacattttat cttactaatg atgtttcttt tttagcacat attcagtgga tggttatgtt cacaccttta gtacctttct ggataacaat tgcttatatc
+009701 atttgtattt ccacaaagca tttctattgg ttctttagta attacctaaa gagacgtgta gtctttaatg gtgtttcctt tagtactttt gaagaagctg
+009801 cgctgtgcac ctttttgtta aataaagaaa tgtatctaaa gttgcgtagt gatgtgctat tacctcttac gcaatataat agatacttag ctctttataa
+009901 taagtacaag tattttagtg gagcaatgga tacaactagc tacagagaag ctgcttgttg tcatctcgca aaggctctca atgacttcag taactcaggt
+010001 tctgatgttc tttaccaacc accacaaacc tctatcacct cagctgtttt gcagagtggt tttagaaaaa tggcattccc atctggtaaa gttgagggtt
+010101 gtatggtaca agtaacttgt ggtacaacta cacttaacgg tctttggctt gatgacgtag tttactgtcc aagacatgtg atctgcacct ctgaagacat
+010201 gcttaaccct aattatgaag atttactcat tcgtaagtct aatcataatt tcttggtaca ggctggtaat gttcaactca gggttattgg acattctatg
+010301 caaaattgtg tacttaagct taaggttgat acagccaatc ctaagacacc taagtataag tttgttcgca ttcaaccagg acagactttt tcagtgttag
+010401 cttgttacaa tggttcacca tctggtgttt accaatgtgc tatgaggccc aatttcacta ttaagggttc attccttaat ggttcatgtg gtagtgttgg
+010501 ttttaacata gattatgact gtgtctcttt ttgttacatg caccatatgg aattaccaac tggagttcat gctggcacag acttagaagg taacttttat
+010601 ggaccttttg ttgacaggca aacagcacaa gcagctggta cggacacaac tattacagtt aatgttttag cttggttgta cgctgctgtt ataaatggag
+010701 acaggtggtt tctcaatcga tttaccacaa ctcttaatga ctttaacctt gtggctatga agtacaatta tgaacctcta acacaagacc atgttgacat
+010801 actaggacct ctttctgctc aaactggaat tgccgtttta gatatgtgtg cttcattaaa agaattactg caaaatggta tgaatggacg taccatattg
+010901 ggtagtgctt tattagaaga tgaatttaca ccttttgatg ttgttagaca atgctcaggt gttactttcc aaagtgcagt gaaaagaaca atcaagggta
+011001 cacaccactg gttgttactc acaattttga cttcactttt agttttagtc cagagtactc aatggtcttt gttctttttt ttttatgaaa atgccttttt
+011101 accttttgct atgggtatta ttgctatgtc tgcttttgca atgatgtttg tcaaacataa gcatgcattt ctctgtttgt ttttgttacc ttctcttgcc
+011201 actgtacctt attttaatat ggtctatatg ccggctagtt gggtgatgcg tattatgaca tggttggata tggttgatac tagtttgtct ggttttaagc
+011301 taaaagactg tgttatgtat gcatcagctg tagtgttact aatccttatg acagcaagaa ctgtgtatga tgatggtgct aggagagtgt ggacacttat
+011401 gaatgtcttg acactcgttt ataaagttta ttatggtaat gctttagatc aagccatttc catgtgggct cttataatct ctgttacttc taactactca
+011501 ggtgtagtta caactgtcat gtttttggcc agaggtattg tttttatgtg tgttgagtat tgccctattt tcttcataac tggtaataca cttcagtgta
+011601 taatgctagt ttattgtttc ttaggctatt tttgtacttg ttactttggc ctcttttgtt tactcaaccg ctactttaga ctgactcttg gtgtttatga
+011701 ttacttagtt tctacacagg agtttagata tatgaattca cagggactac tcccacccaa gaatagcata gatgccttca aactcaacat taaattgttg
+011801 ggtgttggtg gcaaaccttg tatcaaagta gccactgtac agtctaaaat gtcagatgta aagtgcacat cagtagtctt actctcagtt ttgcaacaac
+011901 tcagagtaga atcatcatct aaattgtggg ctcaatgtgt ccagttacac aatgacattc tcttagctaa agatactact gaagcctttg aaaaaatggt
+012001 ttcactactt tctgttttgc tttccatgca gggtgctgta cacataaaca agctttgtga agaaatgctg gacaacaggg caaccttaca agctatagcc
+012101 tcagagttta gttcccttcc atcatatgca gcttttgcta ctgctcaaga agcttatgac caggctgttg ctaatggtga ttctgaagtt gttcttaaaa
+012201 acttgaataa gtctttgaat gtggctaaat ctgaatttga ccgtgatgca gccatgcaac gtaagttgga aaagatggct gatcaagcta tgacccaaat
+012301 gtataaacag gctagatctg aggacaagag ggcaaaagtt actagtgcta tgcacacaat gcttttcact atgcttaaaa agttggataa tgatgcactc
+012401 aacaacatta tcaacaatgc aagagatggt tgtgttccct tgaacataat acctcttaca acatcatcca aactaatggt tgtcatacca tactataaca
+012501 catataaaaa tacctgtgat ggtacaacat ttacttatgc atcagcattg tgggaaatcc aacaggttgt atatgcatat attaaaattg ttcaacttaa
+012601 tgaaattagt atggacaatt cacctaattt agcatggcct cttattgtaa cagctttaac ggccaattct gctgtcaaat tacacaataa tgagcttagt
+012701 cctgttgcac tacgacagat gtcttgtgct gccggtacta cacaaactgc ttgcactgat gacaatgcgt tatcttacta caacacaaca aatggaggta
+012801 ggtttgtact tgcactgtta tccgatttac aggatttgaa atgggctaga ttccctaaga gtgatggaac tggtactatc tatacagaac tggaaccacc
+012901 ttgtaggttt gttacagaca cacctaaagg tcctaaagtg aagtatttat actttattaa aggattaaac aacctaaata gaggtatggt acttggtagt
+013001 ttagctgcca cagtacgtct acaagctggt aatgcaacag aagtgcctgc caattcaact gtattatctt tctgtgcttt tgctgtagat gctgctaaag
+013101 cttacaaaga ttatctagct agtgggggac aaccaatcac taattgtgtt aagatgttgt gtacacacac tggtactggt caggcaataa cagttacacc
+013201 ggaagccaat atggatcaag aatcctttgg tggtgcatcg tgttgtctgt actgccgttg ccacatagat catccaaatc ctaaaggatt ttgtgactta
+013301 aaaggtaagt atgtacaaat acctacaact tgtgctaatg accctgtggg ttttacactt aaaaacacag tctgtaccgt ctgcggtatg tggaaaggtt
+013401 atggctgtag ttgtgatcaa ctccgcgaac ccatgcttca gtcagctgat gcacaatcgt ttttaaacgg gtttgcggtg taagtgcagc ccgtcttaca
+013501 ccgtgcggca caggcactag tactgatgtc gtatacaggg cttttgacat ctacaatgat aaagtagctg gttttgctaa attcctaaaa actaattgtt
+013601 gtcgcttcca agaaaaggac gaagatgaca atttaattga ttcttacttt gtagttaaga gacacacttt ctctaactac caacatgaag aaacaattta
+013701 taatttactt aaggattgtc cagctgttgc taaacatgac ttctttaagt ttagaataga cggtgacatg gtaccacata tatcacgtca acgtcttact
+013801 aaatacacaa tggcagacct cgtctatgct ttaaggcatt ttgatgaagg taattgtgac acattaaaag aaatacttgt cacatacaat tgttgtgatg
+013901 atgattattt caataaaaag gactggtatg attttgtaga aaacccagat atattacgcg tatacgccaa cttaggtgaa cgtgtacgcc aagctttgtt
+014001 aaaaacagta caattctgtg atgccatgcg aaatgctggt attgttggtg tactgacatt agataatcaa gatctcaatg gtaactggta tgatttcggt
+014101 gatttcatac aaaccacgcc aggtagtgga gttcctgttg tagattctta ttattcattg ttaatgccta tattaacctt gaccagggct ttaactgcag
+014201 agtcacatgt tgacactgac ttaacaaagc cttacattaa gtgggatttg ttaaaatatg acttcacgga agagaggtta aaactctttg accgttattt
+014301 taaatattgg gatcagacat accacccaaa ttgtgttaac tgtttggatg acagatgcat tctgcattgt gcaaacttta atgttttatt ctctacagtg
+014401 ttcccaccta caagttttgg accactagtg agaaaaatat ttgttgatgg tgttccattt gtagtttcaa ctggatacca cttcagagag ctaggtgttg
+014501 tacataatca ggatgtaaac ttacatagct ctagacttag ttttaaggaa ttacttgtgt atgctgctga ccctgctatg cacgctgctt ctggtaatct
+014601 attactagat aaacgcacta cgtgcttttc agtagctgca cttactaaca atgttgcttt tcaaactgtc aaacccggta attttaacaa agacttctat
+014701 gactttgctg tgtctaaggg tttctttaag gaaggaagtt ctgttgaatt aaaacacttc ttctttgctc aggatggtaa tgctgctatc agcgattatg
+014801 actactatcg ttataatcta ccaacaatgt gtgatatcag acaactacta tttgtagttg aagttgttga taagtacttt gattgttacg atggtggctg
+014901 tattaatgct aaccaagtca tcgtcaacaa cctagacaaa tcagctggtt ttccatttaa taaatggggt aaggctagac tttattatga ttcaatgagt
+015001 tatgaggatc aagatgcact tttcgcatat acaaaacgta atgtcatccc tactataact caaatgaatc ttaagtatgc cattagtgca aagaatagag
+015101 ctcgcaccgt agctggtgtc tctatctgta gtactatgac caatagacag tttcatcaaa aattattgaa atcaatagcc gccactagag gagctactgt
+015201 agtaattgga acaagcaaat tctatggtgg ttggcacaac atgttaaaaa ctgtttatag tgatgtagaa aaccctcacc ttatgggttg ggattatcct
+015301 aaatgtgata gagccatgcc taacatgctt agaattatgg cctcacttgt tcttgctcgc aaacatacaa cgtgttgtag cttgtcacac cgtttctata
+015401 gattagctaa tgagtgtgct caagtattga gtgaaatggt catgtgtggc ggttcactat atgttaaacc aggtggaacc tcatcaggag atgccacaac
+015501 tgcttatgct aatagtgttt ttaacatttg tcaagctgtc acggccaatg ttaatgcact tttatctact gatggtaaca aaattgccga taagtatgtc
+015601 cgcaatttac aacacagact ttatgagtgt ctctatagaa atagagatgt tgacacagac tttgtgaatg agttttacgc atatttgcgt aaacatttct
+015701 caatgatgat actctctgac gatgctgttg tgtgtttcaa tagcacttat gcatctcaag gtctagtggc tagcataaag aactttaagt cagttcttta
+015801 ttatcaaaac aatgttttta tgtctgaagc aaaatgttgg actgagactg accttactaa aggacctcat gaattttgct ctcaacatac aatgctagtt
+015901 aaacagggtg atgattatgt gtaccttcct tacccagatc catcaagaat cctaggggcc ggctgttttg tagatgatat cgtaaaaaca gatggtacac
+016001 ttatgattga acggttcgtg tctttagcta tagatgctta cccacttact aaacatccta atcaggagta tgctgatgtc tttcatttgt acttacaata
+016101 cataagaaag ctacatgatg agttaacagg acacatgtta gacatgtatt ctgttatgct tactaatgat aacacttcaa ggtattggga acctgagttt
+016201 tatgaggcta tgtacacacc gcatacagtc ttacaggctg ttggggcttg tgttctttgc aattcacaga cttcattaag atgtggtgct tgcatacgta
+016301 gaccattctt atgttgtaaa tgctgttacg accatgtcat atcaacatca cataaattag tcttgtctgt taatccgtat gtttgcaatg ctccaggttg
+016401 tgatgtcaca gatgtgactc aactttactt aggaggtatg agctattatt gtaaatcaca taaaccaccc attagttttc cattgtgtgc taatggacaa
+016501 gtttttggtt tatataaaaa tacatgtgtt ggtagcgata atgttactga ctttaatgca attgcaacat gtgactggac aaatgctggt gattacattt
+016601 tagctaacac ctgtactgaa agactcaagc tttttgcagc agaaacgctc aaagctactg aggagacatt taaactgtct tatggtattg ctactgtacg
+016701 tgaagtgctg tctgacagag aattacatct ttcatgggaa gttggtaaac ctagaccacc acttaaccga aattatgtct ttactggtta tcgtgtaact
+016801 aaaaacagta aagtacaaat aggagagtac acctttgaaa aaggtgacta tggtgatgct gttgtttacc gaggtacaac aacttacaaa ttaaatgttg
+016901 gtgattattt tgtgctgaca tcacatacag taatgccatt aagtgcacct acactagtgc cacaagagca ctatgttaga attactggct tatacccaac
+017001 actcaatatc tcagatgagt tttctagcaa tgttgcaaat tatcaaaagg ttggtatgca aaagtattct acactccagg gaccacctgg tactggtaag
+017101 agtcattttg ctattggcct agctctctac tacccttctg ctcgcatagt gtatacagct tgctctcatg ccgctgttga tgcactatgt gagaaggcat
+017201 taaaatattt gcctatagat aaatgtagta gaattatacc tgcacgtgct cgtgtagagt gttttgataa attcaaagtg aattcaacat tagaacagta
+017301 tgtcttttgt actgtaaatg cattgcctga gacgacagca gatatagttg tctttgatga aatttcaatg gccacaaatt atgatttgag tgttgtcaat
+017401 gccagattac gtgctaagca ctatgtgtac attggcgacc ctgctcaatt acctgcacca cgcacattgc taactaaggg cacactagaa ccagaatatt
+017501 tcaattcagt gtgtagactt atgaaaacta taggtccaga catgttcctc ggaacttgtc ggcgttgtcc tgctgaaatt gttgacactg tgagtgcttt
+017601 ggtttatgat aataagctta aagcacataa agacaaatca gctcaatgct ttaaaatgtt ttataagggt gttatcacgc atgatgtttc atctgcaatt
+017701 aacaggccac aaataggcgt ggtaagagaa ttccttacac gtaaccctgc ttggagaaaa gctgtcttta tttcacctta taattcacag aatgctgtag
+017801 cctcaaagat tttgggacta ccaactcaaa ctgttgattc atcacagggc tcagaatatg actatgtcat attcactcaa accactgaaa cagctcactc
+017901 ttgtaatgta aacagattta atgttgctat taccagagca aaagtaggca tactttgcat aatgtctgat agagaccttt atgacaagtt gcaatttaca
+018001 agtcttgaaa ttccacgtag gaatgtggca actttacaag ctgaaaatgt aacaggactc tttaaagatt gtagtaaggt aatcactggg ttacatccta
+018101 cacaggcacc tacacacctc agtgttgaca ctaaattcaa aactgaaggt ttatgtgttg acatacctgg catacctaag gacatgacct atagaagact
+018201 catctctatg atgggtttta aaatgaatta tcaagttaat ggttacccta acatgtttat cacccgcgaa gaagctataa gacatgtacg tgcatggatt
+018301 ggcttcgatg tcgaggggtg tcatgctact agagaagctg ttggtaccaa tttaccttta cagctaggtt tttctacagg tgttaaccta gttgctgtac
+018401 ctacaggtta tgttgataca cctaataata cagatttttc cagagttagt gctaaaccac cgcctggaga tcaatttaaa cacctcatac cacttatgta
+018501 caaaggactt ccttggaatg tagtgcgtat aaagattgta caaatgttaa gtgacacact taaaaatctc tctgacagag tcgtatttgt cttatgggca
+018601 catggctttg agttgacatc tatgaagtat tttgtgaaaa taggacctga gcgcacctgt tgtctatgtg atagacgtgc cacatgcttt tccactgctt
+018701 cagacactta tgcctgttgg catcattcta ttggatttga ttacgtctat aatccgttta tgattgatgt tcaacaatgg ggttttacag gtaacctaca
+018801 aagcaaccat gatctgtatt gtcaagtcca tggtaatgca catgtagcta gttgtgatgc aatcatgact aggtgtctag ctgtccacga gtgctttgtt
+018901 aagcgtgttg actggactat tgaatatcct ataattggtg atgaactgaa gattaatgcg gcttgtagaa aggttcaaca catggttgtt aaagctgcat
+019001 tattagcaga caaattccca gttcttcacg acattggtaa ccctaaagct attaagtgtg tacctcaagc tgatgtagaa tggaagttct atgatgcaca
+019101 gccttgtagt gacaaagctt ataaaataga agaattattc tattcttatg ccacacattc tgacaaattc acagatggtg tatgcctatt ttggaattgc
+019201 aatgtcgata gatatcctgc taattccatt gtttgtagat ttgacactag agtgctatct aaccttaact tgcctggttg tgatggtggc agtttgtatg
+019301 taaataaaca tgcattccac acaccagctt ttgataaaag tgcttttgtt aatttaaaac aattaccatt tttctattac tctgacagtc catgtgagtc
+019401 tcatggaaaa caagtagtgt cagatataga ttatgtacca ctaaagtctg ctacgtgtat aacacgttgc aatttaggtg gtgctgtctg tagacatcat
+019501 gctaatgagt acagattgta tctcgatgct tataacatga tgatctcagc tggctttagc ttgtgggttt acaaacaatt tgatacttat aacctctgga
+019601 acacttttac aagacttcag agtttagaaa atgtggcttt taatgttgta aataagggac actttgatgg acaacagggt gaagtaccag tttctatcat
+019701 taataacact gtttacacaa aagttgatgg tgttgatgta gaattgtttg aaaataaaac aacattacct gttaatgtag catttgagct ttgggctaag
+019801 cgcaacatta aaccagtacc agaggtgaaa atactcaata atttgggtgt ggacattgct gctaatactg tgatctggga ctacaaaaga gatgctccag
+019901 cacatatatc tactattggt gtttgttcta tgactgacat agccaagaaa ccaactgaaa cgatttgtgc accactcact gtcttttttg atggtagagt
+020001 tgatggtcaa gtagacttat ttagaaatgc ccgtaatggt gttcttatta cagaaggtag tgttaaaggt ttacaaccat ctgtaggtcc caaacaagct
+020101 agtcttaatg gagtcacatt aattggagaa gccgtaaaaa cacagttcaa ttattataag aaagttgatg gtgttgtcca acaattacct gaaacttact
+020201 ttactcagag tagaaattta caagaattta aacccaggag tcaaatggaa attgatttct tagaattagc tatggatgaa ttcattgaac ggtataaatt
+020301 agaaggctat gccttcgaac atatcgttta tggagatttt agtcatagtc agttaggtgg tttacatcta ctgattggac tagctaaacg ttttaaggaa
+020401 tcaccttttg aattagaaga ttttattcct atggacagta cagttaaaaa ctatttcata acagatgcgc aaacaggttc atctaagtgt gtgtgttctg
+020501 ttattgattt attacttgat gattttgttg aaataataaa atcccaagat ttatctgtag tttctaaggt tgtcaaagtg actattgact atacagaaat
+020601 ttcatttatg ctttggtgta aagatggcca tgtagaaaca ttttacccaa aattacaatc tagtcaagcg tggcaaccgg gtgttgctat gcctaatctt
+020701 tacaaaatgc aaagaatgct attagaaaag tgtgaccttc aaaattatgg tgatagtgca acattaccta aaggcataat gatgaatgtc gcaaaatata
+020801 ctcaactgtg tcaatattta aacacattaa cattagctgt accctataat atgagagtta tacattttgg tgctggttct gataaaggag ttgcaccagg
+020901 tacagctgtt ttaagacagt ggttgcctac gggtacgctg cttgtcgatt cagatcttaa tgactttgtc tctgatgcac attcaacttt gattggtgat
+021001 tgtgcaactg tacatacagc taataaatgg gatctcatta ttagtgatat gtacgaccct aagactaaaa atgttacaaa agaaaatgac tctaaagagg
+021101 gttttttcac ttacatttgt gggtttatac aacaaaagct agctcttgga ggttccgtgg ctataaagat aacagaacat tcttggaatg ctgatcttta
+021201 taagctcatg ggacacttcg catggtggac agcctttgtt actaatgtga atgcgtcatc atctgaagca tttttaattg gatgtaatta tcttggcaaa
+021301 ccacgcgaac aaatagatgg ttatgtcatg catgcaaatt acatattttg gaggaataca aatccaattc agttgtcttc ctattcttta tttgacatga
+021401 gtaaatttcc ccttaaatta aggggtactg ctgttatgtc tttaaaagaa ggtcaaatca atgatatgat tttatctctt cttagtaaag gtagacttat
+021501 aattagagaa aacaacagag ttgttatttc tagtgatgtt cttgttaaca actaaacgaa caatgtttgt ttttcttgtt ttattgccac tagtctctag
+021601 tcagtgtgtt aatcttacaa ccagaactca attaccccct gcatacacta attctttcac acgtggtgtt tattaccctg acaaagtttt cagatcctca
+021701 gttttacatt caactcagga cttgttctta cctttctttt ccaatgttac ttggttccat gctatacatg tctctgggac caaaggtact aagaggtttg
+021801 ataaccctgt cctaccattt aatgatggtg tttattttgc ttccactgag aagtctaaca taataagagg ctggattttt ggtactactt tagattcgaa
+021901 gacccagtcc ctacttattg ttaataacgc tactaatgtt gttattaaag tctgtgaatt tcaattttgt aatgatccat ttttgggtgt ttattaccac
+022001 aaaaacaaca aaagttggat ggaaagtgag ttcagagttt attctagtgc gaataattgc acttttgaat atgtctctca gccttttctt atggaccttg
+022101 aaggaaaaca gggtaatttc aaaaatctta gggaatttgt gtttaagaat attgatggtt attttaaaat atattctaag cacacgccta ttaatttagt
+022201 gcgtgatctc cctcagggtt tttcggcttt agaaccattg gtagatttgc caataggtat taacatcact aggtttcaaa ctttacttgc tttacataga
+022301 agttatttga ctcctggtga ttcttcttca ggttggacag ctggtgctgc agcttattat gtgggttatc ttcaacctag gacttttcta ttaaaatata
+022401 atgaaaatgg aaccattaca gatgctgtag actgtgcact tgaccctctc tcagaaacaa agtgtacgtt gaaatccttc actgtagaaa aaggaatcta
+022501 tcaaacttct aactttagag tccaaccaac agaatctatt gttagatttc ctaatattac aaacttgtgc ccttttggtg aagtttttaa cgccaccaga
+022601 tttgcatctg tttatgcttg gaacaggaag agaatcagca actgtgttgc tgattattct gtcctatata attccgcatc attttccact tttaagtgtt
+022701 atggagtgtc tcctactaaa ttaaatgatc tctgctttac taatgtctat gcagattcat ttgtaattag aggtgatgaa gtcagacaaa tcgctccagg
+022801 gcaaactgga aagattgctg attataatta taaattacca gatgatttta caggctgcgt tatagcttgg aattctaaca atcttgattc taaggttggt
+022901 ggtaattata attacctgta tagattgttt aggaagtcta atctcaaacc ttttgagaga gatatttcaa ctgaaatcta tcaggccggt agcacacctt
+023001 gtaatggtgt tgaaggtttt aattgttact ttcctttaca atcatatggt ttccaaccca ctaatggtgt tggttaccaa ccatacagag tagtagtact
+023101 ttcttttgaa cttctacatg caccagcaac tgtttgtgga cctaaaaagt ctactaattt ggttaaaaac aaatgtgtca atttcaactt caatggttta
+023201 acaggcacag gtgttcttac tgagtctaac aaaaagtttc tgcctttcca acaatttggc agagacattg ctgacactac tgatgctgtc cgtgatccac
+023301 agacacttga gattcttgac attacaccat gttcttttgg tggtgtcagt gttataacac caggaacaaa tacttctaac caggttgctg ttctttatca
+023401 ggatgttaac tgcacagaag tccctgttgc tattcatgca gatcaactta ctcctacttg gcgtgtttat tctacaggtt ctaatgtttt tcaaacacgt
+023501 gcaggctgtt taataggggc tgaacatgtc aacaactcat atgagtgtga catacccatt ggtgcaggta tatgcgctag ttatcagact cagactaatt
+023601 ctcctcggcg ggcacgtagt gtagctagtc aatccatcat tgcctacact atgtcacttg gtgcagaaaa ttcagttgct tactctaata actctattgc
+023701 catacccaca aattttacta ttagtgttac cacagaaatt ctaccagtgt ctatgaccaa gacatcagta gattgtacaa tgtacatttg tggtgattca
+023801 actgaatgca gcaatctttt gttgcaatat ggcagttttt gtacacaatt aaaccgtgct ttaactggaa tagctgttga acaagacaaa aacacccaag
+023901 aagtttttgc acaagtcaaa caaatttaca aaacaccacc aattaaagat tttggtggtt ttaatttttc acaaatatta ccagatccat caaaaccaag
+024001 caagaggtca tttattgaag atctactttt caacaaagtg acacttgcag atgctggctt catcaaacaa tatggtgatt gccttggtga tattgctgct
+024101 agagacctca tttgtgcaca aaagtttaac ggccttactg ttttgccacc tttgctcaca gatgaaatga ttgctcaata cacttctgca ctgttagcgg
+024201 gtacaatcac ttctggttgg acctttggtg caggtgctgc attacaaata ccatttgcta tgcaaatggc ttataggttt aatggtattg gagttacaca
+024301 gaatgttctc tatgagaacc aaaaattgat tgccaaccaa tttaatagtg ctattggcaa aattcaagac tcactttctt ccacagcaag tgcacttgga
+024401 aaacttcaag atgtggtcaa ccaaaatgca caagctttaa acacgcttgt taaacaactt agctccaatt ttggtgcaat ttcaagtgtt ttaaatgata
+024501 tcctttcacg tcttgacaaa gttgaggctg aagtgcaaat tgataggttg atcacaggca gacttcaaag tttgcagaca tatgtgactc aacaattaat
+024601 tagagctgca gaaatcagag cttctgctaa tcttgctgct actaaaatgt cagagtgtgt acttggacaa tcaaaaagag ttgatttttg tggaaagggc
+024701 tatcatctta tgtccttccc tcagtcagca cctcatggtg tagtcttctt gcatgtgact tatgtccctg cacaagaaaa gaacttcaca actgctcctg
+024801 ccatttgtca tgatggaaaa gcacactttc ctcgtgaagg tgtctttgtt tcaaatggca cacactggtt tgtaacacaa aggaattttt atgaaccaca
+024901 aatcattact acagacaaca catttgtgtc tggtaactgt gatgttgtaa taggaattgt caacaacaca gtttatgatc ctttgcaacc tgaattagac
+025001 tcattcaagg aggagttaga taaatatttt aagaatcata catcaccaga tgttgattta ggtgacatct ctggcattaa tgcttcagtt gtaaacattc
+025101 aaaaagaaat tgaccgcctc aatgaggttg ccaagaattt aaatgaatct ctcatcgatc tccaagaact tggaaagtat gagcagtata taaaatggcc
+025201 atggtacatt tggctaggtt ttatagctgg cttgattgcc atagtaatgg tgacaattat gctttgctgt atgaccagtt gctgtagttg tctcaagggc
+025301 tgttgttctt gtggatcctg ctgcaaattt gatgaagacg actctgagcc agtgctcaaa ggagtcaaat tacattacac ataaacgaac ttatggattt
+025401 gtttatgaga atcttcacaa ttggaactgt aactttgaag caaggtgaaa tcaaggatgc tactccttca gattttgttc gcgctactgc aacgataccg
+025501 atacaagcct cactcccttt cggatggctt attgttggcg ttgcacttct tgctgttttt cagagcgctt ccaaaatcat aaccctcaaa aagagatggc
+025601 aactagcact ctccaagggt gttcactttg tttgcaactt gctgttgttg tttgtaacag tttactcaca ccttttgctc gttgctgctg gccttgaagc
+025701 cccttttctc tatctttatg ctttagtcta cttcttgcag agtataaact ttgtaagaat aataatgagg ctttggcttt gctggaaatg ccgttccaaa
+025801 aacccattac tttatgatgc caactatttt ctttgctggc atactaattg ttacgactat tgtatacctt acaatagtgt aacttcttca attgtcatta
+025901 cttcaggtga tggcacaaca agtcctattt ctgaacatga ctaccagatt ggtggttata ctgaaaaatg ggaatctgga gtaaaagact gtgttgtatt
+026001 acacagttac ttcacttcag actattacca gctgtactca actcaattga gtacagacac tggtgttgaa catgttacct tcttcatcta caataaaatt
+026101 gttgatgagc ctgaagaaca tgtccaaatt cacacaatcg acggttcatc cggagttgtt aatccagtaa tggaaccaat ttatgatgaa ccgacgacga
+026201 ctactagcgt gcctttgtaa gcacaagctg atgagtacga acttatgtac tcattcgttt cggaagagac aggtacgtta atagttaata gcgtacttct
+026301 ttttcttgct ttcgtggtat tcttgctagt tacactagcc atccttactg cgcttcgatt gtgtgcgtac tgctgcaata ttgttaacgt gagtcttgta
+026401 aaaccttctt tttacgttta ctctcgtgtt aaaaatctga attcttctag agttcctgat cttctggtct aaacgaacta aatattatat tagtttttct
+026501 gtttggaact ttaattttag ccatggcaga ttccaacggt actattaccg ttgaagagct taaaaagctc cttgaacaat ggaacctagt aataggtttc
+026601 ctattcctta catggatttg tcttctacaa tttgcctatg ccaacaggaa taggtttttg tatataatta agttaatttt cctctggctg ttatggccag
+026701 taactttagc ttgttttgtg cttgctgctg tttacagaat aaattggatc accggtggaa ttgctatcgc aatggcttgt cttgtaggct tgatgtggct
+026801 cagctacttc attgcttctt tcagactgtt tgcgcgtacg cgttccatgt ggtcattcaa tccagaaact aacattcttc tcaacgtgcc actccatggc
+026901 actattctga ccagaccgct tctagaaagt gaactcgtaa tcggagctgt gatccttcgt ggacatcttc gtattgctgg acaccatcta ggacgctgtg
+027001 acatcaagga cctgcctaaa gaaatcactg ttgctacatc acgaacgctt tcttattaca aattgggagc ttcgcagcgt gtagcaggtg actcaggttt
+027101 tgctgcatac agtcgctaca ggattggcaa ctataaatta aacacagacc attccagtag cagtgacaat attgctttgc ttgtacagta agtgacaaca
+027201 gatgtttcat ctcgttgact ttcaggttac tatagcagag atattactaa ttattatgag gacttttaaa gtttccattt ggaatcttga ttacatcata
+027301 aacctcataa ttaaaaattt atctaagtca ctaactgaga ataaatattc tcaattagat gaagagcaac caatggagat tgattaaacg aacatgaaaa
+027401 ttattctttt cttggcactg ataacactcg ctacttgtga gctttatcac taccaagagt gtgttagagg tacaacagta cttttaaaag aaccttgctc
+027501 ttctggaaca tacgagggca attcaccatt tcatcctcta gctgataaca aatttgcact gacttgcttt agcactcaat ttgcttttgc ttgtcctgac
+027601 ggcgtaaaac acgtctatca gttacgtgcc agatcagttt cacctaaact gttcatcaga caagaggaag ttcaagaact ttactctcca atttttctta
+027701 ttgttgcggc aatagtgttt ataacacttt gcttcacact caaaagaaag acagaatgat tgaactttca ttaattgact tctatttgtg ctttttagcc
+027801 tttctgctat tccttgtttt aattatgctt attatctttt ggttctcact tgaactgcaa gatcataatg aaacttgtca cgcctaaacg aacatgaaat
+027901 ttcttgtttt cttaggaatc atcacaactg tagctgcatt tcaccaagaa tgtagtttac agtcatgtac tcaacatcaa ccatatgtag ttgatgaccc
+028001 gtgtcctatt cacttctatt ctaaatggta tattagagta ggagctagaa aatcagcacc tttaattgaa ttgtgcgtgg atgaggctgg ttctaaatca
+028101 cccattcagt acatcgatat cggtaattat acagtttcct gttcaccttt tacaattaat tgccaggaac ctaaattggg tagtcttgta gtgcgttgtt
+028201 cgttctatga agacttttta gagtatcatg acgttcgtgt tgttttagat ttcatctaaa cgaacaaact aaaatgtctg ataatggacc ccaaaatcag
+028301 cgaaatgcac cccgcattac gtttggtgga ccctcagatt caactggcag taaccagaat ggagaacgca gtggggcgcg atcaaaacaa cgtcggcccc
+028401 aaggtttacc caataatact gcgtcttggt tcaccgctct cactcaacat ggcaaggaag accttaaatt ccctcgagga caaggcgttc caattaacac
+028501 caatagcagt ccagatgacc aaattggcta ctaccgaaga gctaccagac gaattcgtgg tggtgacggt aaaatgaaag atctcagtcc aagatggtat
+028601 ttctactacc taggaactgg gccagaagct ggacttccct atggtgctaa caaagacggc atcatatggg ttgcaactga gggagccttg aatacaccaa
+028701 aagatcacat tggcacccgc aatcctgcta acaatgctgc aatcgtgcta caacttcctc aaggaacaac attgccaaaa ggcttctacg cagaagggag
+028801 cagaggcggc agtcaagcct cttctcgttc ctcatcacgt agtcgcaaca gttcaagaaa ttcaactcca ggcagcagta ggggaacttc tcctgctaga
+028901 atggctggca atggcggtga tgctgctctt gctttgctgc tgcttgacag attgaaccag cttgagagca aaatgtctgg taaaggccaa caacaacaag
+029001 gccaaactgt cactaagaaa tctgctgctg aggcttctaa gaagcctcgg caaaaacgta ctgccactaa agcatacaat gtaacacaag ctttcggcag
+029101 acgtggtcca gaacaaaccc aaggaaattt tggggaccag gaactaatca gacaaggaac tgattacaaa cattggccgc aaattgcaca atttgccccc
+029201 agcgcttcag cgttcttcgg aatgtcgcgc attggcatgg aagtcacacc ttcgggaacg tggttgacct acacaggtgc catcaaattg gatgacaaag
+029301 atccaaattt caaagatcaa gtcattttgc tgaataagca tattgacgca tacaaaacat tcccaccaac agagcctaaa aaggacaaaa agaagaaggc
+029401 tgatgaaact caagccttac cgcagagaca gaagaaacag caaactgtga ctcttcttcc tgctgcagat ttggatgatt tctccaaaca attgcaacaa
+029501 tccatgagca gtgctgactc aactcaggcc taaactcatg cagaccacac aaggcagatg ggctatataa acgttttcgc ttttccgttt acgatatata
+029601 gtctactctt gtgcagaatg aattctcgta actacatagc acaagtagat gtagttaact ttaatctcac atagcaatct ttaatcagtg tgtaacatta
+029701 gggaggactt gaaagagcca ccacattttc accgaggcca cgcggagtac gatcgagtgt acagtgaaca atgctaggga gagctgccta tatggaagag
+029801 ccctaatgtg taaaattaat tttagtagtg ctatccccat gtgattttaa tagcttctta ggagaatgac aaaaaaaaaa aaaaaaaaaa aaaaaaaaa</SequenceFormattedString>
+  <SequenceNamedRegionList>
+    <iDnaRegionIndex>
+      <EndIndex>265</EndIndex>
+      <MaxLimit>29899</MaxLimit>
+      <MinLimit>1</MinLimit>
+      <StartIndex>1</StartIndex>
+      <Description i:nil="true" />
+      <Name>5'UTR</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>21555</EndIndex>
+      <MaxLimit>29899</MaxLimit>
+      <MinLimit>1</MinLimit>
+      <StartIndex>266</StartIndex>
+      <Description>CDS             join(266..13468,13468..21555)
+                     /gene="orf1ab"
+                     /ribosomal_slippage
+                     /note="pp1ab; translated by -1 ribosomal frameshift"
+                     /codon_start=1
+                     /product="orf1ab polyprotein"
+                     /protein_id="QIO04366.1"
+                     /translation="MESLVPGFNEKTHVQLSLPVLQVRDVLVRGFGDSVEEVLSEARQ
+                     HLKDGTCGLVEVEKGVLPQLEQPYVFIKRSDARTAPHGHVMVELVAELEGIQYGRSGE
+                     TLGVLVPHVGEIPVAYRKVLLRKNGNKGAGGHSYGADLKSFDLGDELGTDPYEDFQEN
+                     WNTKHSSGVTRELMRELNGGAYTRYVDNNFCGPDGYPLECIKDLLARAGKASCTLSEQ
+                     LDFIDTKRGVYCCREHEHEIAWYTERSEKSYELQTPFEIKLAKKFDTFNGECPNFVFP
+                     LNSIIKTIQPRVEKKKLDGFMGRIRSVYPVASPNECNQMCLSTLMKCDHCGETSWQTG
+                     DFVKATCEFCGTENLTKEGATTCGYLPQNAVVKIYCPACHNSEVGPEHSLAEYHNESG
+                     LKTILRKGGRTIAFGGCVFSYVGCHNKCAYWVPRASANIGCNHTGVVGEGSEGLNDNL
+                     LEILQKEKVNINIVGDFKLNEEIAIILASFSASTSAFVETVKGLDYKAFKQIVESCGN
+                     FKVTKGKAKKGAWNIGEQKSILSPLYAFASEAARVVRSIFSRTLETAQNSVRVLQKAA
+                     ITILDGISQYSLRLIDAMMFTSDLATNNLVVMAYITGGVVQLTSQWLTNIFGTVYEKL
+                     KPVLDWLEEKFKEGVEFLRDGWEIVKFISTCACEIVGGQIVTCAKEIKESVQTFFKLV
+                     NKFLALCADSIIIGGAKLKALNLGETFVTHSKGLYRKCVKSREETGLLMPLKAPKEII
+                     FLEGETLPTEVLTEEVVLKTGDLQPLEQPTSEAVEAPLVGTPVCINGLMLLEIKDTEK
+                     YCALAPNMMVTNNTFTLKGGAPTKVTFGDDTVIEVQGYKSVNITFELDERIDKVLNEK
+                     CSAYTVELGTEVNEFACVVADAVIKTLQPVSELLTPLGIDLDEWSMATYYLFDESGEF
+                     KLASHMYCSFYPPDEDEEEGDCEEEEFEPSTQYEYGTEDDYQGKPLEFGATSAALQPE
+                     EEQEEDWLDDDSQQTVGQQDGSEDNQTTTIQTIVEVQPQLEMELTPVVQTIEVNSFSG
+                     YLKLTDNVYIKNADIVEEAKKVKPTVVVNAANVYLKHGGGVAGALNKATNNAMQVESD
+                     DYIATNGPLKVGGSCVLSGHNLAKHCLHVVGPNVNKGEDIQLLKSAYENFNQHEVLLA
+                     PLLSAGIFGADPIHSLRVCVDTVRTNVYLAVFDKNLYDKLVSSFLEMKSEKQVEQKIA
+                     EIPKEEVKPFITESKPSVEQRKQDDKKIKACVEEVTTTLEETKFLTENLLLYIDINGN
+                     LHPDSATLVSDIDITFLKKDAPYIVGDVVQEGVLTAVVIPTKKAGGTTEMLAKALRKV
+                     PTDNYITTYPGQGLNGYTVEDAKTVLKQCKSAFYILPSIISNEKQEILGTVSWNLREM
+                     LAHAEETRKLMPVCVETKAIVSTIQRKYKGIKIQEGVVDYGARFYFYTSKTTVASLIN
+                     TLNDLNETLVTMPLGYVTHGLNLEEAARYMRSLKVPATVSVSSPDAVTAYNGYLTSSS
+                     KTPEEHFIETISLAGSYKDWSYSGQSTQLGIEFLKRGDKSVYYTSNPTTFHLDGEVIT
+                     FDNLKTLLSLREVRTIKVFTTVDNINLHTQVVDMSMTYGQQFGPTYLDGADVTKIKPH
+                     NSHEGKTFYVLPNDDTLRVEAFEYYHTTDPSFLGRYMSALNHTKKWKYPQVNGLTSIK
+                     WADNNCYLATALLTLQQIELKFNPPALQDAYYRARAGEAANFCALILAYCNKTVGELG
+                     DVRETMSYLFQHANLDSCKRVLNVVCKTCGQQQTTLKGVEAVMYMGTLSYEQFKKGVQ
+                     IPCTCGKQATKYLVQQESPFVMMSAPPAQYELKHGTFTCASEYTGNYQCGHYKHITSK
+                     ETLYCIDGALLTKSSEYKGPITDVFYKENSYTTTIKPVTYKLDGVVCTEIDPKLDNYY
+                     KKDNSYFTEQPIDLVPNQPYPNASFDNFKFVCDNIKFADDLNQLTGYKKPASRELKVT
+                     FFPDLNGDVVAIDYKHYTPSFKKGAKLLHKPIVWHVNNATNKATYKPNTWCIRCLWST
+                     KPVETSNSFDVLKSEDAQGMDNLACEDLKPVSEEVVENPTIQKDVLECNVKTTEVVGD
+                     IILKPANNSLKITEEVGHTDLMAAYVDNSSLTIKKPNELSRVLGLKTLATHGLAAVNS
+                     VPWDTIANYAKPFLNKVVSTTTNIVTRCLNRVCTNYMPYFFTLLLQLCTFTRSTNSRI
+                     KASMPTTIAKNTVKSVGKFCLEASFNYLKSPNFSKLINIIIWFLLLSVCLGSLIYSTA
+                     ALGVLMSNLGMPSYCTGYREGYLNSTNVTIATYCTGSIPCSVCLSGLDSLDTYPSLET
+                     IQITISSFKWDLTAFGLVAEWFLAYILFTRFFYVLGLAAIMQLFFSYFAVHFISNSWL
+                     MWLIINLVQMAPISAMVRMYIFFASFYYVWKSYVHVVDGCSSSTCMMCYKRNRATRVE
+                     CTTIVNGVRRSFYVYANGGKGFCKLHNWNCVNCDTFCAGSTFISDEVARDLSLQFKRP
+                     INPTDQSSYIVDSVTVKNGSIHLYFDKAGQKTYERHSLSHFVNLDNLRANNTKGSLPI
+                     NVIVFDGKSKCEESSAKSASVYYSQLMCQPILLLDQALVSDVGDSAEVAVKMFDAYVN
+                     TFSSTFNVPMEKLKTLVATAEAELAKNVSLDNVLSTFISAARQGFVDSDVETKDVVEC
+                     LKLSHQSDIEVTGDSCNNYMLTYNKVENMTPRDLGACIDCSARHINAQVAKSHNIALI
+                     WNVKDFMSLSEQLRKQIRSAAKKNNLPFKLTCATTRQVVNVVTTKIALKGGKIVNNWL
+                     KQLIKVTLVFLFVAAIFYLITPVHVMSKHTDFSSEIIGYKAIDGGVTRDIASTDTCFA
+                     NKHADFDTWFSQRGGSYTNDKACPLIAAVITREVGFVVPGLPGTILRTTNGDFLHFLP
+                     RVFSAVGNICYTPSKLIEYTDFATSACVLAAECTIFKDASGKPVPYCYDTNVLEGSVA
+                     YESLRPDTRYVLMDGSIIQFPNTYLEGSVRVVTTFDSEYCRHGTCERSEAGVCVSTSG
+                     RWVLNNDYYRSLPGVFCGVDAVNLLTNMFTPLIQPIGALDISASIVAGGIVAIVVTCL
+                     AYYFMRFRRAFGEYSHVVAFNTLLFLMSFTVLCLTPVYSFLPGVYSVIYLYLTFYLTN
+                     DVSFLAHIQWMVMFTPLVPFWITIAYIICISTKHFYWFFSNYLKRRVVFNGVSFSTFE
+                     EAALCTFLLNKEMYLKLRSDVLLPLTQYNRYLALYNKYKYFSGAMDTTSYREAACCHL
+                     AKALNDFSNSGSDVLYQPPQTSITSAVLQSGFRKMAFPSGKVEGCMVQVTCGTTTLNG
+                     LWLDDVVYCPRHVICTSEDMLNPNYEDLLIRKSNHNFLVQAGNVQLRVIGHSMQNCVL
+                     KLKVDTANPKTPKYKFVRIQPGQTFSVLACYNGSPSGVYQCAMRPNFTIKGSFLNGSC
+                     GSVGFNIDYDCVSFCYMHHMELPTGVHAGTDLEGNFYGPFVDRQTAQAAGTDTTITVN
+                     VLAWLYAAVINGDRWFLNRFTTTLNDFNLVAMKYNYEPLTQDHVDILGPLSAQTGIAV
+                     LDMCASLKELLQNGMNGRTILGSALLEDEFTPFDVVRQCSGVTFQSAVKRTIKGTHHW
+                     LLLTILTSLLVLVQSTQWSLFFFFYENAFLPFAMGIIAMSAFAMMFVKHKHAFLCLFL
+                     LPSLATVPYFNMVYMPASWVMRIMTWLDMVDTSLSGFKLKDCVMYASAVVLLILMTAR
+                     TVYDDGARRVWTLMNVLTLVYKVYYGNALDQAISMWALIISVTSNYSGVVTTVMFLAR
+                     GIVFMCVEYCPIFFITGNTLQCIMLVYCFLGYFCTCYFGLFCLLNRYFRLTLGVYDYL
+                     VSTQEFRYMNSQGLLPPKNSIDAFKLNIKLLGVGGKPCIKVATVQSKMSDVKCTSVVL
+                     LSVLQQLRVESSSKLWAQCVQLHNDILLAKDTTEAFEKMVSLLSVLLSMQGAVHINKL
+                     CEEMLDNRATLQAIASEFSSLPSYAAFATAQEAYDQAVANGDSEVVLKNLNKSLNVAK
+                     SEFDRDAAMQRKLEKMADQAMTQMYKQARSEDKRAKVTSAMHTMLFTMLKKLDNDALN
+                     NIINNARDGCVPLNIIPLTTSSKLMVVIPYYNTYKNTCDGTTFTYASALWEIQQVVYA
+                     YIKIVQLNEISMDNSPNLAWPLIVTALTANSAVKLHNNELSPVALRQMSCAAGTTQTA
+                     CTDDNALSYYNTTNGGRFVLALLSDLQDLKWARFPKSDGTGTIYTELEPPCRFVTDTP
+                     KGPKVKYLYFIKGLNNLNRGMVLGSLAATVRLQAGNATEVPANSTVLSFCAFAVDAAK
+                     AYKDYLASGGQPITNCVKMLCTHTGTGQAITVTPEANMDQESFGGASCCLYCRCHIDH
+                     PNPKGFCDLKGKYVQIPTTCANDPVGFTLKNTVCTVCGMWKGYGCSCDQLREPMLQSA
+                     DAQSFLNRVCGVSAARLTPCGTGTSTDVVYRAFDIYNDKVAGFAKFLKTNCCRFQEKD
+                     EDDNLIDSYFVVKRHTFSNYQHEETIYNLLKDCPAVAKHDFFKFRIDGDMVPHISRQR
+                     LTKYTMADLVYALRHFDEGNCDTLKEILVTYNCCDDDYFNKKDWYDFVENPDILRVYA
+                     NLGERVRQALLKTVQFCDAMRNAGIVGVLTLDNQDLNGNWYDFGDFIQTTPGSGVPVV
+                     DSYYSLLMPILTLTRALTAESHVDTDLTKPYIKWDLLKYDFTEERLKLFDRYFKYWDQ
+                     TYHPNCVNCLDDRCILHCANFNVLFSTVFPPTSFGPLVRKIFVDGVPFVVSTGYHFRE
+                     LGVVHNQDVNLHSSRLSFKELLVYAADPAMHAASGNLLLDKRTTCFSVAALTNNVAFQ
+                     TVKPGNFNKDFYDFAVSKGFFKEGSSVELKHFFFAQDGNAAISDYDYYRYNLPTMCDI
+                     RQLLFVVEVVDKYFDCYDGGCINANQVIVNNLDKSAGFPFNKWGKARLYYDSMSYEDQ
+                     DALFAYTKRNVIPTITQMNLKYAISAKNRARTVAGVSICSTMTNRQFHQKLLKSIAAT
+                     RGATVVIGTSKFYGGWHNMLKTVYSDVENPHLMGWDYPKCDRAMPNMLRIMASLVLAR
+                     KHTTCCSLSHRFYRLANECAQVLSEMVMCGGSLYVKPGGTSSGDATTAYANSVFNICQ
+                     AVTANVNALLSTDGNKIADKYVRNLQHRLYECLYRNRDVDTDFVNEFYAYLRKHFSMM
+                     ILSDDAVVCFNSTYASQGLVASIKNFKSVLYYQNNVFMSEAKCWTETDLTKGPHEFCS
+                     QHTMLVKQGDDYVYLPYPDPSRILGAGCFVDDIVKTDGTLMIERFVSLAIDAYPLTKH
+                     PNQEYADVFHLYLQYIRKLHDELTGHMLDMYSVMLTNDNTSRYWEPEFYEAMYTPHTV
+                     LQAVGACVLCNSQTSLRCGACIRRPFLCCKCCYDHVISTSHKLVLSVNPYVCNAPGCD
+                     VTDVTQLYLGGMSYYCKSHKPPISFPLCANGQVFGLYKNTCVGSDNVTDFNAIATCDW
+                     TNAGDYILANTCTERLKLFAAETLKATEETFKLSYGIATVREVLSDRELHLSWEVGKP
+                     RPPLNRNYVFTGYRVTKNSKVQIGEYTFEKGDYGDAVVYRGTTTYKLNVGDYFVLTSH
+                     TVMPLSAPTLVPQEHYVRITGLYPTLNISDEFSSNVANYQKVGMQKYSTLQGPPGTGK
+                     SHFAIGLALYYPSARIVYTACSHAAVDALCEKALKYLPIDKCSRIIPARARVECFDKF
+                     KVNSTLEQYVFCTVNALPETTADIVVFDEISMATNYDLSVVNARLRAKHYVYIGDPAQ
+                     LPAPRTLLTKGTLEPEYFNSVCRLMKTIGPDMFLGTCRRCPAEIVDTVSALVYDNKLK
+                     AHKDKSAQCFKMFYKGVITHDVSSAINRPQIGVVREFLTRNPAWRKAVFISPYNSQNA
+                     VASKILGLPTQTVDSSQGSEYDYVIFTQTTETAHSCNVNRFNVAITRAKVGILCIMSD
+                     RDLYDKLQFTSLEIPRRNVATLQAENVTGLFKDCSKVITGLHPTQAPTHLSVDTKFKT
+                     EGLCVDIPGIPKDMTYRRLISMMGFKMNYQVNGYPNMFITREEAIRHVRAWIGFDVEG
+                     CHATREAVGTNLPLQLGFSTGVNLVAVPTGYVDTPNNTDFSRVSAKPPPGDQFKHLIP
+                     LMYKGLPWNVVRIKIVQMLSDTLKNLSDRVVFVLWAHGFELTSMKYFVKIGPERTCCL
+                     CDRRATCFSTASDTYACWHHSIGFDYVYNPFMIDVQQWGFTGNLQSNHDLYCQVHGNA
+                     HVASCDAIMTRCLAVHECFVKRVDWTIEYPIIGDELKINAACRKVQHMVVKAALLADK
+                     FPVLHDIGNPKAIKCVPQADVEWKFYDAQPCSDKAYKIEELFYSYATHSDKFTDGVCL
+                     FWNCNVDRYPANSIVCRFDTRVLSNLNLPGCDGGSLYVNKHAFHTPAFDKSAFVNLKQ
+                     LPFFYYSDSPCESHGKQVVSDIDYVPLKSATCITRCNLGGAVCRHHANEYRLYLDAYN
+                     MMISAGFSLWVYKQFDTYNLWNTFTRLQSLENVAFNVVNKGHFDGQQGEVPVSIINNT
+                     VYTKVDGVDVELFENKTTLPVNVAFELWAKRNIKPVPEVKILNNLGVDIAANTVIWDY
+                     KRDAPAHISTIGVCSMTDIAKKPTETICAPLTVFFDGRVDGQVDLFRNARNGVLITEG
+                     SVKGLQPSVGPKQASLNGVTLIGEAVKTQFNYYKKVDGVVQQLPETYFTQSRNLQEFK
+                     PRSQMEIDFLELAMDEFIERYKLEGYAFEHIVYGDFSHSQLGGLHLLIGLAKRFKESP
+                     FELEDFIPMDSTVKNYFITDAQTGSSKCVCSVIDLLLDDFVEIIKSQDLSVVSKVVKV
+                     TIDYTEISFMLWCKDGHVETFYPKLQSSQAWQPGVAMPNLYKMQRMLLEKCDLQNYGD
+                     SATLPKGIMMNVAKYTQLCQYLNTLTLAVPYNMRVIHFGAGSDKGVAPGTAVLRQWLP
+                     TGTLLVDSDLNDFVSDAHSTLIGDCATVHTANKWDLIISDMYDPKTKNVTKENDSKEG
+                     FFTYICGFIQQKLALGGSVAIKITEHSWNADLYKLMGHFAWWTAFVTNVNASSSEAFL
+                     IGCNYLGKPREQIDGYVMHANYIFWRNTNPIQLSSYSLFDMSKFPLKLRGTAVMSLKE
+                     GQINDMILSLLSKGRLIIRENNRVVISSDVLVNN"</Description>
+      <Name>gene= "orf1ab"</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>25384</EndIndex>
+      <MaxLimit>29899</MaxLimit>
+      <MinLimit>1</MinLimit>
+      <StartIndex>21563</StartIndex>
+      <Description>gene            21563..25384
+                     /gene="S"
+     CDS             21563..25384
+                     /gene="S"
+                     /note="structural protein"
+                     /codon_start=1
+                     /product="surface glycoprotein"
+                     /protein_id="QIO04367.1"
+                     /translation="MFVFLVLLPLVSSQCVNLTTRTQLPPAYTNSFTRGVYYPDKVFR
+                     SSVLHSTQDLFLPFFSNVTWFHAIHVSGTKGTKRFDNPVLPFNDGVYFASTEKSNIIR
+                     GWIFGTTLDSKTQSLLIVNNATNVVIKVCEFQFCNDPFLGVYYHKNNKSWMESEFRVY
+                     SSANNCTFEYVSQPFLMDLEGKQGNFKNLREFVFKNIDGYFKIYSKHTPINLVRDLPQ
+                     GFSALEPLVDLPIGINITRFQTLLALHRSYLTPGDSSSGWTAGAAAYYVGYLQPRTFL
+                     LKYNENGTITDAVDCALDPLSETKCTLKSFTVEKGIYQTSNFRVQPTESIVRFPNITN
+                     LCPFGEVFNATRFASVYAWNRKRISNCVADYSVLYNSASFSTFKCYGVSPTKLNDLCF
+                     TNVYADSFVIRGDEVRQIAPGQTGKIADYNYKLPDDFTGCVIAWNSNNLDSKVGGNYN
+                     YLYRLFRKSNLKPFERDISTEIYQAGSTPCNGVEGFNCYFPLQSYGFQPTNGVGYQPY
+                     RVVVLSFELLHAPATVCGPKKSTNLVKNKCVNFNFNGLTGTGVLTESNKKFLPFQQFG
+                     RDIADTTDAVRDPQTLEILDITPCSFGGVSVITPGTNTSNQVAVLYQDVNCTEVPVAI
+                     HADQLTPTWRVYSTGSNVFQTRAGCLIGAEHVNNSYECDIPIGAGICASYQTQTNSPR
+                     RARSVASQSIIAYTMSLGAENSVAYSNNSIAIPTNFTISVTTEILPVSMTKTSVDCTM
+                     YICGDSTECSNLLLQYGSFCTQLNRALTGIAVEQDKNTQEVFAQVKQIYKTPPIKDFG
+                     GFNFSQILPDPSKPSKRSFIEDLLFNKVTLADAGFIKQYGDCLGDIAARDLICAQKFN
+                     GLTVLPPLLTDEMIAQYTSALLAGTITSGWTFGAGAALQIPFAMQMAYRFNGIGVTQN
+                     VLYENQKLIANQFNSAIGKIQDSLSSTASALGKLQDVVNQNAQALNTLVKQLSSNFGA
+                     ISSVLNDILSRLDKVEAEVQIDRLITGRLQSLQTYVTQQLIRAAEIRASANLAATKMS
+                     ECVLGQSKRVDFCGKGYHLMSFPQSAPHGVVFLHVTYVPAQEKNFTTAPAICHDGKAH
+                     FPREGVFVSNGTHWFVTQRNFYEPQIITTDNTFVSGNCDVVIGIVNNTVYDPLQPELD
+                     SFKEELDKYFKNHTSPDVDLGDISGINASVVNIQKEIDRLNEVAKNLNESLIDLQELG
+                     KYEQYIKWPWYIWLGFIAGLIAIVMVTIMLCCMTSCCSCLKGCCSCGSCCKFDEDDSE
+                     PVLKGVKLHYT"</Description>
+      <Name>gene "S" structura protein - surface glycoprotein</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>26220</EndIndex>
+      <MaxLimit>29899</MaxLimit>
+      <MinLimit>1</MinLimit>
+      <StartIndex>25393</StartIndex>
+      <Description>     gene            25393..26220
+                     /gene="ORF3a"
+     CDS             25393..26220
+                     /gene="ORF3a"
+                     /codon_start=1
+                     /product="ORF3a protein"
+                     /protein_id="QIO04368.1"
+                     /translation="MDLFMRIFTIGTVTLKQGEIKDATPSDFVRATATIPIQASLPFG
+                     WLIVGVALLAVFQSASKIITLKKRWQLALSKGVHFVCNLLLLFVTVYSHLLLVAAGLE
+                     APFLYLYALVYFLQSINFVRIIMRLWLCWKCRSKNPLLYDANYFLCWHTNCYDYCIPY
+                     NSVTSSIVITSGDGTTSPISEHDYQIGGYTEKWESGVKDCVVLHSYFTSDYYQLYSTQ
+                     LSTDTGVEHVTFFIYNKIVDEPEEHVQIHTIDGSSGVVNPVMEPIYDEPTTTTSVPL"</Description>
+      <Name>geneORF3a</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>26472</EndIndex>
+      <MaxLimit>29899</MaxLimit>
+      <MinLimit>1</MinLimit>
+      <StartIndex>26245</StartIndex>
+      <Description>    gene            26245..26472
+                     /gene="E"
+     CDS             26245..26472
+                     /gene="E"
+                     /note="structural protein; E protein"
+                     /codon_start=1
+                     /product="envelope protein"
+                     /protein_id="QIO04369.1"
+                     /translation="MYSFVSEETGTLIVNSVLLFLAFVVFLLVTLAILTALRLCAYCC
+                     NIVNVSLVKPSFYVYSRVKNLNSSRVPDLLV"</Description>
+      <Name>gene "E" - structural protein; E protein</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>27191</EndIndex>
+      <MaxLimit>29899</MaxLimit>
+      <MinLimit>1</MinLimit>
+      <StartIndex>26523</StartIndex>
+      <Description>     gene            26523..27191
+                     /gene="M"
+     CDS             26523..27191
+                     /gene="M"
+                     /note="structural protein"
+                     /codon_start=1
+                     /product="membrane glycoprotein"
+                     /protein_id="QIO04370.1"
+                     /translation="MADSNGTITVEELKKLLEQWNLVIGFLFLTWICLLQFAYANRNR
+                     FLYIIKLIFLWLLWPVTLACFVLAAVYRINWITGGIAIAMACLVGLMWLSYFIASFRL
+                     FARTRSMWSFNPETNILLNVPLHGTILTRPLLESELVIGAVILRGHLRIAGHHLGRCD
+                     IKDLPKEITVATSRTLSYYKLGASQRVAGDSGFAAYSRYRIGNYKLNTDHSSSSDNIA
+                     LLVQ"</Description>
+      <Name>gene "M" - structural protein</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>27387</EndIndex>
+      <MaxLimit>29899</MaxLimit>
+      <MinLimit>1</MinLimit>
+      <StartIndex>27202</StartIndex>
+      <Description>     gene            27202..27387
+                     /gene="ORF6"
+     CDS             27202..27387
+                     /gene="ORF6"
+                     /codon_start=1
+                     /product="ORF6 protein"
+                     /protein_id="QIO04371.1"
+                     /translation="MFHLVDFQVTIAEILLIIMRTFKVSIWNLDYIINLIIKNLSKSL
+                     TENKYSQLDEEQPMEID"</Description>
+      <Name>gene "ORF6" - ORF6 protein</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>27759</EndIndex>
+      <MaxLimit>29899</MaxLimit>
+      <MinLimit>1</MinLimit>
+      <StartIndex>27394</StartIndex>
+      <Description>     gene            27394..27759
+                     /gene="ORF7a"
+     CDS             27394..27759
+                     /gene="ORF7a"
+                     /codon_start=1
+                     /product="ORF7a protein"
+                     /protein_id="QIO04372.1"
+                     /translation="MKIILFLALITLATCELYHYQECVRGTTVLLKEPCSSGTYEGNS
+                     PFHPLADNKFALTCFSTQFAFACPDGVKHVYQLRARSVSPKLFIRQEEVQELYSPIFL
+                     IVAAIVFITLCFTLKRKTE"</Description>
+      <Name>gene "ORF7a - ORF7a protein</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>28259</EndIndex>
+      <MaxLimit>29899</MaxLimit>
+      <MinLimit>1</MinLimit>
+      <StartIndex>27894</StartIndex>
+      <Description>     gene            27894..28259
+                     /gene="ORF8"
+     CDS             27894..28259
+                     /gene="ORF8"
+                     /codon_start=1
+                     /product="ORF8 protein"
+                     /protein_id="QIO04373.1"
+                     /translation="MKFLVFLGIITTVAAFHQECSLQSCTQHQPYVVDDPCPIHFYSK
+                     WYIRVGARKSAPLIELCVDEAGSKSPIQYIDIGNYTVSCSPFTINCQEPKLGSLVVRC
+                     SFYEDFLEYHDVRVVLDFI"</Description>
+      <Name>gene "ORF8" - ORF8 protein</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>29533</EndIndex>
+      <MaxLimit>29899</MaxLimit>
+      <MinLimit>1</MinLimit>
+      <StartIndex>28274</StartIndex>
+      <Description>     gene            28274..29533
+                     /gene="N"
+     CDS             28274..29533
+                     /gene="N"
+                     /note="structural protein"
+                     /codon_start=1
+                     /product="nucleocapsid phosphoprotein"
+                     /protein_id="QIO04374.1"
+                     /translation="MSDNGPQNQRNAPRITFGGPSDSTGSNQNGERSGARSKQRRPQG
+                     LPNNTASWFTALTQHGKEDLKFPRGQGVPINTNSSPDDQIGYYRRATRRIRGGDGKMK
+                     DLSPRWYFYYLGTGPEAGLPYGANKDGIIWVATEGALNTPKDHIGTRNPANNAAIVLQ
+                     LPQGTTLPKGFYAEGSRGGSQASSRSSSRSRNSSRNSTPGSSRGTSPARMAGNGGDAA
+                     LALLLLDRLNQLESKMSGKGQQQQGQTVTKKSAAEASKKPRQKRTATKAYNVTQAFGR
+                     RGPEQTQGNFGDQELIRQGTDYKHWPQIAQFAPSASAFFGMSRIGMEVTPSGTWLTYT
+                     GAIKLDDKDPNFKDQVILLNKHIDAYKTFPPTEPKKDKKKKADETQALPQRQKKQQTV
+                     TLLPAADLDDFSKQLQQSMSSADSTQA"</Description>
+      <Name>gene "N" - structural protein</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>29674</EndIndex>
+      <MaxLimit>29899</MaxLimit>
+      <MinLimit>1</MinLimit>
+      <StartIndex>29558</StartIndex>
+      <Description>     gene            29558..29674
+                     /gene="ORF10"
+     CDS             29558..29674
+                     /gene="ORF10"
+                     /codon_start=1
+                     /product="ORF10 protein"
+                     /protein_id="QIO04375.1"
+                     /translation="MGYINVFAFPFTIYSLLLCRMNSRNYIAQVDVVNFNLT"</Description>
+      <Name>gene "ORF10" - ORF10 protein</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>29899</EndIndex>
+      <MaxLimit>29899</MaxLimit>
+      <MinLimit>1</MinLimit>
+      <StartIndex>29675</StartIndex>
+      <Description i:nil="true" />
+      <Name>3' UTR</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+  </SequenceNamedRegionList>
+  <RepeatsRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>76</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>65</StartIndex>
+      <Description></Description>
+      <Name>R1 [65 - 76] [12] oc:1/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>26479</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>26468</StartIndex>
+      <Description></Description>
+      <Name>R1 [26468 - 26479] [12] oc:2/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>511</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>500</StartIndex>
+      <Description></Description>
+      <Name>R2 [500 - 511] [12] oc:1/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>24739</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>24728</StartIndex>
+      <Description></Description>
+      <Name>R2 [24728 - 24739] [12] oc:2/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>721</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>710</StartIndex>
+      <Description></Description>
+      <Name>R3 [710 - 721] [12] oc:1/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>27422</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>27411</StartIndex>
+      <Description></Description>
+      <Name>R3 [27411 - 27422] [12] oc:2/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>735</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>724</StartIndex>
+      <Description></Description>
+      <Name>R4 [724 - 735] [12] oc:1/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>10224</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>10213</StartIndex>
+      <Description></Description>
+      <Name>R4 [10213 - 10224] [12] oc:2/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>1409</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>1398</StartIndex>
+      <Description></Description>
+      <Name>R5 [1398 - 1409] [12] oc:1/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>18652</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>18641</StartIndex>
+      <Description></Description>
+      <Name>R5 [18641 - 18652] [12] oc:2/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>1728</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>1717</StartIndex>
+      <Description></Description>
+      <Name>R6 [1717 - 1728] [12] oc:1/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>19349</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>19338</StartIndex>
+      <Description></Description>
+      <Name>R6 [19338 - 19349] [12] oc:2/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>2305</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>2294</StartIndex>
+      <Description></Description>
+      <Name>R7 [2294 - 2305] [12] oc:1/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>3753</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>3742</StartIndex>
+      <Description></Description>
+      <Name>R7 [3742 - 3753] [12] oc:2/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>4765</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>4754</StartIndex>
+      <Description></Description>
+      <Name>R8 [4754 - 4765] [12] oc:1/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>26121</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>26110</StartIndex>
+      <Description></Description>
+      <Name>R8 [26110 - 26121] [12] oc:2/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>7061</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>7050</StartIndex>
+      <Description></Description>
+      <Name>R9 [7050 - 7061] [12] oc:1/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>7118</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>7107</StartIndex>
+      <Description></Description>
+      <Name>R9 [7107 - 7118] [12] oc:2/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>7250</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>7239</StartIndex>
+      <Description></Description>
+      <Name>R10 [7239 - 7250] [12] oc:1/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>10063</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>10052</StartIndex>
+      <Description></Description>
+      <Name>R10 [10052 - 10063] [12] oc:2/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>3267</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>3256</StartIndex>
+      <Description></Description>
+      <Name>R11 [3256 - 3267] [12] oc:1/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>14848</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>14837</StartIndex>
+      <Description></Description>
+      <Name>R11 [14837 - 14848] [12] oc:2/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>15945</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>15934</StartIndex>
+      <Description></Description>
+      <Name>R12 [15934 - 15945] [12] oc:1/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>23992</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>23981</StartIndex>
+      <Description></Description>
+      <Name>R12 [23981 - 23992] [12] oc:2/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>12513</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>12502</StartIndex>
+      <Description></Description>
+      <Name>R13 [12502 - 12513] [12] oc:1/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>16523</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>16512</StartIndex>
+      <Description></Description>
+      <Name>R13 [16512 - 16523] [12] oc:2/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>10743</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>10732</StartIndex>
+      <Description></Description>
+      <Name>R14 [10732 - 10743] [12] oc:1/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>20966</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>20955</StartIndex>
+      <Description></Description>
+      <Name>R14 [20955 - 20966] [12] oc:2/2</Name>
+      <Occurrences>2</Occurrences>
+    </iDnaRegionIndex>
+  </RepeatsRegionIndex>
+  <HairpinsRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>2369</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>2358</StartIndex>
+      <Description></Description>
+      <Name>H1 Origin:[2358 - 2369] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>13754</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>13743</StartIndex>
+      <Description></Description>
+      <Name>H1 [13743 - 13754] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>2388</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>2377</StartIndex>
+      <Description></Description>
+      <Name>H3 Origin:[2377 - 2388] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>27648</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>27637</StartIndex>
+      <Description></Description>
+      <Name>H3 [27637 - 27648] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>2603</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>2592</StartIndex>
+      <Description></Description>
+      <Name>H5 Origin:[2592 - 2603] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>27378</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>27367</StartIndex>
+      <Description></Description>
+      <Name>H5 [27367 - 27378] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>3385</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>3374</StartIndex>
+      <Description></Description>
+      <Name>H7 Origin:[3374 - 3385] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>3653</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>3642</StartIndex>
+      <Description></Description>
+      <Name>H8 Origin:[3642 - 3653] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>8230</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>8219</StartIndex>
+      <Description></Description>
+      <Name>H8 [8219 - 8230] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>5310</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>5299</StartIndex>
+      <Description></Description>
+      <Name>H10 Origin:[5299 - 5310] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>6256</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>6245</StartIndex>
+      <Description></Description>
+      <Name>H10 [6245 - 6256] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>5401</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>5390</StartIndex>
+      <Description></Description>
+      <Name>H12 Origin:[5390 - 5401] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>24126</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>24115</StartIndex>
+      <Description></Description>
+      <Name>H12 [24115 - 24126] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>5756</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>5745</StartIndex>
+      <Description></Description>
+      <Name>H14 Origin:[5745 - 5756] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>5764</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>5753</StartIndex>
+      <Description></Description>
+      <Name>H14 [5753 - 5764] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>5778</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>5767</StartIndex>
+      <Description></Description>
+      <Name>H16 Origin:[5767 - 5778] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>15263</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>15252</StartIndex>
+      <Description></Description>
+      <Name>H16 [15252 - 15263] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>5872</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>5861</StartIndex>
+      <Description></Description>
+      <Name>H18 Origin:[5861 - 5872] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>13944</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>13933</StartIndex>
+      <Description></Description>
+      <Name>H18 [13933 - 13944] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>6100</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>6089</StartIndex>
+      <Description></Description>
+      <Name>H20 Origin:[6089 - 6100] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>6104</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>6093</StartIndex>
+      <Description></Description>
+      <Name>H20 [6093 - 6104] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>6835</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>6824</StartIndex>
+      <Description></Description>
+      <Name>H22 Origin:[6824 - 6835] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>8211</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>8200</StartIndex>
+      <Description></Description>
+      <Name>H23 Origin:[8200 - 8211] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>11716</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>11705</StartIndex>
+      <Description></Description>
+      <Name>H23 [11705 - 11716] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>8386</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>8375</StartIndex>
+      <Description></Description>
+      <Name>H25 Origin:[8375 - 8386] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>8912</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>8901</StartIndex>
+      <Description></Description>
+      <Name>H25 [8901 - 8912] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>8439</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>8428</StartIndex>
+      <Description></Description>
+      <Name>H27 Origin:[8428 - 8439] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>3330</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>3319</StartIndex>
+      <Description></Description>
+      <Name>H27 [3319 - 3330] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>8486</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>8475</StartIndex>
+      <Description></Description>
+      <Name>H29 Origin:[8475 - 8486] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>13310</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>13299</StartIndex>
+      <Description></Description>
+      <Name>H29 [13299 - 13310] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>9005</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>8994</StartIndex>
+      <Description></Description>
+      <Name>H31 Origin:[8994 - 9005] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>26233</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>26222</StartIndex>
+      <Description></Description>
+      <Name>H31 [26222 - 26233] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>9467</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>9456</StartIndex>
+      <Description></Description>
+      <Name>H33 Origin:[9456 - 9467] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>27310</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>27299</StartIndex>
+      <Description></Description>
+      <Name>H33 [27299 - 27310] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>9944</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>9933</StartIndex>
+      <Description></Description>
+      <Name>H35 Origin:[9933 - 9944] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>18854</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>18843</StartIndex>
+      <Description></Description>
+      <Name>H35 [18843 - 18854] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>11275</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>11264</StartIndex>
+      <Description></Description>
+      <Name>H37 Origin:[11264 - 11275] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>6029</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>6018</StartIndex>
+      <Description></Description>
+      <Name>H37 [6018 - 6029] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>14212</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>14201</StartIndex>
+      <Description></Description>
+      <Name>H39 Origin:[14201 - 14212] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>16576</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>16565</StartIndex>
+      <Description></Description>
+      <Name>H39 [16565 - 16576] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>15884</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>15873</StartIndex>
+      <Description></Description>
+      <Name>H41 Origin:[15873 - 15884] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>28974</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>28963</StartIndex>
+      <Description></Description>
+      <Name>H41 [28963 - 28974] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>20245</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>20234</StartIndex>
+      <Description></Description>
+      <Name>H43 Origin:[20234 - 20245] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>22317</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>22306</StartIndex>
+      <Description></Description>
+      <Name>H43 [22306 - 22317] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>21959</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>21948</StartIndex>
+      <Description></Description>
+      <Name>H45 Origin:[21948 - 21959] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>16273</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>16262</StartIndex>
+      <Description></Description>
+      <Name>H45 [16262 - 16273] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>24324</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>24313</StartIndex>
+      <Description></Description>
+      <Name>H47 Origin:[24313 - 24324] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>27848</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>27837</StartIndex>
+      <Description></Description>
+      <Name>H47 [27837 - 27848] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>24398</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>24387</StartIndex>
+      <Description></Description>
+      <Name>H49 Origin:[24387 - 24398] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>28345</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>28334</StartIndex>
+      <Description></Description>
+      <Name>H50 Origin:[28334 - 28345] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>3528</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>3517</StartIndex>
+      <Description></Description>
+      <Name>H50 [3517 - 3528] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>29822</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>29811</StartIndex>
+      <Description></Description>
+      <Name>H52 Origin:[29811 - 29822] oc=1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+    <iDnaRegionIndex>
+      <EndIndex>29824</EndIndex>
+      <MaxLimit>2147483647</MaxLimit>
+      <MinLimit>0</MinLimit>
+      <StartIndex>29813</StartIndex>
+      <Description></Description>
+      <Name>H52 [29813 - 29824] [12] oc:1/1</Name>
+      <Occurrences>1</Occurrences>
+    </iDnaRegionIndex>
+  </HairpinsRegionIndex>
+</iDnaSequenceContract>

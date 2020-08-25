@@ -33,9 +33,15 @@ namespace iDna
 		protected bool								_isBusy					= false;
 		protected CancellationTokenSource			_cancelSource			= new CancellationTokenSource(5);
 		protected string							_sequenceFileInfo		= "";
+<<<<<<< HEAD
 		protected iDnaSequencePaging				_paging					= new iDnaSequencePaging(1000);
 		protected int								_nOccurrences			= 1;
 		protected iDnaRegionIndexList				_namedRegionsList			= new iDnaRegionIndexList();
+=======
+		protected iDnaSequencePaging				_paging					= new iDnaSequencePaging(1032);
+		protected int								_nOccurrences			= 1;
+		protected iDnaRegionIndexList				_namedRegionsList		= new iDnaRegionIndexList();
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 
 
 		public static iDnaSequence Instance
@@ -278,8 +284,15 @@ namespace iDna
 			this._repeatsBasket.Clear();
 			this._hairPinBasket.Clear();
 			this._repeatSearch.Clear();
+<<<<<<< HEAD
 			this._stringOccurList.Clear();
 			this._pairStringOccurList.Clear();
+=======
+			//this._stringOccurList.Clear();
+			//this._pairStringOccurList.Clear();
+			this._stringOccurList		= "";
+			this._pairStringOccurList	= "";
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 
 			_namedRegionsList = new iDnaRegionIndexList(this, "Sequence Regions");
 
@@ -349,6 +362,7 @@ namespace iDna
 		}
 
 		internal void ClearSearchAndSelectionBaskets()
+<<<<<<< HEAD
 		{
 			_selectionBasket.Clear();
 			_pairSelectionBasket.Clear();
@@ -365,17 +379,60 @@ namespace iDna
 		{
 			_repeatsBasket.Clear();
 			_repeatSearch.Clear();
+=======
+		{
+			_selectionBasket.Clear();
+			_pairSelectionBasket.Clear();
+
+			NotifyPropertyChanged(() => SelectionBasket);
+			NotifyPropertyChanged(() => PairSelectionBasket);
+			NotifyPropertyChanged(() => CurrentSearchBasket);
+			NotifyPropertyChanged(() => CurrentSearchBasketSorted);
+			NotifyPropertyChanged(() => PairSelectionBasket);
+		}
+
+
+		internal void ClearRepeatsBaskets()
+		{
+			_repeatsBasket.Clear();
+			_repeatSearch.Clear();
+			//_stringOccurList.Clear();
+			_stringOccurList		= "";
 
 			NotifyPropertyChanged(() => RepeatsBasket);
 			NotifyPropertyChanged(() => RepeatsBasketSorted);
 			NotifyPropertyChanged(() => RepeatsCount);
 		}
 
+		internal void NotifyBasketsChanged()
+		{
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 
+			NotifyPropertyChanged(() => RepeatsBasket);
+			NotifyPropertyChanged(() => RepeatsBasketSorted);
+			NotifyPropertyChanged(() => RepeatsCount);
+<<<<<<< HEAD
+		}
+
+
+=======
+
+			NotifyPropertyChanged(() => HairpinBasket);
+			NotifyPropertyChanged(() => HairpinBasketSorted);
+			NotifyPropertyChanged(() => HairpinCount);
+		}
+
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 		internal void ClearHairpinBaskets()
 		{
 			_hairPinBasket.Clear();
 			_repeatSearch.Clear();
+<<<<<<< HEAD
+=======
+			//_pairStringOccurList.Clear();
+			this._pairStringOccurList	= "";
+
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 
 			NotifyPropertyChanged(() => HairpinBasket);
 			NotifyPropertyChanged(() => HairpinBasketSorted);
@@ -394,10 +451,17 @@ namespace iDna
 					item.IsSelected	= selectValue;
 			}
 			);
+<<<<<<< HEAD
 
 			_selectionBasket.Clear();
 			_pairSelectionBasket.Clear();
 
+=======
+
+			_selectionBasket.Clear();
+			_pairSelectionBasket.Clear();
+
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 			NotifyPropertyChanged(() => SelectionBasket);
 			NotifyPropertyChanged(() => PairSelectionBasket);
 			NotifyPropertyChanged(() => CurrentSearchBasket);

@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
+<<<<<<< HEAD
   <Class Name="iDna.iDnaSequence" Collapsed="true">
+=======
+  <Class Name="iDna.iDnaSequence">
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
     <Position X="1.25" Y="0.5" Width="2.25" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
@@ -18,6 +22,7 @@
         </TypeIdentifier>
       </Class>
     </NestedTypes>
+<<<<<<< HEAD
     <AssociationLine Name="Id" Type="System.String">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="2.339" Y="0.091" />
@@ -54,10 +59,29 @@
   </Class>
   <Class Name="System.Collections.Generic.List&lt;T&gt;" Collapsed="true">
     <Position X="5.25" Y="0.75" Width="2" />
+=======
+    <TypeIdentifier>
+      <HashCode>EAI3oRBAFYoRMMAPGChgDyzxhoxDwlleVwrISKIOBBI=</HashCode>
+      <FileName>classes\iDnaSequence.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="HairpinBasket" />
+      <Property Name="RepeatsBasket" />
+      <Property Name="SequenceNamedRegionList" />
+      <Property Name="SequenceString" />
+      <Property Name="SequenceFileInfo" />
+      <Property Name="Id" />
+      <Property Name="Name" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="System.Collections.Generic.List&lt;T&gt;" Collapsed="true">
+    <Position X="6" Y="1.5" Width="2" />
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
     <TypeIdentifier />
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="iDna.iDnaRegionIndexList" Collapsed="true">
+<<<<<<< HEAD
     <Position X="5.25" Y="1.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAIAABAAAAgAAAAACQAAAAAAAAAAEAAAAAAAUAAgAAA=</HashCode>
@@ -66,6 +90,16 @@
   </Class>
   <Class Name="System.String" Collapsed="true">
     <Position X="5.25" Y="2.5" Width="2" />
+=======
+    <Position X="6" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAABAAAAAAAAAACQAAAAAAAAAAEAAAAAAAAAAgAAA=</HashCode>
+      <FileName>classes\settings\iMinMax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.String" Collapsed="true">
+    <Position X="6" Y="3.75" Width="2" />
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
     <TypeIdentifier />
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>

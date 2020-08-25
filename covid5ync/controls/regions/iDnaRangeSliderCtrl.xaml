@@ -34,8 +34,13 @@
 											<Rectangle Fill="White"
 													   Stroke="Black"
 													   StrokeThickness="1"
+<<<<<<< HEAD
 													   Width="6" Margin="0,2"
 													   Height="18"
+=======
+													   Width="9"
+													   Height="16"
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 													   SnapsToDevicePixels="True"
 													   />
 										</ControlTemplate>
@@ -50,8 +55,13 @@
 		</ResourceDictionary>
 	</UserControl.Resources>
 
+<<<<<<< HEAD
 	<Grid Margin="0" Height="24" HorizontalAlignment="Stretch" VerticalAlignment="Center">
 		<Grid x:Name="gridSlider" Margin="4,0,4,0" Grid.Column="0">
+=======
+	<Grid Margin="0" Height="32" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+		<Grid x:Name="gridSlider" Margin="4,0,8,0" Grid.Column="0" Grid.ColumnSpan="2">
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 
 			<Border Grid.Row="0" Grid.Column="0"
 								Background="LightGreen" 
@@ -59,11 +69,19 @@
 								Margin="2,0,0,0"
 								BorderBrush="Black" BorderThickness="1"
 								Width="{Binding ElementName=UpperSlider, Path=MaxWidth}"
+<<<<<<< HEAD
 								Height="5" />
 
 			<Slider x:Name="LowerSlider" Grid.Column="0" HorizontalAlignment="Stretch"
 								Padding="0"
 								Margin="0,0,0,0"
+=======
+								Height="6" />
+
+			<Slider x:Name="LowerSlider" Grid.Column="0" HorizontalAlignment="Stretch"
+								Padding="0"
+								Margin="0,7,0,0"
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 								Minimum="{Binding LimitMin, Mode=OneWay}"
 								Maximum="{Binding LimitMax, Mode=OneWay}"
 								Value="{Binding MinValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -73,7 +91,11 @@
 
 			<Slider x:Name="UpperSlider" Grid.Column="0" HorizontalAlignment="Stretch"
 								Padding="0"
+<<<<<<< HEAD
 								Margin="0,0,0,0"
+=======
+								Margin="0,7,0,0"
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 								Minimum="{Binding LimitMin, Mode=OneWay}"
 								Maximum="{Binding LimitMax, Mode=OneWay}"
 								Value="{Binding MaxValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"

@@ -26,6 +26,24 @@ namespace iDna.controls
 			InitializeComponent();
 		}
 
+<<<<<<< HEAD
+=======
+		private void buttonSelectRegion_Click(object sender, RoutedEventArgs e)
+		{
+			Button				btn		= sender as Button;
+			iDnaRegionIndex		objNdx	= btn == null ? null : btn.DataContext as iDnaRegionIndex;
+			iDnaSequence		seq		= iDnaSequence.Instance;
+
+			if(seq == null || objNdx == null)
+				return;
+
+			int		minNdx	= objNdx.MinValue,
+					maxNdx	= objNdx.MaxValue;
+
+			seq.GoToNodePage(minNdx);
+			seq.Select(minNdx, maxNdx, true);
+		}
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 
 		private void buttonDeleteRegion_Click(object sender, RoutedEventArgs e)
 		{
@@ -37,10 +55,13 @@ namespace iDna.controls
 			if(ndxList == null || objNdx == null || seq == null)
 				return;
 
+<<<<<<< HEAD
 			if(MessageBox.Show($"Delete region {objNdx.MinValue.ToString()} - {objNdx.MaxValue.ToString()}?", 
 								"Delete region", MessageBoxButton.YesNoCancel, MessageBoxImage.Question) != MessageBoxResult.Yes)
 				return;
 
+=======
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 			ndxList.Remove(objNdx);
 			seq.RefreshNamedRegions();
 		}
@@ -60,6 +81,7 @@ namespace iDna.controls
 			wnd.ShowDialog();
 		}
 
+<<<<<<< HEAD
 
 		bool CanSelectRegion(int minIndex, int maxIndex)
 		{
@@ -95,6 +117,8 @@ namespace iDna.controls
 		}
 
 
+=======
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 		private void buttonSetSearchRegion_Click(object sender, RoutedEventArgs e)
 		{
 			Button				btn		= sender as Button;
@@ -108,11 +132,14 @@ namespace iDna.controls
 							maxIndex = objNdx.MaxValue;
 
 			iDnaGobalSettings.Instance.SetSearchRegion(minIndex, maxIndex);
+<<<<<<< HEAD
 
 			if (!CanSelectRegion(minIndex, maxIndex))
 				return;
 
 			seq.GoToNodePage(minIndex);
+=======
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 			seq.Select(minIndex, maxIndex, resetCurrentSelections: true);
 		}
 	}

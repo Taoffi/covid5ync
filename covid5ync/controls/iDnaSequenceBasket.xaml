@@ -8,12 +8,16 @@
 			 xmlns:data="clr-namespace:iDna"
              mc:Ignorable="d" 
 			 d:DataContext="{d:DesignInstance Type={x:Type data:iDnaSequenceDesignTime}, IsDesignTimeCreatable=True, CreateList=True}"
+<<<<<<< HEAD
              d:DesignHeight="334" d:DesignWidth="342"
+=======
+             d:DesignHeight="334" d:DesignWidth="400"
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 			 >
 
 	<Grid x:Name="gridMain" VerticalAlignment="Stretch" Background="#FFF7EFCC">
 		<ListView x:Name="listSequences" Grid.Row="0"
-				  ItemsSource="{Binding IsAsync=True}"
+				  ItemsSource="{Binding ., Mode=OneWay}"
 				  HorizontalAlignment="Left"
 				  Height="auto"
 				  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
@@ -27,6 +31,7 @@
 
 			<ListView.ItemTemplate>
 				<DataTemplate>
+<<<<<<< HEAD
 					<Grid Background="#FFF7EFCC">
 						<Border x:Name="borderItem" BorderBrush="#FFCBA279" BorderThickness="1" 
 								HorizontalAlignment="Stretch"
@@ -117,6 +122,119 @@
 								</StackPanel>
 							</StackPanel>
 						</Border>
+=======
+					<Grid Background="#FFF7EFCC" x:Name="gridItem">
+						<TabControl HorizontalAlignment="Stretch" Width="370" Background="#FFF6F6F6" Margin="0,0,4,0">
+							<TabItem Header="Fragment">
+								<Border x:Name="borderItem" BorderBrush="#FFCBA279" BorderThickness="1" 
+										HorizontalAlignment="Stretch"
+										Background="#FFFFECAD" Padding="0" Margin="5,4"
+										>
+									<StackPanel HorizontalAlignment="Stretch" 
+												VerticalAlignment="Top" 
+												Height="auto"
+												Margin="0,0,0,0">
+										<TextBox VerticalAlignment="Center" HorizontalAlignment="Stretch" 
+												 Height="22" Margin="4,2"
+												 Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+										<local:iDnaSequenceSimpleView x:Name="seqViewCtrl"
+																		Grid.Row="0" DataContext="{Binding }"
+																		Margin="0,0,0,0"
+																		HorizontalAlignment="Stretch"
+																		Width="350"
+																		MaxWidth="350"
+																		MinWidth="350"
+																		Height="51"
+																		MinHeight="51"
+																		MaxHeight="51"
+																		VerticalAlignment="Top"
+																		BorderBrush="#FF292834" BorderThickness="1"
+																		VirtualizingPanel.IsVirtualizing="False"
+														/>
+
+										<Border BorderBrush="Black" BorderThickness="1" Padding="4">
+											<StackPanel Grid.Row="1" Background="#FFF6F6F6"
+													Orientation="Horizontal"
+													HorizontalAlignment="Stretch"
+													Margin="0,0,0,0"
+													>
+
+												<Button x:Name="buttonGotoPage" ToolTip="go to fragment's page"
+														Background="{x:Null}" BorderBrush="{x:Null}"
+														HorizontalContentAlignment="Left"
+														Padding="0"
+														Click="buttonGotoPage_Click"
+														IsEnabled="{Binding IsRepeatProcessRunning, Converter={StaticResource reverseBool}, IsAsync=True}">
+													<Button.Content>
+														<Border BorderBrush="Black" BorderThickness="0" Width="24" Height="20" 
+													Margin="0" Padding="1" Background="{x:Null}"
+													ToolTip="locate on page">
+															<Image Source="{Binding Source={StaticResource imgPrev}, Path=Source}" Width="18" Margin="2,0" />
+														</Border>
+													</Button.Content>
+												</Button>
+												
+												<TextBox HorizontalAlignment="Left"
+														 Margin="4,0,10,0"
+														 VerticalAlignment="Center"
+														 Text="{Binding SequenceFlatString, Mode=OneWay}"
+														 TextWrapping="NoWrap"
+														 MinWidth="210"
+														 MaxWidth="210"
+														 FontSize="13"
+														 IsReadOnly="True" />
+
+												<TextBlock Text="{Binding Count, Mode=OneWay}"
+													   FontSize="9"
+													   VerticalAlignment="Center" Margin="2,0" 
+													   Foreground="Blue"
+													   ToolTip="number of nodes"/>
+
+												<Button x:Name="buttonDeleteItem" 
+														ToolTip="delete item"
+														Background="{x:Null}" BorderBrush="{x:Null}"
+														HorizontalContentAlignment="Right"
+														Padding="0"
+														Margin="32,0"
+														Click="buttonDeleteItem_Click"
+														IsEnabled="{Binding IsRepeatProcessRunning, Converter={StaticResource reverseBool}, IsAsync=True}">
+												<Button.Content>
+													<Border BorderBrush="Black" BorderThickness="1" Width="20" Height="20"
+															Margin="0,0" Padding="1"
+															Background="LightGray"
+															ToolTip="delete item">
+														<Image Source="{Binding Source={StaticResource imgReset19}, Path=Source}" Width="20" Margin="0" />
+													</Border>
+												</Button.Content>
+											</Button>
+
+											</StackPanel>
+										</Border>
+										
+									</StackPanel>
+								</Border>
+							</TabItem>
+
+							<TabItem Header="Description">
+								<Grid Height="94">
+									<Grid.RowDefinitions>
+										<RowDefinition />
+									</Grid.RowDefinitions>
+
+									<TextBox Grid.Row="0"
+											 AcceptsReturn="True"
+											 Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+											 HorizontalAlignment="Stretch"
+											 VerticalAlignment="Stretch"
+											 Margin="2"
+											 Padding="4"
+											 />
+								</Grid>
+							</TabItem>
+						</TabControl>
+
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 					</Grid>
 				</DataTemplate>
 			</ListView.ItemTemplate>

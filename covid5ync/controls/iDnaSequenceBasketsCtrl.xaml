@@ -7,7 +7,11 @@
 			 xmlns:data="clr-namespace:iDna"
              mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance Type={x:Type data:iDnaSequenceDesignTime}, CreateList=False, IsDesignTimeCreatable=True}"
+<<<<<<< HEAD
              d:DesignHeight="292" d:DesignWidth="342">
+=======
+             d:DesignHeight="292" d:DesignWidth="400">
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 
 	<!--  DataContext="{StaticResource mainSequence}" VerticalAlignment="Stretch"-->
     <Grid>
@@ -38,7 +42,11 @@
 
                             <Button x:Name="buttonClearCurrentSelections" 
 									BorderBrush="{x:Null}" Background="{x:Null}" 
+<<<<<<< HEAD
 									Padding="0" Margin="24,0" Height="24"
+=======
+									Padding="0" Margin="124,0" Height="24"
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 									VerticalAlignment="Center"
 									ToolTip="clear search basket"
 									Command="{Binding Source={StaticResource commandCentral}, Path=ClearSearchBaskets, Mode=OneWay}"
@@ -54,7 +62,11 @@
                     </Border>
 
                     <Grid x:Name="gridSearchItems" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+<<<<<<< HEAD
                         <local:iDnaSequenceBasket DataContext="{Binding CurrentSearchBasketSorted, IsAsync=True}"
+=======
+                        <local:iDnaSequenceBasket DataContext="{Binding CurrentSearchBasketSorted, BindsDirectlyToSource=True, Mode=OneWay}"
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 												  Margin="4"
 												  MinWidth="300"
 												  HorizontalAlignment="Stretch"
@@ -102,12 +114,20 @@
 
 								<Button x:Name="buttonClearCurrentSelections2" 
 										BorderBrush="{x:Null}" Background="{x:Null}" 
+<<<<<<< HEAD
 										Padding="0" Margin="24,0"
+=======
+										Padding="0" Margin="124,0"
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 										Height="24"
 										VerticalAlignment="Center"
 										ToolTip="clear repeats basket"
 										Command="{Binding Source={StaticResource commandCentral}, Path=ClearRepeatBaskets, Mode=OneWay}"
+<<<<<<< HEAD
 										IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}}"
+=======
+										IsEnabled="{Binding IsRepeatProcessRunning, Converter={StaticResource reverseBool}}"
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 									>
 									<Button.Content>
 										<Border Padding="0" Margin="0">
@@ -122,7 +142,11 @@
 
 
                     <local:iDnaSequenceBasket Grid.Row="2"
+<<<<<<< HEAD
 							DataContext="{Binding RepeatsBasketSorted, IsAsync=True, Mode=OneWay}"
+=======
+							DataContext="{Binding RepeatsBasketSorted, BindsDirectlyToSource=True, Mode=OneWay}"
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 							Margin="4,0,0,0"
 							Padding="0,0"
 							MinWidth="300"
@@ -174,12 +198,20 @@
 
 								<Button x:Name="buttonClearCurrentSelections3" 
 										BorderBrush="{x:Null}" Background="{x:Null}" 
+<<<<<<< HEAD
 										Padding="0" Margin="24,0"
+=======
+										Padding="0" Margin="124,0"
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 										Height="24"
 										VerticalAlignment="Center"
 										ToolTip="clear pair-repeats baskets"
 										Command="{Binding Source={StaticResource commandCentral}, Path=ClearHairpinBaskets, Mode=OneWay}"
+<<<<<<< HEAD
 										IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}, IsAsync=True}"
+=======
+										IsEnabled="{Binding IsRepeatProcessRunning, Converter={StaticResource reverseBool}, IsAsync=True}"
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 										>
 									<Button.Content>
 										<Border Padding="0" Margin="0">
@@ -192,7 +224,11 @@
                     </Border>
 
                     <local:iDnaSequenceBasket Grid.Row="1" Grid.Column="0"
+<<<<<<< HEAD
 									DataContext="{Binding HairpinBasketSorted, IsAsync=True}"
+=======
+									DataContext="{Binding HairpinBasketSorted, BindsDirectlyToSource=True, Mode=OneWay}"
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 									Margin="4,0,0,0"
 									Padding="0"
 									MinWidth="300"
@@ -223,7 +259,11 @@
 			
 		</TabControl>
 
+<<<<<<< HEAD
 		<local:BusySpinCtrlRepeats Grid.Row="0" Grid.Column="0" x:Name="busyRepeatControlx" 
+=======
+		<local:BusySpinRepeatsCtrl Grid.Row="0" Grid.Column="0" x:Name="busyRepeatControlx" 
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 									HorizontalAlignment="Right"
 									VerticalAlignment="Top"
 									Margin="0,4,20,0"

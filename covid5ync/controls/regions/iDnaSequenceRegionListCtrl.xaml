@@ -6,7 +6,11 @@
              xmlns:local="clr-namespace:iDna.controls"
 			 xmlns:data="clr-namespace:iDna"
              mc:Ignorable="d" 
+<<<<<<< HEAD
              d:DesignHeight="413" d:DesignWidth="342"
+=======
+             d:DesignHeight="413" d:DesignWidth="383"
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 			 d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type data:iDnaRegionIndexDesignTime}, CreateList=True}" Background="#FFF6F6F6"
 			 >
     <Grid x:Name="gridMain" Background="#FFF6F6F6" HorizontalAlignment="Stretch">
@@ -51,21 +55,37 @@
 								Padding="4" HorizontalAlignment="Stretch"
 								>
 							<local:iDnaSequenceRegionCtrl DataContext="{Binding }" 
+<<<<<<< HEAD
 														  Width="300"
 														  MaxWidth="300" MinWidth="300"
 														  HorizontalAlignment="Stretch"
 														  Height="154"/>
+=======
+														  MinWidth="340"
+														  MaxWidth="340" 
+														  HorizontalAlignment="Stretch"
+														  Height="168"/>
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 						</Border>
 						
 						<Border Grid.Row="1" VerticalAlignment="Center" Height="26" Margin="0"
 								BorderBrush="Black" Background="#FFFFE6B1"
 								BorderThickness="1,0,1,1"
+<<<<<<< HEAD
 								Padding="0"
 								SnapsToDevicePixels="True">
 							<StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" Margin="0">
 								<Button x:Name="buttonSelectRegion" Margin="4,0,0,0" Padding="0" 
 										Background="{x:Null}"
 										Click="buttonSelectRegion_Click">
+=======
+								Padding="2"
+								SnapsToDevicePixels="True">
+							<StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" Margin="0">
+								<Button x:Name="buttonSelectRegion" Margin="4,0,0,0" Padding="0" 
+									Background="{x:Null}"
+									Click="buttonSelectRegion_Click">
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 									<Button.Content>
 										<Border>
 											<Image Source="{Binding Source={StaticResource imgPrev}, Path=Source}"

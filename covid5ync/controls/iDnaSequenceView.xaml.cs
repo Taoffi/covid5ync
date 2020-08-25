@@ -22,6 +22,23 @@ namespace iDna.controls
 	/// </summary>
 	public partial class iDnaSequenceView : UserControl
 	{
+<<<<<<< HEAD
+=======
+		protected bool				_handleMouseWheelZoom		=true;
+		protected MouseWheelZoom	_mouseWheelZoom;
+
+		public bool HandleMouseWheelZoom
+		{
+			get { return _handleMouseWheelZoom; }
+			set
+			{
+				_handleMouseWheelZoom	= value;
+				//if(!value && _mouseWheelZoom !=null)
+				//	PreviewMouseWheel -= _mouseWheelZoom.Zoom;
+			}
+		}
+
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 		public iDnaSequenceView()
 		{
 			InitializeComponent();
@@ -30,9 +47,12 @@ namespace iDna.controls
 
 		private void Control_Loaded(object sender, RoutedEventArgs e)
 		{
+			if(! _handleMouseWheelZoom)
+				return;
+
 			var presenter		= UiHelpers.FindChild<ScrollContentPresenter>(listItems, null);
-			var mouseWheelZoom  = new MouseWheelZoom(presenter);
-			PreviewMouseWheel   += mouseWheelZoom.Zoom;
+			_mouseWheelZoom		= new MouseWheelZoom(presenter);
+			PreviewMouseWheel   += _mouseWheelZoom.Zoom;
 		}
 
 		public bool ViewPageIndicatorBar

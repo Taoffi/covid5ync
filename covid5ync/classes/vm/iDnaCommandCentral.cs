@@ -43,7 +43,12 @@ namespace iDna.vm
 
 								_openXml					= null,
 
+<<<<<<< HEAD
 								_loadBuiltinSequence		= null,     // load application's delivered sequence
+=======
+								_loadBuiltinTextSequence	= null,     // load application's delivered sequence
+								_loadBuiltinXmlSequence		= null,     // load application's delivered xml sequence (with analysis)
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 								_loadSequenceFromClipboard = null,		// load sequence from clipoard
 								_saveAs						= null,
 								_saveXml					= null,
@@ -81,7 +86,11 @@ namespace iDna.vm
 								_clearSearchBaskets			= null,
 
 								_gotoCovid_19_situationPage	= null,
+<<<<<<< HEAD
 								_maangeBookMarks			= null,
+=======
+								_manageBookMarks			= null,
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 
 								//_selectAllNamedRegions		= null,
 
@@ -166,9 +175,15 @@ namespace iDna.vm
 		{
 			get
 			{
+<<<<<<< HEAD
 				if (_maangeBookMarks == null)
 				{
 					_maangeBookMarks = new CommandExecuter(() =>
+=======
+				if (_manageBookMarks == null)
+				{
+					_manageBookMarks = new CommandExecuter(() =>
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 					{
 						var					bookmarkList	= iDnaBookmarkList.Instance;
 						BookMarksWindow		window			= new BookMarksWindow() {  DataContext = bookmarkList };
@@ -177,7 +192,11 @@ namespace iDna.vm
 						window.ShowDialog();
 					});
 				}
+<<<<<<< HEAD
 				return _maangeBookMarks;
+=======
+				return _manageBookMarks;
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 			}
 		}
 
@@ -245,9 +264,23 @@ namespace iDna.vm
 								ShowMessage("Sorry!. Could not open or read the file.\r\n" + ex.Message, "Could not open file");
 								return;
 							}
+<<<<<<< HEAD
 						
 							sequence.Name				= Path.GetFileName(fileName);
 							sequence.SequenceFileInfo	= fileName;
+=======
+
+							int			crlfIndex		= strSequence.IndexOf("\n");
+							string		extension		= Path.GetExtension(fileName).ToLower(),
+										info			= extension == ".fasta" ? strSequence.Substring(0, crlfIndex) : "";
+
+							if(info.Length > 0)
+								strSequence	 = strSequence.Substring(crlfIndex + 1);
+
+							sequence.SequenceFileInfo	= fileName + "\r\n" + info;
+
+							sequence.Name				= Path.GetFileName(fileName);
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 							await sequence.ParseString(strSequence);
 						});
 
@@ -260,6 +293,7 @@ namespace iDna.vm
 		/// <summary>
 		/// load the built-in sequence (application's resource file)
 		/// </summary>
+<<<<<<< HEAD
 		public ICommand LoadBuiltinSequence
 		{
 			get
@@ -267,6 +301,15 @@ namespace iDna.vm
 				if (_loadBuiltinSequence == null)
 				{
 					_loadBuiltinSequence = new CommandExecuter(async() =>
+=======
+		public ICommand LoadBuiltinTextSequence
+		{
+			get
+			{
+				if (_loadBuiltinTextSequence == null)
+				{
+					_loadBuiltinTextSequence = new CommandExecuter(async() =>
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 					{
 						//ShowNotYetImplemented();
 
@@ -310,20 +353,107 @@ namespace iDna.vm
 						});
 					});
 				}
+<<<<<<< HEAD
 				return _loadBuiltinSequence;
 			}
 		}
 
 		// 
+=======
+				return _loadBuiltinTextSequence;
+			}
+		}
+
+		// _loadBuiltinXmlSequence
+		public ICommand LoadBuiltinXmlSequence
+		{
+			get
+			{
+				if (_loadBuiltinXmlSequence == null)
+				{
+					_loadBuiltinXmlSequence = new CommandExecuter(() =>
+					{
+						//ShowNotYetImplemented();
+
+						iDnaSequence	sequence		= iDnaSequence.Instance;
+						bool			canLoadNew		= true;
+
+						if(sequence.HasPendingChanges)
+						{
+							canLoadNew	= AskLoadNewSequence();
+						}
+
+						if(!canLoadNew)
+							return;
+
+						Uri				seqUri			= new Uri("/data/covid19-work-in-progress.xml", UriKind.Relative);
+
+						sequence.Name		= "Wuhan seafood market pneumonia virus genome assembly, whole_genome";
+						iDnaSequenceContract	seqContract = null;
+
+						Dispatcher.CurrentDispatcher.Invoke(() =>
+						{
+							Stream		seqStream		= Application.GetResourceStream(seqUri).Stream;
+
+							try
+							{
+								DataContractSerializer	ser			= new DataContractSerializer(typeof(iDnaSequenceContract));
+								XmlReaderSettings		xmlSettings = new XmlReaderSettings() { CloseInput = true };
+								XmlReader				xml			= XmlReader.Create(seqStream, xmlSettings);
+
+								seqContract = ser.ReadObject(xml) as iDnaSequenceContract;
+								xml.Close();
+							}
+							catch (Exception ex)
+							{
+								ShowMessage("Sorry!. An error occurred: \r\n" + ex.Message, "Load xml built-in resource");
+								return;
+							}
+
+							//seqStream.Close();
+						});
+					});
+				}
+				return _loadBuiltinXmlSequence;
+			}
+		}
+
+
+
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 		public ICommand LoadSequenceFromClipboard
 		{
 			get
 			{
 				if (_loadSequenceFromClipboard == null)
 				{
+<<<<<<< HEAD
 					_loadSequenceFromClipboard = new CommandExecuter(() =>
 					{
 						ShowNotYetImplemented();
+=======
+					_loadSequenceFromClipboard = new CommandExecuter(async() =>
+					{
+						// ShowNotYetImplemented();
+
+						iDnaSequence	sequence			= iDnaSequence.Instance;
+						string			str					= Clipboard.GetText();
+						bool			canLoadNewSequence	= true;
+
+						if(string.IsNullOrEmpty(str))
+						{
+							ShowMessage("The clipboard looks to be empty or does not contain text.", "Paste sequence from clipboard");
+							return;
+						}
+
+						if (sequence.HasPendingChanges)
+							canLoadNewSequence = AskLoadNewSequence();
+
+						if (!canLoadNewSequence)
+							return;
+
+						await sequence.ParseString(str);
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 					});
 				}
 				return _loadSequenceFromClipboard;
@@ -460,6 +590,7 @@ namespace iDna.vm
 							return;
 
 						LoadXmlFile(srcFile);
+<<<<<<< HEAD
 						//iDnaSequenceContract	seqContract		= null;
 						//try
 						//{
@@ -474,6 +605,8 @@ namespace iDna.vm
 						//{
 						//	ShowMessage("Sorry!. An error occurred: \r\n" + ex.Message, "Load xml file");
 						//}
+=======
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 					});
 
 					iDnaSequence seq		= iDnaSequence.Instance;
@@ -537,6 +670,10 @@ namespace iDna.vm
 					_resetSelections = new CommandExecuter(() =>
 					{
 						// ShowNotYetImplemented();
+<<<<<<< HEAD
+=======
+						iDnaGobalSettings.Instance.SetSearchRegion(0, int.MaxValue);
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 
 						iDnaSequence seq		= iDnaSequence.Instance;
 
@@ -1161,7 +1298,11 @@ namespace iDna.vm
 			{
 				if (_findRepeats == null)
 				{
+<<<<<<< HEAD
 					_findRepeats = new CommandExecuter(() =>
+=======
+					_findRepeats = new CommandExecuter( async() =>
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 					{
 						// ShowNotYetImplemented();
 
@@ -1173,11 +1314,15 @@ namespace iDna.vm
 							return;
 						}
 
+<<<<<<< HEAD
 						Task.Run( async() =>
 						{
 							await iDnaSequence.Instance.GetRepeatsOrHairpins(null, searchHairpins: false);
 						});
 
+=======
+						await iDnaSequence.Instance.FindRepeatsOrHairpins(Dispatcher.CurrentDispatcher, searchHairpins: false);
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 					});
 				}
 				return _findRepeats;
@@ -1205,7 +1350,11 @@ namespace iDna.vm
 
 						Task.Run( async() =>
 						{
+<<<<<<< HEAD
 							await iDnaSequence.Instance.GetRepeatsOrHairpins(null, searchHairpins: true);
+=======
+							await iDnaSequence.Instance.FindRepeatsOrHairpins(Dispatcher.CurrentDispatcher, searchHairpins: true);
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 						});
 
 					});

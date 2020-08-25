@@ -184,7 +184,11 @@
 							 VerticalAlignment="Stretch"
 							 HorizontalAlignment="Stretch"
 							 FontFamily="Consolas"
+<<<<<<< HEAD
 							 Text="{Binding SequenceFileInfo, UpdateSourceTrigger=PropertyChanged, IsAsync=True}"
+=======
+							 Text="{Binding SequenceFileInfo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 							 Padding="8" FontSize="13"
 							 Margin="4"
 							 BorderBrush="Black"

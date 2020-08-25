@@ -32,12 +32,17 @@
 					   ToolTip="search for nucleotides 
 (ctrl+f)  (min 3 chars)"/>
 				<TextBox x:Name="textBoxSearch" VerticalAlignment="Center" Width="120"
+						 CharacterCasing="Lower"
 						 Text="{Binding SearchString, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" 
 						 Foreground="{Binding SearchString, Converter={StaticResource searchStringValidator}}"
 						 IsEnabled="{Binding CanSearch, IsAsync=True}"/>
 				<Button x:Name="buttonSearch" Margin="2,0" VerticalAlignment="Center"
 						Width="20" Content="Go" FontSize="10"
+<<<<<<< HEAD
 						IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}}"
+=======
+						IsEnabled="{Binding IsValidSearchString, IsAsync=True}"
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 						ToolTip="search (ctrl+f)"
 						Click="buttonSearch_Click" />
 
@@ -50,13 +55,18 @@
 							ToolTip="find complementary nucleotides
 (alt+f) (min 3 chars)" />
 				<TextBox x:Name="textBoxSearchPair" VerticalAlignment="Center" Width="120"
+						 CharacterCasing="Lower"
 						 Text="{Binding SearchPairString, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
 						 Foreground="{Binding SearchPairString, Converter={StaticResource searchStringValidator}}"
-						 IsEnabled="{Binding CanSearch, IsAsync=True}"
+						 IsEnabled="{Binding CanPairSearch, IsAsync=True}"
 					 />
 				<Button x:Name="buttonSearchPair" Margin="2,0" VerticalAlignment="Center"
 						Width="20" Content="Go" FontSize="10"
+<<<<<<< HEAD
 						IsEnabled="{Binding IsBusy, Converter={StaticResource reverseBool}}"
+=======
+						IsEnabled="{Binding IsValidSearchPairString, IsAsync=True}"
+>>>>>>> 5d087e45665096debbc20a0b92888c7a03316a15
 						ToolTip="search complementray (alt+f)"
 						Click="buttonSearchPair_Click" />
 
